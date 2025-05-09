@@ -3,8 +3,7 @@ import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import ThemeToggle from '@/components/ThemeToggle';
 import { useTheme } from 'next-themes';
 import { dark } from "@clerk/themes";
-import LanguageToggle from './LanguageToggle';
-import { Link } from '@/i18n/navigation';
+import Link from 'next/link';
 import { NavBar } from './NavBar';
 import Logo from '@/assets/icons/logo.svg';
 import Image from 'next/image';
@@ -62,7 +61,6 @@ export default function Header () {
 				</UserButton>
 			</SignedIn>
 			<ThemeToggle />
-			<LanguageToggle />
 		</nav>
 
 		{/* Mobile menu dropdown */}
@@ -88,7 +86,6 @@ export default function Header () {
 						</UserButton>
 					</SignedIn>
 					<ThemeToggle />
-					<LanguageToggle />
 				</div>
 			</div>
 		)}

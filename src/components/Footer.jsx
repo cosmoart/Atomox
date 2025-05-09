@@ -1,4 +1,4 @@
-import { Link } from '@/i18n/navigation'
+import Link from 'next/link'
 import { Atoms, Molecules } from '@/lib/conts'
 
 export default function Footer () {

@@ -2,7 +2,7 @@ import { Atoms } from '@/lib/conts';
 import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Heart, Eye } from 'lucide-react'
-import { Link } from '@/i18n/navigation'
+import Link from 'next/link';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue, } from "@/components/ui/select"
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "@/components/ui/pagination"
 
@@ -15,7 +15,7 @@ export default async function AtomPage ({ params }) {
 	const { atom } = await params
 	const data = Atoms.find(a => a.id === atom);
 
-	if (!atom || !data) return <div>Perro no encontrado</div>;
+	if (!atom || !data) return <div>Atom no encontrado</div>;
 
 	return (
 		<div className='section'>

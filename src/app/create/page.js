@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import Editor from '@monaco-editor/react'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Switch } from '@/components/ui/switch'
-import { Link, useRouter } from '@/i18n/navigation'
+import { useRouter } from 'next/router'
 import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import confetti from 'canvas-confetti'
 import html2canvas from "html2canvas-pro";

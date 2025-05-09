@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Link } from '@/i18n/navigation';
+import Link from 'next/link';
 
 import { cn } from "@/lib/utils"
 import {
@@ -12,7 +12,6 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { useTranslations } from 'next-intl'
 import { Atoms, Molecules } from '@/lib/conts';
 
 const components = [
@@ -54,7 +53,6 @@ const components = [
 ]
 
 export function NavBar () {
-	const t = useTranslations("Header.NavBar")
 	return (
 		<NavigationMenu className="max-w-none *:w-full md:*:w-auto">
 			<NavigationMenuList className="w-full *:grow">

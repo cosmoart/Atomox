@@ -1,4 +1,4 @@
-import { Link } from '@/i18n/navigation';
+import Link from 'next/link';
 import { Molecules as data } from '@/lib/conts'
 
 export default function Moleculas () {

@@ -1,5 +1,4 @@
-// import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
+import  Link  from 'next/link';
 import Image from 'next/image';
 import Logo from '@/assets/icons/logo.svg';
 import { Atoms, Molecules } from '@/lib/conts';
@@ -7,9 +6,6 @@ import { currentUser } from '@clerk/nextjs/server'
 
 export default async function Home () {
 	const user = await currentUser();
-	console.log(user);
-
-	// const t = useTranslations('HomePage');
 
 	return (
 		<div className='section'>

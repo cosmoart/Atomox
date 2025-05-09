@@ -1,13 +1,11 @@
-import createNextIntlPlugin from 'next-intl/plugin';
-
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
 	experimental: {
-		viewTransition: true,
+		viewTransition: true
 	},
-	images: {
-		domains: ['img.clerk.com', "picsum.photos"],
-	},
-};
+	images: { domains: ['img.clerk.com', "picsum.photos"] },
+}
 
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(nextConfig);
+export default nextConfig
