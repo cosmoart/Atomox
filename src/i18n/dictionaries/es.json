@@ -1,0 +1,31 @@
+{
+  "products": {
+    "cart": "Añadir al carrito"
+  },
+    "HomePage": {
+  "title": "Mi aplicación",
+  "about": "Acerca de"
+  },
+  "NotFoundPage": {
+    "title": "Página no encontrada",
+    "description": "Lo sentimos, la página que buscas no existe."
+  },
+  "Header": {
+    "home": "Inicio",
+    "atoms": "Átomos",
+    "molecules": "Moléculas",
+    "organisms": "Organismos",
+    "ThemeToggle": {
+      "dark": "Modo oscuro",
+      "light": "Modo claro",
+      "system": "Sistema"
+    },
+    "NavBar": {
+      "home": "Inicio",
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "products": "Productos",
+      "cart": "Carrito"
+    }
+  }
+}
