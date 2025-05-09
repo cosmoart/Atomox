@@ -4,19 +4,11 @@ import { useState, useRef } from 'react'
 import Editor from '@monaco-editor/react'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Switch } from '@/components/ui/switch'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import confetti from 'canvas-confetti'
 import html2canvas from "html2canvas-pro";
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 import { Atoms, Molecules } from '@/lib/conts'
 
 
