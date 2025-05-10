@@ -1,7 +1,8 @@
+export const dynamic = 'force-dynamic'
 import AddTaskForm from './AddTaskForm'
 import { createServerSupabaseClient } from './client'
 
-export default async function Home () {
+export default async function Dasboard () {
 	// Use the custom Supabase client you created
 	const client = createServerSupabaseClient()
 
@@ -24,20 +25,3 @@ export default async function Home () {
 		</div>
 	)
 }
-
-
-// import { currentUser } from '@clerk/nextjs/server'
-// import Image from 'next/image';
-
-// export default async function Protected () {
-// 	const user = await currentUser()
-// 	console.log(user);
-
-// 	return (
-// 		<div>
-// 			Protected
-// 			<Image src={user.imageUrl} alt="" width={60} height={60} />
-// 			<h1>Hello {user?.firstName}</h1>
-// 		</div>
-// 	)
-// }
