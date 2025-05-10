@@ -1,4 +1,4 @@
-import  Link  from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '@/assets/icons/logo.svg';
 import { Atoms, Molecules } from '@/lib/conts';
@@ -14,31 +14,35 @@ export default async function Home () {
 				<h1 className='text-6xl font-bold bg-zinc-950 mb-5'>Atomox</h1>
 			</section>
 
-			<h2 className='text-2xl font-medium'>Atoms</h2>
-			<article className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 mt-6'>
-				{
-					Atoms.map(atom => (
-						<Link href={`atoms/${atom.id}`} key={atom.id} className='flex flex-col items-center justify-center rounded-lg card-border p-4  transition-shadow '>
+			<article>
+				<h2 className='text-2xl font-medium mb-4 mt-8'>Atoms</h2>
+				<div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4'>
+					{
+						Atoms.map(atom => (
+							<Link href={`atoms/${atom.id}`} key={atom.id} className='flex flex-col justify-center rounded-lg card-border p-4  transition-shadow '>
 
-							<h3 className="text-lg font-medium">{atom.name}</h3>
-							{atom.description}
-						</Link>
-					))
-				}
+								<h3 className="text-lg font-medium">{atom.name}</h3>
+								<p className='text-[15px] line-clamp-2'>{atom.description}</p>
+							</Link>
+						))
+					}
+				</div>
 			</article>
 
-			<h2 className='text-2xl font-medium'>Molecules</h2>
-			<article className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 mt-6'>
+			<article >
+				<h2 className='text-2xl font-medium mb-4 mt-8'>Molecules</h2>
 
-				{
-					Molecules.map(atom => (
-						<Link href={`molecules/${atom.id}`} key={atom.id} className='flex flex-col items-center justify-center rounded-lg border border-zinc-200 p-4 shadow-md transition-shadow hover:shadow-lg dark:border-zinc-700 dark:hover:border-zinc-600'>
+				<div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4'>
+					{
+						Molecules.map(molecule => (
+							<Link href={`molecules/${molecule.id}`} key={molecule.id} className='flex flex-col justify-center rounded-lg border border-zinc-200 p-4 shadow-md transition-shadow hover:shadow-lg dark:border-zinc-700 dark:hover:border-zinc-600'>
 
-							<h3 className="text-lg font-medium">{atom.name}</h3>
-							{atom.description}
-						</Link>
-					))
-				}
+								<h3 className="text-lg font-medium">{molecule.name}</h3>
+								<p className='text-[15px] line-clamp-2'>{molecule.description}</p>
+							</Link>
+						))
+					}
+				</div>
 			</article>
 		</div>
 	);

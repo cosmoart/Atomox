@@ -25,7 +25,7 @@ export default function ComEditor () {
   `
 
 	return (
-		< div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3" >
+		< div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3 h-full" >
 			<div className="flex flex-col">
 				<Tabs defaultValue="html" className="flex-1 flex flex-col">
 					<TabsList className="w-full justify-start">

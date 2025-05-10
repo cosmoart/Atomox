@@ -149,7 +149,7 @@ export default function CodeEditorPreview () {
 								<TabsContent value="atom" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2">
 									{
 										Atoms.map((atom, index) => (
-											<button key={index} className='rounded bg-zinc-800 px-4 py-2 cursor-pointer'>
+											<button onClick={() => { setHtml(atom.html), setCss(atom.css) }} key={index} className='rounded bg-zinc-800 px-4 py-2 cursor-pointer'>
 												{atom.name}
 											</button>
 										))

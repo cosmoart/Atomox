@@ -1,9 +1,9 @@
+import Element from '@/components/pages/Element'
+
 export default async function Molecule ({ params }) {
 	const { id } = await params
 
 	return (
-		<div className='section'>
-			Molecule {id}
-		</div>
+		<Element id={id} />
 	)
 }

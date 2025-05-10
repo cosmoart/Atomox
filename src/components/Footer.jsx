@@ -3,7 +3,7 @@ import { Atoms, Molecules } from '@/lib/conts'
 
 export default function Footer () {
 	return (
-		<footer className='section flex gap-5 mt-10 card-border mx-1 rounded-t-xl'>
+		<footer className='section flex gap-5 mt-20 card-border mx-1 rounded-t-xl'>
 			<nav>
 				<h5 className='text-lg font-medium'>Atoms</h5>
 				<ul>

@@ -2,19 +2,26 @@ export const Atoms = [
 	{
 		name: 'Buttons',
 		description: 'A button is a clickable element that performs an action when clicked.',
-		example: '<button className="btn">Click me</button>',
+		html: '<button class="btn">Click me</button>',
+		css: `
+		.btn {
+			background-color: blue;
+			color: white;
+			padding: 10px 20px;
+			border-radius: 5px;
+		}`,
 		id: "buttons",
 	},
 	{
 		name: 'Inputs',
 		description: 'An input field is a form element that allows users to enter data.',
-		example: '<input type="text" className="input" />',
+		html: '<input type="text" className="input" />',
 		id: "inputs",
 	},
 	{
 		name: 'Loaders',
 		description: 'A loader is a visual indicator that something is loading or processing.',
-		example: '<div className="loader"></div>',
+		html: '<div className="loader"></div>',
 		id: "loaders",
 	},
 	{
@@ -31,16 +38,6 @@ export const Atoms = [
 		name: "Switches",
 		description: 'A switch is a toggle button that allows users to turn something on or off.',
 		id: "switches",
-	},
-	{
-		name: "Sliders",
-		description: 'A slider is a form element that allows users to select a value from a range.',
-		id: "sliders",
-	},
-	{
-		name: "Selects",
-		description: 'A select is a form element that allows users to select one or more options from a dropdown list.',
-		id: "selects",
 	},
 	{
 		name: "Backgrounds",
@@ -101,3 +98,20 @@ export const Molecules = [
 		id: "pricing",
 	}
 ]
+
+export const PagesTypes = {
+	"Atoms": {
+		title: "Atoms",
+		id: "atoms",
+		gridSize: "repeat(auto-fill,minmax(300px,1fr))",
+		description: "Atoms are the smallest components that can be used to create more complex components.",
+		pageSize: 32
+	},
+	"Molecules": {
+		title: "Molecules",
+		id: "molecules",
+		gridSize: "repeat(auto-fill,minmax(380px,1fr))",
+		description: "Molecules are the smallest components that can be used to create more complex components.",
+		pageSize: 30
+	},
+}

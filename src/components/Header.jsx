@@ -8,13 +8,13 @@ import { NavBar } from './NavBar';
 import Logo from '@/assets/icons/logo.svg';
 import Image from 'next/image';
 import { useState } from 'react';
-import { DotIcon, Menu } from 'lucide-react';
+import { DotIcon, Menu, MoonIcon, SunIcon } from 'lucide-react';
 
 export default function Header () {
 	const [isOpen, setIsOpen] = useState(false);
-	const { theme } = useTheme()
+	const { theme, setTheme } = useTheme()
 
-	return (<header className="section  mx-1! lg:mx-auto sticky top-1 z-50 rounded-t-xl border-b border-zinc-100 bg-white/60 py-3 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/60 md:flex md:items-center md:justify-between ">
+	return (<header className="section mx-1! lg:mx-auto sticky top-1 z-50 rounded-t-xl border-b border-zinc-100 bg-white/60 py-3 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/60 md:flex md:items-center md:justify-between ">
 		{/* Mobile header: logo + toggle */}
 		<div className="flex items-center justify-between md:hidden font-medium">
 			<Link href="/" className="text-lg text-zinc-900 dark:text-white">
@@ -53,9 +53,9 @@ export default function Header () {
 
 					<UserButton.MenuItems>
 						<UserButton.Action
-							label="Open chat"
-							labelIcon={<DotIcon />}
-							onClick={() => alert('init chat')}
+							label={theme === "dark" ? "Light mode" : "Dark mode"}
+							labelIcon={theme === "dark" ? <MoonIcon className='size-4' /> : <SunIcon className='size-4' />}
+							onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
 						/>
 					</UserButton.MenuItems>
 				</UserButton>
