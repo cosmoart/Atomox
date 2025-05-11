@@ -22,9 +22,9 @@ const CustomPage = () => {
 }
 
 const UserProfilePage = () => {
-	const { theme } = useTheme()
+	const { resolvedTheme } = useTheme()
 
-	return <UserProfile className="w-full" path="/user-profile" routing="path" appearance={{ baseTheme: theme === "dark" ? dark : undefined }}>
+	return <UserProfile className="w-full" path="/user-profile" routing="path" appearance={{ baseTheme: resolvedTheme === "dark" ? dark : undefined }}>
 		{/* You can pass the content as a component */}
 		<UserProfile.Page label="Custom Page" labelIcon={<DotIcon />} url="custom-page">
 			<CustomPage />

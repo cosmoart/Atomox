@@ -12,7 +12,7 @@ import { DotIcon, Menu, MoonIcon, SunIcon } from 'lucide-react';
 
 export default function Header () {
 	const [isOpen, setIsOpen] = useState(false);
-	const { theme, setTheme } = useTheme()
+	const { resolvedTheme, setTheme } = useTheme()
 
 	return (<header className="section mx-1! lg:mx-auto sticky top-1 z-50 rounded-t-xl border-b border-zinc-100 bg-white/60 py-3 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/60 md:flex md:items-center md:justify-between ">
 		{/* Mobile header: logo + toggle */}
@@ -43,7 +43,7 @@ export default function Header () {
 			</SignedOut>
 			<SignedIn>
 				{/* <UserButton appearance={{ baseTheme: theme === "dark" ? dark : undefined }} /> */}
-				<UserButton userProfileMode='navigation' userProfileUrl='/user-profile' appearance={{ baseTheme: theme === "dark" ? dark : undefined }}>
+				<UserButton userProfileMode='navigation' userProfileUrl='/user-profile' appearance={{ baseTheme: resolvedTheme === "dark" ? dark : undefined }}>
 					<UserButton.UserProfilePage label="Terms" labelIcon={<DotIcon />} url="terms">
 						<div>
 							<h1>Custom Terms Page</h1>
@@ -53,9 +53,9 @@ export default function Header () {
 
 					<UserButton.MenuItems>
 						<UserButton.Action
-							label={theme === "dark" ? "Light mode" : "Dark mode"}
-							labelIcon={theme === "dark" ? <MoonIcon className='size-4' /> : <SunIcon className='size-4' />}
-							onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+							label={resolvedTheme === "dark" ? "Light mode" : "Dark mode"}
+							labelIcon={resolvedTheme === "dark" ? <MoonIcon className='size-4' /> : <SunIcon className='size-4' />}
+							onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
 						/>
 					</UserButton.MenuItems>
 				</UserButton>

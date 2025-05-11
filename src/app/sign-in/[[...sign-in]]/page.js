@@ -4,13 +4,13 @@ import { dark } from '@clerk/themes';
 import { useTheme } from 'next-themes';
 
 export default function Page () {
-	const { theme } = useTheme()
+	const { resolvedTheme } = useTheme()
 
 	return (
 		<article className="relative flex min-h-screen flex-col-reverse md:flex-row">
 			<main className="flex min-h-screen w-full flex-col items-center justify-center bg-background p-4 md:w-1/2 md:p-8">
 				<SignIn
-					appearance={{ baseTheme: theme === "dark" ? dark : undefined }}
+					appearance={{ baseTheme: resolvedTheme === "dark" ? dark : undefined }}
 				/>
 			</main>
 

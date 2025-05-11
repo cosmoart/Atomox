@@ -59,11 +59,15 @@ export default async function Elements ({ data, type }) {
 								<div className='flex gap-3 items-center'>
 									<div className='flex gap-1 items-center'>
 										<Heart size={17} className='text-red-500 inline' />
-										<span className='text-sm text-zinc-900/80 dark:text-white/80'>{Math.floor(Math.random() * 100)}</span>
+										<span className='text-sm text-zinc-900/80 dark:text-white/80'>
+											{Intl.NumberFormat('en', { notation: 'compact' }).format(Math.floor(Math.random() * 100))}
+										</span>
 									</div>
 									<div className='flex gap-1 items-center'>
 										<Eye size={17} className='text-zinc-900/80 dark:text-white/80' />
-										<span className='text-sm text-zinc-900/80 dark:text-white/80'>{Math.floor(Math.random() * 100)}</span>
+										<span className='text-sm text-zinc-900/80 dark:text-white/80'>
+											{Intl.NumberFormat('en', { notation: 'compact' }).format(Math.floor(Math.random() * 7000))}
+										</span>
 									</div>
 								</div>
 							</div>
