@@ -9,9 +9,9 @@ export default async function Home () {
 
 	return (
 		<div className='section'>
-			<section className='h-[calc(100svh-60px)] flex items-center justify-center flex-col'>
+			<section className='heightScreen flex items-center justify-center flex-col'>
 				<Image src={Logo} alt="Logo" width={250} height={250} className="dark:invert right-0 left-0 mx-auto -z-10" />
-				<h1 className='text-6xl font-bold bg-zinc-950 mb-5'>Atomox</h1>
+				<h1 className='text-6xl font-bold  mb-5'>Atomox</h1>
 			</section>
 
 			<article>

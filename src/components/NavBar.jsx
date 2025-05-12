@@ -48,14 +48,14 @@ export function NavBar () {
 						</Link>
 					</NavigationMenuTrigger>
 					<NavigationMenuContent>
-						<ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+						<ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:grid-cols-3 lg:w-[600px] ">
 							{Molecules.map((component) => (
 								<ListItem
 									key={component.id}
 									title={component.name}
 									href={`/molecules/${component.id}`}
 								>
-									{component.description}
+									{/* {component.description} */}
 								</ListItem>
 								// <li
 								// 	key={component.id}

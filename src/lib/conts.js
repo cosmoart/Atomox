@@ -3,13 +3,22 @@ export const Atoms = [
 		name: 'Buttons',
 		description: 'A button is a clickable element that performs an action when clicked.',
 		html: '<button class="btn">Click me</button>',
-		css: `
-		.btn {
-			background-color: blue;
-			color: white;
-			padding: 10px 20px;
-			border-radius: 5px;
-		}`,
+		css: `.btn {
+	background-color: blue;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	transition: scale 0.2s ease-in-out;
+	border: none;
+}
+
+.btn:hover {
+	scale: 1.1;
+}
+
+.btn:active{
+	scale: 0.9;
+}`,
 		id: "buttons",
 	},
 	{
@@ -17,6 +26,11 @@ export const Atoms = [
 		description: 'An input field is a form element that allows users to enter data.',
 		html: '<input type="text" className="input" />',
 		id: "inputs",
+	},
+	{
+		name: "Backgrounds",
+		description: 'A background is an image or color that appears behind other elements.',
+		id: "backgrounds",
 	},
 	{
 		name: 'Loaders',
@@ -40,14 +54,19 @@ export const Atoms = [
 		id: "switches",
 	},
 	{
-		name: "Backgrounds",
-		description: 'A background is an image or color that appears behind other elements.',
-		id: "backgrounds",
-	},
-	{
 		name: "Tooltips",
 		description: 'A tooltip is a small popup that provides additional information about an element.',
 		id: "tooltips",
+	},
+	{
+		name: "Progress bars",
+		description: 'A progress bar is a visual indicator that shows the progress of a task.',
+		id: "progress-bars",
+	},
+	{
+		name: "Selects",
+		description: 'A select is a form element that allows users to select an option from a list.',
+		id: "selects",
 	}
 ]
 
@@ -56,6 +75,16 @@ export const Molecules = [
 		name: "Forms",
 		description: 'A form is a collection of input fields and buttons that allows users to submit data.',
 		id: "forms",
+	},
+	{
+		name: "Headers",
+		description: 'A header is a section that appears at the top of a page.',
+		id: "headers",
+	},
+	{
+		name: "Footers",
+		description: 'A footer is a section that appears at the bottom of a page.',
+		id: "footers",
 	},
 	{
 		name: "Cards",
@@ -78,24 +107,49 @@ export const Molecules = [
 		id: "error-pages",
 	},
 	{
-		name: "Footers",
-		description: 'A footer is a section that appears at the bottom of a page.',
-		id: "footers",
-	},
-	{
 		name: "Sidebars",
 		description: 'A sidebar is a vertical menu that appears on the side of a page.',
 		id: "sidebars",
 	},
 	{
-		name: "Headers",
-		description: 'A header is a section that appears at the top of a page.',
-		id: "headers",
-	},
-	{
-		name: "Pricing",
+		name: "Pricing tables",
 		description: 'A pricing table is a table that displays different pricing options.',
 		id: "pricing",
+	},
+	{
+		name: "Features section",
+		description: 'A feature section is a section that displays a list of features.',
+		id: "feature-sections",
+	},
+	{
+		name: "Testimonials",
+		description: 'A testimonial is a quote from a customer that showcases their experience.',
+		id: "testimonials",
+	},
+	{
+		name: "FAQs",
+		description: 'A FAQ (Frequently Asked Questions) is a list of questions and answers.',
+		id: "faqs",
+	},
+	{
+		name: "Authentication",
+		description: 'Authentication is the process of verifying the identity of a user.',
+		id: "authentication",
+	},
+	{
+		name: "CTA",
+		description: 'A CTA (Call to Action) is a button or link that encourages users to take a specific action.',
+		id: "cta",
+	},
+	{
+		name: "Dashboard",
+		description: 'A dashboard is a page that displays a summary of the user\'s activity.',
+		id: "dashboard",
+	},
+	{
+		name: "Cookies",
+		description: 'A cookie is a small piece of data that is stored on a user\'s computer.',
+		id: "cookies",
 	}
 ]
 

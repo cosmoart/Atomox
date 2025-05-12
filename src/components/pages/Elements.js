@@ -47,16 +47,16 @@ export default async function Elements ({ data, type }) {
 							</Link>
 
 							<div className='flex gap-2 p-2 justify-between'>
-								<div className='flex gap-2 items-center'>
+								<Link href="/u/user_2wnENqMPyFfDh1QSStqhRSRoqs2" className='flex gap-2 items-center'>
 									<Avatar className="size-7" >
 										<AvatarImage src="https://github.com/cosmoart.png" />
 										<AvatarFallback>CA</AvatarFallback>
 									</Avatar>
 
 									<h1 className='font-medium'>Cosmoart</h1>
-								</div>
+								</Link>
 
-								<div className='flex gap-3 items-center'>
+								<div className='flex gap-3 items-center mr-1'>
 									<div className='flex gap-1 items-center'>
 										<Heart size={17} className='text-red-500 inline' />
 										<span className='text-sm text-zinc-900/80 dark:text-white/80'>

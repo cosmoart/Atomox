@@ -21,6 +21,19 @@
   }
 }
 
+.cl-userProfile-root{
+  width: auto;
+  height: calc(100vh - var(--header-height));
+}
+.cl-cardBox{
+  width: auto;
+  height: 100%;
+}
+
+.heightScreen{
+  height: calc(100vh - var(--header-height));
+}
+
 @theme inline {
   --color-zinc-950: oklch(17% 0.005 285.823);
   --color-background: var(--background);
@@ -64,6 +77,8 @@
 
 :root {
   --root-pr: 0px;
+  --header-height: 64px;
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);

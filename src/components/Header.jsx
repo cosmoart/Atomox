@@ -1,5 +1,5 @@
 "use client"
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs'
 import ThemeToggle from '@/components/ThemeToggle';
 import { useTheme } from 'next-themes';
 import { dark } from "@clerk/themes";
@@ -8,9 +8,10 @@ import { NavBar } from './NavBar';
 import Logo from '@/assets/icons/logo.svg';
 import Image from 'next/image';
 import { useState } from 'react';
-import { DotIcon, Menu, MoonIcon, SunIcon } from 'lucide-react';
+import { CircleUserRound, DotIcon, Menu, MoonIcon, SunIcon } from 'lucide-react';
 
 export default function Header () {
+	const { user } = useUser()
 	const [isOpen, setIsOpen] = useState(false);
 	const { resolvedTheme, setTheme } = useTheme()
 
@@ -28,9 +29,9 @@ export default function Header () {
 
 		{/* Desktop header */}
 		<div className="hidden md:flex items-center gap-3 font-medium">
-			<Link href="/" className="text-lg text-zinc-900 dark:text-white flex items-center gap-2  pr-3 ">
-				<Image src={Logo} alt="Logo" width={30} height={30} className="dark:invert" />
-				<span className="hidden md:inline">Atomox</span>
+			<Link href="/" className="text-lg text-zinc-900 dark:text-white flex items-center gap-2  pr-3 group">
+				<Image src={Logo} alt="Logo" width={30} height={30} className="dark:invert transition-all group-hover:scale-110 group-hover:rotate-12" />
+				<span className="hidden md:inline group-hover:translate-x-0.5 transition-transform">Atomox</span>
 			</Link>
 			<NavBar />
 		</div>
@@ -42,7 +43,6 @@ export default function Header () {
 				</a>
 			</SignedOut>
 			<SignedIn>
-				{/* <UserButton appearance={{ baseTheme: theme === "dark" ? dark : undefined }} /> */}
 				<UserButton userProfileMode='navigation' userProfileUrl='/user-profile' appearance={{ baseTheme: resolvedTheme === "dark" ? dark : undefined }}>
 					<UserButton.UserProfilePage label="Terms" labelIcon={<DotIcon />} url="terms">
 						<div>
@@ -52,6 +52,8 @@ export default function Header () {
 					</UserButton.UserProfilePage>
 
 					<UserButton.MenuItems>
+						<UserButton.Link label='View profile' href={`/u/${user?.username}`} labelIcon={<CircleUserRound className='size-4' />} />
+
 						<UserButton.Action
 							label={resolvedTheme === "dark" ? "Light mode" : "Dark mode"}
 							labelIcon={resolvedTheme === "dark" ? <MoonIcon className='size-4' /> : <SunIcon className='size-4' />}

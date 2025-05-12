@@ -10,6 +10,7 @@ import confetti from 'canvas-confetti'
 import html2canvas from "html2canvas-pro";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 import { Atoms, Molecules } from '@/lib/conts'
+import { ChevronLeft } from 'lucide-react'
 
 
 export default function CodeEditorPreview () {
@@ -33,7 +34,7 @@ export default function CodeEditorPreview () {
       <head>
         ${useTailwind ? `<script src="https://cdn.tailwindcss.com"></script>` : `<style>${css}</style>`}
       </head>
-      <body style="width:1280px;height:720px;">${html}</body>
+      <body style="height:100svh;display:grid;place-items:center;">${html}</body>
     </html>
   `
 	function handleSubmit (e) {
@@ -109,7 +110,8 @@ export default function CodeEditorPreview () {
 		<div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[calc(100svh-35px)] m-4 " id="capture-area">
 			<div className="flex flex-col">
 				<section className='flex gap-8 items-center mb-2'>
-					<button onClick={() => router.back()} className="text-lg text-zinc-900 dark:text-white">
+					<button onClick={() => router.back()} className="text-zinc-900 flex gap-1 dark:text-white font-medium">
+						<ChevronLeft width={23} />
 						Volver
 					</button>
 
@@ -123,14 +125,15 @@ export default function CodeEditorPreview () {
 					</div>
 
 					<Dialog>
-						<DialogTrigger>Send</DialogTrigger>
+						<DialogTrigger className='px-8 font-medium py-1.5 rounded-lg bg-blue-600'>Send</DialogTrigger>
 						<DialogContent>
 							<DialogTitle>Are you absolutely sure?</DialogTitle>
 							<div className='max-w-sm mx-auto w-full py-6'>
 								<h3 className='font-medium text-lg mb-4'>Atoms - Loaders</h3>
 								<form className='flex flex-col gap-2' onSubmit={handleSubmit}>
-									<input type="text" placeholder='Titulo' className='px-3 py-2 rounded-lg card-border w-full' />
 									<input type="text" placeholder='Creditos' className='px-3 py-2 rounded-lg card-border w-full' />
+									<input type="text" placeholder='Tags' className='px-3 py-2 rounded-lg card-border w-full' />
+									<input type="text" placeholder='Licence' className='px-3 py-2 rounded-lg card-border w-full' />
 									<button className='px-10 py-2 rounded-lg bg-blue-600 mt-5'>Send</button>
 								</form>
 							</div>
@@ -140,6 +143,14 @@ export default function CodeEditorPreview () {
 					<Dialog defaultOpen={true}>
 						<DialogContent>
 							<DialogTitle>What do you want to do?</DialogTitle>
+							<div className="flex items-center gap-2 ">
+								<label htmlFor="mode">Tailwind</label>
+								<Switch
+									id="mode"
+									checked={useTailwind}
+									onCheckedChange={setUseTailwind}
+								/>
+							</div>
 							<Tabs defaultValue="atom" className="flex-1 flex flex-col">
 								<TabsList className="w-full justify-start">
 									<TabsTrigger value="atom">Atom</TabsTrigger>
@@ -149,7 +160,7 @@ export default function CodeEditorPreview () {
 								<TabsContent value="atom" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2">
 									{
 										Atoms.map((atom, index) => (
-											<button onClick={() => { setHtml(atom.html), setCss(atom.css) }} key={index} className='rounded bg-zinc-800 px-4 py-2 cursor-pointer'>
+											<button onClick={() => { setHtml(atom.html), setCss(atom.css) }} key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
 												{atom.name}
 											</button>
 										))
@@ -159,7 +170,7 @@ export default function CodeEditorPreview () {
 								<TabsContent value="molecule" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2">
 									{
 										Molecules.map((molecule, index) => (
-											<button key={index} className='rounded bg-zinc-800 px-4 py-2 cursor-pointer'>
+											<button key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
 												{molecule.name}
 											</button>
 										))

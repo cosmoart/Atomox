@@ -9,17 +9,17 @@ export default function Footer () {
 				<ul>
 					{Atoms.map((atom, index) => (
 						<li key={index}>
-							<Link href={`/atom/${atom.slug}`}>{atom.name}</Link>
+							<Link href={`/atom/${atom.id}`}>{atom.name}</Link>
 						</li>
 					))}
 				</ul>
 			</nav>
 			<nav>
 				<h5 className='text-lg font-medium'>Molecules</h5>
-				<ul>
+				<ul className='grid grid-cols-2'>
 					{Molecules.map((molecule, index) => (
 						<li key={index}>
-							<Link href={`/molecule/${molecule.slug}`}>{molecule.name}</Link>
+							<Link href={`/molecule/${molecule.id}`}>{molecule.name}</Link>
 						</li>
 					))}
 				</ul>
