@@ -1,51 +1,68 @@
-"use client"
+'use client'
 
 import { useState, useRef } from 'react'
 import Editor from '@monaco-editor/react'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Switch } from '@/components/ui/switch'
 import { useRouter } from 'next/navigation'
-import { emmetHTML, emmetCSS } from "emmet-monaco-es";
-import confetti from 'canvas-confetti'
-import html2canvas from "html2canvas-pro";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
-import { Atoms, Molecules } from '@/lib/conts'
+import { emmetHTML, emmetCSS } from 'emmet-monaco-es';
+import html2canvas from 'html2canvas-pro';
 import { ChevronLeft } from 'lucide-react'
-
+import Confetti from '@/lib/confetti'
+import DialogSubmit from './DialogSubmit'
+import DialogStart from './DialogStart'
+import { SignedIn, SignedOut, useUser } from '@clerk/nextjs'
+import { set } from 'zod'
+import { addElement } from '@/lib/actions'
 
 export default function CodeEditorPreview () {
-	// const [html, setHtml] = useState('<div class="text-3xl p-4 font-bold text-blue-500">Hola!</div><script>alert("asd")</script>')
-	const [html, setHtml] = useState('<div class="text-3xl p-4 font-bold text-blue-500">Hola!</div>')
+	const { user } = useUser()
+
+	const [html, setHtml] = useState('<div class="text-3xl p-4 font-bold text-blue-500">Hello world!</div>')
 	const [css, setCss] = useState('div { color: red; }')
+	const [elementType, setElementType] = useState('Atom')
+	const [elementId, setElementId] = useState('buttons')
 	const [useTailwind, setUseTailwind] = useState(true)
+	const [loading, setLoading] = useState(false)
+
 	const disposeEmmetHTMLRef = useRef();
 	const iframeViewer = useRef();
 	const router = useRouter()
 
-	const handleEditorHTML = (monaco) => {
-		disposeEmmetHTMLRef.current = emmetHTML(monaco);
-	};
-	const handleEditorCSS = (monaco) => {
-		disposeEmmetHTMLRef.current = emmetCSS(monaco)
-	};
+	const handleEditorHTML = (monaco) => disposeEmmetHTMLRef.current = emmetHTML(monaco)
+	const handleEditorCSS = (monaco) => disposeEmmetHTMLRef.current = emmetCSS(monaco)
 
 	const combinedCode = `
     <html>
       <head>
-        ${useTailwind ? `<script src="https://cdn.tailwindcss.com"></script>` : `<style>${css}</style>`}
+        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : `<style>${css}</style>`}
       </head>
       <body style="height:100svh;display:grid;place-items:center;">${html}</body>
     </html>
   `
-	function handleSubmit (e) {
-		e.preventDefault()
-		// console.log('HTML:', html)
-		// console.log('CSS:', css)
-		// console.log('Combined Code:', combinedCode)
+	async function handleSubmit (e) {
+		set
+		const data = {
+			...e,
+			html: html,
+			css: css,
+			useTailwind: useTailwind,
+			userName: user?.username,
+			userImage: user?.imageUrl,
+			imgUrl: 'https://picsum.photos/1280/720'
+		}
+
+		const response = await addElement(elementId, data)
+		setLoading(false)
+		console.log(response)
+
+		console.log('HTML:', html)
+		console.log('CSS:', css)
+		console.log(useTailwind)
 		// generate image of iframeviewr
 
-		handleCapture()
-		handleClick()
+		// handleCapture()
+		Confetti()
 	}
 
 	const handleCapture = async () => {
@@ -59,149 +76,56 @@ export default function CodeEditorPreview () {
 			width: 1280,
 			height: 720,
 		});
-		const dataUrl = canvas.toDataURL("image/png");
+		const dataUrl = canvas.toDataURL('image/png');
 
 		// Descargar la imagen
-		const link = document.createElement("a");
+		const link = document.createElement('a');
 		link.href = dataUrl;
-		link.download = "captura.png";
+		link.download = 'captura.png';
 		link.click();
 	};
 
-	const handleClick = () => {
-		var count = 200;
-		var defaults = {
-			origin: { y: 0.7 }
-		};
-
-		function fire (particleRatio, opts) {
-			confetti({
-				...defaults,
-				...opts,
-				particleCount: Math.floor(count * particleRatio)
-			});
-		}
-
-		fire(0.25, {
-			spread: 26,
-			startVelocity: 55,
-		});
-		fire(0.2, {
-			spread: 60,
-		});
-		fire(0.35, {
-			spread: 100,
-			decay: 0.91,
-			scalar: 0.8
-		});
-		fire(0.1, {
-			spread: 120,
-			startVelocity: 25,
-			decay: 0.92,
-			scalar: 1.2
-		});
-		fire(0.1, {
-			spread: 120,
-			startVelocity: 45,
-		});
-	};
-
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[calc(100svh-35px)] m-4 " id="capture-area">
-			<div className="flex flex-col">
+		<div className='grid grid-cols-1 md:grid-cols-2 gap-4 h-[calc(100svh-35px)] m-4 ' id='capture-area'>
+			<div className='flex flex-col'>
 				<section className='flex gap-8 items-center mb-2'>
-					<button onClick={() => router.back()} className="text-zinc-900 flex gap-1 dark:text-white font-medium">
+					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium'>
 						<ChevronLeft width={23} />
 						Volver
 					</button>
 
-					<div className="flex items-center gap-2 ">
-						<label htmlFor="mode">Tailwind</label>
+					<div className='flex items-center gap-2 '>
+						<label htmlFor='mode'>Tailwind</label>
 						<Switch
-							id="mode"
+							id='mode'
 							checked={useTailwind}
 							onCheckedChange={setUseTailwind}
 						/>
 					</div>
 
-					<Dialog>
-						<DialogTrigger className='px-8 font-medium py-1.5 rounded-lg bg-blue-600'>Send</DialogTrigger>
-						<DialogContent>
-							<DialogTitle>Are you absolutely sure?</DialogTitle>
-							<div className='max-w-sm mx-auto w-full py-6'>
-								<h3 className='font-medium text-lg mb-4'>Atoms - Loaders</h3>
-								<form className='flex flex-col gap-2' onSubmit={handleSubmit}>
-									<input type="text" placeholder='Creditos' className='px-3 py-2 rounded-lg card-border w-full' />
-									<input type="text" placeholder='Tags' className='px-3 py-2 rounded-lg card-border w-full' />
-									<input type="text" placeholder='Licence' className='px-3 py-2 rounded-lg card-border w-full' />
-									<button className='px-10 py-2 rounded-lg bg-blue-600 mt-5'>Send</button>
-								</form>
-							</div>
-						</DialogContent>
-					</Dialog>
+					<SignedIn>
+						<DialogSubmit onSubmit={handleSubmit} elementId={elementId} elementType={elementType} />
+					</SignedIn>
+					<SignedOut>
+						<button type='submit' className='px-10 py-2 rounded-lg bg-red-600'>Send</button>
+					</SignedOut>
 
-					<Dialog defaultOpen={true}>
-						<DialogContent>
-							<DialogTitle>What do you want to do?</DialogTitle>
-							<div className="flex items-center gap-2 ">
-								<label htmlFor="mode">Tailwind</label>
-								<Switch
-									id="mode"
-									checked={useTailwind}
-									onCheckedChange={setUseTailwind}
-								/>
-							</div>
-							<Tabs defaultValue="atom" className="flex-1 flex flex-col">
-								<TabsList className="w-full justify-start">
-									<TabsTrigger value="atom">Atom</TabsTrigger>
-									<TabsTrigger value="molecule" >Molecule</TabsTrigger>
-								</TabsList>
-
-								<TabsContent value="atom" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2">
-									{
-										Atoms.map((atom, index) => (
-											<button onClick={() => { setHtml(atom.html), setCss(atom.css) }} key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
-												{atom.name}
-											</button>
-										))
-									}
-								</TabsContent>
-
-								<TabsContent value="molecule" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2">
-									{
-										Molecules.map((molecule, index) => (
-											<button key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
-												{molecule.name}
-											</button>
-										))
-									}
-								</TabsContent>
-							</Tabs>
-
-							<DialogClose asChild>
-								<button type="button" variant="secondary">
-									Close
-								</button>
-							</DialogClose>
-						</DialogContent>
-					</Dialog>
-
-
+					<DialogStart useTailwind={useTailwind} setUseTailwind={setUseTailwind} setHtml={setHtml} setCss={setCss} setElementType={setElementType} setElementId={setElementId} />
 				</section>
 
-				<Tabs defaultValue="html" className="flex-1 flex flex-col">
-					<TabsList className="w-full justify-start">
-						<TabsTrigger value="html">HTML</TabsTrigger>
-						<TabsTrigger value="css" disabled={useTailwind}>CSS</TabsTrigger>
-						<TabsTrigger value="js" >JS</TabsTrigger>
+				<Tabs defaultValue='html' className='flex-1 flex flex-col'>
+					<TabsList className='w-full justify-start'>
+						<TabsTrigger value='html'>HTML</TabsTrigger>
+						<TabsTrigger value='css' disabled={useTailwind}>CSS</TabsTrigger>
+						<TabsTrigger value='js' >JS</TabsTrigger>
 					</TabsList>
 
-					<TabsContent value="html" className="flex-1 rounded overflow-hidden">
+					<TabsContent value='html' className='flex-1 rounded overflow-hidden'>
 						<Editor
-							height="100%"
-							defaultLanguage="html"
-							language={"html"}
-							theme="vs-dark"
+							height='100%'
+							defaultLanguage='html'
+							language={'html'}
+							theme='vs-dark'
 							value={html}
 							beforeMount={handleEditorHTML}
 							onChange={(value) => setHtml(value || '')}
@@ -213,11 +137,11 @@ export default function CodeEditorPreview () {
 						/>
 					</TabsContent>
 
-					<TabsContent value="css" className="flex-1 rounded overflow-hidden">
+					<TabsContent value='css' className='flex-1 rounded overflow-hidden'>
 						<Editor
-							height="100%"
-							defaultLanguage="css"
-							theme="vs-dark"
+							height='100%'
+							defaultLanguage='css'
+							theme='vs-dark'
 							value={css}
 							beforeMount={handleEditorCSS}
 							onChange={(value) => setCss(value || '')}
@@ -229,14 +153,14 @@ export default function CodeEditorPreview () {
 						/>
 					</TabsContent>
 
-					<TabsContent value="js" className="flex-1 rounded overflow-hidden">
+					<TabsContent value='js' className='flex-1 rounded overflow-hidden'>
 						<Editor
-							height="100%"
-							defaultLanguage="javascript"
+							height='100%'
+							defaultLanguage='javascript'
 							defaultValue={`export default function App() {
   return <div>Hello React!</div>;
 }`}
-							theme="vs-dark"
+							theme='vs-dark'
 							options={{
 								automaticLayout: true,
 							}}
@@ -245,14 +169,13 @@ export default function CodeEditorPreview () {
 				</Tabs>
 			</div>
 
-			{/* Preview section */}
-			<div className="bg-white border rounded shadow h-full overflow-auto">
+			<div className='bg-white border rounded shadow h-full overflow-auto'>
 				<iframe
 					ref={iframeViewer}
 					srcDoc={combinedCode}
-					title="preview"
-					className="w-full h-full"
-					sandbox="allow-same-origin allow-scripts"
+					title='preview'
+					className='w-full h-full'
+					sandbox='allow-same-origin allow-scripts'
 				/>
 			</div>
 		</div>

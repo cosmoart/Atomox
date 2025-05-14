@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic'
 import AddTaskForm from './AddTaskForm'
-import { createServerSupabaseClient } from './client'
+import { createServerSupabaseClient } from '../../../lib/client'
 
 export default async function Dasboard () {
 	// Use the custom Supabase client you created

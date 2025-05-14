@@ -19,16 +19,18 @@ export default async function UserProfile ({ params }) {
 	const response = data[0]
 	console.log(response);
 
+	if (!response) return <div>User not found</div>
+
 	return (
 		<div className='section heightScreen'>
 			<article className='flex gap-4 flex-col md:flex-row items-center mt-3'>
 				<div className='relative'>
 					{response.id === user.id &&
-						<Link href="/user-profile" className='text-4xl font-medium absolute top-0 left-0 bg-white p-1 rounded-full z-10 border-4 border-white dark:border-zinc-900 hover:scale-110 transition-all active:scale-95 group'>
+						<Link href='/user-profile' className='text-4xl font-medium absolute top-0 left-0 bg-white p-1 rounded-full z-10 border-4 border-white dark:border-zinc-900 hover:scale-110 transition-all active:scale-95 group'>
 							<Settings size={20} className='text-zinc-900 dark:text-white dark:invert group-hover:scale-105 transition-all' />
 						</Link>
 					}
-					<Avatar className="size-34" >
+					<Avatar className='size-34' >
 						<AvatarImage src={response.imageUrl} />
 						<AvatarFallback>{response.firstName.slice(0, 2)}</AvatarFallback>
 					</Avatar>

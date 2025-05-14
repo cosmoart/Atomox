@@ -10,7 +10,7 @@ export default async function Home () {
 	return (
 		<div className='section'>
 			<section className='heightScreen flex items-center justify-center flex-col'>
-				<Image src={Logo} alt="Logo" width={250} height={250} className="dark:invert right-0 left-0 mx-auto -z-10" />
+				<Image src={Logo} alt='Logo' width={250} height={250} className='dark:invert right-0 left-0 mx-auto -z-10' />
 				<h1 className='text-6xl font-bold  mb-5'>Atomox</h1>
 			</section>
 
@@ -21,7 +21,7 @@ export default async function Home () {
 						Atoms.map(atom => (
 							<Link href={`atoms/${atom.id}`} key={atom.id} className='flex flex-col justify-center rounded-lg card-border p-4  transition-shadow '>
 
-								<h3 className="text-lg font-medium">{atom.name}</h3>
+								<h3 className='text-lg font-medium'>{atom.name}</h3>
 								<p className='text-[15px] line-clamp-2'>{atom.description}</p>
 							</Link>
 						))
@@ -37,7 +37,7 @@ export default async function Home () {
 						Molecules.map(molecule => (
 							<Link href={`molecules/${molecule.id}`} key={molecule.id} className='flex flex-col justify-center rounded-lg border border-zinc-200 p-4 shadow-md transition-shadow hover:shadow-lg dark:border-zinc-700 dark:hover:border-zinc-600'>
 
-								<h3 className="text-lg font-medium">{molecule.name}</h3>
+								<h3 className='text-lg font-medium'>{molecule.name}</h3>
 								<p className='text-[15px] line-clamp-2'>{molecule.description}</p>
 							</Link>
 						))

@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { addTask } from './actions'
+import { addTask } from '../../../lib/actions'
 import { useRouter } from 'next/navigation'
 
 function AddTaskForm () {

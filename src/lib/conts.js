@@ -19,153 +19,153 @@ export const Atoms = [
 .btn:active{
 	scale: 0.9;
 }`,
-		id: "buttons",
+		id: 'buttons',
 	},
 	{
 		name: 'Inputs',
 		description: 'An input field is a form element that allows users to enter data.',
 		html: '<input type="text" className="input" />',
-		id: "inputs",
+		id: 'inputs',
 	},
 	{
-		name: "Backgrounds",
+		name: 'Backgrounds',
 		description: 'A background is an image or color that appears behind other elements.',
-		id: "backgrounds",
+		id: 'backgrounds',
 	},
 	{
 		name: 'Loaders',
 		description: 'A loader is a visual indicator that something is loading or processing.',
 		html: '<div className="loader"></div>',
-		id: "loaders",
+		id: 'loaders',
 	},
 	{
-		name: "Checkboxes",
+		name: 'Checkboxes',
 		description: 'A checkbox is a form element that allows users to select one or more options.',
-		id: "checkboxes",
+		id: 'checkboxes',
 	},
 	{
-		name: "Radio buttons",
+		name: 'Radio buttons',
 		description: 'A radio button is a form element that allows users to select one option from a group.',
-		id: "radio-buttons",
+		id: 'radio-buttons',
 	},
 	{
-		name: "Switches",
+		name: 'Switches',
 		description: 'A switch is a toggle button that allows users to turn something on or off.',
-		id: "switches",
+		id: 'switches',
 	},
 	{
-		name: "Tooltips",
+		name: 'Tooltips',
 		description: 'A tooltip is a small popup that provides additional information about an element.',
-		id: "tooltips",
+		id: 'tooltips',
 	},
 	{
-		name: "Progress bars",
+		name: 'Progress bars',
 		description: 'A progress bar is a visual indicator that shows the progress of a task.',
-		id: "progress-bars",
+		id: 'progress-bars',
 	},
 	{
-		name: "Selects",
+		name: 'Selects',
 		description: 'A select is a form element that allows users to select an option from a list.',
-		id: "selects",
+		id: 'selects',
 	}
 ]
 
 export const Molecules = [
 	{
-		name: "Forms",
+		name: 'Forms',
 		description: 'A form is a collection of input fields and buttons that allows users to submit data.',
-		id: "forms",
+		id: 'forms',
 	},
 	{
-		name: "Headers",
+		name: 'Headers',
 		description: 'A header is a section that appears at the top of a page.',
-		id: "headers",
+		id: 'headers',
 	},
 	{
-		name: "Footers",
+		name: 'Footers',
 		description: 'A footer is a section that appears at the bottom of a page.',
-		id: "footers",
+		id: 'footers',
 	},
 	{
-		name: "Cards",
+		name: 'Cards',
 		description: 'A card is a container that displays content in a visually appealing way.',
-		id: "cards",
+		id: 'cards',
 	},
 	{
-		name: "Modals",
+		name: 'Modals',
 		description: 'A modal is a dialog box that appears on top of the current page.',
-		id: "modals",
+		id: 'modals',
 	},
 	{
-		name: "Hero sections",
+		name: 'Hero sections',
 		description: 'A hero section is a large banner that appears at the top of a page.',
-		id: "hero-sections",
+		id: 'hero-sections',
 	},
 	{
-		name: "Error pages",
+		name: 'Error pages',
 		description: 'An error page is a page that appears when something goes wrong.',
-		id: "error-pages",
+		id: 'error-pages',
 	},
 	{
-		name: "Sidebars",
+		name: 'Sidebars',
 		description: 'A sidebar is a vertical menu that appears on the side of a page.',
-		id: "sidebars",
+		id: 'sidebars',
 	},
 	{
-		name: "Pricing tables",
+		name: 'Pricing tables',
 		description: 'A pricing table is a table that displays different pricing options.',
-		id: "pricing",
+		id: 'pricing',
 	},
 	{
-		name: "Features section",
+		name: 'Features section',
 		description: 'A feature section is a section that displays a list of features.',
-		id: "feature-sections",
+		id: 'feature-sections',
 	},
 	{
-		name: "Testimonials",
+		name: 'Testimonials',
 		description: 'A testimonial is a quote from a customer that showcases their experience.',
-		id: "testimonials",
+		id: 'testimonials',
 	},
 	{
-		name: "FAQs",
+		name: 'FAQs',
 		description: 'A FAQ (Frequently Asked Questions) is a list of questions and answers.',
-		id: "faqs",
+		id: 'faqs',
 	},
 	{
-		name: "Authentication",
+		name: 'Authentication',
 		description: 'Authentication is the process of verifying the identity of a user.',
-		id: "authentication",
+		id: 'authentication',
 	},
 	{
-		name: "CTA",
+		name: 'CTA',
 		description: 'A CTA (Call to Action) is a button or link that encourages users to take a specific action.',
-		id: "cta",
+		id: 'cta',
 	},
 	{
-		name: "Dashboard",
+		name: 'Dashboard',
 		description: 'A dashboard is a page that displays a summary of the user\'s activity.',
-		id: "dashboard",
+		id: 'dashboard',
 	},
 	{
-		name: "Cookies",
+		name: 'Cookies',
 		description: 'A cookie is a small piece of data that is stored on a user\'s computer.',
-		id: "cookies",
+		id: 'cookies',
 	}
 ]
 
 export const PagesTypes = {
-	"Atoms": {
-		title: "Atoms",
-		id: "atoms",
-		gridSize: "repeat(auto-fill,minmax(300px,1fr))",
-		description: "Atoms are the smallest components that can be used to create more complex components.",
+	'Atoms': {
+		title: 'Atoms',
+		id: 'atoms',
+		gridSize: 'repeat(auto-fill,minmax(300px,1fr))',
+		description: 'Atoms are the smallest components that can be used to create more complex components.',
 		pageSize: 32
 	},
-	"Molecules": {
-		title: "Molecules",
-		id: "molecules",
-		gridSize: "repeat(auto-fill,minmax(380px,1fr))",
-		description: "Molecules are the smallest components that can be used to create more complex components.",
+	'Molecules': {
+		title: 'Molecules',
+		id: 'molecules',
+		gridSize: 'repeat(auto-fill,minmax(380px,1fr))',
+		description: 'Molecules are the smallest components that can be used to create more complex components.',
 		pageSize: 30
 	},
 }
