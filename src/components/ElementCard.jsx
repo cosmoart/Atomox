@@ -1,10 +1,11 @@
-import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar'
-import {Eye} from 'lucide-react'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Eye } from 'lucide-react'
 import Link from 'next/link';
-import LikeButton from '../LikeButton';
+import LikeButton from './LikeButton';
+import { Atoms } from '@/lib/conts';
 
 export default function ElementCard ({ data }) {
-	function combinedCode (useTailwind, html, css, url) {
+	function combinedCode (useTailwind, html, css) {
 		return `
     <html>
       <head>
@@ -15,15 +16,16 @@ export default function ElementCard ({ data }) {
   `
 	}
 
+	const elementType = Atoms.find(element => element.id === data.element_id) ? "atom" : "molecule"
+
 	return (
-		<section key={index} className='rounded-lg dark:bg-zinc-900 card-border overflow-hidden group'>
-			<Link href={`/atoms/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video'>
-				{/* <Image src={data.imgUrl} alt='Image' width={1280} height={720} className='group-hover:scale-105 transition-transform' /> */}
+		<section className='rounded-lg dark:bg-zinc-900 card-border overflow-hidden group'>
+			<Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video'>
 				<iframe
 					title='preview'
 					className='w-full h-full'
 					sandbox='allow-same-origin allow-scripts'
-					srcDoc={combinedCode(data.use_tailwind, data.html, data.css, `/atoms/${data.element_id}/${data.id}`)}
+					srcDoc={combinedCode(data.use_tailwind, data.html, data.css, `/${elementType}/${data.element_id}/${data.id}`)}
 				/>
 			</Link>
 
@@ -44,6 +46,34 @@ export default function ElementCard ({ data }) {
 						<Eye size={17} className='text-zinc-900/80 dark:text-white/80' />
 						<span className='text-sm text-zinc-900/80 dark:text-white/80'>
 							{data.views}
+						</span>
+					</div>
+				</div>
+			</div>
+		</section>
+	)
+}
+
+export function ElementCardSkeleton () {
+	return (
+		<section className='rounded-lg dark:bg-zinc-900 card-border overflow-hidden group'>
+			<div className='flex flex-col overflow-hidden aspect-video w-full bg-zinc-800 animate-pulse'></div>
+
+			<div className='flex gap-2 p-2 justify-between'>
+				<div className='flex gap-2 items-center'>
+					<div className='size-6 bg-gray-300 rounded-full animate-pulse'></div>
+					<p className='font-medium'>Username</p>
+				</div>
+
+				<div className='flex gap-3 items-center mr-1'>
+					<div className='flex gap-1 items-center'>
+						<div className='text-zinc-900/80 dark:text-white/80'>
+							<div className='h-4 bg-gray-300 rounded' />
+							<div className='h-4 bg-gray-200 rounded' />
+						</div>
+						<span className='text-sm text-zinc-900/80 dark:text-white/80'>
+							<div className='h-4 bg-gray-300 rounded' />
+							<div className='h-4 bg-gray-200 rounded' />
 						</span>
 					</div>
 				</div>

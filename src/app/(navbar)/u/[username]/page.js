@@ -44,9 +44,7 @@ export default async function UserProfile ({ params }) {
 				</section>
 			</article>
 
-			<article>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia molestiae id voluptate necessitatibus recusandae est facere illo mollitia, eius optio quam doloribus tenetur maiores distinctio? Numquam dicta culpa praesentium molestias?
-
+			<article className='w-full'>
 				{nowUser?.id === user.id && <YourLikes userId={nowUser.id} />}
 			</article>
 		</div>

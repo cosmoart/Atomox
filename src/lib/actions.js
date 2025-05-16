@@ -1,5 +1,5 @@
 'use server'
-import { auth, currentUser } from '@clerk/nextjs/server';
+import { currentUser } from '@clerk/nextjs/server';
 import { createServerSupabaseClient } from './client'
 
 export async function addTask (name) {
@@ -21,16 +21,25 @@ export async function addTask (name) {
 }
 
 export async function addElement (data) {
-	if (!data) return
+	const clerkUser = await currentUser();
+	if (!data || !clerkUser) return
 	const client = createServerSupabaseClient()
+	const element = {
+		...data,
+		user_avatar: clerkUser.imageUrl,
+		username: clerkUser.username,
+		user_id: clerkUser.id
+	}
 
 	try {
-		const response = await client.from('elements').insert(data)
+		const response = await client.from('elements').insert(element)
 
+		console.log('respuesta: ', data, element, response)
+		if (response.error) throw new Error('Failed to add element', response.error)
 		console.log('Element successfully added!', response)
 	} catch (error) {
 		console.error('Error adding element:', error.message)
-		throw new Error('Failed to add element')
+		throw new Error('Failed to add element', error)
 	}
 }
 
@@ -82,6 +91,31 @@ export default async function getElements (elementId) {
 		console.error('Error al obtener posts con estado de like:', error.message);
 		throw error;
 	}
+}
+
+export async function getElement (elementId) {
+	const clerkUser = await currentUser();
+	const userId = clerkUser?.id;
+	const client = createServerSupabaseClient();
+
+	const { data, error } = await client.from('elements').select('*').eq('id', elementId).single();
+	if (error) throw new Error('Error al obtener el elemento');
+
+	if (!userId) return data;
+
+	const { data: likedByUser, error: likeError } = await client
+		.from('elements_likes')
+		.select('*')
+		.eq('user_id', userId)
+		.eq('element_id', elementId)
+		.single();
+
+	if (likeError && likeError.code !== 'PGRST116' && likeError.code !== 'PGRST123') {
+		console.error(fetchError);
+		throw new Error('Error al verificar el estado del like');
+	}
+
+	return { ...data, likedByUser: Boolean(likedByUser) };
 }
 
 export async function toggleLike (elementId) {

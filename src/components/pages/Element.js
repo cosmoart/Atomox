@@ -4,24 +4,25 @@ import { createServerSupabaseClient } from '@/lib/client';
 import LikeButton from '../LikeButton';
 import { Eye } from 'lucide-react';
 import Link from 'next/link';
+import { getElement } from '@/lib/actions';
 
 export default async function Element ({ id, elementId }) {
 	const client = createServerSupabaseClient()
-	const { data, error } = await client.from('elements').select('*').eq('id', id).single()
-	if (error) {
-		console.log(error);
+	// const { data: element, error } = await client.from('elements').select('*').eq('id', id).single()
+	// if (error) {
+	// 	console.log(error);
 
-		throw error
-	}
-	const element = data[0]
-	console.log(element);
+	// 	throw error
+	// }
+	// console.log(element, id);
+	const element = await getElement(id);
 
-	if (error) return <div className='section'>Error</div>
+	// if (error) return <div className='section'>Error</div>
 
 	if (!element) return <div className='section'>No data</div>
 
-	// add +1 to "views" column, dont await for it
-	await client.from('elements').update({ views: element.views + 1 }).eq('id', id)
+	client.from('elements').update({ views: element.views + 1 }).eq('id', id)
+	console.log(element);
 
 	return (
 		<div className='section py-2 minHeightScreen flex flex-col'>
@@ -36,21 +37,28 @@ export default async function Element ({ id, elementId }) {
 				</div>
 
 				<div>
-					<LikeButton initialLikeCount={element.likes} idLiked={element.likedByUser} elementId={element.id} />
+					<LikeButton initialLikeCount={element.likes} isLiked={element.likedByUser} elementId={element.id} />
 				</div>
 
 				<section>
 					<h2 className='text-2xl font-medium hidden'>Tags</h2>
 					<ul className='flex gap-2'>
 						{
-							['3D', 'Blue', 'Animation', 'Loader', 'SVG'].map(type => (
-								<li key={type} className='flex gap-2 items-center rounded px-2 py-1 bg-zinc-100 dark:bg-zinc-800'>
-									<span className='text-sm'>{type}</span>
+							element.tags.map(tag => (
+								<li key={tag} className='flex gap-2 items-center rounded px-2 py-1 bg-zinc-100 dark:bg-zinc-800'>
+									<span className='text-sm'>{tag}</span>
 								</li>
 							))
 						}
 					</ul>
 				</section>
+
+				{
+					element.credits_link && <section>
+						<h2>Credits</h2>
+						This element is base/inspired by <a href={element.credits_link} target='_blank' rel='noopener noreferrer'>{element.credits_name}</a>
+					</section>
+				}
 
 				<Link href={`/u/${element.username}`} className='flex gap-2 items-center'>
 					<Avatar className='size-7' >

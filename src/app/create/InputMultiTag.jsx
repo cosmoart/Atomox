@@ -14,7 +14,7 @@ export default function InputMultiTag ({ control, name, placeholder = "", maxTag
 			render={({ field: { value = [], onChange } }) => {
 				const addTag = (e) => {
 					e.preventDefault();
-					if (!inputValue.trim() || value.length >= maxTags || inputValue.length < 3) return;
+					if (!inputValue.trim() || value.length >= maxTags || inputValue.length < 2) return;
 					onChange([inputValue.trim(), ...value]);
 					setInputValue("");
 				};
@@ -29,7 +29,7 @@ export default function InputMultiTag ({ control, name, placeholder = "", maxTag
 							<input
 								type="text"
 								maxLength={maxLength}
-								minLength={3}
+								minLength={2}
 								value={inputValue}
 								onChange={(e) => setInputValue(e.target.value)}
 								onKeyDown={(e) => e.key === "Enter" && addTag(e)}

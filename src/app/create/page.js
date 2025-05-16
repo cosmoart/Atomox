@@ -11,13 +11,10 @@ import { ChevronLeft } from 'lucide-react'
 import Confetti from '@/lib/confetti'
 import DialogSubmit from './DialogSubmit'
 import DialogStart from './DialogStart'
-import { SignedIn, SignedOut, useUser } from '@clerk/nextjs'
-import { set } from 'zod'
+import { SignedIn, SignedOut } from '@clerk/nextjs'
 import { addElement } from '@/lib/actions'
 
 export default function CodeEditorPreview () {
-	const { user } = useUser()
-
 	const [html, setHtml] = useState('<div class="text-3xl p-4 font-bold text-blue-500">Hello world!</div>')
 	const [css, setCss] = useState('div { color: red; }')
 	const [elementType, setElementType] = useState('Atom')
@@ -40,29 +37,34 @@ export default function CodeEditorPreview () {
       <body style="height:100svh;display:grid;place-items:center;">${html}</body>
     </html>
   `
+
 	async function handleSubmit (e) {
-		set
 		const data = {
 			...e,
 			html: html,
 			css: css,
-			useTailwind: useTailwind,
-			userName: user?.username,
-			userImage: user?.imageUrl,
-			imgUrl: 'https://picsum.photos/1280/720'
+			use_tailwind: useTailwind,
+			element_id: elementId,
+			img_url: 'https://picsum.photos/1280/720'
 		}
 
-		const response = await addElement(elementId, data)
-		setLoading(false)
-		console.log(response)
+		setLoading(true)
+		try {
+			const response = await addElement(data)
 
-		console.log('HTML:', html)
-		console.log('CSS:', css)
-		console.log(useTailwind)
+			console.log(response)
+			Confetti()
+		} catch (error) {
+			console.log(error)
+		}
+		setLoading(false)
+
+		// console.log('HTML:', html)
+		// console.log('CSS:', css)
+		// console.log(useTailwind)
 		// generate image of iframeviewr
 
 		// handleCapture()
-		Confetti()
 	}
 
 	const handleCapture = async () => {
