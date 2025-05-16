@@ -9,22 +9,40 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount }) {
 	const [pending, startTransition] = useTransition();
 
 	const handleClick = () => {
-		startTransition(async () => {
-			const result = await toggleLike(elementId);
-			console.log(result);
+		// Guardar estado anterior por si necesitamos revertirlo
+		const previousLiked = liked;
+		const previousCount = likeCount;
 
-			setLiked(result.liked);
-			setLikeCount(result.likeCount);
+		// Hacer el cambio optimista
+		const newLiked = !liked;
+		setLiked(newLiked);
+		setLikeCount(likeCount + (newLiked ? 1 : -1));
+
+		// Ejecutar acción en segundo plano
+		startTransition(async () => {
+			try {
+				await toggleLike(elementId);
+				// Si funciona, no hacemos nada (el estado ya está actualizado)
+			} catch (err) {
+				// Si falla, revertimos los valores y alertamos al usuario
+				setLiked(previousLiked);
+				setLikeCount(previousCount);
+			}
 		});
 	};
 
 	return (
-		<button onClick={handleClick} disabled={pending} className="flex items-center gap-1">
+		<button
+			onClick={handleClick}
+			disabled={pending}
+			className="flex cursor-pointer items-center gap-1 disabled:opacity-50 not-disabled:hover:scale-105 not-disabled:active:scale-95 transition-all disabled:bg-red-400"
+		>
 			<span>{liked ? '❤️' : '🤍'}</span>
 			<span>{likeCount}</span>
 		</button>
 	);
 }
+
 
 
 // import { SignedIn, SignedOut, SignUpButton } from '@clerk/nextjs';

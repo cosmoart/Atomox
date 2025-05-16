@@ -108,86 +108,48 @@ export async function toggleLike (elementId) {
 	}
 
 	if (existingLike) {
-		await client
+		const { error: deleteError } = await client
 			.from('elements_likes')
 			.delete()
 			.eq('user_id', userId)
 			.eq('element_id', elementId);
+		if (deleteError) throw deleteError;
 	} else {
-		await client
+		const { error: insertError } = await client
 			.from('elements_likes')
 			.insert([{ user_id: userId, element_id: elementId }]);
+		if (insertError) throw insertError;
 	}
-
-	// Obtener el nuevo total de likes
-	const { count, error: countError } = await client
-		.from('elements_likes')
-		.select('*', { count: 'exact', head: true })
-		.eq('element_id', elementId);
-
-	if (countError) {
-		console.error(countError);
-		throw new Error('Error al contar likes');
-	}
-
-	return {
-		liked: !existingLike,
-		likeCount: count,
-	};
 }
 
-// export async function toggleLike (elementId) {
-// 	const clerkUser = await currentUser();
-// 	const userId = clerkUser?.id;
-// 	if (!elementId || !userId) throw new Error('Post ID y User ID son necesarios para dar o quitar like.');
+export async function getUserLikes () {
+	const user = await currentUser();
+	const userId = user?.id;
+	if (!userId) return [];
+	const supabase = createServerSupabaseClient();
 
-// 	try {
-// 		// 1. Verificar si el usuario ya dio like a este post
-// 		const { data: existingLike, error: selectError } = await supabase
-// 			.from('elements_likes')
-// 			.select('*')
-// 			.eq('element_id', elementId)
-// 			.eq('user_id', userId)
-// 			.single(); // Esperamos como máximo un like por usuario por post
+	const { data, error } = await supabase
+		.from('elements_likes')
+		.select('element_id, elements (*)') // solo si tienes relación
+		.eq('user_id', userId);
 
-// 		if (selectError && selectError.code !== 'PGRST116') { // 'PGRST116' indica que no se encontraron filas (no dio like)
-// 			console.error('Error al verificar el like:', selectError.message);
-// 			throw new Error('Failed to check existing like.');
-// 		}
+	if (error) throw new Error('Error al obtener likes');
 
-// 		// 2. Si el usuario ya dio like, quitarlo
-// 		if (existingLike) {
-// 			const { error: deleteError } = await supabase
-// 				.from('elements_likes')
-// 				.delete()
-// 				.eq('element_id', elementId)
-// 				.eq('user_id', userId);
+	return data.map((like) => like.elements);
+}
 
-// 			if (deleteError) {
-// 				console.error('Error al quitar el like:', deleteError.message);
-// 				throw new Error('Failed to remove like.');
-// 			}
+export async function getUserElements () {
+	const user = await currentUser();
+	const userId = user?.id;
+	if (!userId) return [];
+	const supabase = createServerSupabaseClient();
 
-// 			console.log('Like eliminado del post:', elementId, 'por el usuario:', userId);
-// 			return { liked: false };
-// 		}
-// 		// 3. Si el usuario no ha dado like, agregarlo
-// 		else {
-// 			const { error: insertError } = await supabase
-// 				.from('elements_likes')
-// 				.insert({ element_id: elementId, user_id: userId });
+	const { data, error } = await supabase
+		.from('elements')
+		.select('*')
+		.eq('user_id', userId);
 
-// 			if (insertError) {
-// 				console.error('Error al dar like:', insertError.message);
-// 				throw new Error('Failed to add like.');
-// 			}
+	if (error) throw new Error('Error al obtener los elements');
 
-// 			console.log('Like agregado al post:', elementId, 'por el usuario:', userId);
-// 			return { liked: true };
-// 		}
-
-// 	} catch (error) {
-// 		console.error('Error al dar o quitar like:', error.message);
-// 		throw new Error('Failed to toggle like.');
-// 	}
-// }
+	return data;
+}
