@@ -12,7 +12,7 @@ const compat = new FlatCompat({
 const eslintConfig = [...compat.config({
 	extends: 'next/core-web-vitals',
 	rules: {
-		'indent': [2, 'tab'],
+		'indent': [1, 'tab'],
 		'no-tabs': 0,
 		'jsx-quotes': [1, 'prefer-single'],
 		'no-unused-vars': 1,

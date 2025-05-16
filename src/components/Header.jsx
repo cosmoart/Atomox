@@ -38,7 +38,7 @@ export default function Header () {
 
 		<nav className="hidden md:flex items-center gap-2">
 			<SignedOut>
-				<a href="/sign-in" className="text-sm px-4 py-1.5 ring-1 rounded-md bg-blue-500 text-white ring-blue-500 card-border">
+				<a href="/sign-in" className="text-sm px-5 card-border py-1.5 rounded-md bg-gradient-to-l from-blue-500  to-pink-500 text-white ring-blue-500 font-medium transition-all hover:scale-105 ">
 					Sign in
 				</a>
 			</SignedOut>
@@ -71,7 +71,7 @@ export default function Header () {
 				<NavBar />
 				<div className='flex gap-2 items-center'>
 					<SignedOut>
-						<a href="/sign-in" className="text-sm px-4 py-1.5 ring-1 rounded-md w-full text-center bg-blue-500 text-white ring-blue-500 card-border">
+						<a href="/sign-in" className="text-sm px-4 py-1.5 ring-1 rounded-md w-full text-center bg-gradient-to-br from-blue-500 to-pink-500 text-white ring-blue-500 card-border">
 							Sign in
 						</a>
 					</SignedOut>

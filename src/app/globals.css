@@ -33,6 +33,9 @@
 .heightScreen{
   height: calc(100vh - var(--header-height));
 }
+.minHeightScreen{
+  min-height: calc(100vh - var(--header-height));
+}
 
 @theme inline {
   --color-zinc-950: oklch(17% 0.005 285.823);
