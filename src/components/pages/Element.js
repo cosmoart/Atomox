@@ -22,7 +22,7 @@ export default async function Element ({ id, elementId }) {
 	if (!element) return <div className='section'>No data</div>
 
 	client.from('elements').update({ views: element.views + 1 }).eq('id', id)
-	console.log(element);
+	console.log(element, id);
 
 	return (
 		<div className='section py-2 minHeightScreen flex flex-col'>

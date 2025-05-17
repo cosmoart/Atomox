@@ -91,9 +91,9 @@ export default function CodeEditorPreview () {
 		<div className='grid grid-cols-1 md:grid-cols-2 gap-4 h-[calc(100svh-35px)] m-4 ' id='capture-area'>
 			<div className='flex flex-col'>
 				<section className='flex gap-8 items-center mb-2'>
-					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium'>
-						<ChevronLeft width={23} />
-						Volver
+					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium cursor-pointer group active:scale-95 transition-transform'>
+						<ChevronLeft width={23} className='group-hover:-translate-x-1 transition-transform' />
+						<span>Volver</span>
 					</button>
 
 					<div className='flex items-center gap-2 '>

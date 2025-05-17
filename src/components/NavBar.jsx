@@ -17,8 +17,8 @@ export function NavBar () {
 							Atoms
 						</Link>
 					</NavigationMenuTrigger>
-					<NavigationMenuContent>
-						<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+					<NavigationMenuContent >
+						<ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 							{
 								Atoms.map((component) => (
 									<ListItem
@@ -68,11 +68,6 @@ export function NavBar () {
 							))}
 						</ul>
 					</NavigationMenuContent>
-				</NavigationMenuItem>
-				<NavigationMenuItem>
-					<Link href="/create" className='block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-sm'>
-						Create
-					</Link>
 				</NavigationMenuItem>
 			</NavigationMenuList>
 		</NavigationMenu>

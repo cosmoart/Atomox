@@ -60,7 +60,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType }) {
 
 	return (
 		<Dialog>
-			<DialogTrigger className='px-8 font-medium py-1.5 rounded-lg bg-blue-600'>Send</DialogTrigger>
+			<DialogTrigger className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>Send</DialogTrigger>
 			<DialogContent>
 				<DialogTitle>Create {elementType} - {elementId}</DialogTitle>
 				<div className='mx-auto w-full'>

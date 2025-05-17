@@ -149,3 +149,5 @@ Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/cosmoa
 -   Instagram - [@cosmoart0](https://www.instagram.com/cosmoart0/)
 
 <p align="right"><a href="#top">⬆️ Back to top</a></p>
+
+- modo claro

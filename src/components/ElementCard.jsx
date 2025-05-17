@@ -36,7 +36,7 @@ export default function ElementCard ({ data }) {
 						<AvatarFallback>{data.username.slice(0, 2)}</AvatarFallback>
 					</Avatar>
 
-					<p className='font-medium'>{data.username}</p>
+					<p className='font-medium text-[15px]'>{data.username}</p>
 				</Link>
 
 				<div className='flex gap-3 items-center mr-1'>

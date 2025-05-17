@@ -2,48 +2,101 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { createServerSupabaseClient } from './client'
 
-export async function addTask (name) {
-	const client = createServerSupabaseClient()
+// export async function addElement (data) {
+// 	const clerkUser = await currentUser();
+// 	if (!data || !clerkUser) return
+// 	const client = createServerSupabaseClient()
+// 	const element = {
+// 		...data,
+// 		user_avatar: clerkUser.imageUrl,
+// 		username: clerkUser.username,
+// 		user_id: clerkUser.id
+// 	}
 
-	try {
-		const response = await client.from('tasks').insert({
-			name,
-		})
-		if (response.error) {
-			throw new Error('Failed to add task')
-		}
+// 	try {
+// 		const response = await client.from('elements').insert(element)
 
-		console.log('Task successfully added!', response)
-	} catch (error) {
-		console.error('Error adding task:', error.message)
-		throw new Error('Failed to add task')
-	}
-}
+// 		console.log('respuesta: ', data, element, response)
+// 		if (response.error) throw new Error('Failed to add element', response.error)
+// 		console.log('Element successfully added!', response)
+// 	} catch (error) {
+// 		console.error('Error adding element:', error.message)
+// 		throw new Error('Failed to add element', error)
+// 	}
+// }
 
 export async function addElement (data) {
 	const clerkUser = await currentUser();
-	if (!data || !clerkUser) return
-	const client = createServerSupabaseClient()
+	if (!data || !clerkUser) return;
+
+	const client = createServerSupabaseClient();
+
 	const element = {
 		...data,
 		user_avatar: clerkUser.imageUrl,
 		username: clerkUser.username,
 		user_id: clerkUser.id
-	}
+	};
 
 	try {
-		const response = await client.from('elements').insert(element)
+		// 1. Insertar el elemento
+		const { data: insertedElements, error: elementError } = await client
+			.from('elements')
+			.insert(element)
+			.select('id') // obtener el id del elemento insertado
 
-		console.log('respuesta: ', data, element, response)
-		if (response.error) throw new Error('Failed to add element', response.error)
-		console.log('Element successfully added!', response)
+		if (elementError) throw new Error('Failed to insert element: ' + elementError.message);
+		const elementId = insertedElements?.[0]?.id;
+		if (!elementId) throw new Error('Element ID not returned');
+
+		// 2. Procesar tags
+		// trim() y toLowerCase() para evitar errores de duplicación de tags
+		// filter para eliminar tags vacíos y duplicados
+		const normalizedTags = [...new Set(data.tags.map(tag => tag.trim().toLowerCase()).filter(tag => tag))];
+		for (const tagName of normalizedTags) {
+			// a. Buscar la tag (si existe)
+			let { data: existingTags, error: findTagError } = await client
+				.from('tags')
+				.select('id')
+				.eq('name', tagName)
+				.limit(1);
+
+			if (findTagError) throw new Error('Error checking tag: ' + findTagError.message);
+
+			let tagId;
+
+			if (existingTags.length > 0) {
+				tagId = existingTags[0].id;
+			} else {
+				// b. Si no existe, insertarla
+				const { data: newTags, error: insertTagError } = await client
+					.from('tags')
+					.insert({ name: tagName })
+					.select('id');
+
+				if (insertTagError) throw new Error('Error inserting new tag: ' + insertTagError.message);
+				tagId = newTags[0].id;
+			}
+
+			// c. Insertar en elements_tags
+			const { error: tagRelationError } = await client
+				.from('elements_tags')
+				.insert({
+					element_id: elementId,
+					tag_id: tagId
+				});
+
+			if (tagRelationError) throw new Error('Error linking tag to element: ' + tagRelationError.message);
+		}
+
+		console.log('Elemento y tags insertados correctamente');
 	} catch (error) {
-		console.error('Error adding element:', error.message)
-		throw new Error('Failed to add element', error)
+		console.error('Error en addElement:', error.message);
+		throw error;
 	}
 }
 
-export default async function getElements (elementId) {
+export default async function getElements (elementId, query) {
 	const clerkUser = await currentUser();
 	const userId = clerkUser?.id;
 	const client = createServerSupabaseClient();

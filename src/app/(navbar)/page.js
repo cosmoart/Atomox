@@ -2,23 +2,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '@/assets/icons/logo.svg';
 import { Atoms, Molecules } from '@/lib/conts';
-import { currentUser } from '@clerk/nextjs/server'
 
 export default async function Home () {
-	const user = await currentUser();
-
 	return (
 		<div className='section'>
-			<section className='heightScreen flex items-center justify-center flex-col'>
+			<section className='heightScreen flex items-center justify-center flex-col '>
 				<Image src={Logo} alt='Logo' width={250} height={250} className='dark:invert right-0 left-0 mx-auto -z-10' />
-				<h1 className='text-6xl font-bold  mb-5'>Atomox</h1>
-				{/* <search>
-					<form action='./search/' className='flex gap-3 mb-8'>
-						<label for='movie'>Find a Movie</label>
-						<input type='search' id='movie' name='q' className='card-border rounded-lg px-4 py-2' placeholder='Search...' />
-						<button type='submit' className='card-border rounded-lg px-6 py-2'>Search</button>
-					</form>
-				</search> */}
+				<h1 className='text-6xl font-bold'>Atomox</h1>
+				<p className='text-lg mb-5'>Web components by the people for the people</p>
 			</section>
 
 			<article>
