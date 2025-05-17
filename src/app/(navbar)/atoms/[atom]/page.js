@@ -12,6 +12,6 @@ export default async function AtomPage ({ params }) {
 
 	if (!atom || !data) return notFound();
 
-	return (<Elements data={data} type="Atoms" />)
+	return (<Elements data={data} type='Atoms' />)
 
 }

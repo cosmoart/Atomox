@@ -12,6 +12,6 @@ export default async function MoleculePage ({ params }) {
 
 	if (!molecule || !data) return notFound();
 
-	return (<Elements data={data} type="Molecules" />)
+	return (<Elements data={data} type='Molecules' />)
 
 }

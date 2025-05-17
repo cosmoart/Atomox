@@ -18,26 +18,23 @@ export function NavBar () {
 						</Link>
 					</NavigationMenuTrigger>
 					<NavigationMenuContent >
-						<ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+						<ul className="grid gap-2 p-3 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 							{
-								Atoms.map((component) => (
+								Atoms.slice(0, 9).map((component) => (
 									<ListItem
 										key={component.id}
 										title={component.name}
 										href={`/atoms/${component.id}`}
 									>
-										{component.description}
+										<span title={component.description}>{component.description}</span>
 									</ListItem>
-									// <li
-									// 	key={component.id}
-									// 	className="row-span-3"
-									// >
-									// 	<Link href={`/atoms/${component.id}`}>
-									// 		{component.name}
-									// 	</Link>
-									// </li>
 								))
 							}
+							<li>
+								<Link href="/atoms" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground/50 focus:bg-accent focus:text-accent-foreground h-full flex items-center justify-center'>
+									<span className="text-sm font-medium text-zinc-900/80 dark:text-white/80">View all</span>
+								</Link>
+							</li>
 						</ul>
 					</NavigationMenuContent>
 				</NavigationMenuItem>
@@ -48,24 +45,21 @@ export function NavBar () {
 						</Link>
 					</NavigationMenuTrigger>
 					<NavigationMenuContent>
-						<ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:grid-cols-3 lg:w-[600px] ">
-							{Molecules.map((component) => (
+						<ul className="grid gap-2 p-3 md:w-[500px] md:grid-cols-2 lg:grid-cols-3 lg:w-[650px] ">
+							{Molecules.slice(0, 14).map((component) => (
 								<ListItem
 									key={component.id}
 									title={component.name}
 									href={`/molecules/${component.id}`}
 								>
-									{/* {component.description} */}
+									<span title={component.description}>{component.description}</span>
 								</ListItem>
-								// <li
-								// 	key={component.id}
-								// 	className="row-span-3"
-								// >
-								// 	<Link href={`/molecules/${component.id}`}>
-								// 		{component.name}
-								// 	</Link>
-								// </li>
 							))}
+							<li>
+								<Link href="/molecules" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground/50 focus:bg-accent focus:text-accent-foreground h-full flex items-center justify-center'>
+									<span className="text-sm font-medium text-zinc-900/80 dark:text-white/80">View all</span>
+								</Link>
+							</li>
 						</ul>
 					</NavigationMenuContent>
 				</NavigationMenuItem>

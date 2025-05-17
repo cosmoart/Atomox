@@ -102,23 +102,44 @@ export default async function getElements (elementId, query) {
 	const client = createServerSupabaseClient();
 
 	try {
-		// 1. Obtener todos los elements publicados
-		const { data: elements, error: elementsError } = await client
-			.from('elements')
-			.select('*')
-			.eq('published', true)
-			.eq('element_id', elementId)
-			.order('likes', { ascending: false });
+		let elements = [];
+		let elementsError;
+
+		if (query) {
+			// Si hay query, hacemos join para filtrar por tag
+			// tabla "elements_tags" tiene columnas "element_id" y "tag_id"
+			// tabla "tags" tiene columnas "id" y "name"
+			// Encontrar todos los elementos que tengan las tags query (array)
+			const { data, error } = await client
+				.from('elements').from('elements_tags')
+				.select('element_id, elements(*)')
+				.eq('tags.name', query.toLowerCase()) // asumimos que tags están en minúsculas
+				.eq('elements.published', true)
+				.eq('elements.element_id', elementId) // solo si quieres filtrar por elementId también
+			// .order('elements.likes', { ascending: false});
+
+			elementsError = error;
+			elements = data?.map(row => row.elements).filter(Boolean) ?? [];
+		} else {
+			// Sin query, traemos directo de 'elements'
+			const { data, error } = await client
+				.from('elements')
+				.select('*')
+				.eq('published', true)
+				.eq('element_id', elementId)
+				.order('likes', { ascending: false });
+
+			elementsError = error;
+			elements = data ?? [];
+		}
 
 		if (elementsError) {
 			console.error('Error al obtener los elements:', elementsError);
 			throw new Error('Failed to fetch elements.');
 		}
 
-		// Si no hay userId (usuario no autenticado), devolvemos los elements sin información de like
 		if (!userId) return elements;
 
-		// 2. Obtener todos los elements_id a los que el usuario ha dado like
 		const { data: likedElements, error: likesError } = await client
 			.from('elements_likes')
 			.select('element_id')
@@ -129,10 +150,8 @@ export default async function getElements (elementId, query) {
 			throw new Error('Failed to fetch user likes.');
 		}
 
-		// 3. Crear un Set de los element_id a los que el usuario ha dado like para una búsqueda eficiente
 		const likedElementsIds = new Set(likedElements.map(like => like.element_id));
 
-		// 4. Mapear los posts y agregar una propiedad 'likedByUser'
 		const postsWithLikeStatus = elements.map(el => ({
 			...el,
 			likedByUser: likedElementsIds.has(el.id),
@@ -145,6 +164,7 @@ export default async function getElements (elementId, query) {
 		throw error;
 	}
 }
+
 
 export async function getElement (elementId) {
 	const clerkUser = await currentUser();
@@ -225,16 +245,16 @@ export async function getUserLikes () {
 	return data.map((like) => like.elements);
 }
 
-export async function getUserElements () {
+export async function getUserElements ({ username }) {
 	const user = await currentUser();
-	const userId = user?.id;
-	if (!userId) return [];
+	if (!username) return [];
+
 	const supabase = createServerSupabaseClient();
 
-	const { data, error } = await supabase
-		.from('elements')
-		.select('*')
-		.eq('user_id', userId);
+	let query = supabase.from('elements').select('*').eq('username', username);
+	if (user?.username !== username) query = query.eq('published', true);
+
+	const { data, error } = await query;
 
 	if (error) throw new Error('Error al obtener los elements');
 

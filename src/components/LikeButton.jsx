@@ -9,7 +9,6 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount }) {
 	const [pending, startTransition] = useTransition();
 
 	const handleClick = () => {
-		// Guardar estado anterior por si necesitamos revertirlo
 		const previousLiked = liked;
 		const previousCount = likeCount;
 
@@ -18,13 +17,10 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount }) {
 		setLiked(newLiked);
 		setLikeCount(likeCount + (newLiked ? 1 : -1));
 
-		// Ejecutar acción en segundo plano
 		startTransition(async () => {
 			try {
 				await toggleLike(elementId);
-				// Si funciona, no hacemos nada (el estado ya está actualizado)
 			} catch (err) {
-				// Si falla, revertimos los valores y alertamos al usuario
 				setLiked(previousLiked);
 				setLikeCount(previousCount);
 			}

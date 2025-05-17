@@ -1,39 +1,82 @@
+'use client'
+
+import { useEffect, useState, useTransition } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination'
-import { PagesTypes } from '@/lib/conts';
-import getElements from '@/lib/actions';
-import ElementCard, {ElementCardSkeleton} from '../ElementCard';
+import { PagesTypes } from '@/lib/conts'
+import getElements from '@/lib/actions'
+import ElementCard, { ElementCardSkeleton } from '../ElementCard'
+import Link from 'next/link'
 
-export default async function Elements ({ data: data2, type }) {
-	const Elements = await getElements(data2.id);
-	// if (error) return <div className='section'>Error</div>
+export default function Elements ({ data: data2, type }) {
+	const searchParams = useSearchParams()
+	const router = useRouter()
+	const [query, setQuery] = useState(searchParams.get('q') || '')
+	const [elements, setElements] = useState([])
+	const [isPending, startTransition] = useTransition()
 
-	if (Elements.length < 1) return <div className='section'>No data</div>
+	// Obtener elementos al inicio y cuando cambia query
+	useEffect(() => {
+		startTransition(async () => {
+			const data = await getElements(data2.id, query)
+			setElements(data)
+		})
+	}, [query, data2.id])
+
+	const handleSearch = (e) => {
+		e.preventDefault()
+		const formData = new FormData(e.target)
+		const q = formData.get('q')?.toString().trim().toLowerCase() || ''
+
+		// Actualiza la URL
+		const newParams = new URLSearchParams(window.location.search)
+		if (q) {
+			newParams.set('q', q)
+		} else {
+			newParams.delete('q')
+		}
+		router.push(`?${newParams.toString()}`)
+
+		// Actualiza el estado (esto va a disparar el useEffect)
+		setQuery(q)
+	}
 
 	return (
-		<div className='section'>
-			<article className='flex flex-col md:flex-row gap-3 items-center'>
+		<div className='section mb-10'>
+			<article className='flex flex-col md:flex-row gap-3 items-center py-3 2xl:py-4 '>
 				<section className='grow'>
-					<h1 className='text-3xl font-semibold'>{PagesTypes[type].title} - {data2.name}</h1>
+					<h1 className=' text-xl sm:text-3xl font-semibold'>{PagesTypes[type].title} - {data2.name}</h1>
 					<p className='max-w-[80ch] text-balance mt-1 text-zinc-900/80 dark:text-white/80 text-[15px]'>
 						{PagesTypes[type].description} {data2.description}
 					</p>
 				</section>
 
 				<search className='self-end'>
-					<form>
-						<input type='search' name='q' placeholder='Search...' className='w-full max-w-3xs py-1.5 px-4 rounded-md card-border dark:bg-zinc-900 dark:text-white' />
-						{/* <button type='submit'>Search</button> */}
+					<form onSubmit={handleSearch}>
+						<input
+							type='search'
+							name='q'
+							defaultValue={query}
+							placeholder='Search...'
+							className='w-full max-w-3xs py-1.5 px-4 rounded-md card-border dark:bg-zinc-900 dark:text-white'
+						/>
 					</form>
 				</search>
 			</article>
 
-			<article className='grid gap-4 mt-6' style={{ gridTemplateColumns: PagesTypes[type].gridSize }}>
-				{
-					Elements.map((element, index) => <ElementCard data={element} key={index} />)
+			<article className='grid gap-4 mt-6 min-h-[calc(100svh-250px)]' style={{ gridTemplateColumns: PagesTypes[type].gridSize }}>
+				{isPending
+					? Array.from({ length: PagesTypes[type].pageSize }).map((_, i) => <ElementCardSkeleton key={i} />)
+					: elements.length > 0
+						? elements.map((el, i) => <ElementCard data={el} key={i} />)
+						: <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
+							<p className='text-center text-muted-foreground'>No elements found.</p>
+							<Link href='/create' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>Create one</Link>
+						</div>
 				}
 			</article>
 
-			<Pagination className='mt-8'>
+			{/* <Pagination className='mt-8'>
 				<PaginationContent>
 					<PaginationItem>
 						<PaginationPrevious href='#' />
@@ -48,8 +91,7 @@ export default async function Elements ({ data: data2, type }) {
 						<PaginationNext href='#' />
 					</PaginationItem>
 				</PaginationContent>
-			</Pagination>
-
+			</Pagination> */}
 		</div>
-	);
+	)
 }
