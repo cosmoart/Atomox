@@ -15,10 +15,9 @@ export default function Elements ({ data: data2, type }) {
 	const [elements, setElements] = useState([])
 	const [isPending, startTransition] = useTransition()
 
-	// Obtener elementos al inicio y cuando cambia query
 	useEffect(() => {
 		startTransition(async () => {
-			const data = await getElements(data2.id, query)
+			const data = await getElements(data2.id, query.split(' '))
 			setElements(data)
 		})
 	}, [query, data2.id])
@@ -27,8 +26,8 @@ export default function Elements ({ data: data2, type }) {
 		e.preventDefault()
 		const formData = new FormData(e.target)
 		const q = formData.get('q')?.toString().trim().toLowerCase() || ''
+		console.log(q);
 
-		// Actualiza la URL
 		const newParams = new URLSearchParams(window.location.search)
 		if (q) {
 			newParams.set('q', q)
@@ -37,7 +36,7 @@ export default function Elements ({ data: data2, type }) {
 		}
 		router.push(`?${newParams.toString()}`)
 
-		// Actualiza el estado (esto va a disparar el useEffect)
+		console.log(q);
 		setQuery(q)
 	}
 
@@ -70,7 +69,7 @@ export default function Elements ({ data: data2, type }) {
 					: elements.length > 0
 						? elements.map((el, i) => <ElementCard data={el} key={i} />)
 						: <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
-							<p className='text-center text-muted-foreground'>No elements found.</p>
+							<p className='text-center text-muted-foreground'>No components found <span className='italic font-medium'>yet</span>. But you can change that</p>
 							<Link href='/create' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>Create one</Link>
 						</div>
 				}

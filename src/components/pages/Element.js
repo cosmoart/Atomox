@@ -6,23 +6,15 @@ import { Eye } from 'lucide-react';
 import Link from 'next/link';
 import { getElement } from '@/lib/actions';
 
-export default async function Element ({ id, elementId }) {
+export default async function Element ({ id }) {
 	const client = createServerSupabaseClient()
-	// const { data: element, error } = await client.from('elements').select('*').eq('id', id).single()
-	// if (error) {
-	// 	console.log(error);
-
-	// 	throw error
-	// }
-	// console.log(element, id);
 	const element = await getElement(id);
 
 	// if (error) return <div className='section'>Error</div>
 
 	if (!element) return <div className='section'>No data</div>
 
-	client.from('elements').update({ views: element.views + 1 }).eq('id', id)
-	console.log(element, id);
+	const { data, error } = await client.from('elements').update({ views: element.views + 1 }).eq('id', id)
 
 	return (
 		<div className='section py-2 minHeightScreen flex flex-col'>
@@ -44,7 +36,7 @@ export default async function Element ({ id, elementId }) {
 					<h2 className='text-2xl font-medium hidden'>Tags</h2>
 					<ul className='flex gap-2'>
 						{
-							element.tags.map(tag => (
+							element.tags.split(',').map(tag => (
 								<li key={tag} className='flex gap-2 items-center rounded px-2 py-1 bg-zinc-100 dark:bg-zinc-800'>
 									<span className='text-sm'>{tag}</span>
 								</li>

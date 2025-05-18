@@ -19,7 +19,7 @@ export default function ElementCard ({ data }) {
 	const elementType = Atoms.find(element => element.id === data.element_id) ? "atom" : "molecule"
 
 	return (
-		<section className='rounded-lg dark:bg-zinc-900 card-border overflow-hidden group'>
+		<section className='rounded-lg h-fit dark:bg-zinc-900 card-border overflow-hidden group'>
 			<Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video'>
 				<iframe
 					title='preview'
@@ -56,13 +56,14 @@ export default function ElementCard ({ data }) {
 
 export function ElementCardSkeleton () {
 	return (
-		<section className='rounded-lg dark:bg-zinc-900 card-border overflow-hidden group'>
-			<div className='flex flex-col overflow-hidden aspect-video w-full bg-zinc-800 animate-pulse'></div>
+		<section className='rounded-lg h-fit dark:bg-zinc-900 card-border overflow-hidden group'>
+			<div className='flex flex-col overflow-hidden aspect-video w-full dark:bg-zinc-800 animate-pulse'></div>
 
 			<div className='flex gap-2 p-2 justify-between'>
 				<div className='flex gap-2 items-center'>
-					<div className='size-6 bg-gray-300 rounded-full animate-pulse'></div>
-					<p className='font-medium'>Username</p>
+					<div className='size-6 dark:bg-zinc-800  rounded-full animate-pulse'></div>
+					{/* width between 10 and 20 */}
+					<div className='dark:bg-zinc-800  rounded-lg animate-pulse h-4' style={{ width: `${Math.floor(Math.random() * (80 - 50 + 1) + 50)}px` }}></div>
 				</div>
 
 				<div className='flex gap-3 items-center mr-1'>

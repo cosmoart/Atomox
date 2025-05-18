@@ -45,6 +45,7 @@ export default function CodeEditorPreview () {
 			css: css,
 			use_tailwind: useTailwind,
 			element_id: elementId,
+			tags: e.tags.filter(tag => tag.length > 1).join(','),
 			img_url: 'https://picsum.photos/1280/720'
 		}
 
