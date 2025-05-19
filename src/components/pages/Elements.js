@@ -11,7 +11,7 @@ import { OctagonAlert } from 'lucide-react'
 
 export default function Elements ({ data: data2, type }) {
 	const searchParams = useSearchParams()
-	const [elements, setElements] = useState([])
+	const [elements, setElements] = useState('loading')
 	const [isPending, startTransition] = useTransition()
 	const [totalPages, setTotalPages] = useState(0);
 
@@ -43,8 +43,6 @@ export default function Elements ({ data: data2, type }) {
 
 	return (
 		<div className='section mb-10 relative'>
-
-
 			<article className='flex flex-col md:flex-row gap-3 items-center py-3 2xl:py-4 '>
 				<section className='grow'>
 					<h1 className=' text-xl sm:text-3xl font-semibold'>{PagesTypes[type].title} - {data2.name}</h1>
@@ -77,7 +75,7 @@ export default function Elements ({ data: data2, type }) {
 }
 
 function ElementsList ({ isPending, elements }) {
-	if (isPending) return Array.from({ length: PagesTypes.Atoms.pageSize })
+	if (isPending || elements === 'loading') return Array.from({ length: PagesTypes.Atoms.pageSize })
 		.map((_, i) => <ElementCardSkeleton key={i} />)
 
 	if (elements.length < 1) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>

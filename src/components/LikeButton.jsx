@@ -40,7 +40,7 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount, with
 				>
 					<Heart liked={liked} />
 					<span>
-						<span className='w-[1ch]'>{likeCount}</span>
+						<span className='w-[1ch] inline-block'>{likeCount}</span>
 						{withText && <span>Like{likeCount !== 1 && 's'}</span>}
 					</span>
 				</button>
@@ -53,8 +53,8 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount, with
 				>
 					<div className="flex gap-1 items-center disabled:opacity-90 not-disabled:cursor-pointer group">
 						<Heart liked={liked} />
-						<span>
-							<span className='w-[1ch]'>{likeCount}</span>
+						<span className='block mt-0.5'>
+							<span className='w-[1ch] inline-block'>{likeCount}</span>
 							{withText && <span>Like{likeCount !== 1 && 's'}</span>}
 						</span>
 					</div>
@@ -86,44 +86,3 @@ function Heart ({ liked }) {
 		</div>
 	</div>
 }
-
-// import { SignedIn, SignedOut, SignUpButton } from '@clerk/nextjs';
-// import { Heart } from 'lucide-react';
-// import { dark } from '@clerk/themes';
-// import { useTheme } from 'next-themes';
-
-// export default function Likes ({ likes, liked }) {
-// 	const { theme } = useTheme()
-
-// 	async function handleLike () {
-// 		const { liked } = await toggleLike(elementId, userId)
-// 		// setLiked(liked)
-// 		console.log(liked);
-
-// 	}
-
-// 	return (
-// 		<>
-// 			<SignedIn>
-// 				<button className='flex cursor-pointer active:scale-95 gap-1 items-center group hover:scale-105 transition-all'>
-// 					<Heart size={17} className='text-red-500 inline group-hover:scale-110 transition-all' />
-// 					<span className='text-sm text-zinc-900/80 dark:text-white/80'>
-// 						{likes}
-// 					</span>
-// 				</button>
-// 			</SignedIn>
-// 			<SignedOut>
-// 				<SignUpButton mode='modal'
-// 					theme={theme === 'dark' ? dark : undefined}
-// 					className='flex cursor-pointer active:scale-95 gap-1 items-center group hover:scale-105 transition-all'>
-// 					<div>
-// 						<Heart size={17} className='text-red-500 inline group-hover:scale-110 transition-all' />
-// 						<span className='text-sm text-zinc-900/80 dark:text-white/80'>
-// 							{likes}
-// 						</span>
-// 					</div>
-// 				</SignUpButton>
-// 			</SignedOut>
-// 		</>
-// 	)
-// }

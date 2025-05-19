@@ -170,7 +170,23 @@ export async function getUserElements (username) {
 		const { data, error } = await baseQuery;
 		if (error) return { error: 'Error getting elements' };
 
-		return data;
+		if (!clerkUser?.id) return data;
+
+		const { data: likedElements, error: likesError } = await client
+			.from('elements_likes')
+			.select('element_id')
+			.eq('user_id', clerkUser.id);
+
+		if (likesError) return { error: 'Error getting likes' };
+
+		const likedElementsIds = new Set(likedElements.map(like => like.element_id));
+
+		const postsWithLikeStatus = data.map(el => ({
+			...el,
+			likedByUser: likedElementsIds.has(el.id),
+		}));
+
+		return postsWithLikeStatus;
 	} catch (error) {
 		return { error: 'Error getting elements' };
 	}

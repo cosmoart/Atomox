@@ -26,8 +26,8 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 						{
 							Atoms.map((atom, index) => (
 								<button onClick={() => {
-									setHtml(atom.html ?? ""),
-										setCss(atom.css ?? "")
+									setHtml(useTailwind ? atom.htmlTailwind ?? "" : atom.html ?? ""),
+										setCss(useTailwind ? "" : atom.css ?? "")
 									setElementId(atom.id)
 								}}
 									key={index} className='rounded bg-zinc-50 card-border dark:bg-zinc-800 px-5 py-2 cursor-pointer grow'>

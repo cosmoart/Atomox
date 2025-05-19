@@ -2,11 +2,14 @@ export const Atoms = [
 	{
 		name: 'Buttons',
 		description: 'A button is a clickable element that performs an action when clicked.',
-		html: `<button class="btn px-10 bg-red-500 font-medium py-3 rounded-lg">
-Click me
+		html: `<button class="btn">
+	Click me
+</button>`,
+		htmlTailwind: `<button class="px-10 bg-purple-500 text-white font-medium py-3 rounded-lg">
+	Click me
 </button>`,
 		css: `.btn {
-	background-color: blue;
+	background-color: purple;
 	color: white;
 	padding: 10px 20px;
 	border-radius: 5px;

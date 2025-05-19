@@ -98,15 +98,15 @@ export default async function Home () {
 				<div className='absolute inset-[1px] -z-10 rounded-xl bg-zinc-950'></div>
 			</li>
 
-			<article>
-				<h2 className='text-2xl font-medium mb-4 mt-8'>Atoms</h2>
+			<article className='bg-test pb-10 pt-6 mt-8'>
+				<h2 className='text-2xl md:text-4xl text-center font-medium pb-5 2xl:mb-7'>Atoms</h2>
 				<div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4'>
 					{
 						Atoms.map(atom => (
-							<Link href={`atoms/${atom.id}`} key={atom.id} className='flex flex-col justify-center rounded-lg card-border p-4  transition-shadow '>
+							<Link href={`atoms/${atom.id}`} key={atom.id} className='flex bg-gradient-to-b flex-col justify-center rounded-lg card-border p-4 shadow-md transition-all hover:shadow-lg hover:scale-[1.01] dark:from-zinc-900/50 dark:to-zinc-950 backdrop-blur-sm'>
 
 								<h3 className='text-lg font-medium'>{atom.name}</h3>
-								<p className='text-[15px] line-clamp-2'>{atom.description}</p>
+								<p className='text-[15px] line-clamp-2 opacity-85'>{atom.description}</p>
 							</Link>
 						))
 					}

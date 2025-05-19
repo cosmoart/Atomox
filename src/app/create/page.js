@@ -14,11 +14,13 @@ import DialogStart from './DialogStart'
 import { SignedIn, SignedOut } from '@clerk/nextjs'
 import { addElement } from '@/lib/actions'
 import { useTheme } from 'next-themes'
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
+import { Atoms } from '@/lib/conts'
 
 export default function CodeEditorPreview () {
-	const [html, setHtml] = useState('<div class="text-3xl p-4 font-bold text-blue-500">Hello world!</div>')
-	const [css, setCss] = useState('div { color: red; }')
-	const [js, setJs] = useState('export default function App() {\n  return <div>Hello React!</div>;\n}')
+	const [html, setHtml] = useState(Atoms[0].html ?? '')
+	const [css, setCss] = useState(Atoms[0].css ?? '')
+	const [js, setJs] = useState(Atoms[0].js ?? '')
 	const [elementType, setElementType] = useState('Atom')
 	const [elementId, setElementId] = useState('buttons')
 	const [useTailwind, setUseTailwind] = useState(true)
@@ -89,10 +91,10 @@ export default function CodeEditorPreview () {
 		link.click();
 	};
 
-	return (
-		<div className='grid grid-cols-1 md:grid-cols-2 gap-4 h-[calc(100svh-35px)] m-4 ' id='capture-area'>
-			<div className='flex flex-col'>
-				<section className='flex gap-8 items-center mb-2'>
+	return <ResizablePanelGroup className='h-[calc(100svh-35px)]! w-auto! m-4' direction='horizontal'>
+		<ResizablePanel >
+			<div className='flex flex-col h-full mr-1.5'>
+				<nav className='flex gap-8 items-center justify-between mb-2'>
 					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium cursor-pointer group active:scale-95 transition-transform'>
 						<ChevronLeft width={23} className='group-hover:-translate-x-1 transition-transform' />
 						<span>Volver</span>
@@ -115,7 +117,7 @@ export default function CodeEditorPreview () {
 					</SignedOut>
 
 					<DialogStart useTailwind={useTailwind} setUseTailwind={setUseTailwind} setHtml={setHtml} setCss={setCss} setElementType={setElementType} setElementId={setElementId} />
-				</section>
+				</nav>
 
 				<Tabs defaultValue='html' className='flex-1 flex flex-col'>
 					<TabsList className='w-full justify-start'>
@@ -150,7 +152,7 @@ export default function CodeEditorPreview () {
 							beforeMount={handleEditorCSS}
 							onChange={(value) => setCss(value || '')}
 							options={{
-								readOnly: useTailwind, minimap: {
+								minimap: {
 									enabled: false
 								}
 							}}
@@ -166,13 +168,18 @@ export default function CodeEditorPreview () {
 							onChange={(value) => setJs(value || '')}
 							options={{
 								automaticLayout: true,
+								minimap: {
+									enabled: false
+								}
 							}}
 						/>
 					</TabsContent>
 				</Tabs>
 			</div>
-
-			<div className='bg-white border rounded shadow h-full overflow-auto'>
+		</ResizablePanel>
+		<ResizableHandle withHandle />
+		<ResizablePanel>
+			<div className='bg-white border rounded shadow h-full overflow-auto ml-1.5'>
 				<iframe
 					ref={iframeViewer}
 					srcDoc={combinedCode}
@@ -181,6 +188,6 @@ export default function CodeEditorPreview () {
 					sandbox='allow-same-origin allow-scripts'
 				/>
 			</div>
-		</div>
-	)
+		</ResizablePanel>
+	</ResizablePanelGroup>
 }

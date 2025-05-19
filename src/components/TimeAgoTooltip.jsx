@@ -1,6 +1,4 @@
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
-// import { format, formatDistanceToNow } from "date-fns";
-// import { enUS } from "date-fns/locale";
 import { Clock } from 'lucide-react';
 
 export default function TimeAgoTooltip ({ dateString }) {
@@ -35,8 +33,8 @@ export default function TimeAgoTooltip ({ dateString }) {
 		<TooltipProvider>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<span className="cursor-default text-sm opacity-90 flex gap-2 items-center">
-						<Clock size={15} />
+					<span className="cursor-default text-[15px] opacity-95 flex gap-1.5 items-center">
+						<Clock size={17} />
 						{getTimeAgo(date)}
 					</span>
 				</TooltipTrigger>

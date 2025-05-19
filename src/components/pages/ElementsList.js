@@ -12,12 +12,13 @@ export default function ElementsList ({ data, title, description }) {
 				</section>
 			</article>
 
-			<article className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 mt-6'>
+			{/* <article className={`grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 mt-6 ${title.toLowerCase()}-grid`}> */}
+			<article className={`flex flex-wrap gap-4 mt-6 ${title.toLowerCase()}-gri`}>
 				{
 					data.map(element => (
-						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className='flex card-border flex-col  justify-center rounded-lg py-4 px-6 shadow-md transition-shadow hover:shadow-lg '>
-
-							<h3 className="text-lg font-medium ">{element.name}</h3>
+						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={`flex card-border flex-1 min-w-78 justify-center flex-col rounded-lg py-4 px-6 shadow-md transition-shadow hover:shadow-lg ${element.id.toLowerCase()}`}>
+							{/* <TextCursorInput size={25} /> */}
+							<h3 className='text-lg font-medium '>{element.name}</h3>
 							<p className='text-[15px] line-clamp-2'>{element.description}</p>
 						</Link>
 					))

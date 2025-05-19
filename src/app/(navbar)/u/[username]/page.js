@@ -1,4 +1,3 @@
-// "use client"
 import { currentUser } from '@clerk/nextjs/server'
 import { clerkClient } from '@/lib/clerkClient';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -6,6 +5,8 @@ import Link from 'next/link';
 import { Settings } from 'lucide-react';
 import UserLikes from './UserLikes';
 import UserElements from './UserElements';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import AnimatedTabs from './Tabs';
 
 export default async function UserProfile ({ params }) {
 	const { username } = await params;
@@ -20,8 +21,8 @@ export default async function UserProfile ({ params }) {
 	if (!user) return <div>User not found</div>
 
 	return (
-		<div className='section minHeightScreen flex flex-col md:flex-row mt-6'>
-			<article className='md:w-1/2 md:sticky top-0'>
+		<div className='section minHeightScreen mt-6'>
+			<article className='mb-4'>
 				<section className='flex gap-4 items-center '>
 					<div className='relative'>
 						{nowUser?.id === user.id &&
@@ -44,10 +45,22 @@ export default async function UserProfile ({ params }) {
 				</section>
 			</article>
 
-			<article className='w-full'>
-				<UserElements username={user.username} isAuthor={nowUser?.id === user.id} />
-				{nowUser?.id === user.id && <UserLikes />}
-			</article>
+			<AnimatedTabs
+				tabs={[
+					{
+						label: nowUser?.id === user.id ? 'Your Components' : 'Components',
+						value: 'elements',
+						content: (
+							<UserElements username={user.username} isAuthor={nowUser?.id === user.id} />
+						)
+					},
+					{
+						label: 'Your Likes',
+						value: 'likes',
+						content: nowUser?.id === user.id ? <UserLikes /> : null
+					}
+				]}
+			/>
 		</div>
 	)
 }
