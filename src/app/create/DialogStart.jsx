@@ -22,7 +22,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 						<TabsTrigger value="molecule" onClick={() => setElementType('Molecule')}>Molecule</TabsTrigger>
 					</TabsList>
 
-					<TabsContent value="atom" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2">
+					<TabsContent value="atom" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2 pt-1">
 						{
 							Atoms.map((atom, index) => (
 								<button onClick={() => {
@@ -30,14 +30,14 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 										setCss(atom.css ?? "")
 									setElementId(atom.id)
 								}}
-									key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
+									key={index} className='rounded bg-zinc-50 card-border dark:bg-zinc-800 px-5 py-2 cursor-pointer grow'>
 									{atom.name}
 								</button>
 							))
 						}
 					</TabsContent>
 
-					<TabsContent value="molecule" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2">
+					<TabsContent value="molecule" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2 pt-1">
 						{
 							Molecules.map((molecule, index) => (
 								<button onClick={() => {
@@ -45,7 +45,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 										setCss(molecule.css ?? "")
 									setElementId(molecule.id)
 								}}
-									key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
+									key={index} className='rounded bg-zinc-50 card-border dark:bg-zinc-800 px-5 py-2 cursor-pointer grow'>
 									{molecule.name}
 								</button>
 							))

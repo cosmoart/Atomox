@@ -49,7 +49,7 @@ export default async function getElements (elementId, query, page = 1, pageSize 
 
 		if (elementsError) return { error: 'Error getting elements' };
 
-		if (!userId) return elements;
+		if (!userId) return { data: elements, totalCount: count || 0 };
 
 		const { data: likedElements, error: likesError } = await client
 			.from('elements_likes')
@@ -89,11 +89,13 @@ export async function getElement (id, elementId) {
 		.eq('element_id', elementId)
 		.eq('published', true)
 
+	console.log(data, error);
+
 	if (error) return { error: 'Error getting element' };
 
 	if (!data || data.length === 0) return null
 
-	if (!userId) return data;
+	if (!userId) return data[0];
 
 	const { data: likedByUser, error: likeError } = await client
 		.from('elements_likes')
@@ -156,18 +158,32 @@ export async function getUserLikes () {
 	return data.map((like) => like.elements);
 }
 
-export async function getUserElements ({ username }) {
-	const user = await currentUser();
+// get elements created by this username. If username is the current user, it will return all elements (no published included). Get elements liked by this user
+export async function getUserElements (username) {
+	const clerkUser = await currentUser();
 	if (!username) return [];
+	const client = createServerSupabaseClient();
 
-	const supabase = createServerSupabaseClient();
+	try {
+		const baseQuery = client.from('elements').select('*').eq('username', username);
+		if (clerkUser?.username !== username) baseQuery.eq('published', true);
+		const { data, error } = await baseQuery;
+		if (error) return { error: 'Error getting elements' };
 
-	let query = supabase.from('elements').select('*').eq('username', username);
-	if (user?.username !== username) query = query.eq('published', true);
+		return data;
+	} catch (error) {
+		return { error: 'Error getting elements' };
+	}
+}
 
-	const { data, error } = await query;
+export async function deleteElement (id) {
+	const clerkUser = await currentUser();
+	const userId = clerkUser?.id;
+	const client = createServerSupabaseClient();
 
-	if (error) throw new Error('Error al obtener los elements');
+	if (!id || !userId) throw new Error('Post ID and User ID are required.');
 
-	return data;
+	const { error } = await client.from('elements').delete().eq('id', id).eq('user_id', userId);
+
+	if (error) throw new Error('Error al eliminar el elemento');
 }

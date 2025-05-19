@@ -13,6 +13,7 @@ import DialogSubmit from './DialogSubmit'
 import DialogStart from './DialogStart'
 import { SignedIn, SignedOut } from '@clerk/nextjs'
 import { addElement } from '@/lib/actions'
+import { useTheme } from 'next-themes'
 
 export default function CodeEditorPreview () {
 	const [html, setHtml] = useState('<div class="text-3xl p-4 font-bold text-blue-500">Hello world!</div>')
@@ -21,6 +22,7 @@ export default function CodeEditorPreview () {
 	const [elementType, setElementType] = useState('Atom')
 	const [elementId, setElementId] = useState('buttons')
 	const [useTailwind, setUseTailwind] = useState(true)
+	const { resolvedTheme } = useTheme()
 	const [loading, setLoading] = useState(false)
 
 	const disposeEmmetHTMLRef = useRef();
@@ -118,7 +120,7 @@ export default function CodeEditorPreview () {
 				<Tabs defaultValue='html' className='flex-1 flex flex-col'>
 					<TabsList className='w-full justify-start'>
 						<TabsTrigger value='html'>HTML</TabsTrigger>
-						<TabsTrigger value='css' disabled={useTailwind}>CSS</TabsTrigger>
+						<TabsTrigger value='css'>CSS</TabsTrigger>
 						<TabsTrigger value='js' >JS</TabsTrigger>
 					</TabsList>
 
@@ -127,7 +129,7 @@ export default function CodeEditorPreview () {
 							height='100%'
 							defaultLanguage='html'
 							language={'html'}
-							theme='vs-dark'
+							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 							value={html}
 							beforeMount={handleEditorHTML}
 							onChange={(value) => setHtml(value || '')}
@@ -143,7 +145,7 @@ export default function CodeEditorPreview () {
 						<Editor
 							height='100%'
 							defaultLanguage='css'
-							theme='vs-dark'
+							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 							value={css}
 							beforeMount={handleEditorCSS}
 							onChange={(value) => setCss(value || '')}
@@ -160,7 +162,7 @@ export default function CodeEditorPreview () {
 							height='100%'
 							defaultLanguage='javascript'
 							defaultValue={js}
-							theme='vs-dark'
+							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 							onChange={(value) => setJs(value || '')}
 							options={{
 								automaticLayout: true,

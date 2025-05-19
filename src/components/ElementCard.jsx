@@ -17,10 +17,12 @@ export default function ElementCard ({ data }) {
   `
 	}
 
-	const elementType = Atoms.find(element => element.id === data.element_id) ? "atom" : "molecule"
+	const elementType = Atoms.find(element => element.id === data.element_id) ? "atoms" : "molecules"
 
 	return (
-		<section className='rounded-lg h-fit dark:bg-zinc-900 card-border overflow-hidden group'>
+		<section className='rounded-lg h-fit dark:bg-zinc-900 card-border overflow-hidden' style={{
+			background: !data.published && '#F3F4F6'
+		}}>
 			<Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video'>
 				{
 					data.img_url
@@ -46,7 +48,7 @@ export default function ElementCard ({ data }) {
 					<p className='font-medium text-[15px]'>{data.username}</p>
 				</Link>
 
-				<div className='flex gap-3 items-center mr-1'>
+				<div className='flex gap-2.5 items-center mr-1'>
 					<LikeButton initialLikeCount={data.likes} isLiked={data.likedByUser} elementId={data.id} />
 
 					<div className='flex gap-1 items-center'>

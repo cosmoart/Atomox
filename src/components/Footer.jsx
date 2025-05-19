@@ -25,7 +25,7 @@ export default function Footer () {
 						<ul className='grid md:grid-cols-2 gap-x-4 gap-y-1 text-sm'>
 							{Atoms.map((atom, index) => (
 								<li key={index}>
-									<Link href={`/atom/${atom.id}`} className='group flex gap-1 items-center hover:translate-x-1 transition-transform'>
+									<Link href={`/atoms/${atom.id}`} className='group flex gap-1 items-center hover:translate-x-1 transition-transform'>
 										{atom.name}
 										<ChevronRight size={15} className='text-zinc-900/80 dark:text-white/80 opacity-0 group-hover:opacity-95' />
 									</Link>
@@ -39,7 +39,7 @@ export default function Footer () {
 						<ul className='grid sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-1 text-sm'>
 							{Molecules.map((molecule, index) => (
 								<li key={index}>
-									<Link href={`/molecule/${molecule.id}`} className='group flex gap-1 items-center hover:translate-x-1 transition-transform'>
+									<Link href={`/molecules/${molecule.id}`} className='group flex gap-1 items-center hover:translate-x-1 transition-transform'>
 										{molecule.name}
 										<ChevronRight size={15} className='text-zinc-900/80 dark:text-white/80 opacity-0 group-hover:opacity-95' />
 									</Link>

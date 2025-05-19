@@ -56,7 +56,7 @@ export default function Elements ({ data: data2, type }) {
 				<search className='self-end'>
 					<form onSubmit={handleSearch} >
 						<input
-							disabled={isPending || elements.error}
+							disabled={isPending || elements?.error}
 							type='search'
 							name='q'
 							defaultValue={query}

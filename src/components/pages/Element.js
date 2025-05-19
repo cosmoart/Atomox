@@ -9,20 +9,21 @@ import TimeAgoTooltip from '../TimeAgoTooltip';
 
 export default async function Element ({ id, elementId }) {
 	const client = createServerSupabaseClient()
-	const element = await getElement(id, elementId)
-	console.log(element);
+	console.log(id, elementId)
 
-	// if (error) return <div className='section'>Error</div>
+	const element = await getElement(id, elementId)
 
 	if (!element) return <div className='section flex flex-col items-center justify-center minHeightScreen'>
-		<h1>Element not found</h1>
-		<p>The element you are looking for does not exist. But you can create one</p>
+		<h1 className='text-2xl font-semibold'>Element not found</h1>
+		<p>The element you are looking for does not exist.</p>
+		<p className='-mt-1'>But you can create one</p>
 		<Link href='/create' className='px-7 mt-5 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>Create one</Link>
 	</div>
 
 	if (element.error) return <div className='section flex flex-col items-center justify-center minHeightScreen'>
-		<h1>Error fetching element</h1>
-		<p>An error has occurred while fetching the element. Try again later</p>
+		<h1 className='text-2xl font-semibold'>Error fetching element</h1>
+		<p>An error has occurred while fetching the element.</p>
+		<p className='-mt-1'>Please try again later</p>
 		<Link href='/create' className='px-7 mt-5 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>Create one</Link>
 	</div>
 
@@ -42,7 +43,7 @@ export default async function Element ({ id, elementId }) {
 
 				<div className='flex gap-1 items-center'>
 					<LikeButton initialLikeCount={element.likes} isLiked={element.likedByUser} elementId={element.id} />
-					Likes
+					Like{element.likes !== 1 && 's'}
 				</div>
 
 				<TimeAgoTooltip dateString={element.created_at} />

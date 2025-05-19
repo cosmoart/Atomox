@@ -4,12 +4,14 @@ import { Editor } from '@monaco-editor/react'
 import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import { useRef, useState } from 'react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup, } from "@/components/ui/resizable"
+import { useTheme } from 'next-themes';
 
 export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 	const [html, setHtml] = useState(htmlD);
 	const [css, setCss] = useState(cssD);
 	const [js, setJs] = useState(jsD);
 	const [darkMode, setDarkMode] = useState(false);
+	const { resolvedTheme } = useTheme()
 	const disposeEmmetHTMLRef = useRef();
 
 	const handleEditorHTML = (monaco) => {
@@ -54,7 +56,7 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 							height="100%"
 							defaultLanguage="html"
 							language={"html"}
-							theme="vs-dark"
+							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 							value={html}
 							beforeMount={handleEditorHTML}
 							onChange={(value) => setHtml(value || '')}
@@ -71,7 +73,7 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 						<Editor
 							height="100%"
 							defaultLanguage="css"
-							theme="vs-dark"
+							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 							value={css}
 							beforeMount={handleEditorCSS}
 							onChange={(value) => setCss(value || '')}
@@ -86,7 +88,7 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 						<Editor
 							height="100%"
 							defaultLanguage="javascript"
-							theme="vs-dark"
+							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 							value={js}
 							onChange={(value) => setJs(value || '')}
 							options={{
