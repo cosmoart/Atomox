@@ -92,6 +92,7 @@
 }
 
 :root {
+  --main-color: #525fff;
   --root-pr: 0px;
   --header-height: 64px;
   --radius: 0.625rem;

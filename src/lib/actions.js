@@ -26,27 +26,28 @@ export async function addElement (data) {
 	}
 }
 
-export default async function getElements (elementId, query) {
+export default async function getElements (elementId, query, page = 1, pageSize = 10) {
 	const clerkUser = await currentUser();
 	const userId = clerkUser?.id;
 	const client = createServerSupabaseClient();
 
 	try {
-		let supabaseQuery = client
+		let baseQuery = client
 			.from('elements')
-			.select('*')
+			.select('*', { count: 'exact' })
 			.eq('published', true)
 			.eq('element_id', elementId);
 
-		if (query) supabaseQuery = supabaseQuery.ilike('tags', `%${query}%`);
-		supabaseQuery = supabaseQuery.order('likes', { ascending: false });
+		if (query) baseQuery = baseQuery.ilike('tags', `%${query}%`);
 
-		const { data: elements, error: elementsError } = await supabaseQuery;
+		const from = (page - 1) * pageSize;
+		const to = from + pageSize - 1;
 
-		if (elementsError) {
-			console.error('Error al obtener los elements:', elementsError);
-			throw new Error('Failed to fetch elements.');
-		}
+		const { data: elements, error: elementsError, count } = await baseQuery
+			.order('likes', { ascending: false })
+			.range(from, to);
+
+		if (elementsError) return { error: 'Error getting elements' };
 
 		if (!userId) return elements;
 
@@ -55,10 +56,7 @@ export default async function getElements (elementId, query) {
 			.select('element_id')
 			.eq('user_id', userId);
 
-		if (likesError) {
-			console.error('Error al obtener los likes del usuario:', likesError);
-			throw new Error('Failed to fetch user likes.');
-		}
+		if (likesError) return { error: 'Error getting likes' };
 
 		const likedElementsIds = new Set(likedElements.map(like => like.element_id));
 
@@ -67,21 +65,33 @@ export default async function getElements (elementId, query) {
 			likedByUser: likedElementsIds.has(el.id),
 		}));
 
-		return postsWithLikeStatus;
+		return {
+			data: postsWithLikeStatus,
+			totalCount: count || 0
+		};
 
 	} catch (error) {
-		console.error('Error al obtener posts con estado de like:', error.message);
-		throw error;
+		return { error: 'Error getting elements' };
 	}
 }
 
-export async function getElement (elementId) {
+export async function getElement (id, elementId) {
 	const clerkUser = await currentUser();
 	const userId = clerkUser?.id;
 	const client = createServerSupabaseClient();
 
-	const { data, error } = await client.from('elements').select('*').eq('id', elementId).single();
-	if (error) throw new Error('Error al obtener el elemento');
+	if (!id || !elementId) return;
+
+	const { data, error } = await client
+		.from('elements')
+		.select('*')
+		.eq('id', id)
+		.eq('element_id', elementId)
+		.eq('published', true)
+
+	if (error) return { error: 'Error getting element' };
+
+	if (!data || data.length === 0) return null
 
 	if (!userId) return data;
 
@@ -89,15 +99,11 @@ export async function getElement (elementId) {
 		.from('elements_likes')
 		.select('*')
 		.eq('user_id', userId)
-		.eq('element_id', elementId)
+		.eq('element_id', id)
 		.single();
 
-	if (likeError && likeError.code !== 'PGRST116' && likeError.code !== 'PGRST123') {
-		console.error(fetchError);
-		throw new Error('Error al verificar el estado del like');
-	}
-
-	return { ...data, likedByUser: Boolean(likedByUser) };
+	if (likeError && likeError.code !== 'PGRST116' && likeError.code !== 'PGRST123') return { error: 'Error getting like status' };
+	return { ...data[0], likedByUser: Boolean(likedByUser) };
 }
 
 export async function toggleLike (elementId) {

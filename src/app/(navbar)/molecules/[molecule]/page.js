@@ -1,6 +1,7 @@
 import { Molecules } from '@/lib/conts';
 import { notFound } from 'next/navigation'
 import Elements from '@/components/pages/Elements';
+import { Suspense } from 'react';
 
 export async function generateStaticParams () {
 	return Molecules.map(molecule => ({ molecule: molecule.id }));
@@ -12,6 +13,8 @@ export default async function MoleculePage ({ params }) {
 
 	if (!molecule || !data) return notFound();
 
-	return (<Elements data={data} type='Molecules' />)
+	return <Suspense>
+		<Elements data={data} type='Molecules' />
+	</Suspense>
 
 }

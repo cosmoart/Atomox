@@ -31,7 +31,7 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount }) {
 		<button
 			onClick={handleClick}
 			disabled={pending}
-			className="flex cursor-pointer items-center gap-1 disabled:opacity-50 not-disabled:hover:scale-105 not-disabled:active:scale-95 transition-all disabled:bg-red-400"
+			className="flex cursor-pointer items-center gap-0.5 disabled:opacity-50 not-disabled:hover:scale-105 not-disabled:active:scale-95 transition-all disabled:bg-red-400"
 		>
 			<span>{liked ? '❤️' : '🤍'}</span>
 			<span>{likeCount}</span>

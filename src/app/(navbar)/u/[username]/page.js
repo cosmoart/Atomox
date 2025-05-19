@@ -9,16 +9,13 @@ import UserElements from './UserElements';
 
 export default async function UserProfile ({ params }) {
 	const { username } = await params;
-	// const userId = 'user_123'
 	const nowUser = await currentUser()
 
-	// const response = await clerkClient.users.getUser(userid)
 	const { data } = await clerkClient.users.getUserList({
 		limit: 1,
 		username: username
 	})
 	const user = data[0]
-	console.log(user);
 
 	if (!user) return <div>User not found</div>
 

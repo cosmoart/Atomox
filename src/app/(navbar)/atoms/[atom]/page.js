@@ -1,6 +1,7 @@
 import { Atoms } from '@/lib/conts';
 import { notFound } from 'next/navigation'
 import Elements from '@/components/pages/Elements';
+import { Suspense } from 'react';
 
 export async function generateStaticParams () {
 	return Atoms.map(atom => ({ atom: atom.id }));
@@ -12,6 +13,8 @@ export default async function AtomPage ({ params }) {
 
 	if (!atom || !data) return notFound();
 
-	return (<Elements data={data} type='Atoms' />)
+	return (<Suspense>
+		<Elements data={data} type='Atoms' />
+	</Suspense>)
 
 }

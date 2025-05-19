@@ -26,8 +26,8 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 						{
 							Atoms.map((atom, index) => (
 								<button onClick={() => {
-									setHtml(atom.html),
-										setCss(atom.css)
+									setHtml(atom.html ?? ""),
+										setCss(atom.css ?? "")
 									setElementId(atom.id)
 								}}
 									key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
@@ -40,7 +40,12 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 					<TabsContent value="molecule" className="flex-1 rounded overflow-hidden flex flex-wrap gap-2">
 						{
 							Molecules.map((molecule, index) => (
-								<button key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
+								<button onClick={() => {
+									setHtml(molecule.html ?? ""),
+										setCss(molecule.css ?? "")
+									setElementId(molecule.id)
+								}}
+									key={index} className='rounded bg-zinc-800 px-5 py-2 cursor-pointer grow'>
 									{molecule.name}
 								</button>
 							))

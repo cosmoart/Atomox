@@ -17,6 +17,7 @@ import { addElement } from '@/lib/actions'
 export default function CodeEditorPreview () {
 	const [html, setHtml] = useState('<div class="text-3xl p-4 font-bold text-blue-500">Hello world!</div>')
 	const [css, setCss] = useState('div { color: red; }')
+	const [js, setJs] = useState('export default function App() {\n  return <div>Hello React!</div>;\n}')
 	const [elementType, setElementType] = useState('Atom')
 	const [elementId, setElementId] = useState('buttons')
 	const [useTailwind, setUseTailwind] = useState(true)
@@ -43,13 +44,16 @@ export default function CodeEditorPreview () {
 			...e,
 			html: html,
 			css: css,
+			js: js,
 			use_tailwind: useTailwind,
 			element_id: elementId,
 			tags: e.tags.filter(tag => tag.length > 1).join(','),
-			img_url: 'https://picsum.photos/1280/720'
+			img_url: js || html.includes('script') ? 'https://picsum.photos/1280/720' : undefined
 		}
 
 		setLoading(true)
+		console.log(data);
+
 		try {
 			const response = await addElement(data)
 
@@ -59,11 +63,6 @@ export default function CodeEditorPreview () {
 			console.log(error)
 		}
 		setLoading(false)
-
-		// console.log('HTML:', html)
-		// console.log('CSS:', css)
-		// console.log(useTailwind)
-		// generate image of iframeviewr
 
 		// handleCapture()
 	}
@@ -160,10 +159,9 @@ export default function CodeEditorPreview () {
 						<Editor
 							height='100%'
 							defaultLanguage='javascript'
-							defaultValue={`export default function App() {
-  return <div>Hello React!</div>;
-}`}
+							defaultValue={js}
 							theme='vs-dark'
+							onChange={(value) => setJs(value || '')}
 							options={{
 								automaticLayout: true,
 							}}
