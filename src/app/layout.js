@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import '@/app/globals.css'
 import { unstable_ViewTransition as ViewTransition } from 'react';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const montserrat = Montserrat({
 	variable: '--font-montserrat',
@@ -25,6 +26,7 @@ export default async function RootLayout ({ children }) {
 							{children}
 						</ThemeProvider>
 					</ViewTransition>
+					<GoogleAnalytics gaId='G-9YTZFK39GW' />
 				</body>
 			</html>
 		</ClerkProvider>

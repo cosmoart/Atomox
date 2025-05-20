@@ -8,6 +8,8 @@ import ElementCard, { ElementCardSkeleton } from '../ElementCard'
 import Link from 'next/link'
 import PaginationFooter from '../Pagination'
 import { OctagonAlert } from 'lucide-react'
+import Image from 'next/image'
+import componentsIcon from '@/assets/icons/components.svg'
 
 export default function Elements ({ data: data2, type }) {
 	const searchParams = useSearchParams()
@@ -79,6 +81,7 @@ function ElementsList ({ isPending, elements }) {
 		.map((_, i) => <ElementCardSkeleton key={i} />)
 
 	if (elements.length < 1) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
+		<Image src={componentsIcon} alt='empty' width={100} height={100} className='dark:invert' />
 		<p className='text-center text-muted-foreground'>No components found <span className='italic font-medium'>yet</span>. But you can change that</p>
 		<Link href='/create' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>Create one</Link>
 	</div>

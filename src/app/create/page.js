@@ -41,9 +41,29 @@ export default function CodeEditorPreview () {
     <html>
       <head>
         ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
-				<style>${css}</style>
+				<style>
+				html {
+					box-sizing: border-box;
+					font-family: sans-serif;
+				}
+				*,
+				*::before,
+				*::after {
+					box-sizing: inherit;
+				}
+				body{
+					margin: 0;
+					min-height:100svh;
+					display:grid;
+					place-items:center;
+				}
+				${css}
+				</style>
       </head>
-      <body style="height:100svh;display:grid;place-items:center;">${html}</body>
+      <body>
+				${html}
+			<script>${js}</script>
+			</body>
     </html>
   `
 
@@ -56,7 +76,6 @@ export default function CodeEditorPreview () {
 			use_tailwind: useTailwind,
 			element_id: elementId,
 			tags: e.tags.filter(tag => tag.length > 1).join(','),
-			img_url: js || html.includes('script') ? 'https://picsum.photos/1280/720' : undefined
 		}
 
 		setStatus('loading')
