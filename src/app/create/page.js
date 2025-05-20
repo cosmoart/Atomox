@@ -11,13 +11,14 @@ import { ChevronLeft } from 'lucide-react'
 import Confetti from '@/lib/confetti'
 import DialogSubmit from './DialogSubmit'
 import DialogStart from './DialogStart'
-import { SignedIn, SignedOut } from '@clerk/nextjs'
+import { SignedIn, SignedOut, SignUpButton } from '@clerk/nextjs'
 import { addElement } from '@/lib/actions'
 import { useTheme } from 'next-themes'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
 import { Atoms } from '@/lib/conts'
 import Image from 'next/image'
 import tailwindIcon from '@/assets/icons/tailwind.svg'
+import { dark } from '@clerk/themes'
 
 export default function CodeEditorPreview () {
 	const [html, setHtml] = useState(Atoms[0].htmlTailwind ?? '')
@@ -75,7 +76,6 @@ export default function CodeEditorPreview () {
 	}
 
 	const handleCapture = async () => {
-		// const element = document.getElementById("capture-area");
 		const element = iframeViewer.current;
 		if (!element) return;
 
@@ -87,7 +87,6 @@ export default function CodeEditorPreview () {
 		});
 		const dataUrl = canvas.toDataURL('image/png');
 
-		// Descargar la imagen
 		const link = document.createElement('a');
 		link.href = dataUrl;
 		link.download = 'captura.png';
@@ -121,7 +120,16 @@ export default function CodeEditorPreview () {
 							<DialogSubmit onSubmit={handleSubmit} status={status} elementId={elementId} elementType={elementType} />
 						</SignedIn>
 						<SignedOut>
-							<button type='submit' className='px-10 py-2 rounded-lg bg-red-600'>Send</button>
+							<SignUpButton mode='modal'
+								appearance={{
+									baseTheme: resolvedTheme === 'dark' ? dark : undefined,
+									layout: {
+										unsafe_disableDevelopmentModeWarnings: true,
+									},
+								}}
+							>
+								<button className='px-10 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>Create</button>
+							</SignUpButton>
 						</SignedOut>
 					</div>
 				</nav>

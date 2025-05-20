@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { motion, AnimatePresence } from 'framer-motion'
 import { deleteElement } from '@/lib/actions'
 
-export default function ElementDelete ({ id }) {
+export default function ElementDelete ({ id, mode = "menu" }) {
 	const [open, setOpen] = useState(false)
 	const [status, setStatus] = useState('idle') // 'idle' | 'loading' | 'success' | 'error'
 
@@ -36,19 +36,27 @@ export default function ElementDelete ({ id }) {
 
 	return (
 		<>
-			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<Button variant="ghost" size="icon">
-						<EllipsisVertical className="h-5 w-5" />
-					</Button>
-				</DropdownMenuTrigger>
-				<DropdownMenuContent>
-					<DropdownMenuItem onClick={() => setOpen(true)} >
-						<Trash className="w-4 h-4 mr-2" />
-						Delete
-					</DropdownMenuItem>
-				</DropdownMenuContent>
-			</DropdownMenu>
+			{
+				mode === 'menu' && <DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="ghost" size="icon">
+							<EllipsisVertical className="h-5 w-5" />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent>
+						<DropdownMenuItem onClick={() => setOpen(true)} >
+							<Trash className="w-4 h-4 mr-2" />
+							Delete
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			}
+
+			{
+				mode === "button" && <button onClick={() => setOpen(true)} className='rounded-full cursor-pointer active:scale-95 bg-red-400 p-1.5 hover:scale-105 transition-transform'>
+					<Trash size={20} />
+				</button>
+			}
 
 			<Dialog open={open} onOpenChange={resetDialog}>
 				<DialogContent className="sm:max-w-md">

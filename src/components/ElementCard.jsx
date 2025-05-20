@@ -4,8 +4,8 @@ import Link from 'next/link';
 import LikeButton from './LikeButton';
 import { Atoms } from '@/lib/conts';
 import Image from 'next/image';
-import { Image as ImageIcon } from 'lucide-react';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import ElementDelete from './ElementDelete';
 
 export default function ElementCard ({ data }) {
 	return (
@@ -23,6 +23,11 @@ export default function ElementCard ({ data }) {
 						</TooltipContent>
 					</Tooltip>
 				</TooltipProvider>
+			}
+			{
+				!data.published && <div className={`absolute -top-3 left-6 z-20 ${!data.published ? "left-6" : "-left-3"}`}>
+					<ElementDelete id={data.id} mode='button' />
+				</div>
 			}
 
 			<ElementImage data={data} />
@@ -55,11 +60,6 @@ export default function ElementCard ({ data }) {
 function ElementImage ({ data }) {
 	const elementType = Atoms.find(element => element.id === data.element_id) ? "atoms" : "molecules"
 
-	if (!data.published) return <div className='w-full aspect-video group overflow-hidden dark:bg-zinc-800 bg-white flex justify-center items-center'>
-		<ImageIcon size={50} className='object-cover ' />
-	</div>
-
-
 	if (data.img_url) return <Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video rounded-t-lg '>
 		<div className='w-full aspect-video group overflow-hidden'>
 			<Image src={data.img_url} alt='Atomox' width={1280} height={720} className='w-full h-full object-cover group-hover:scale-105 transition-all' />
@@ -70,7 +70,8 @@ function ElementImage ({ data }) {
 		return `
     <html>
       <head>
-        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : `<style>${css}</style>`}
+        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ``}
+				<style>${css}</style>
       </head>
       <body style="height:100svh;display:grid;place-items:center;overflow:hidden;">${html}</body>
     </html>

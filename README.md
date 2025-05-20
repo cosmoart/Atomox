@@ -122,7 +122,7 @@ Proposed features that may or may not be implemented in the future.
 <!-- LICENSE -->
 ## 📜 License
 
-Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/cosmoart/atomox/blob/main/LICENCE) for more information.
+Distributed under the Apache License 2.0. See [`LICENSE.txt`](https://github.com/cosmoart/atomox/blob/main/LICENCE) for more information.
 
 <p align="right"><a href="#top">⬆️ Back to top</a></p>
 

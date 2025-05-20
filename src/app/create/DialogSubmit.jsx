@@ -60,7 +60,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 
 	return (
 		<Dialog >
-			<DialogTrigger className='px-10 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>Send</DialogTrigger>
+			<DialogTrigger className='px-10 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
 			<DialogContent className={`p-6! max-w-[600px]! bg-zinc-900! ${status !== undefined ? "hidde-close" : ""}`}>
 				<DialogTitle className="text-center mt-1">
 					{status === undefined && <span>Create {elementType} - {elementId}</span>}
