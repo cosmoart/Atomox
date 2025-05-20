@@ -35,7 +35,6 @@ export function NavBar () {
 								<Link href="/atoms" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent group focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center'>
 									<span className="text-sm font-medium mt-1 inline-block text-zinc-900/80 dark:text-white/80">View all</span>
 									<ArrowRight size={18} className='w-0 transition-all group-hover:w-4' />
-
 								</Link>
 							</li>
 						</ul>

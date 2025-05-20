@@ -18,7 +18,7 @@ export default function UserElements ({ username, isAuthor }) {
 	}, []);
 
 	if (loading || elements === "loading") return <div className="pb-4 mt-4">
-		<div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
+		<div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
 			{[...Array(8)].map((_, i) => <ElementCardSkeleton key={i} />)}
 		</div>
 	</div>
@@ -38,7 +38,7 @@ export default function UserElements ({ username, isAuthor }) {
 
 	return (
 		<div className="pb-4 mt-4">
-			<div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
+			<div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
 				{elements.map((element) =>
 					<ElementCard data={element} key={element.id} />
 				)}

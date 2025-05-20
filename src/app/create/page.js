@@ -27,7 +27,7 @@ export default function CodeEditorPreview () {
 	const [elementId, setElementId] = useState('buttons')
 	const [useTailwind, setUseTailwind] = useState(true)
 	const { resolvedTheme } = useTheme()
-	const [loading, setLoading] = useState(false)
+	const [status, setStatus] = useState(undefined) // undefined | 'loading' | 'success' | 'error'
 
 	const disposeEmmetHTMLRef = useRef();
 	const iframeViewer = useRef();
@@ -58,16 +58,18 @@ export default function CodeEditorPreview () {
 			img_url: js || html.includes('script') ? 'https://picsum.photos/1280/720' : undefined
 		}
 
-		setLoading(true)
+		setStatus('loading')
 		console.log(data);
 
 		try {
 			const response = await addElement(data)
+			if (response?.error) throw new Error(response.error)
+			setStatus('success')
 			Confetti()
 		} catch (error) {
+			setStatus('error')
 			console.log(error)
 		}
-		setLoading(false)
 
 		// handleCapture()
 	}
@@ -95,7 +97,7 @@ export default function CodeEditorPreview () {
 	return <ResizablePanelGroup className='h-[calc(100svh-35px)]! w-auto! m-4' direction='horizontal'>
 		<ResizablePanel >
 			<div className='flex flex-col h-full mr-1.5'>
-				<DialogStart useTailwind={useTailwind} setUseTailwind={setUseTailwind} setHtml={setHtml} setCss={setCss} setElementType={setElementType} setElementId={setElementId} />
+				<DialogStart useTailwind={useTailwind} setUseTailwind={setUseTailwind} setHtml={setHtml} setCss={setCss} setElementType={setElementType} setElementId={setElementId} elementType={elementType} />
 
 				<nav className='flex gap-8 items-center justify-between mb-2'>
 					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium cursor-pointer group active:scale-95 transition-transform'>
@@ -104,7 +106,7 @@ export default function CodeEditorPreview () {
 					</button>
 
 					<div className='flex items-center gap-5'>
-						<div className='flex items-center gap-2 '>
+						<div className='flex items-center gap-2 my-2'>
 							<label htmlFor='mode'>
 								<Image src={tailwindIcon} alt='Tailwind logo' width={20} height={20} />
 							</label>
@@ -116,7 +118,7 @@ export default function CodeEditorPreview () {
 						</div>
 
 						<SignedIn>
-							<DialogSubmit onSubmit={handleSubmit} elementId={elementId} elementType={elementType} />
+							<DialogSubmit onSubmit={handleSubmit} status={status} elementId={elementId} elementType={elementType} />
 						</SignedIn>
 						<SignedOut>
 							<button type='submit' className='px-10 py-2 rounded-lg bg-red-600'>Send</button>

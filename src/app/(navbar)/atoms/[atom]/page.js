@@ -13,7 +13,7 @@ export default async function AtomPage ({ params }) {
 
 	if (!atom || !data) return notFound();
 
-	return (<Suspense >
+	return (<Suspense fallback={<div className='minHeightScreen'></div>}>
 		<Elements data={data} type='Atoms' />
 	</Suspense>)
 }

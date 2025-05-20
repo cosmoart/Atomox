@@ -17,7 +17,7 @@ export default function UserLikes () {
 	}, []);
 
 	if (loading || likes === "loading") return <div className="pb-4 mt-5">
-		<div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
+		<div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
 			{[...Array(8)].map((_, i) => <ElementCardSkeleton key={i} />)}
 		</div>
 	</div>
@@ -32,7 +32,7 @@ export default function UserLikes () {
 
 	return (
 		<div className="pb-4">
-			<div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 mt-5">
+			<div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 mt-5">
 				{likes.map((element) =>
 					<ElementCard data={{ ...element, likedByUser: true }} key={element.id} />
 				)}

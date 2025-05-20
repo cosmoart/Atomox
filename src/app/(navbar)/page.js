@@ -18,7 +18,7 @@ export default async function Home () {
 				</nav>
 			</section>
 
-			<li
+			{/* <li
 				className='relative z-0 group overflow-hidden h-full border border-zinc-800 rounded-xl bg-[radial-gradient(500px_circle_at_var(--cursor-x)_var(--cursor-y),#22d3ee_0,transparent,transparent_70%)]'
 				style={{
 					'--cursor-x': '404.5px',
@@ -97,7 +97,7 @@ export default async function Home () {
 				></div>
 
 				<div className='absolute inset-[1px] -z-10 rounded-xl bg-zinc-950'></div>
-			</li>
+			</li> */}
 
 			<article className='bg-grid pb-10 pt-6 mt-8'>
 				<h2 className='text-2xl md:text-4xl text-center font-medium pb-5 2xl:mb-7'>Atoms</h2>

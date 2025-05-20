@@ -3,7 +3,7 @@ import { Controller } from "react-hook-form";
 import { X } from 'lucide-react';
 import { MagicMotion } from 'react-magic-motion';
 
-export default function InputMultiTag ({ control, name, placeholder = "", maxTags = 10, maxLength = 100 }) {
+export default function InputMultiTag ({ control, disabled, name, placeholder = "", maxTags = 10, maxLength = 100 }) {
 	const [inputValue, setInputValue] = useState("");
 
 	return (
@@ -34,9 +34,10 @@ export default function InputMultiTag ({ control, name, placeholder = "", maxTag
 								onChange={(e) => setInputValue(e.target.value)}
 								onKeyDown={(e) => e.key === "Enter" && addTag(e)}
 								placeholder={placeholder}
+								disabled={disabled}
 								className='px-4 py-2 rounded-lg w-full card-border'
 							/>
-							<button type="button" onClick={addTag} disabled={value.length >= maxTags} className='rounded-lg px-4 py-2 disabled:cursor-not-allowed not-disabled:cursor-pointer card-border not-disabled:active:scale-95 transition-transform' >
+							<button type="button" onClick={addTag} disabled={value.length >= maxTags || disabled} className='rounded-lg px-8 py-2 disabled:cursor-not-allowed not-disabled:cursor-pointer card-border not-disabled:active:scale-95 transition-transform' >
 								Add
 							</button>
 						</div>
