@@ -16,7 +16,6 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount, with
 		const previousLiked = liked;
 		const previousCount = likeCount;
 
-		// Hacer el cambio optimista
 		const newLiked = !liked;
 		setLiked(newLiked);
 		setLikeCount(likeCount + (newLiked ? 1 : -1));

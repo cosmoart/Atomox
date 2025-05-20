@@ -4,7 +4,7 @@ import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import { useRef, useState } from 'react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup, } from "@/components/ui/resizable"
 import { useTheme } from 'next-themes';
-import AnimatedTabs from '@/components/Tabs';
+import Tabs from '@/components/Tabs';
 
 export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 	const [html, setHtml] = useState(htmlD);
@@ -40,32 +40,34 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 	function copyCode (code) {
 		navigator.clipboard.writeText(code)
 	}
-	// const zoom = 1.4
 
 	return <ResizablePanelGroup className="h-full grow" direction="horizontal">
 		<ResizablePanel>
 			<div className="flex flex-col h-full mr-1.5">
-				<AnimatedTabs
+				<Tabs
 					tabs={[
 						{
 							label: 'HTML',
 							value: 'html',
 							content: (
-								<Editor
-									height="100%"
-									defaultLanguage="html"
-									className='h-[calc(100vh-180px)] rounded overflow-hidden'
-									language={"html"}
-									theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-									value={html}
-									beforeMount={handleEditorHTML}
-									onChange={(value) => setHtml(value || '')}
-									options={{
-										minimap: {
-											enabled: false
-										}
-									}}
-								/>
+								<div className='relative'>
+									<Editor
+										height="100%"
+										defaultLanguage="html"
+										className='h-[calc(100vh-180px)] rounded overflow-hidden'
+										language={"html"}
+										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+										value={html}
+										beforeMount={handleEditorHTML}
+										onChange={(value) => setHtml(value || '')}
+										options={{
+											minimap: {
+												enabled: false
+											}
+										}}
+									/>
+									<button className='absolute top-2 right-2 text-sm text-white bg-zinc-900 rounded-md px-3 py-1' onClick={() => copyCode(html)}>Copy</button>
+								</div>
 							)
 						},
 						{

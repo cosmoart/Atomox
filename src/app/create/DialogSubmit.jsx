@@ -56,13 +56,13 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType }) {
 
 	return (
 		<Dialog>
-			<DialogTrigger className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>Send</DialogTrigger>
-			<DialogContent>
+			<DialogTrigger className='px-10 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>Send</DialogTrigger>
+			<DialogContent className="p-6! max-w-2xl! bg-zinc-900!">
 				<DialogTitle>Create {elementType} - {elementId}</DialogTitle>
 				<div className='mx-auto w-full'>
-					<form className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
+					<form className='flex flex-col gap-2 mt-4' onSubmit={handleSubmit(onSubmit)}>
 						<fieldset>
-							<legend className='font-medium text-lg mb-4'>Credits</legend>
+							<legend className='font-medium mb-2'>Credits</legend>
 							<div className='flex gap-3'>
 								<input type="text" placeholder='shadcn' className='px-3 py-2 rounded-lg card-border w-full' {...register('credits_name')} />
 								<input type="text" placeholder='https://x.com/shadcn' className='px-3 py-2 rounded-lg card-border w-full' {...register('credits_link')} />
@@ -72,13 +72,13 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType }) {
 						{errors.credits_name && <p className='text-red-500 text-xs'>{errors.credits_name.message}</p>}
 
 						<label>
-							<p>Tags</p>
+							<p className='font-medium mt-4 mb-2'>Tags</p>
 							<InputMultiTag name="tags" placeholder="3D, Purple, Animation..." maxTags={10} control={control} maxLength={15} />
 							{errors.tags && <p className='text-red-500 text-xs'>{errors.tags.message}</p>}
 						</label>
 						{/* <input type="text" placeholder='Licence' className='px-3 py-2 rounded-lg card-border w-full' /> */}
 
-						<button type='submit' className='px-10 py-2 rounded-lg bg-blue-600 mt-5'>Send</button>
+						<button type='submit' className='px-10 btn-primary'>Send</button>
 					</form>
 				</div>
 			</DialogContent>

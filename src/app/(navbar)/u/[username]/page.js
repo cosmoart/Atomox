@@ -5,23 +5,25 @@ import Link from 'next/link';
 import { Settings } from 'lucide-react';
 import UserLikes from './UserLikes';
 import UserElements from './UserElements';
-import AnimatedTabs from '@/components/Tabs';
+import Tabs from '@/components/Tabs';
 
 export default async function UserProfile ({ params }) {
 	const { username } = await params;
 	const nowUser = await currentUser()
 
-	const { data } = await clerkClient.users.getUserList({
+	const { data, error } = await clerkClient.users.getUserList({
 		limit: 1,
 		username: username
 	})
 	const user = data[0]
 
+	if (error) return <div>Error</div>
+
 	if (!user) return <div>User not found</div>
 
 	return (
 		<div className='section minHeightScreen pt-6 relative'>
-			<div class='absolute h-1/2 dark:invert opacity-30 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]'></div>
+			<div className='absolute h-1/2 dark:invert opacity-30 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]'></div>
 
 			<article className='mb-4'>
 				<section className='flex gap-4 items-center '>
@@ -40,13 +42,11 @@ export default async function UserProfile ({ params }) {
 					<div>
 						<h1 className='text-4xl font-medium'>{user.firstName} {user.lastName}</h1>
 						{user.username && <h2 className='rounded-full text-sm dark:bg-zinc-800 px-4 py-1 mt-1 w-fit font-medium'>@{user.username}</h2>}
-
-						{/* <p className='max-w-[80ch] text-pretty my-2 text-[15px] opacity-85'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae maiores nemo illum architecto repudiandae doloremque</p> */}
 					</div>
 				</section>
 			</article>
 
-			<AnimatedTabs
+			<Tabs
 				tabs={[
 					{
 						label: nowUser?.id === user.id ? 'Your Components' : 'Components',

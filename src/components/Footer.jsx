@@ -10,7 +10,7 @@ export default function Footer () {
 			<div className='flex flex-col md:flex-row py-8 justify-between items-center gap-3 section lg:mx-auto '>
 				<div className='flex flex-col gap-3 items-center mb-4 md:mb-0'>
 					<div className='flex flex-col sm:flex-row gap-4 items-center text-center md:text-left'>
-						<Image src={logo} alt='Atomox logo' width={80} height={80} className='dark:invert' />
+						<Image src={logo} alt='Atomox logo' width={70} height={70} className='dark:invert' />
 						<div>
 							<p className='font-semibold text-4xl'>Atomox</p>
 							<p className='max-w-xs text-sm'>Web components by the people for the people. Created by <a href="https://github.com/cosmoart" target="_blank" rel="noopener noreferrer">Cosmo Art</a></p>

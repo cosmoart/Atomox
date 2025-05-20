@@ -18,7 +18,10 @@
 
   .card-border{
     @apply dark:shadow-[0_-1px_rgba(255,255,255,0.1),0_4px_8px_rgba(0,0,0,0.05),0_0_0_1px_rgba(255,255,255,0.1),0_1px_6px_-4px_#000]! shadow-[0_1px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08),0_1px_6px_-4px_rgba(0,0,0,0.2)]!
+  }
 
+  .btn-primary{
+    @apply bg-gradient-to-b from-indigo-600 to-indigo-700 text-white font-medium px-4 py-2 rounded-md shadow-md transition-all active:scale-95 ;
   }
 }
 
@@ -37,14 +40,16 @@
 .minHeightScreen{
   min-height: calc(100vh - var(--header-height));
 }
-
-.bg-test{
+.hidde-close .ring-offset-background{
+  display: none;
+}
+.bg-grid{
   --lines-color: #0000000e;
   background-image: linear-gradient(var(--lines-color) 1px, transparent 1px), linear-gradient(to right, var(--lines-color) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
-.dark .bg-test{
+.dark .bg-grid{
   --lines-color: #ffffff05;
 }
 

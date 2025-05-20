@@ -7,14 +7,15 @@ export default async function Home () {
 	return (
 		<div className='section'>
 			<section className='heightScreen flex items-center justify-center flex-col relative'>
-				<Image src={Logo} alt='Logo' width={250} height={250} className='dark:invert right-0 left-0 mx-auto -z-10' />
-				<h1 className='text-6xl font-bold bg-gradient-to-r from-blue-600  to-indigo-400 inline-block text-transparent bg-clip-text '>Atomox</h1>
-				{/* <p className='text-lg mb-5'>Web components by the people for the people</p> */}
+				<a href='http://github.com/cosmoart/Atomox' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-1 inline-block mb-4 bg-indigo-600'>Build for the Clerk x Midudev hackathon</a>
+				<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto -z-10' />
+				<h1 className='text-6xl font-bold inline-block my-2'>Atomox</h1>
+				<p className='text-[17px] mb-5 max-w-[60ch]'>An open source component library optimized for fast development, easy maintenance, and accessibility. Just import and go—no configuration required.</p>
 
-				{/* <div className=' flex gap-4'>
-					<Link href='/atoms' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>View Atoms</Link>
-					<Link href='/molecules' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>View Molecules</Link>
-				</div> */}
+				<nav className='flex gap-2'>
+					<Link href='/atoms' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>View Atoms</Link>
+					<Link href='/molecules' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>View Molecules</Link>
+				</nav>
 			</section>
 
 			<li
@@ -98,7 +99,7 @@ export default async function Home () {
 				<div className='absolute inset-[1px] -z-10 rounded-xl bg-zinc-950'></div>
 			</li>
 
-			<article className='bg-test pb-10 pt-6 mt-8'>
+			<article className='bg-grid pb-10 pt-6 mt-8'>
 				<h2 className='text-2xl md:text-4xl text-center font-medium pb-5 2xl:mb-7'>Atoms</h2>
 				<div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4'>
 					{
@@ -113,7 +114,7 @@ export default async function Home () {
 				</div>
 			</article>
 
-			<article className='bg-test pb-10 pt-6 mt-8'>
+			<article className='bg-grid pb-10 pt-6 mt-8'>
 				<h2 className='text-2xl md:text-4xl text-center font-medium pb-5 2xl:mb-7'>Molecules</h2>
 
 				<div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4'>

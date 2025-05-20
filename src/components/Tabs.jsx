@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-export default function AnimatedTabs ({ tabs = [] }) {
+export default function Tabs ({ tabs = [] }) {
 	const validTabs = tabs.filter(tab => tab.content)
 	const [activeTab, setActiveTab] = useState(validTabs[0]?.value)
 

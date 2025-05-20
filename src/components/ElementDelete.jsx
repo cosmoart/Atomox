@@ -147,21 +147,3 @@ export default function ElementDelete ({ id }) {
 		</>
 	)
 }
-
-
-
-// "use client"
-// import { deleteElement } from '@/lib/actions';
-
-// export default function ElementDelete ({ id }) {
-// 	async function handleDelete () {
-// 		const data = await deleteElement(id)
-// 		if (data?.error) console.error(error)
-// 		else window.location.reload()
-// 	}
-// 	return (
-// 		<button className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer' onClick={handleDelete}>
-// 			Delete
-// 		</button>
-// 	)
-// }

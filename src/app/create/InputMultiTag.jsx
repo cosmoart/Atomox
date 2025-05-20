@@ -34,9 +34,9 @@ export default function InputMultiTag ({ control, name, placeholder = "", maxTag
 								onChange={(e) => setInputValue(e.target.value)}
 								onKeyDown={(e) => e.key === "Enter" && addTag(e)}
 								placeholder={placeholder}
-								className='px-4 py-2 rounded-lg outline w-full outline-border/50 '
+								className='px-4 py-2 rounded-lg w-full card-border'
 							/>
-							<button type="button" onClick={addTag} disabled={value.length >= maxTags} className='rounded-lg px-4 py-2 mt-1 disabled:cursor-not-allowed not-disabled:cursor-pointer outline outline-primary not-disabled:active:scale-95 transition-transform' >
+							<button type="button" onClick={addTag} disabled={value.length >= maxTags} className='rounded-lg px-4 py-2 disabled:cursor-not-allowed not-disabled:cursor-pointer card-border not-disabled:active:scale-95 transition-transform' >
 								Add
 							</button>
 						</div>
@@ -44,10 +44,10 @@ export default function InputMultiTag ({ control, name, placeholder = "", maxTag
 						<MagicMotion>
 							<ul className="flex gap-2 flex-wrap">
 								{value.map((tag, i) => (
-									<li key={i} className="flex items-center justify-center gap-2 rounded-lg px-4 py-1">
+									<li key={i} className="flex items-center justify-center gap-2 rounded-lg pl-4 pr-3 py-1 dark:bg-zinc-800">
 										{tag}
-										<button type="button" onClick={() => removeTag(tag)} className="ml-1 text-red-500 cursor-pointer hover:scale-110 transition-transform">
-											<X size={20} strokeWidth={1.3} key="exclude" />
+										<button type="button" onClick={() => removeTag(tag)} className=" text-red-500 cursor-pointer hover:scale-110 transition-transform">
+											<X size={20} strokeWidth={2} key="exclude" />
 										</button>
 									</li>
 								))}

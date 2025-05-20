@@ -16,10 +16,7 @@ export async function addElement (data) {
 
 	try {
 		const response = await client.from('elements').insert(element)
-
-		console.log('respuesta: ', data, element, response)
 		if (response.error) throw new Error('Failed to add element', response.error)
-		console.log('Element successfully added!', response)
 	} catch (error) {
 		console.error('Error adding element:', error.message)
 		throw new Error('Failed to add element', error)
@@ -89,12 +86,8 @@ export async function getElement (id, elementId) {
 		.eq('element_id', elementId)
 		.eq('published', true)
 
-	console.log(data, error);
-
 	if (error) return { error: 'Error getting element' };
-
 	if (!data || data.length === 0) return null
-
 	if (!userId) return data[0];
 
 	const { data: likedByUser, error: likeError } = await client
@@ -158,7 +151,6 @@ export async function getUserLikes () {
 	return data.map((like) => like.elements);
 }
 
-// get elements created by this username. If username is the current user, it will return all elements (no published included). Get elements liked by this user
 export async function getUserElements (username) {
 	const clerkUser = await currentUser();
 	if (!username) return [];

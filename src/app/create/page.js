@@ -16,10 +16,12 @@ import { addElement } from '@/lib/actions'
 import { useTheme } from 'next-themes'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
 import { Atoms } from '@/lib/conts'
+import Image from 'next/image'
+import tailwindIcon from '@/assets/icons/tailwind.svg'
 
 export default function CodeEditorPreview () {
-	const [html, setHtml] = useState(Atoms[0].html ?? '')
-	const [css, setCss] = useState(Atoms[0].css ?? '')
+	const [html, setHtml] = useState(Atoms[0].htmlTailwind ?? '')
+	const [css, setCss] = useState('')
 	const [js, setJs] = useState(Atoms[0].js ?? '')
 	const [elementType, setElementType] = useState('Atom')
 	const [elementId, setElementId] = useState('buttons')
@@ -61,8 +63,6 @@ export default function CodeEditorPreview () {
 
 		try {
 			const response = await addElement(data)
-
-			console.log(response)
 			Confetti()
 		} catch (error) {
 			console.log(error)
@@ -95,29 +95,33 @@ export default function CodeEditorPreview () {
 	return <ResizablePanelGroup className='h-[calc(100svh-35px)]! w-auto! m-4' direction='horizontal'>
 		<ResizablePanel >
 			<div className='flex flex-col h-full mr-1.5'>
+				<DialogStart useTailwind={useTailwind} setUseTailwind={setUseTailwind} setHtml={setHtml} setCss={setCss} setElementType={setElementType} setElementId={setElementId} />
+
 				<nav className='flex gap-8 items-center justify-between mb-2'>
 					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium cursor-pointer group active:scale-95 transition-transform'>
 						<ChevronLeft width={23} className='group-hover:-translate-x-1 transition-transform' />
 						<span>Volver</span>
 					</button>
 
-					<div className='flex items-center gap-2 '>
-						<label htmlFor='mode'>Tailwind</label>
-						<Switch
-							id='mode'
-							checked={useTailwind}
-							onCheckedChange={setUseTailwind}
-						/>
+					<div className='flex items-center gap-5'>
+						<div className='flex items-center gap-2 '>
+							<label htmlFor='mode'>
+								<Image src={tailwindIcon} alt='Tailwind logo' width={20} height={20} />
+							</label>
+							<Switch
+								id='mode'
+								checked={useTailwind}
+								onCheckedChange={setUseTailwind}
+							/>
+						</div>
+
+						<SignedIn>
+							<DialogSubmit onSubmit={handleSubmit} elementId={elementId} elementType={elementType} />
+						</SignedIn>
+						<SignedOut>
+							<button type='submit' className='px-10 py-2 rounded-lg bg-red-600'>Send</button>
+						</SignedOut>
 					</div>
-
-					<SignedIn>
-						<DialogSubmit onSubmit={handleSubmit} elementId={elementId} elementType={elementType} />
-					</SignedIn>
-					<SignedOut>
-						<button type='submit' className='px-10 py-2 rounded-lg bg-red-600'>Send</button>
-					</SignedOut>
-
-					<DialogStart useTailwind={useTailwind} setUseTailwind={setUseTailwind} setHtml={setHtml} setCss={setCss} setElementType={setElementType} setElementId={setElementId} />
 				</nav>
 
 				<Tabs defaultValue='html' className='flex-1 flex flex-col'>

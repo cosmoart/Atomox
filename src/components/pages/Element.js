@@ -11,8 +11,6 @@ import ElementDelete from '../ElementDelete';
 
 export default async function Element ({ id, elementId }) {
 	const client = createServerSupabaseClient()
-	console.log(id, elementId)
-
 	const element = await getElement(id, elementId)
 
 	if (!element) return <div className='section flex flex-col items-center justify-center minHeightScreen'>
