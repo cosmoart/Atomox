@@ -1,10 +1,10 @@
 "use client"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Editor } from '@monaco-editor/react'
 import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import { useRef, useState } from 'react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup, } from "@/components/ui/resizable"
 import { useTheme } from 'next-themes';
+import AnimatedTabs from '@/components/Tabs';
 
 export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 	const [html, setHtml] = useState(htmlD);
@@ -45,59 +45,68 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 	return <ResizablePanelGroup className="h-full grow" direction="horizontal">
 		<ResizablePanel>
 			<div className="flex flex-col h-full mr-1.5">
-				<Tabs defaultValue="html" className="flex-1 flex flex-col">
-					<TabsList className="w-full justify-start">
-						<TabsTrigger value="html">HTML</TabsTrigger>
-						<TabsTrigger value="css">CSS</TabsTrigger>
-						{jsD?.trim().length > 0 && <TabsTrigger value="js">JS</TabsTrigger>}
-					</TabsList>
-
-					<TabsContent value="html" className="flex-1 rounded-lg overflow-hidden relative">
-						<Editor
-							height="100%"
-							defaultLanguage="html"
-							language={"html"}
-							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-							value={html}
-							beforeMount={handleEditorHTML}
-							onChange={(value) => setHtml(value || '')}
-							options={{
-								minimap: {
-									enabled: false
-								}
-							}}
-						/>
-						<button className='absolute bottom-2.5 left-2.5 text-sm text-white font-medium bg-zinc-900/80 rounded-md px-3 py-1' onClick={() => copyCode(html)}>Copy</button>
-					</TabsContent>
-
-					<TabsContent value="css" className="flex-1 rounded-lg overflow-hidden">
-						<Editor
-							height="100%"
-							defaultLanguage="css"
-							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-							value={css}
-							beforeMount={handleEditorCSS}
-							onChange={(value) => setCss(value || '')}
-							options={{
-								readOnly: useTailwind, minimap: {
-									enabled: false
-								}
-							}}
-						/>
-					</TabsContent>
-					{jsD?.trim().length > 0 && <TabsContent value="js" className="flex-1 rounded-lg overflow-hidden relative">
-						<Editor
-							height="100%"
-							defaultLanguage="javascript"
-							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-							value={js}
-							onChange={(value) => setJs(value || '')}
-							options={{
-								automaticLayout: true,
-							}}
-						/>
-					</TabsContent>}
-				</Tabs>
+				<AnimatedTabs
+					tabs={[
+						{
+							label: 'HTML',
+							value: 'html',
+							content: (
+								<Editor
+									height="100%"
+									defaultLanguage="html"
+									className='h-[calc(100vh-180px)] rounded overflow-hidden'
+									language={"html"}
+									theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+									value={html}
+									beforeMount={handleEditorHTML}
+									onChange={(value) => setHtml(value || '')}
+									options={{
+										minimap: {
+											enabled: false
+										}
+									}}
+								/>
+							)
+						},
+						{
+							label: 'CSS',
+							value: 'css',
+							content: (
+								<Editor
+									height="100%"
+									defaultLanguage="css"
+									className='h-[calc(100vh-180px)] rounded overflow-hidden'
+									theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+									value={css}
+									beforeMount={handleEditorCSS}
+									onChange={(value) => setCss(value || '')}
+									options={{
+										minimap: {
+											enabled: false
+										}
+									}}
+								/>
+							)
+						},
+						{
+							label: 'JS',
+							value: 'js',
+							content: (
+								jsD?.trim().length > 0 && <Editor
+									height="100%"
+									defaultLanguage="javascript"
+									className='h-[calc(100vh-180px)] rounded overflow-hidden'
+									theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+									value={js}
+									onChange={(value) => setJs(value || '')}
+									options={{
+										automaticLayout: true,
+									}}
+								/>
+							)
+						}
+					]}
+				/>
 			</div>
 		</ResizablePanel>
 		<ResizableHandle withHandle />

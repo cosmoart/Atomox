@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 export default function AnimatedTabs ({ tabs = [] }) {
-	const validTabs = tabs.filter(tab => tab.content !== null)
+	const validTabs = tabs.filter(tab => tab.content)
 	const [activeTab, setActiveTab] = useState(validTabs[0]?.value)
 
 	return (
@@ -32,7 +32,7 @@ export default function AnimatedTabs ({ tabs = [] }) {
 				))}
 			</div>
 
-			<div className="mt-6 min-h-[100px] relative">
+			<div className="min-h-[100px] relative">
 				{validTabs.map(tab => (
 					<div
 						key={tab.value}

@@ -5,8 +5,7 @@ import Link from 'next/link';
 import { Settings } from 'lucide-react';
 import UserLikes from './UserLikes';
 import UserElements from './UserElements';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import AnimatedTabs from './Tabs';
+import AnimatedTabs from '@/components/Tabs';
 
 export default async function UserProfile ({ params }) {
 	const { username } = await params;
@@ -21,7 +20,9 @@ export default async function UserProfile ({ params }) {
 	if (!user) return <div>User not found</div>
 
 	return (
-		<div className='section minHeightScreen mt-6'>
+		<div className='section minHeightScreen pt-6 relative'>
+			<div class='absolute h-1/2 dark:invert opacity-30 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]'></div>
+
 			<article className='mb-4'>
 				<section className='flex gap-4 items-center '>
 					<div className='relative'>

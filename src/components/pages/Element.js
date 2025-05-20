@@ -33,10 +33,10 @@ export default async function Element ({ id, elementId }) {
 	const user = await currentUser()
 
 	return (
-		<div className='section py-2 minHeightScreen flex flex-col'>
+		<div className='section py-2 px-1! minHeightScreen flex flex-col'>
 			<ComEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} />
 
-			<article className='grid md:grid-cols-2 items-center gap-3 h-full py-3'>
+			<article className='grid md:grid-cols-2 items-center gap-3 h-full py-3 px-4'>
 				<div className='flex justify-between items-center'>
 					<section className='flex gap-5 md:gap-8'>
 						<div className='flex gap-1 items-center'>

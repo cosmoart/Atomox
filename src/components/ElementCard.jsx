@@ -25,10 +25,7 @@ export default function ElementCard ({ data }) {
 				</TooltipProvider>
 			}
 
-
-			{/* <Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video rounded-t-lg '> */}
 			<ElementImage data={data} />
-			{/* </Link> */}
 
 			<div className='flex gap-2 p-2 justify-between'>
 				<Link href={`/u/${data.username}`} className='flex gap-2 items-center'>
@@ -63,11 +60,11 @@ function ElementImage ({ data }) {
 	</div>
 
 
-	// if (data.img_url) return <Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video rounded-t-lg '>
-	// <div className='w-full aspect-video group overflow-hidden'>
-	// 	<Image src={data.img_url} alt='Atomox' width={1280} height={720} className='w-full h-full object-cover group-hover:scale-105 transition-all' />
-	// </div>
-	// </Link>
+	if (data.img_url) return <Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video rounded-t-lg '>
+		<div className='w-full aspect-video group overflow-hidden'>
+			<Image src={data.img_url} alt='Atomox' width={1280} height={720} className='w-full h-full object-cover group-hover:scale-105 transition-all' />
+		</div>
+	</Link>
 
 	function combinedCode (useTailwind, html, css) {
 		return `
@@ -75,7 +72,7 @@ function ElementImage ({ data }) {
       <head>
         ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : `<style>${css}</style>`}
       </head>
-      <body style="height:100svh;display:grid;place-items:center;">${html}</body>
+      <body style="height:100svh;display:grid;place-items:center;overflow:hidden;">${html}</body>
     </html>
   `
 	}

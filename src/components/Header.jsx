@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { NavBar } from './NavBar';
 import Logo from '@/assets/icons/Logo';
 import { useState } from 'react';
-import { CircleUserRound, DotIcon, Menu, MoonIcon, SunIcon } from 'lucide-react';
+import { CircleUserRound, DotIcon, MoonIcon, SunIcon } from 'lucide-react';
 
 export default function Header () {
 	const { user } = useUser()
@@ -19,7 +19,6 @@ export default function Header () {
 			<div className="hidden md:flex items-center gap-3">
 				<Link href="/" className="text-lg text-zinc-900 dark:text-white flex items-center gap-2  pr-3 group active:scale-95 transition-all font-semibold">
 					<Logo />
-					{/* <Image src={Logo} alt="Logo" width={30} height={30} className="dark:invert transition-all group-hover:scale-110 group-hover:rotate-12" /> */}
 					<span>Atomox</span>
 				</Link>
 				<NavBar />
@@ -27,17 +26,23 @@ export default function Header () {
 
 			<nav className="hidden md:flex items-center gap-2">
 				<SignedOut>
-					<Link href="/sign-in" className="text-sm px-5 card-border py-1.5 rounded-md bg-gradient-to-br from-blue-500 to-pink-500 text-white ring-blue-500 font-medium transition-all hover:scale-105 ">
+					<Link href="/sign-in" className="text-sm px-5 card-border py-1.5 rounded-md bg-gradient-to-br from-blue-500 to-pink-500 text-white ring-blue-500 font-medium transition-all ">
 						Sign in
 					</Link>
 					<ThemeToggle />
 				</SignedOut>
 				<SignedIn>
-					<Link href="/create" className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border'>
+					<Link href="/create" className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border'>
 						Create
 					</Link>
 
-					<UserButton userProfileMode='navigation' userProfileUrl='/user-profile' appearance={{ baseTheme: resolvedTheme === "dark" ? dark : undefined }}>
+					<UserButton userProfileMode='navigation' userProfileUrl='/user-profile'
+						appearance={{
+							baseTheme: resolvedTheme === "dark" ? dark : undefined,
+							layout: {
+								unsafe_disableDevelopmentModeWarnings: true,
+							},
+						}}>
 						<UserButton.UserProfilePage label="Terms" labelIcon={<DotIcon />} url="terms">
 							<div>
 								<h1>Custom Terms Page</h1>

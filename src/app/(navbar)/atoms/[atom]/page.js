@@ -13,7 +13,7 @@ export default async function AtomPage ({ params }) {
 
 	if (!atom || !data) return notFound();
 
-	return (<Suspense fallback={<h1 className='text-3xl text-red-700'>Loading...</h1>}>
+	return (<Suspense >
 		<Elements data={data} type='Atoms' />
 	</Suspense>)
 }

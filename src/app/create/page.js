@@ -37,7 +37,8 @@ export default function CodeEditorPreview () {
 	const combinedCode = `
     <html>
       <head>
-        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : `<style>${css}</style>`}
+        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
+				<style>${css}</style>
       </head>
       <body style="height:100svh;display:grid;place-items:center;">${html}</body>
     </html>

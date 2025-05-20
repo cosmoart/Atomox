@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { cn } from "@/lib/utils"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, } from "@/components/ui/navigation-menu"
 import { Atoms, Molecules } from '@/lib/conts';
+import { ArrowRight } from 'lucide-react';
 
 export function NavBar () {
 	return (
@@ -31,8 +32,10 @@ export function NavBar () {
 								))
 							}
 							<li>
-								<Link href="/atoms" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground/50 focus:bg-accent focus:text-accent-foreground h-full flex items-center justify-center'>
-									<span className="text-sm font-medium text-zinc-900/80 dark:text-white/80">View all</span>
+								<Link href="/atoms" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent group focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center'>
+									<span className="text-sm font-medium mt-1 inline-block text-zinc-900/80 dark:text-white/80">View all</span>
+									<ArrowRight size={18} className='w-0 transition-all group-hover:w-4' />
+
 								</Link>
 							</li>
 						</ul>
@@ -56,8 +59,11 @@ export function NavBar () {
 								</ListItem>
 							))}
 							<li>
-								<Link href="/molecules" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground/50 focus:bg-accent focus:text-accent-foreground h-full flex items-center justify-center'>
-									<span className="text-sm font-medium text-zinc-900/80 dark:text-white/80">View all</span>
+								<Link href="/molecules" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center group'>
+									<span className="text-sm font-medium mt-1 inline-block text-zinc-900/80 dark:text-white/80">
+										View all
+									</span>
+									<ArrowRight size={18} className='w-0 transition-all group-hover:w-4' />
 								</Link>
 							</li>
 						</ul>

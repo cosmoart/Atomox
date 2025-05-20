@@ -49,6 +49,9 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount, with
 				<SignUpButton mode='modal'
 					appearance={{
 						baseTheme: resolvedTheme === 'dark' ? dark : undefined,
+						layout: {
+							unsafe_disableDevelopmentModeWarnings: true,
+						},
 					}}
 				>
 					<div className="flex gap-1 items-center disabled:opacity-90 not-disabled:cursor-pointer group">

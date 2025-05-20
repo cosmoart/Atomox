@@ -14,7 +14,10 @@ export default function Page () {
 						baseTheme: resolvedTheme === 'dark' ? dark : undefined,
 						elements: {
 							rootBox: 'w-full! max-w-sm',
-						}
+						},
+						layout: {
+							unsafe_disableDevelopmentModeWarnings: true,
+						},
 					}}
 				/>
 			</main>

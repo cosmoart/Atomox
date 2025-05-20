@@ -164,13 +164,13 @@ export const PagesTypes = {
 		id: 'atoms',
 		gridSize: 'repeat(auto-fill,minmax(300px,1fr))',
 		description: 'Atoms are the smallest components that can be used to create more complex components.',
-		pageSize: 32
+		pageSize: 28
 	},
 	'Molecules': {
 		title: 'Molecules',
 		id: 'molecules',
 		gridSize: 'repeat(auto-fill,minmax(380px,1fr))',
 		description: 'Molecules are the smallest components that can be used to create more complex components.',
-		pageSize: 30
+		pageSize: 27
 	},
 }
