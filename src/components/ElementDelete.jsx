@@ -59,7 +59,7 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 			}
 
 			<Dialog open={open} onOpenChange={resetDialog}>
-				<DialogContent className="sm:max-w-md">
+				<DialogContent className="sm:max-w-md dark:bg-zinc-900! ">
 					<DialogHeader>
 						<DialogTitle>Confirm deletion</DialogTitle>
 					</DialogHeader>

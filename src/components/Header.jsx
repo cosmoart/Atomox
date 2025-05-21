@@ -32,7 +32,7 @@ export default function Header () {
 					<ThemeToggle />
 				</SignedOut>
 				<SignedIn>
-					<Link href="/create" className='px-7 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 '>
+					<Link href="/create" className='px-7 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white  via-20% transition-all active:scale-95 '>
 						Create
 					</Link>
 

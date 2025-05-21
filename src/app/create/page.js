@@ -129,6 +129,7 @@ export default function CodeEditorPreview () {
 								<Image src={tailwindIcon} alt='Tailwind logo' width={20} height={20} />
 							</label>
 							<Switch
+								className='not-dark:data-[state=checked]:bg-blue-500'
 								id='mode'
 								checked={useTailwind}
 								onCheckedChange={setUseTailwind}
@@ -147,7 +148,7 @@ export default function CodeEditorPreview () {
 									},
 								}}
 							>
-								<button className='px-10 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>Create</button>
+								<button className='px-10 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</button>
 							</SignUpButton>
 						</SignedOut>
 					</div>

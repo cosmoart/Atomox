@@ -163,6 +163,7 @@ export async function getUserElements (username, page = 1, pageSize = 10) {
 		const baseQuery = client.from('elements')
 			.select('*', { count: 'exact' })
 			.eq('username', username)
+			.order('created_at', { ascending: false })
 			.range(from, to);
 
 		if (clerkUser?.username !== username) baseQuery.eq('published', true);

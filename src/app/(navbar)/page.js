@@ -10,7 +10,7 @@ export default async function Home () {
 			<div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-100'></div>
 
 			<section className='heightScreen flex items-center justify-center flex-col relative pb-3'>
-				<a href='https://github.com/midudev/hackaton-clerk-2025' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-0.5 bg-gradient-to-r  mb-4 from-indigo-600 to-blue-500 group flex gap-1 items-center'>
+				<a href='https://github.com/midudev/hackaton-clerk-2025' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-0.5 bg-gradient-to-r  mb-4 from-indigo-600 to-blue-500 group flex gap-1 items-center text-white'>
 					Build for the Clerk x Midudev hackathon
 					<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
 				</a>

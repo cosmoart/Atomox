@@ -3,7 +3,7 @@ import InputMultiTag from './InputMultiTag'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, CheckCircle2, Loader2, XCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 
@@ -60,17 +60,23 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 
 	return (
 		<Dialog >
-			<DialogTrigger className='px-10 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
-			<DialogContent className={`p-6! max-w-[600px]! dark:bg-zinc-900! ${status !== undefined ? "hidde-close" : ""}`}>
+			<DialogTrigger className='px-10 py-1.5 rounded-lg bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
+			<DialogContent className={`p-6! ${status === undefined || status === "loading" ? " max-w-[600px]!" : "max-w-[580px]!"} dark:bg-zinc-900! `}>
 				<DialogTitle className="text-center mt-1">
 					{status === undefined && <span>Create {elementType} - {elementId}</span>}
-					{status === "loading" && <span>Creating {elementType} - {elementId}</span>}
-					{status === 'success' && <span>Component created successfully!</span>}
-					{status === 'error' && <span>Failed to create component</span>}
+					{status === "loading" && <span>Creating {elementType} - {elementId}...</span>}
+					{status === 'success' && <span className='flex flex-col items-center gap-5'>
+						<CheckCircle2 size={60} className='text-indigo-500' />
+						Component created successfully!
+					</span>}
+					{status === 'error' && <span className='flex flex-col items-center gap-5'>
+						<XCircle size={60} />
+						Failed to create component
+					</span>}
 				</DialogTitle>
 				<div className='mx-auto w-full'>
 					{
-						(status === undefined || status === 'loading') && <form className='flex flex-col gap-2 mt-3' onSubmit={handleSubmit(onSubmit)} disabled={true}>
+						(status === undefined || status === 'loading') && <form className='flex flex-col gap-2 mt-1.5' onSubmit={handleSubmit(onSubmit)} disabled={true}>
 							<fieldset>
 								<legend className='font-medium mb-2'>Credits</legend>
 								<div className='flex gap-3'>
@@ -82,37 +88,33 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 							{errors.credits_name && <p className='text-red-500 text-xs'>{errors.credits_name.message}</p>}
 
 							<label>
-								<p className='font-medium mt-3 mb-2'>Tags</p>
+								<p className='font-medium mt-2 mb-2'>Tags</p>
 								<InputMultiTag name="tags" placeholder="3D, Purple, Animation..." maxTags={10} control={control} maxLength={15} disabled={status === "loading"} />
 								{errors.tags && <p className='text-red-500 text-xs mt-0.5'>{errors.tags.message}</p>}
 							</label>
 							{/* <input type="text" placeholder='Licence' className='px-3 py-2 rounded-lg card-border w-full' /> */}
 
-							<button type='submit' disabled={status === "loading"} className='px-10 max-w-xs ml-auto w-full btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer mt-3 disabled:cursor-progress'>
-								<Loader2 className={`${status === 'loading' ? 'w-5 ' : 'w-0'} h-5 animate-spin duration-100`} />
+							<button type='submit' disabled={status === "loading"} className='px-8 max-w-[210px]  ml-auto w-full btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer mt-4 disabled:cursor-progress'>
+								<svg className={`animate-[spin_300ms_linear_900ms_forwards_infinite] ${status === 'loading' ? 'w-5 ' : 'w-0'} h-5 transition-all`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
 								{status === 'loading' ? 'Creating...' : 'Create'}
 							</button>
 						</form>
 					}
 					{
-						status === 'success' && <div className='flex flex-col items-center '>
-							<CheckCircle2 size={70} className='text-green-600' />
-							<p className='mt-2 text-base'>
-								Component created successfully!. You can see it in your elements list.
+						status === 'success' && <div className='flex flex-col items-center'>
+							<p className='opacity-95 mb-4'>
+								Remember that the component will not be visible until it is manually accepted; if it is not accepted, it will be deleted. You can view and delete your unpublished components in your profile.
 							</p>
-							<Link href={`/u/${user.username}`} className='px-5 max-w-xs ml-auto w-full btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer mt-3 disabled:cursor-progress text-[15px] group'>
+							<Link href={`/u/${user.username}`} className='px-8 ml-auto btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer mt-3 text-[15px] group'>
 								View your components
 								<ArrowRight size={20} className='w-0 transition-all group-hover:w-4' />
 							</Link>
 						</div>
 					}
 					{
-						status === 'error' && <div className='flex flex-col items-center '>
-							<XCircle size={70} />
-							<p className='mt-2'>
-								Please try again
-							</p>
-						</div>
+						status === 'error' && <p className='text-center mb-2'>
+							An unexpected error has occurred. Please try again later.
+						</p>
 					}
 				</div>
 			</DialogContent>
