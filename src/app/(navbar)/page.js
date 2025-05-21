@@ -2,102 +2,100 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '@/assets/icons/logo.svg';
 import { Atoms, Molecules } from '@/lib/conts';
+import { ArrowRight, Code, Package, Zap } from 'lucide-react';
 
 export default async function Home () {
 	return (
 		<div className='section'>
-			<section className='heightScreen flex items-center justify-center flex-col relative'>
-				<a href='http://github.com/cosmoart/Atomox' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-1 inline-block mb-4 bg-indigo-600'>Build for the Clerk x Midudev hackathon</a>
-				<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto -z-10' />
+			<div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 border-b border-white/10'></div>
+			<section className='heightScreen flex items-center justify-center flex-col relative pb-3'>
+				<a href='https://github.com/midudev/hackaton-clerk-2025' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-0.5 bg-gradient-to-r  mb-4 from-indigo-600 to-blue-500 group flex gap-1 items-center'>
+					Build for the Clerk x Midudev hackathon
+					<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
+				</a>
+
+				<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto size-30 md:size-40 2xl:size-50' />
 				<h1 className='text-6xl font-bold inline-block my-2'>Atomox</h1>
-				<p className='text-[17px] mb-5 max-w-[60ch]'>An open source component library optimized for fast development, easy maintenance, and accessibility. Just import and go—no configuration required.</p>
+				<p className='text-[17px] mb-5 max-w-[60ch] text-center'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
 
 				<nav className='flex gap-2'>
-					<Link href='/atoms' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>View Atoms</Link>
-					<Link href='/molecules' className='px-7 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all active:scale-95 card-border cursor-pointer'>View Molecules</Link>
+					<Link href='/atoms' className='px-7 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 cursor-pointer group flex gap-1'>
+						View atoms
+						<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
+					</Link>
+					<Link href='/molecules' className='px-7 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 cursor-pointer group flex gap-1'>
+						View molecules
+						<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
+					</Link>
 				</nav>
 			</section>
 
-			{/* <li
-				className='relative z-0 group overflow-hidden h-full border border-zinc-800 rounded-xl bg-[radial-gradient(500px_circle_at_var(--cursor-x)_var(--cursor-y),#22d3ee_0,transparent,transparent_70%)]'
-				style={{
-					'--cursor-x': '404.5px',
-					'--cursor-y': '53px',
-				}}
-			>
-				<div className='space-y-3 relative z-10 p-5 bg-[linear-gradient(180deg,_rgba(24,_24,_27,_0.60)_0%,_rgba(24,_24,_27,_0.00)_100%)]'>
-					<div className='text-gray-500 w-9 h-9 rounded-full bg-[linear-gradient(180deg,_rgba(39,_39,_42,_0.68)_0%,_rgba(39,_39,_42,_0.00)_100%)] flex items-center justify-center border border-zinc-700'>
-						<svg
-							width='20'
-							height='20'
-							viewBox='0 0 20 20'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<path
-								d='M8.41707 3.41715V1.75049H1.75037V8.41714H3.41703V4.59565L8.23228 9.41089L9.41082 8.23237L4.59557 3.41715H8.41707Z'
-								fill='url(#paint0_linear_3267_7865)'
-							/>
-							<path
-								d='M16.5829 11.5831H18.2496V18.2498H11.5829V16.5831H15.4044L10.5892 11.7679L11.7677 10.5894L16.5829 15.4046V11.5831Z'
-								fill='url(#paint1_linear_3267_7865)'
-							/>
-							<defs>
-								<linearGradient
-									id='paint0_linear_3267_7865'
-									x1='5.58059'
-									y1='1.75049'
-									x2='5.66515'
-									y2='13.474'
-									gradientUnits='userSpaceOnUse'
-								>
-									<stop stopColor='#F9FAFB' />
-									<stop offset='1' stopColor='#F9FAFB' stopOpacity='0' />
-								</linearGradient>
-								<linearGradient
-									id='paint1_linear_3267_7865'
-									x1='14.4194'
-									y1='10.5894'
-									x2='14.504'
-									y2='22.3129'
-									gradientUnits='userSpaceOnUse'
-								>
-									<stop stopColor='#F9FAFB' />
-									<stop offset='1' stopColor='#F9FAFB' stopOpacity='0' />
-								</linearGradient>
-							</defs>
-						</svg>
-					</div>
-					<h3 className='text-zinc-100 font-semibold'>Fully Responsive</h3>
-					<p className='text-zinc-300'>
-						Responsive designed components and templates that look great on any screen.
-					</p>
-					<div>
-						<Image
-							alt='Float UI'
-							loading='lazy'
-							width={363}
-							height={172}
-							decoding='async'
-							data-nimg='1'
-							className='absolute inset-0 -z-10'
-							src='https://floatui.com/_next/static/media/feature-cover.76d1a2e9.svg'
-							style={{ color: 'transparent' }}
-						/>
+
+			<section className='container mx-auto px-4 py-16'>
+				<div className='grid gap-8 md:grid-cols-3'>
+					<article className='rounded-xl bg-gradient-to-br from-indigo-900/40 to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
+							<Zap className='h-6 w-6 text-blue-400' />
+						</div>
+						<h3 className='mb-2 text-xl font-semibold text-white'>Fast Development</h3>
+						<p className='text-gray-300'>
+							Build UIs in record time with pre-built, optimized components that work out of the box.
+						</p>
+					</article>
+
+					<article className='rounded-xl bg-gradient-to-br from-indigo-900/40 to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
+							<Code className='h-6 w-6 text-blue-400' />
+						</div>
+						<h3 className='mb-2 text-xl font-semibold text-white'>Easy Maintenance</h3>
+						<p className='text-gray-300'>
+							Consistent patterns and well-documented code make maintenance a breeze for teams of any size.
+						</p>
+					</article>
+
+					<div className='rounded-xl bg-gradient-to-br from-indigo-900/40 to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
+							<Package className='h-6 w-6 text-blue-400' />
+						</div>
+						<h3 className='mb-2 text-xl font-semibold text-white'>Accessibility Built-in</h3>
+						<p className='text-gray-300'>
+							Every component follows WCAG guidelines, ensuring your applications are usable by everyone.
+						</p>
 					</div>
 				</div>
+			</section>
 
-				<div
-					className='bg-[linear-gradient(180deg,_#1E293B_0%,_rgba(59,_130,_246,_0.00)_137.53%,_rgba(32,_69,_129,_0.00)_195%)] blur-[70px] opacity-0 absolute top-0 left-0 w-4/5 h-4/5 duration-150 group-hover:opacity-90'
-					style={{
-						top: '53px',
-						left: '404.5px',
-						transform: 'translate(-50%, -50%)',
-					}}
-				></div>
+			<section className='container mx-auto px-4 py-16'>
+				<div className='mx-auto max-w-3xl'>
+					<div className='mb-8 text-center'>
+						<h2 className='mb-4 text-3xl font-bold md:text-4xl text-white'>Simple to Use</h2>
+						<p className='text-gray-300'>Just copy and paste the code of the component you want to use.</p>
+					</div>
+					<div className='rounded-xl overflow-hidden bg-slate-950 border border-indigo-500/20 shadow-xl'>
+						<div className='flex items-center gap-2 bg-slate-900 px-4 py-2'>
+							<div className='h-3 w-3 rounded-full bg-red-500'></div>
+							<div className='h-3 w-3 rounded-full bg-yellow-500'></div>
+							<div className='h-3 w-3 rounded-full bg-green-500'></div>
+							<div className='ml-2 text-sm text-gray-400'>Button.html</div>
+						</div>
+						<div className='p-4 text-sm font-mono text-gray-300 overflow-x-auto'>
+							<pre>{`import { Button } from 'atomox/components';
 
-				<div className='absolute inset-[1px] -z-10 rounded-xl bg-zinc-950'></div>
-			</li> */}
+export default function MyComponent() {
+  return (
+    <div className="space-y-4">
+      <h1>Welcome to My App</h1>
+      <p>Built with Atomox components</p>
+      <Button variant="primary">
+        Get Started
+      </Button>
+    </div>
+  );
+}`}</pre>
+						</div>
+					</div>
+				</div>
+			</section>
 
 			<article className='bg-grid pb-10 pt-6 mt-8'>
 				<h2 className='text-2xl md:text-4xl text-center font-medium pb-5 2xl:mb-7'>Atoms</h2>

@@ -213,7 +213,7 @@ export default function CodeEditorPreview () {
 		</ResizablePanel>
 		<ResizableHandle withHandle />
 		<ResizablePanel>
-			<div className='bg-white border rounded shadow h-full overflow-auto ml-1.5'>
+			<div className='bg-white rounded shadow h-full overflow-auto ml-1.5'>
 				<iframe
 					ref={iframeViewer}
 					srcDoc={combinedCode}

@@ -66,7 +66,7 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 											}
 										}}
 									/>
-									<button className='absolute top-2 right-2 text-sm text-white bg-zinc-900 rounded-md px-3 py-1' onClick={() => copyCode(html)}>Copy</button>
+									<button className='absolute left-2 cursor-pointer active:scale-95 transition-transform bottom-2 text-sm text-white bg-zinc-900 rounded-md px-3 py-1' onClick={() => copyCode(html)}>Copy</button>
 								</div>
 							)
 						},
@@ -74,37 +74,43 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 							label: 'CSS',
 							value: 'css',
 							content: (
-								<Editor
-									height="100%"
-									defaultLanguage="css"
-									className='h-[calc(100vh-180px)] rounded overflow-hidden'
-									theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-									value={css}
-									beforeMount={handleEditorCSS}
-									onChange={(value) => setCss(value || '')}
-									options={{
-										minimap: {
-											enabled: false
-										}
-									}}
-								/>
+								<div className='relative'>
+									<Editor
+										height="100%"
+										defaultLanguage="css"
+										className='h-[calc(100vh-180px)] rounded overflow-hidden'
+										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+										value={css}
+										beforeMount={handleEditorCSS}
+										onChange={(value) => setCss(value || '')}
+										options={{
+											minimap: {
+												enabled: false
+											}
+										}}
+									/>
+									<button className='absolute left-2 cursor-pointer active:scale-95 transition-transform bottom-2 text-sm text-white bg-zinc-900 rounded-md px-3 py-1' onClick={() => copyCode(css)}>Copy</button>
+								</div>
 							)
 						},
 						{
 							label: 'JS',
 							value: 'js',
 							content: (
-								jsD?.trim().length > 0 && <Editor
-									height="100%"
-									defaultLanguage="javascript"
-									className='h-[calc(100vh-180px)] rounded overflow-hidden'
-									theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-									value={js}
-									onChange={(value) => setJs(value || '')}
-									options={{
-										automaticLayout: true,
-									}}
-								/>
+								jsD?.trim().length > 0 && <div className='relative'>
+									<Editor
+										height="100%"
+										defaultLanguage="javascript"
+										className='h-[calc(100vh-180px)] rounded overflow-hidden'
+										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+										value={js}
+										onChange={(value) => setJs(value || '')}
+										options={{
+											automaticLayout: true,
+										}}
+									/>
+									<button className='absolute left-2 cursor-pointer active:scale-95 transition-transform bottom-2 text-sm text-white bg-zinc-900 rounded-md px-3 py-1' onClick={() => copyCode(js)}>Copy</button>
+								</div>
 							)
 						}
 					]}
@@ -113,7 +119,7 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 		</ResizablePanel>
 		<ResizableHandle withHandle />
 		<ResizablePanel>
-			<div className="bg-white border rounded shadow h-full overflow-auto relative ml-1.5">
+			<div className="bg-white rounded shadow h-full overflow-auto relative ml-1.5">
 				<iframe
 					srcDoc={combinedCode}
 					title="preview"

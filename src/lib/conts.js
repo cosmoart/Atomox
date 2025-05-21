@@ -52,18 +52,19 @@ export const Atoms = [
 	{
 		name: 'Backgrounds',
 		description: 'A background is an image or color that appears behind other elements.',
-		html: `<div class="background">
-	Content here
-</div>`,
-		htmlTailwind: `<div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6 rounded-lg">
-	Content here
-</div>`,
-		css: `.background {
-	background: linear-gradient(90deg, oklch(62.7% 0.265 303.9), oklch(70% 0.3 30));
-	color: white;
-	padding: 24px;
-	border-radius: 10px;
-}`,
+		html: '<div class="background-grid"></div>',
+		htmlTailwind: '<div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>',
+		css: `.background-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+`,
 		id: 'backgrounds',
 	},
 	{

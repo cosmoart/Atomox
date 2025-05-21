@@ -17,10 +17,19 @@ export default function ElementsList ({ data, title, description }) {
 			<article className={`flex flex-wrap gap-4 mt-8 ${title.toLowerCase()}-gri`}>
 				{
 					data.map(element => (
-						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={`flex card-border flex-1 min-w-78 justify-center flex-col rounded-lg py-4 px-6 shadow-md transition-shadow hover:shadow-lg ${element.id.toLowerCase()}`}>
-							<h3 className='text-lg font-medium '>{element.name}</h3>
-							<p className='text-[15px] line-clamp-2'>{element.description}</p>
+						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'group relative overflow-hidden rounded-xl flex-1 min-w-78 bg-[#111111] border border-[#222222] transition-all duration-300 hover:border-indigo-500 hover:shadow-[0_0_30px_rgba(79,70,229,0.15)]'}>
+							<div className='px-6 py-5 z-10 relative h-full'>
+								<div className='absolute inset-0 bg-gradient-to-r from-indigo-600/0 via-indigo-600/0 to-indigo-600/0 opacity-0 group-hover:opacity-10 transition-opacity duration-300'></div>
+
+								<div className='absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></div>
+								<h3 className='text-lg font-medium'>{element.name}</h3>
+								<p className='text-[15px] opacity-80 line-clamp-2'>{element.description}</p>
+							</div>
 						</Link>
+						// <Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={`flex card-border flex-1 min-w-78 justify-center flex-col rounded-lg py-4 px-6 shadow-md transition-shadow hover:shadow-lg ${element.id.toLowerCase()}`}>
+						// 	<h3 className='text-lg font-medium '>{element.name}</h3>
+						// 	<p className='text-[15px] line-clamp-2'>{element.description}</p>
+						// </Link>
 					))
 				}
 			</article>
