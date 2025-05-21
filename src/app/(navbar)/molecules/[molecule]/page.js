@@ -13,7 +13,7 @@ export default async function MoleculePage ({ params }) {
 
 	if (!molecule || !data) return notFound();
 
-	return <Suspense>
+	return <Suspense fallback={<div className='minHeightScreen'></div>}>
 		<Elements data={data} type='Molecules' />
 	</Suspense>
 

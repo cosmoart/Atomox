@@ -28,7 +28,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 
 	return (
 		<Dialog defaultOpen={true} >
-			<DialogContent className="p-6! max-w-2xl! bg-zinc-900!  hidde-close">
+			<DialogContent className="p-6! max-w-2xl! dark:bg-zinc-900!  hidde-close">
 				<DialogTitle className="flex justify-between gap-3">
 					What do you want to create?
 					<div className="flex items-center gap-3 ">

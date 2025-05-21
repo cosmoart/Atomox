@@ -7,7 +7,8 @@ import { ArrowRight, Code, Package, Zap } from 'lucide-react';
 export default async function Home () {
 	return (
 		<div className='section'>
-			<div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 border-b border-white/10'></div>
+			<div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-100'></div>
+
 			<section className='heightScreen flex items-center justify-center flex-col relative pb-3'>
 				<a href='https://github.com/midudev/hackaton-clerk-2025' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-0.5 bg-gradient-to-r  mb-4 from-indigo-600 to-blue-500 group flex gap-1 items-center'>
 					Build for the Clerk x Midudev hackathon
@@ -33,32 +34,32 @@ export default async function Home () {
 
 			<section className='container mx-auto px-4 py-16'>
 				<div className='grid gap-8 md:grid-cols-3'>
-					<article className='rounded-xl bg-gradient-to-br from-indigo-900/40 to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+					<article className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-blue-200/50 dark:from-indigo-900/40 dark:to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
 						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
 							<Zap className='h-6 w-6 text-blue-400' />
 						</div>
-						<h3 className='mb-2 text-xl font-semibold text-white'>Fast Development</h3>
-						<p className='text-gray-300'>
+						<h3 className='mb-2 text-xl font-semibold dark:text-white'>Fast Development</h3>
+						<p className='dark:text-gray-300'>
 							Build UIs in record time with pre-built, optimized components that work out of the box.
 						</p>
 					</article>
 
-					<article className='rounded-xl bg-gradient-to-br from-indigo-900/40 to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+					<article className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-blue-200/50 dark:from-indigo-900/40 dark:to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
 						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
 							<Code className='h-6 w-6 text-blue-400' />
 						</div>
-						<h3 className='mb-2 text-xl font-semibold text-white'>Easy Maintenance</h3>
-						<p className='text-gray-300'>
+						<h3 className='mb-2 text-xl font-semibold dark:text-white'>Easy Maintenance</h3>
+						<p className='dark:text-gray-300'>
 							Consistent patterns and well-documented code make maintenance a breeze for teams of any size.
 						</p>
 					</article>
 
-					<div className='rounded-xl bg-gradient-to-br from-indigo-900/40 to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+					<div className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-blue-200/50 dark:from-indigo-900/40 dark:to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
 						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
 							<Package className='h-6 w-6 text-blue-400' />
 						</div>
-						<h3 className='mb-2 text-xl font-semibold text-white'>Accessibility Built-in</h3>
-						<p className='text-gray-300'>
+						<h3 className='mb-2 text-xl font-semibold dark:text-white'>Accessibility Built-in</h3>
+						<p className='dark:text-gray-300'>
 							Every component follows WCAG guidelines, ensuring your applications are usable by everyone.
 						</p>
 					</div>
@@ -68,8 +69,8 @@ export default async function Home () {
 			<section className='container mx-auto px-4 py-16'>
 				<div className='mx-auto max-w-3xl'>
 					<div className='mb-8 text-center'>
-						<h2 className='mb-4 text-3xl font-bold md:text-4xl text-white'>Simple to Use</h2>
-						<p className='text-gray-300'>Just copy and paste the code of the component you want to use.</p>
+						<h2 className='mb-4 text-3xl font-bold md:text-4xl'>Simple to Use</h2>
+						<p className='opacity-90'>Just copy and paste the code of the component you want to use.</p>
 					</div>
 					<div className='rounded-xl overflow-hidden bg-slate-950 border border-indigo-500/20 shadow-xl'>
 						<div className='flex items-center gap-2 bg-slate-900 px-4 py-2'>

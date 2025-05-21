@@ -41,7 +41,7 @@ export default async function UserProfile ({ params }) {
 
 					<div>
 						<h1 className='text-4xl font-medium'>{user.firstName} {user.lastName}</h1>
-						{user.username && <h2 className='rounded-full text-sm dark:bg-zinc-800 px-4 py-1 mt-1 w-fit font-medium'>@{user.username}</h2>}
+						<h2 className='rounded-full shadow text-sm bg-white dark:bg-zinc-800 px-4 py-1 mt-1 w-fit font-medium'>@{user.username}</h2>
 					</div>
 				</section>
 			</article>
