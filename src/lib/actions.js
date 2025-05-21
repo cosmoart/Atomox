@@ -151,18 +151,25 @@ export async function getUserLikes () {
 	return data.map((like) => like.elements);
 }
 
-export async function getUserElements (username) {
+export async function getUserElements (username, page = 1, pageSize = 10) {
 	const clerkUser = await currentUser();
 	if (!username) return [];
 	const client = createServerSupabaseClient();
 
+	const from = (page - 1) * pageSize;
+	const to = from + pageSize - 1;
+
 	try {
-		const baseQuery = client.from('elements').select('*').eq('username', username);
+		const baseQuery = client.from('elements')
+			.select('*', { count: 'exact' })
+			.eq('username', username)
+			.range(from, to);
+
 		if (clerkUser?.username !== username) baseQuery.eq('published', true);
-		const { data, error } = await baseQuery;
+		const { data, error, count } = await baseQuery;
 		if (error) return { error: 'Error getting elements' };
 
-		if (!clerkUser?.id) return data;
+		if (!clerkUser?.id) return { data, totalCount: count || 0 };
 
 		const { data: likedElements, error: likesError } = await client
 			.from('elements_likes')
@@ -178,7 +185,7 @@ export async function getUserElements (username) {
 			likedByUser: likedElementsIds.has(el.id),
 		}));
 
-		return postsWithLikeStatus;
+		return { data: postsWithLikeStatus, totalCount: count || 0 };
 	} catch (error) {
 		return { error: 'Error getting elements' };
 	}

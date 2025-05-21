@@ -4,22 +4,26 @@ import { useEffect, useState, useTransition } from 'react';
 import { getUserElements } from '@/lib/actions';
 import ElementCard, { ElementCardSkeleton } from '@/components/ElementCard';
 import Link from 'next/link';
+import PaginationFooter from '@/components/Pagination';
 
 export default function UserElements ({ username, isAuthor }) {
 	const [elements, setElements] = useState("loading");
+	const [page, setPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(0);
 	const [loading, startTransition] = useTransition();
+	const pageSize = 12;
 
 	useEffect(() => {
-		startTransition(() => {
-			getUserElements(username)
-				.then(setElements)
-				.catch(() => setElements({ error: true }));
+		startTransition(async () => {
+			const res = await getUserElements(username, page, pageSize);
+			setElements(res.error ? ({ error: res.error }) : res.data);
+			setTotalPages(Math.ceil(res.totalCount / pageSize));
 		});
-	}, []);
+	}, [page]);
 
 	if (loading || elements === "loading") return <div className="pb-4 mt-4">
 		<div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
-			{[...Array(8)].map((_, i) => <ElementCardSkeleton key={i} />)}
+			{[...Array(pageSize)].map((_, i) => <ElementCardSkeleton key={i} />)}
 		</div>
 	</div>
 
@@ -37,12 +41,13 @@ export default function UserElements ({ username, isAuthor }) {
 	</div>
 
 	return (
-		<div className="pb-4 mt-4">
+		<section className="pb-4 mt-4">
 			<div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
 				{elements.map((element) =>
 					<ElementCard data={element} key={element.id} />
 				)}
 			</div>
-		</div>
+			<PaginationFooter totalPages={totalPages} setPage={setPage} page={page} />
+		</section>
 	);
 }
