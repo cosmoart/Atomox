@@ -53,6 +53,39 @@
   --lines-color: #ffffff05;
 }
 
+.shining-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.shining-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.1) 100%);
+  transform: skewX(-20deg);
+}
+
+.shining-button:hover::before {
+  animation: shine .7s forwards;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+
+  100% {
+    left: 125%;
+  }
+}
+
 @theme inline {
   --color-zinc-950: oklch(17% 0.005 285.823);
   --color-background: var(--background);

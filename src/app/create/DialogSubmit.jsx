@@ -60,7 +60,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 
 	return (
 		<Dialog >
-			<DialogTrigger className='px-10 py-1.5 rounded-lg bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
+			<DialogTrigger className='px-10 py-1.5 rounded-lg shining-button hover:scale-x-105 bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
 			<DialogContent className={`p-6! ${status === undefined || status === "loading" ? " max-w-[600px]!" : "max-w-[580px]!"} dark:bg-zinc-900! `}>
 				<DialogTitle className="text-center mt-1">
 					{status === undefined && <span>Create {elementType} - {elementId}</span>}
@@ -95,7 +95,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 							{/* <input type="text" placeholder='Licence' className='px-3 py-2 rounded-lg card-border w-full' /> */}
 
 							<button type='submit' disabled={status === "loading"} className='px-8 max-w-[210px]  ml-auto w-full btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer mt-4 disabled:cursor-progress'>
-								<svg className={`animate-[spin_300ms_linear_900ms_forwards_infinite] ${status === 'loading' ? 'w-5 ' : 'w-0'} h-5 transition-all`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
+								<svg className={`animate-[spin_300ms_linear_900ms_forwards_infinite] ${status === 'loading' ? 'w-5 ' : 'w-0'} h-5 transition-all`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
 								{status === 'loading' ? 'Creating...' : 'Create'}
 							</button>
 						</form>

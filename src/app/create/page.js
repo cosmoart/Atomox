@@ -148,7 +148,7 @@ export default function CodeEditorPreview () {
 									},
 								}}
 							>
-								<button className='px-10 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</button>
+								<button className='px-10 py-1.5 rounded-lg hover:scale-x-105 shining-button  bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</button>
 							</SignUpButton>
 						</SignedOut>
 					</div>

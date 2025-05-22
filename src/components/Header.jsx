@@ -26,13 +26,13 @@ export default function Header () {
 
 			<nav className="hidden md:flex items-center gap-2">
 				<SignedOut>
-					<Link href="/sign-in" className="text-sm px-5 py-1.5 rounded-md bg-gradient-to-l  from-blue-500 to-indigo-500 text-white font-medium transition-all ">
+					<Link href="/sign-in" className="px-7 py-1.5 rounded-lg shining-button bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white  via-20% transition-all active:scale-90 hover:scale-x-105">
 						Sign in
 					</Link>
 					<ThemeToggle />
 				</SignedOut>
 				<SignedIn>
-					<Link href="/create" className='px-7 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white  via-20% transition-all active:scale-95 '>
+					<Link href="/create" className='px-7 py-1.5 rounded-lg shining-button bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white  via-20% transition-all active:scale-90 hover:scale-x-105'>
 						Create
 					</Link>
 
@@ -43,13 +43,6 @@ export default function Header () {
 								unsafe_disableDevelopmentModeWarnings: true,
 							},
 						}}>
-						<UserButton.UserProfilePage label="Terms" labelIcon={<DotIcon />} url="terms">
-							<div>
-								<h1>Custom Terms Page</h1>
-								<p>This is the content of the custom terms page.</p>
-							</div>
-						</UserButton.UserProfilePage>
-
 						<UserButton.MenuItems>
 							<UserButton.Link label='View profile' href={`/u/${user?.username}`} labelIcon={<CircleUserRound className='size-4' />} />
 
