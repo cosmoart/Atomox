@@ -67,7 +67,8 @@ export default function Elements ({ data: data2, type }) {
 				</search>
 			</article>
 
-			<article className='grid gap-4 mt-6 min-h-[calc(100svh-250px)]' style={{ gridTemplateColumns: PagesTypes[type].gridSize }}>
+			{/* <article className='grid gap-4 mt-6 min-h-[calc(100svh-250px)]' style={{ gridTemplateColumns: PagesTypes[type].gridSize }}> */}
+			<article className='grid gap-4 mt-6 mb-18' style={{ gridTemplateColumns: PagesTypes[type].gridSize }}>
 				<ElementsList isPending={isPending} elements={elements} />
 			</article>
 
