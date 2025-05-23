@@ -44,7 +44,7 @@ export default function Elements ({ data: data2, type }) {
 	}
 
 	return (
-		<div className='section mb-10 relative minHeightScreen'>
+		<div className='section mb-10 relative minHeightScreen flex flex-col'>
 			<article className='flex flex-col md:flex-row gap-3 items-center py-3 2xl:py-4 '>
 				<section className='grow'>
 					<h1 className=' text-xl sm:text-3xl font-semibold'>{PagesTypes[type].title} - {data2.name}</h1>
@@ -53,7 +53,7 @@ export default function Elements ({ data: data2, type }) {
 					</p>
 				</section>
 
-				<search className='self-end'>
+				<search className='self-end w-full sm:w-auto'>
 					<form onSubmit={handleSearch} >
 						<input
 							disabled={isPending || elements?.error}
@@ -61,13 +61,13 @@ export default function Elements ({ data: data2, type }) {
 							name='q'
 							defaultValue={query}
 							placeholder='Search...'
-							className='w-full max-w-3xs py-1.5 px-4 rounded-md card-border dark:bg-zinc-900  bg-white'
+							className='w-full sm:max-w-3xs py-1.5 px-4 rounded-md card-border dark:bg-zinc-900  bg-white'
 						/>
 					</form>
 				</search>
 			</article>
 
-			<article className='grid gap-4 mt-6 mb-10' style={{ gridTemplateColumns: PagesTypes[type].gridSize }}>
+			<article className='sm:grid gap-4 mt-6 mb-10 grow' style={{ gridTemplateColumns: PagesTypes[type].gridSize }}>
 				<ElementsList isPending={isPending} elements={elements} />
 			</article>
 
