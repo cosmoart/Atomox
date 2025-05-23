@@ -2,7 +2,6 @@
 
 import { useState, useRef } from 'react'
 import Editor from '@monaco-editor/react'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Switch } from '@/components/ui/switch'
 import { useRouter } from 'next/navigation'
 import { emmetHTML, emmetCSS } from 'emmet-monaco-es';
@@ -19,6 +18,7 @@ import { Atoms } from '@/lib/conts'
 import Image from 'next/image'
 import tailwindIcon from '@/assets/icons/tailwind.svg'
 import { dark } from '@clerk/themes'
+import Tabs from '@/components/Tabs'
 
 export default function CodeEditorPreview () {
 	const [html, setHtml] = useState(Atoms[0].htmlTailwind ?? '')
@@ -154,7 +154,7 @@ export default function CodeEditorPreview () {
 					</div>
 				</nav>
 
-				<Tabs defaultValue='html' className='flex-1 flex flex-col'>
+				{/* <Tabs defaultValue='html' className='flex-1 flex flex-col'>
 					<TabsList className='w-full justify-start'>
 						<TabsTrigger value='html'>HTML</TabsTrigger>
 						<TabsTrigger value='css'>CSS</TabsTrigger>
@@ -209,7 +209,60 @@ export default function CodeEditorPreview () {
 							}}
 						/>
 					</TabsContent>
-				</Tabs>
+				</Tabs> */}
+				<Tabs tabs={[
+					{
+						label: 'HTML', value: 'html', content: <div className='flex-1 rounded overflow-hidden'>
+							<Editor
+								height='100%'
+								defaultLanguage='html'
+								language={'html'}
+								theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+								value={html}
+								beforeMount={handleEditorHTML}
+								onChange={(value) => setHtml(value || '')}
+								options={{
+									minimap: {
+										enabled: false
+									}
+								}}
+							/>
+						</div>
+					},
+					{
+						label: 'CSS', value: 'css', content: <div className='flex-1 rounded overflow-hidden'>
+							<Editor
+								height='100%'
+								defaultLanguage='css'
+								theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+								value={css}
+								beforeMount={handleEditorCSS}
+								onChange={(value) => setCss(value || '')}
+								options={{
+									minimap: {
+										enabled: false
+									}
+								}}
+							/>
+						</div>
+					},
+					{
+						label: 'JS', value: 'js', content: <Editor
+							height='100%'
+							defaultLanguage='javascript'
+							defaultValue={js}
+							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+							onChange={(value) => setJs(value || '')}
+							options={{
+								automaticLayout: true,
+								minimap: {
+									enabled: false
+								}
+							}}
+						/>
+					},
+				]
+				} />
 			</div>
 		</ResizablePanel>
 		<ResizableHandle withHandle />

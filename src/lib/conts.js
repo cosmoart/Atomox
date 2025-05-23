@@ -269,7 +269,6 @@ input:checked + .slider:before {
 	}
 ];
 
-
 export const Molecules = [
 	{
 		name: 'Forms',
@@ -369,3 +368,5 @@ export const PagesTypes = {
 		pageSize: 27
 	},
 }
+
+export const verifiedUsers = ['midudev', 'cosmoart']

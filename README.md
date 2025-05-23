@@ -113,7 +113,7 @@ Proposed features that may or may not be implemented in the future.
 - [ ] User achievements, description & links.
 - [ ] Components from other frameworks (React, Vue, Angular, etc.)
 - [ ] Tailwind autocomplete
-- [ ] Verified user role (Its components are published immediately.)
+- [x] Verified user role ~~(Its components are published immediately.)~~
 - [ ] Licenses or credits for the components
 - [ ] Zoom in/out in components
 
