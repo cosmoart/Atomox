@@ -7,14 +7,15 @@ import Link from 'next/link';
 import { NavBar } from './NavBar';
 import Logo from '@/assets/icons/Logo';
 import { useState } from 'react';
-import { CircleUserRound, DotIcon, MoonIcon, SunIcon } from 'lucide-react';
+import { CircleUserRound, MoonIcon, SunIcon } from 'lucide-react';
 
 export default function Header () {
 	const { user } = useUser()
 	const [isOpen, setIsOpen] = useState(false);
 	const { resolvedTheme, setTheme } = useTheme()
 
-	return (<header className="mx-1! sticky top-1 z-50 rounded-t-xl border-b border-zinc-100 bg-white/60 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/60 ">
+	// return (<header className="headerScrollEffect mx-1! sticky top-1 z-50 rounded-t-xl border-b border-zinc-100 bg-white/60 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/60 ">
+	return (<header className="header-scroll-effect mx-1! sticky top-1 z-50 rounded-t-xl ">
 		<div className='md:flex md:items-center md:justify-between section py-3 lg:mx-auto!'>
 			<div className="hidden md:flex items-center gap-3">
 				<Link href="/" className="text-lg text-zinc-900 dark:text-white flex items-center gap-2  pr-3 group active:scale-95 transition-all font-semibold">

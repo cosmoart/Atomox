@@ -18,7 +18,8 @@ import { Atoms } from '@/lib/conts'
 import Image from 'next/image'
 import tailwindIcon from '@/assets/icons/tailwind.svg'
 import { dark } from '@clerk/themes'
-import Tabs from '@/components/Tabs'
+// import Tabs from '@/components/Tabs'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
 export default function CodeEditorPreview () {
 	const [html, setHtml] = useState(Atoms[0].htmlTailwind ?? '')
@@ -154,7 +155,7 @@ export default function CodeEditorPreview () {
 					</div>
 				</nav>
 
-				{/* <Tabs defaultValue='html' className='flex-1 flex flex-col'>
+				<Tabs defaultValue='html' className='flex-1 flex flex-col'>
 					<TabsList className='w-full justify-start'>
 						<TabsTrigger value='html'>HTML</TabsTrigger>
 						<TabsTrigger value='css'>CSS</TabsTrigger>
@@ -209,8 +210,8 @@ export default function CodeEditorPreview () {
 							}}
 						/>
 					</TabsContent>
-				</Tabs> */}
-				<Tabs tabs={[
+				</Tabs>
+				{/* <Tabs tabs={[
 					{
 						label: 'HTML', value: 'html', content: <div className='flex-1 rounded overflow-hidden'>
 							<Editor
@@ -262,7 +263,7 @@ export default function CodeEditorPreview () {
 						/>
 					},
 				]
-				} />
+				} /> */}
 			</div>
 		</ResizablePanel>
 		<ResizableHandle withHandle />

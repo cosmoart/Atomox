@@ -7,24 +7,24 @@ import { ArrowRight, Code, Package, Zap } from 'lucide-react';
 export default async function Home () {
 	return (
 		<div className='section'>
-			<div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-100'></div>
+			{/* <div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-100'></div> */}
 
-			<section className='heightScreen flex items-center justify-center flex-col relative pb-3'>
-				<a href='https://github.com/midudev/hackaton-clerk-2025' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-0.5 bg-gradient-to-r  mb-4 from-indigo-600 to-blue-500 group flex gap-1 items-center text-white'>
+			<section className='heightScreen flex items-center justify-center flex-col relative pb-10'>
+				{/* <a href='https://github.com/midudev/hackaton-clerk-2025' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-0.5 bg-gradient-to-r  mb-4 from-indigo-600 to-blue-500 group flex gap-1 items-center text-white'>
 					Build for the Clerk x Midudev hackathon
 					<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
-				</a>
+				</a> */}
 
 				<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto size-30 md:size-40 2xl:size-50' />
 				<h1 className='text-6xl font-bold inline-block my-2'>Atomox</h1>
 				<p className='text-[17px] mb-5 max-w-[60ch] text-center'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
 
-				<nav className='flex gap-2'>
-					<Link href='/atoms' className='px-7 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 cursor-pointer group flex gap-1'>
+				<nav className='flex gap-2 w-full max-w-[400px]'>
+					<Link href='/atoms' className='px-7 shining-button py-1.5 rounded-lg bg-gradient-to-l grow from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 cursor-pointer justify-center group flex items-center gap-1'>
 						View atoms
 						<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
 					</Link>
-					<Link href='/molecules' className='px-7 py-1.5 rounded-lg bg-gradient-to-l  from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 cursor-pointer group flex gap-1'>
+					<Link href='/molecules' className='px-7 shining-button py-1.5 rounded-lg bg-gradient-to-l grow from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 cursor-pointer justify-center group flex items-center gap-1'>
 						View molecules
 						<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
 					</Link>

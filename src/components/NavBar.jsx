@@ -7,13 +7,14 @@ import { cn } from "@/lib/utils"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, } from "@/components/ui/navigation-menu"
 import { Atoms, Molecules } from '@/lib/conts';
 import { ArrowRight } from 'lucide-react';
+import { SignedOut } from '@clerk/nextjs';
 
 export function NavBar () {
 	return (
 		<NavigationMenu className="max-w-none *:w-full md:*:w-auto">
 			<NavigationMenuList className="w-full *:grow">
 				<NavigationMenuItem>
-					<NavigationMenuTrigger className="dark:bg-zinc-900/30! hover:dark:bg-zinc-900/50! bg-white/30! hover:bg-white/50!">
+					<NavigationMenuTrigger className="dark:bg-zinc-900/30! hover:dark:bg-zinc-700/30! bg-white/30! hover:bg-white/50!">
 						<Link href="/atoms" >
 							Atoms
 						</Link>
@@ -41,7 +42,7 @@ export function NavBar () {
 					</NavigationMenuContent>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<NavigationMenuTrigger className="dark:bg-zinc-900/30! hover:dark:bg-zinc-900/50! bg-white/30! hover:bg-white/50!">
+					<NavigationMenuTrigger className="dark:bg-zinc-900/30! hover:dark:bg-zinc-700/30! bg-white/30! hover:bg-white/50!">
 						<Link href="/molecules" >
 							Molecules
 						</Link>
@@ -68,6 +69,13 @@ export function NavBar () {
 						</ul>
 					</NavigationMenuContent>
 				</NavigationMenuItem>
+				<SignedOut>
+					<NavigationMenuItem>
+						<Link href="/create" className='block select-none space-y-1 rounded-md py-3 px-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-sm font-medium'>
+							Create
+						</Link>
+					</NavigationMenuItem>
+				</SignedOut>
 			</NavigationMenuList>
 		</NavigationMenu>
 	)
