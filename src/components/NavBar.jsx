@@ -19,7 +19,7 @@ export function NavBar () {
 							Atoms
 						</Link>
 					</NavigationMenuTrigger>
-					<NavigationMenuContent >
+					<NavigationMenuContent className="bg-transparent!">
 						<ul className="grid gap-2 p-3 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 							{
 								Atoms.slice(0, 9).map((component) => (
@@ -33,9 +33,9 @@ export function NavBar () {
 								))
 							}
 							<li>
-								<Link href="/atoms" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent group focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center'>
+								<Link href="/atoms" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none hover:bg-accent group focus:bg-accent focus:text-accent-foreground h-full flex gap-1 transition-all items-center justify-center'>
 									<span className="text-sm font-medium mt-1 inline-block text-zinc-900/80 dark:text-white/80">View all</span>
-									<ArrowRight size={18} className='w-0 transition-all group-hover:w-4' />
+									<ArrowRight size={17} className='transition-all group-hover:ml-1' />
 								</Link>
 							</li>
 						</ul>

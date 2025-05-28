@@ -47,7 +47,7 @@ export default function Elements ({ data: data2, type }) {
 		<div className='section mb-10 relative minHeightScreen flex flex-col'>
 			<article className='flex flex-col md:flex-row gap-3 items-center py-3 2xl:py-4 '>
 				<section className='grow'>
-					<h1 className=' text-xl sm:text-3xl font-semibold'>{PagesTypes[type].title} - {data2.name}</h1>
+					<h1 className=' text-xl sm:text-3xl font-semibold'>{data2.name}</h1>
 					<p className='max-w-[80ch] text-balance mt-1 text-zinc-900/80 dark:text-white/80 text-[15px]'>
 						{PagesTypes[type].description} {data2.description}
 					</p>

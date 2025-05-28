@@ -1,42 +1,53 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import Logo from '@/assets/icons/logo.svg';
 import { Atoms, Molecules } from '@/lib/conts';
 import { ArrowRight, Code, Package, Zap } from 'lucide-react';
+import StarOnGitHub from '@/components/StarOnGithub'
+import ComponentsGrid from '@/components/home/ComponentsGrid';
+import Image from 'next/image';
+import Logo from '@/assets/icons/logo.svg';
 
 export default async function Home () {
 	return (
 		<div className='section'>
-			{/* <div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-100'></div> */}
+			<div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-40'></div>
 
-			<section className='heightScreen flex items-center justify-center flex-col relative pb-10'>
-				{/* <a href='https://github.com/midudev/hackaton-clerk-2025' target='_blank' rel='noopener noreferrer' className='rounded-full text-sm px-4 py-0.5 bg-gradient-to-r  mb-4 from-indigo-600 to-blue-500 group flex gap-1 items-center text-white'>
-					Build for the Clerk x Midudev hackathon
-					<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
-				</a> */}
+			<div className='absolute max-h-[880px] opacity-75 inset-0 top-0 m-0.5 left-0 rounded-xl -z-10  bg-positiox-[35%_top] bg-no-repeat sm:bg-positiox-[38%_top] md:bg-positiox-[40%_top] lg:bg-positiox-[44%_top] bg-[url("https://headlessui.com/_next/static/media/bg-top.c54a3f7e.jpg")] xl:bg-top forced-colors:hidden' aria-hidden='true'></div>
+			<div className='absolute max-h-[880px] opacity-75 inset-0 top-0 m-0.5 left-0 rounded-xl -z-10  bg-positiox-[35%_bottom] bg-no-repeat mix-blend-screen sm:bg-positiox-[38%_bottom] bg-[url("https://headlessui.com/_next/static/media/bg-bottom.e4e0724b.jpg")] md:bg-positiox-[40%_bottom] lg:bg-positiox-[44%_bottom] xl:bg-bottom forced-colors:hidden' aria-hidden='true'></div>
 
-				<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto size-30 md:size-40 2xl:size-50' />
-				<h1 className='text-6xl font-bold inline-block my-2'>Atomox</h1>
-				<p className='text-[17px] mb-5 max-w-[60ch] text-center'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
+			<section className='heightScreen max-h-[800px] flex items-center flex-row-reverse justify-center gap-12 relative pb-12'>
+				<div className='w-full mt-10 flex flex-col sm:justify-between items-center lg:items-start'>
+					<div className='flex gap-3 items-center mb-4'>
+						<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto lg:mx-0 size-24' />
+						<div>
+							<StarOnGitHub />
+							<h1 className='text-7xl font-bold my-2'>Atomox</h1>
+						</div>
+					</div>
+					{/* <StarOnGitHub />
+					<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto lg:mx-0 size-28 mt-5 ' />
+					<h1 className='text-7xl font-bold my-2'>Atomox</h1> */}
+					<p className='text-[17px] mb-5 max-w-[60ch]'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
 
-				<nav className='flex gap-2 w-full max-w-[400px]'>
-					<Link href='/atoms' className='px-7 shining-button py-1.5 rounded-lg bg-gradient-to-l grow from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 cursor-pointer justify-center group flex items-center gap-1'>
-						View atoms
-						<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
-					</Link>
-					<Link href='/molecules' className='px-7 shining-button py-1.5 rounded-lg bg-gradient-to-l grow from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% transition-all active:scale-95 cursor-pointer justify-center group flex items-center gap-1'>
-						View molecules
-						<ArrowRight size={18} className='w-0 transition-all group-hover:w-4 ' />
-					</Link>
-				</nav>
+					<nav className='flex gap-2 w-full max-w-[400px]'>
+						<Link href='/atoms' className='btn-primary px-4 shining-button py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2'>
+							View atoms
+							<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
+						</Link>
+						<Link href='/molecules' className='btn-primary px-4 shining-button py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2'>
+							View molecules
+							<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
+						</Link>
+					</nav>
+				</div>
+
+				<ComponentsGrid />
 			</section>
-
 
 			<section className='container mx-auto px-4 py-16'>
 				<div className='grid gap-8 md:grid-cols-3'>
-					<article className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-blue-200/50 dark:from-indigo-900/40 dark:to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
-						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
-							<Zap className='h-6 w-6 text-blue-400' />
+					<article className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-indigo-200/50 dark:from-indigo-900/40 dark:to-indigo-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500/20 to-indigo-500/20'>
+							<Zap className='h-6 w-6 text-indigo-400' />
 						</div>
 						<h3 className='mb-2 text-xl font-semibold dark:text-white'>Fast Development</h3>
 						<p className='dark:text-gray-300'>
@@ -44,9 +55,9 @@ export default async function Home () {
 						</p>
 					</article>
 
-					<article className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-blue-200/50 dark:from-indigo-900/40 dark:to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
-						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
-							<Code className='h-6 w-6 text-blue-400' />
+					<article className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-indigo-200/50 dark:from-indigo-900/40 dark:to-indigo-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500/20 to-indigo-500/20'>
+							<Code className='h-6 w-6 text-indigo-400' />
 						</div>
 						<h3 className='mb-2 text-xl font-semibold dark:text-white'>Easy Maintenance</h3>
 						<p className='dark:text-gray-300'>
@@ -54,9 +65,9 @@ export default async function Home () {
 						</p>
 					</article>
 
-					<div className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-blue-200/50 dark:from-indigo-900/40 dark:to-blue-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
-						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20'>
-							<Package className='h-6 w-6 text-blue-400' />
+					<div className='rounded-xl bg-gradient-to-br from-indigo-200/50 to-indigo-200/50 dark:from-indigo-900/40 dark:to-indigo-900/40 backdrop-blur-sm p-6 border border-white/10 shadow-lg'>
+						<div className='mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500/20 to-indigo-500/20'>
+							<Package className='h-6 w-6 text-indigo-400' />
 						</div>
 						<h3 className='mb-2 text-xl font-semibold dark:text-white'>Accessibility Built-in</h3>
 						<p className='dark:text-gray-300'>
@@ -75,8 +86,8 @@ export default async function Home () {
 					<div className='rounded-xl overflow-hidden bg-slate-950 border border-indigo-500/20 shadow-xl'>
 						<div className='flex items-center gap-2 bg-slate-900 px-4 py-2'>
 							<div className='h-3 w-3 rounded-full bg-red-500'></div>
-							<div className='h-3 w-3 rounded-full bg-yellow-500'></div>
-							<div className='h-3 w-3 rounded-full bg-green-500'></div>
+							<div className='h-3 w-3 rounded-full bg-indigo-500'></div>
+							<div className='h-3 w-3 rounded-full bg-indigo-500'></div>
 							<div className='ml-2 text-sm text-gray-400'>Button.html</div>
 						</div>
 						<div className='p-4 text-sm font-mono text-gray-300 overflow-x-auto'>

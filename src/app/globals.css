@@ -21,7 +21,8 @@
   }
 
   .btn-primary{
-    @apply bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-white font-medium px-4 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 ;
+    @apply bg-gradient-to-l from-indigo-600 via-purple-500/70 bg-indigo-500 to-blue-600 from-20% to-80% text-white font-medium px-4 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 ;
+    /* @apply bg-gradient-to-l from-blue-600 to-indigo-600 via-blue-600 text-white font-medium px-4 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 ; */
   }
 }
 
@@ -55,13 +56,13 @@
 
 @keyframes headerScrollEffect {
   from {
-    background-color: transparent;
+    background: transparent;
     backdrop-filter: blur(0px);
     border-color: transparent
   }
 
   to {
-    background-color: color-mix(in oklab, var(--color-zinc-900) 60%, transparent);
+    background: color-mix(in oklab, var(--color-zinc-900) 60%, transparent);
     backdrop-filter: blur(8px);
     border-color: var(--color-zinc-800)
   }
@@ -70,7 +71,7 @@
 .header-scroll-effect {
   animation-name: headerScrollEffect;
   animation-timeline: scroll(root block);
-  animation-range: 400px 500px;
+  animation-range: 100px 400px;
   animation-fill-mode: forwards;
   border-bottom: 1px solid transparent;
 }
