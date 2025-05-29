@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
+import { Atoms, Molecules } from '@/lib/conts';
 
 const schema = z.object({
 	credits_link: z.string()
@@ -53,18 +54,19 @@ const schema = z.object({
 	}
 });
 
-
 export default function DialogSubmit ({ onSubmit, elementId, elementType, status }) {
 	const { handleSubmit, control, register, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
 	const { user } = useUser();
+
+	const elementName = elementType === 'atoms' ? Atoms.find(element => element.id === elementId)?.name : Molecules.find(element => element.id === elementId)?.name
 
 	return (
 		<Dialog >
 			<DialogTrigger className='px-10 py-1.5 rounded-lg shining-button hover:scale-x-105 bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
 			<DialogContent className={`p-6! ${status === undefined || status === "loading" ? " max-w-[600px]!" : "max-w-[580px]!"} dark:bg-zinc-900! `}>
 				<DialogTitle className="text-center mt-1">
-					{status === undefined && <span>Create {elementType} - {elementId}</span>}
-					{status === "loading" && <span>Creating {elementType} - {elementId}...</span>}
+					{status === undefined && <span>Create {elementName} ({elementType})</span>}
+					{status === "loading" && <span>Creating {elementType} - {elementName}...</span>}
 					{status === 'success' && <span className='flex flex-col items-center gap-5'>
 						<CheckCircle2 size={60} className='text-indigo-500' />
 						Component created successfully!

@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import ComEditor from '@/components/ComEditor';
+import CodeEditor from '@/components/CodeEditor';
 import { createServerSupabaseClient } from '@/lib/client';
 import LikeButton from '../LikeButton';
 import { Eye } from 'lucide-react';
@@ -10,10 +10,14 @@ import { currentUser } from '@clerk/nextjs/server';
 import ElementDelete from '../ElementDelete';
 import Image from 'next/image';
 import componentsIcon from '@/assets/icons/components.svg'
+import { Atoms } from '@/lib/conts';
 
 export default async function Element ({ id, elementId }) {
 	const client = createServerSupabaseClient()
 	const element = await getElement(id, elementId)
+	const elementType = Atoms.find(element => element.id === elementId) ? 'atoms' : 'molecules'
+	console.log(element, id, elementId, elementType);
+
 
 	if (!element) return <div className='section flex flex-col items-center justify-center minHeightScreen'>
 		<Image src={componentsIcon} alt='empty' width={100} height={100} className='dark:invert' />
@@ -34,8 +38,8 @@ export default async function Element ({ id, elementId }) {
 	const user = await currentUser()
 
 	return (
-		<div className='section py-2 px-1! minHeightScreen flex flex-col'>
-			<ComEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} />
+		<div className={`section ${elementType === 'atoms' ? 'minHeightScreen flex flex-col' : 'px-1! py-0! '}`}>
+			<CodeEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} className={`${elementType === 'atoms' ? 'h-full' : 'minHeightScreen '}`} elementType={elementType} />
 
 			<article className='grid md:grid-cols-2 items-center gap-3 h-full py-3 px-4'>
 				<div className='flex justify-between items-center'>
@@ -67,7 +71,7 @@ export default async function Element ({ id, elementId }) {
 
 					<div className='flex items-center gap-3 justify-end w-full'>
 						<Link href={`/u/${element.username}`} className='flex gap-2 items-center'>
-							<Avatar className='size-7' >
+							<Avatar className='size-8' >
 								<AvatarImage src={element.user_avatar} alt={`${element.username} avatar`} />
 								<AvatarFallback>{element.username.slice(0, 2)}</AvatarFallback>
 							</Avatar>

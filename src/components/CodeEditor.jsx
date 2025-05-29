@@ -5,8 +5,9 @@ import { useRef, useState } from 'react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup, } from "@/components/ui/resizable"
 import { useTheme } from 'next-themes';
 import Tabs from '@/components/Tabs';
+import CopyButton from './ui/copy-btn';
 
-export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
+export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className = '', elementType }) {
 	const [html, setHtml] = useState(htmlD);
 	const [css, setCss] = useState(cssD);
 	const [js, setJs] = useState(jsD);
@@ -37,12 +38,8 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
     </html>
   `
 
-	function copyCode (code) {
-		navigator.clipboard.writeText(code)
-	}
-
-	return <ResizablePanelGroup className="h-full grow" direction="horizontal">
-		<ResizablePanel>
+	return <ResizablePanelGroup className={`h-full grow ${className}`} direction="horizontal">
+		<ResizablePanel defaultSize={elementType === 'atoms' ? 45 : 40}>
 			<div className="flex flex-col h-full mr-1.5">
 				<Tabs
 					tabs={[
@@ -50,11 +47,10 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 							label: 'HTML',
 							value: 'html',
 							content: (
-								<div className='relative'>
+								<div className='relative h-full rounded overflow-hidden'>
 									<Editor
 										height="100%"
 										defaultLanguage="html"
-										className='h-[calc(100vh-180px)] rounded overflow-hidden'
 										language={"html"}
 										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 										value={html}
@@ -66,7 +62,7 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 											}
 										}}
 									/>
-									<button className='absolute left-2 cursor-pointer active:scale-95 transition-transform bottom-2 text-sm text-white bg-zinc-900 rounded-md px-3 py-1' onClick={() => copyCode(html)}>Copy</button>
+									<CopyButton textToCopy={html} className="absolute bottom-2 right-2" />
 								</div>
 							)
 						},
@@ -74,11 +70,10 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 							label: 'CSS',
 							value: 'css',
 							content: (
-								<div className='relative'>
+								cssD?.trim().length > 0 && <div className='relative h-full rounded overflow-hidden'>
 									<Editor
 										height="100%"
 										defaultLanguage="css"
-										className='h-[calc(100vh-180px)] rounded overflow-hidden'
 										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 										value={css}
 										beforeMount={handleEditorCSS}
@@ -89,7 +84,7 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 											}
 										}}
 									/>
-									<button className='absolute left-2 cursor-pointer active:scale-95 transition-transform bottom-2 text-sm text-white bg-zinc-900 rounded-md px-3 py-1' onClick={() => copyCode(css)}>Copy</button>
+									<CopyButton textToCopy={css} className="absolute bottom-2 right-2" />
 								</div>
 							)
 						},
@@ -97,19 +92,21 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 							label: 'JS',
 							value: 'js',
 							content: (
-								jsD?.trim().length > 0 && <div className='relative'>
+								jsD?.trim().length > 0 && <div className='relative h-full rounded overflow-hidden'>
 									<Editor
 										height="100%"
 										defaultLanguage="javascript"
-										className='h-[calc(100vh-180px)] rounded overflow-hidden'
 										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 										value={js}
 										onChange={(value) => setJs(value || '')}
 										options={{
 											automaticLayout: true,
+											minimap: {
+												enabled: false
+											}
 										}}
 									/>
-									<button className='absolute left-2 cursor-pointer active:scale-95 transition-transform bottom-2 text-sm text-white bg-zinc-900 rounded-md px-3 py-1' onClick={() => copyCode(js)}>Copy</button>
+									<CopyButton textToCopy={js} className="absolute bottom-2 right-2" />
 								</div>
 							)
 						}
@@ -118,7 +115,7 @@ export default function ComEditor ({ htmlD, cssD, jsD, useTailwind }) {
 			</div>
 		</ResizablePanel>
 		<ResizableHandle withHandle />
-		<ResizablePanel>
+		<ResizablePanel defaultSize={elementType === 'atoms' ? 55 : 60}>
 			<div className="bg-white rounded shadow h-full overflow-auto relative ml-1.5">
 				<iframe
 					srcDoc={combinedCode}

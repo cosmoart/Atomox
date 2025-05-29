@@ -17,7 +17,7 @@ export default async function Home () {
 			<section className='heightScreen max-h-[800px] flex items-center flex-row-reverse justify-center gap-12 relative pb-12'>
 				<div className='w-full mt-10 flex flex-col sm:justify-between items-center lg:items-start'>
 					<div className='flex gap-3 items-center mb-4'>
-						<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto lg:mx-0 size-24' />
+						<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto lg:mx-0 size-22' />
 						<div>
 							<StarOnGitHub />
 							<h1 className='text-7xl font-bold my-2'>Atomox</h1>

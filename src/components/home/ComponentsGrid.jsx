@@ -1,7 +1,7 @@
 export default function ComponentsGrid () {
 	return (
 		<div className='hidden lg:grid grid-cols-12 gap-4 w-full h-full'>
-			<div className='col-span-12 md:col-span-6 lg:col-span-4 row-span-2 bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-indigo-500 transition-all duration-300'>
+			<div className='col-span-5 row-span-2 bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border dark:border-gray-700 dark:hover:border-gray-600 transition-all'>
 				<div className='flex items-center mb-4'>
 					<div className='size-9 bg-indigo-500 rounded-xl flex items-center justify-center mr-3'>
 						<svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -19,21 +19,21 @@ export default function ComponentsGrid () {
 				</button>
 			</div>
 
-			<div className='col-span-12 md:col-span-7 lg:col-span-7 bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 2xl:p-6'>
-				<div className='flex items-center gap-3 mb-4'>
+			<div className='lg:col-span-6 bg-gray-800/60 border dark:border-gray-700 dark:hover:border-gray-600 transition-all backdrop-blur-sm rounded-xl p-4 2xl:p-6'>
+				<div className='flex items-center gap-2 mb-4'>
 					<img src='https://avatars.githubusercontent.com/u/81999801?v=4'
-						alt='Profile' className='size-9 rounded-full mr-3' />
+						alt='Profile' className='size-9 rounded-full' />
 					<div>
 						<h3 className='font-semibold'>Cosmoart</h3>
-						<p className='text-sm text-gray-400'>Full-stack Developer</p>
+						<p className='text-sm text-gray-400'>Web Developer</p>
 					</div>
-					<a href='https://github.com/cosmoart' target='_blank' rel='noopener noreferrer' className='ml-auto bg-indigo-600 hover:bg-indigo-700 px-4 py-1 rounded-full text-sm transition-colors'>
+					<a href='https://github.com/cosmoart' target='_blank' rel='noopener noreferrer' className='ml-auto bg-indigo-600 hover:bg-indigo-700 px-4 py-1 rounded-full text-sm transition-colors active:scale-95'>
 						Follow
 					</a>
 				</div>
 				<div className='flex gap-4 text-sm text-gray-400'>
-					<span>124 Following</span>
-					<span>15.2K Followers</span>
+					<span>169 Following</span>
+					<span>2.3K Followers</span>
 				</div>
 			</div>
 
@@ -136,9 +136,9 @@ export default function ComponentsGrid () {
 				</button>
 			</div> */}
 
-			<div className='col-span-12 md:col-span-3 lg:col-span-2 bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 2xl:p-6'>
+			<div className='col-span-3 card-border bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 2xl:p-6'>
 				<div className='text-center'>
-					<div className='w-16 h-16 mx-auto mb-3 bg-green-600 rounded-full flex items-center justify-center pulse-animation'>
+					<div className='size-14 2xl:size-18 mx-auto mb-3 bg-green-600 rounded-full flex items-center justify-center pulse-animation'>
 						<div className='w-6 h-6 bg-white rounded-full'></div>
 					</div>
 					<h4 className='font-semibold'>Online</h4>
