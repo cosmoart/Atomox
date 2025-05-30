@@ -241,7 +241,7 @@ export default function ComponentGuidelines () {
 				<section className='text-center bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 rounded-2xl p-12 text-white'>
 					<h2 className='text-3xl font-bold mb-4'>Ready to Share Your Component?</h2>
 					<p className='text-xl text-blue-100 dark:text-blue-200 mb-8 max-w-2xl mx-auto'>
-						By following these guidelines, you're helping us build an amazing community of developers sharing high-quality, accessible web components.
+						By following these guidelines, you&apos;re helping us build an amazing community of developers sharing high-quality, accessible web components.
 					</p>
 					<button className='bg-white dark:bg-zinc-800 text-blue-600 dark:text-blue-400 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-zinc-700 transition-colors inline-flex items-center space-x-2'>
 						<span>Submit Your Component</span>

@@ -54,28 +54,6 @@
   --lines-color: #ffffff05;
 }
 
-@keyframes headerScrollEffect {
-  from {
-    background: transparent;
-    backdrop-filter: blur(0px);
-    border-color: transparent
-  }
-
-  to {
-    background: color-mix(in oklab, var(--color-zinc-900) 60%, transparent);
-    backdrop-filter: blur(8px);
-    border-color: var(--color-zinc-800)
-  }
-}
-
-.header-scroll-effect {
-  animation-name: headerScrollEffect;
-  animation-timeline: scroll(root block);
-  animation-range: 100px 400px;
-  animation-fill-mode: forwards;
-  border-bottom: 1px solid transparent;
-}
-
 /* Buttons ============ */
 
 .shining-button {

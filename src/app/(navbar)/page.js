@@ -8,19 +8,19 @@ import Logo from '@/assets/icons/logo.svg';
 
 export default async function Home () {
 	return (
-		<div className='section'>
-			<div className='absolute w-full top-0 h-[calc(100svh+10px)] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-40'></div>
+		<div className='section py-1 2xl:py-8'>
+			<div className='absolute w-full top-0 h-[calc(100svh+10px)] max-h-[880px] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-40'></div>
 
 			<div className='absolute max-h-[880px] opacity-75 inset-0 top-0 m-0.5 left-0 rounded-xl -z-10  bg-positiox-[35%_top] bg-no-repeat sm:bg-positiox-[38%_top] md:bg-positiox-[40%_top] lg:bg-positiox-[44%_top] bg-[url("https://headlessui.com/_next/static/media/bg-top.c54a3f7e.jpg")] xl:bg-top forced-colors:hidden' aria-hidden='true'></div>
 			<div className='absolute max-h-[880px] opacity-75 inset-0 top-0 m-0.5 left-0 rounded-xl -z-10  bg-positiox-[35%_bottom] bg-no-repeat mix-blend-screen sm:bg-positiox-[38%_bottom] bg-[url("https://headlessui.com/_next/static/media/bg-bottom.e4e0724b.jpg")] md:bg-positiox-[40%_bottom] lg:bg-positiox-[44%_bottom] xl:bg-bottom forced-colors:hidden' aria-hidden='true'></div>
 
 			<section className='heightScreen max-h-[800px] flex items-center flex-row-reverse justify-center gap-12 relative pb-12'>
 				<div className='w-full mt-10 flex flex-col sm:justify-between items-center lg:items-start'>
-					<div className='flex gap-3 items-center mb-4'>
-						<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto lg:mx-0 size-22' />
-						<div>
+					<div className='flex gap-3 items-center mb-3'>
+						<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto lg:mx-0 size-22 hidden sm:block' />
+						<div className='flex flex-col items-center sm:items-start'>
 							<StarOnGitHub />
-							<h1 className='text-7xl font-bold my-2'>Atomox</h1>
+							<h1 className='text-7xl font-bold my-2 text-zinc-900 dark:text-white'>Atomox</h1>
 						</div>
 					</div>
 					{/* <StarOnGitHub />
