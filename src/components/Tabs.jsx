@@ -37,8 +37,8 @@ export default function Tabs ({ tabs = [] }) {
 					<div
 						key={tab.value}
 						className={cn(
-							'absolute w-full transition-opacity top-0 left-0 h-full',
-							activeTab === tab.value ? 'opacity-100' : 'opacity-0 pointer-events-none h-0 overflow-hidden'
+							'w-full transition-opacity top-0 left-0 h-full',
+							activeTab === tab.value ? 'opacity-100' : 'opacity-0 absolute  pointer-events-none h-0 overflow-hidden'
 						)}
 					>
 						{tab.content}
