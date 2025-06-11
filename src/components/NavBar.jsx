@@ -14,7 +14,7 @@ export function NavBar () {
 		<NavigationMenu className="max-w-none *:w-full md:*:w-auto">
 			<NavigationMenuList className="w-full *:grow">
 				<NavigationMenuItem>
-					<NavigationMenuTrigger className="dark:bg-zinc-900/30! hover:dark:bg-zinc-700/30! bg-white/20! hover:bg-white/50!">
+					<NavigationMenuTrigger className="hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/40!">
 						<Link href="/atoms" >
 							Atoms
 						</Link>
@@ -42,7 +42,7 @@ export function NavBar () {
 					</NavigationMenuContent>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<NavigationMenuTrigger className="dark:bg-zinc-900/30! hover:dark:bg-zinc-700/30! bg-white/20! hover:bg-white/50!">
+					<NavigationMenuTrigger className="hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/50!">
 						<Link href="/molecules" >
 							Molecules
 						</Link>
