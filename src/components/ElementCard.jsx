@@ -65,6 +65,7 @@ function ElementImage ({ data }) {
 			<Image src={data.img_url} alt='Atomox' width={1280} height={720} className='w-full h-full object-cover group-hover:scale-105 transition-all' />
 		</div>
 	</Link>
+	
 	function combinedCode (useTailwind, html, css, redirectUrl) {
 		return `
     <html>

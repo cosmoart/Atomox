@@ -39,9 +39,9 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 			{
 				mode === 'menu' && <DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant="ghost" size="icon">
-							<EllipsisVertical className="h-5 w-5" />
-						</Button>
+						<button variant="ghost" size="icon" className="py-1 px-0.5 cursor-pointer active:scale-90 transition-transform">
+							<EllipsisVertical className="size-5" />
+						</button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
 						<DropdownMenuItem onClick={() => setOpen(true)} >

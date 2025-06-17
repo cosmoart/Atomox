@@ -1,16 +1,27 @@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination'
 import { useRouter } from 'next/navigation'
 
-export default function PaginationFooter ({ totalPages, setPage, page, query }) {
+export default function PaginationFooter ({ totalPages, setPage, page, query: queries }) {
 	const router = useRouter()
 	const handlePageChange = (newPage) => {
-		const newParams = new URLSearchParams(window.location.search);
-		if (query) newParams.set('q', query);
-		newParams.set('page', newPage.toString());
-
-		router.push(`?${newParams.toString()}`);
+		router.push(`?${newParams(newPage).toString()}`);
 		setPage(newPage);
 	};
+
+	function newParams (newPage = page) {
+		const newParams = new URLSearchParams(window.location.search);
+		if (queries.query) newParams.set('q', queries.query)
+		else newParams.delete('q');
+		if (queries.style !== 'all') newParams.set('style', queries.style)
+		else newParams.delete('style');
+		if (queries.sort !== 'likes') newParams.set('sort', queries.sort)
+		else newParams.delete('sort');
+		newParams.set('page', newPage.toString())
+		if (newPage > 1) newParams.set('page', newPage.toString())
+		else newParams.delete('page');
+
+		return newParams;
+	}
 
 	const generatePageNumbers = (current, total) => {
 		const pages = [];
@@ -37,7 +48,7 @@ export default function PaginationFooter ({ totalPages, setPage, page, query }) 
 			<PaginationItem>
 				<PaginationPrevious
 					className={page > 1 ? 'cursor-pointer' : 'cursor-not-allowed pointer-events-none'}
-					href='#'
+					href={`?${newParams(page - 1).toString()}`}
 					onClick={(e) => {
 						e.preventDefault();
 						if (page > 1) handlePageChange(page - 1);
@@ -51,7 +62,7 @@ export default function PaginationFooter ({ totalPages, setPage, page, query }) 
 						<PaginationEllipsis />
 					) : (
 						<PaginationLink
-							href={`?q=${query}&page=${p}`}
+							href={`?${newParams(p).toString()}`}
 							isActive={p === page}
 							onClick={(e) => {
 								e.preventDefault();
@@ -66,7 +77,7 @@ export default function PaginationFooter ({ totalPages, setPage, page, query }) 
 
 			<PaginationItem>
 				<PaginationNext
-					href='#'
+					href={`?${newParams(page + 1).toString()}`}
 					className={page < totalPages ? 'cursor-pointer' : 'cursor-not-allowed pointer-events-none'}
 					onClick={(e) => {
 						e.preventDefault();

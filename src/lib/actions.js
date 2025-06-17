@@ -23,7 +23,7 @@ export async function addElement (data) {
 	}
 }
 
-export default async function getElements (elementId, query, page = 1, pageSize = 10) {
+export default async function getElements ({ elementId, query, page = 1, pageSize = 10, sort = 'likes', style = 'all' }) {
 	const clerkUser = await currentUser();
 	const userId = clerkUser?.id;
 	const client = createServerSupabaseClient();
@@ -35,13 +35,14 @@ export default async function getElements (elementId, query, page = 1, pageSize 
 			.eq('published', true)
 			.eq('element_id', elementId);
 
-		if (query) baseQuery = baseQuery.ilike('tags', `%${query}%`);
+		if (query) baseQuery = baseQuery.ilike('tags', `%${query}%`)
+		if (style !== 'all') baseQuery = baseQuery.eq('use_tailwind', style === 'tailwind')
 
 		const from = (page - 1) * pageSize;
 		const to = from + pageSize - 1;
 
 		const { data: elements, error: elementsError, count } = await baseQuery
-			.order('likes', { ascending: false })
+			.order(sort, { ascending: false })
 			.range(from, to);
 
 		if (elementsError) return { error: 'Error getting elements' };

@@ -41,7 +41,7 @@ export default async function Element ({ id, elementId }) {
 		<div className={`section ${elementType === 'atoms' ? 'minHeightScreen flex flex-col' : 'px-1! py-0! '}`}>
 			<CodeEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} className={`${elementType === 'atoms' ? 'h-full' : 'minHeightScreen '}`} elementType={elementType} />
 
-			<article className='grid md:grid-cols-2 items-center gap-3 h-full py-3 px-4'>
+			<article className='grid md:grid-cols-2 items-center gap-3 h-full py-3 px-4 bg-zinc-50  dark:bg-zinc-900 mt-2.5 rounded-full'>
 				<div className='flex justify-between items-center'>
 					<section className='flex gap-5 md:gap-8'>
 						<div className='flex gap-1 items-center'>
@@ -59,6 +59,7 @@ export default async function Element ({ id, elementId }) {
 
 					<TimeAgoTooltip dateString={element.created_at} />
 				</div>
+
 				<div className='flex justify-between items-center'>
 					{
 						element.credits_link && <section className='w-full'>
@@ -85,7 +86,7 @@ export default async function Element ({ id, elementId }) {
 					</div>
 				</div>
 			</article>
-			<section className='px-4'>
+			{/* <section className='px-4'>
 				<h2 className='text-2xl font-medium hidden'>Tags</h2>
 				<ul className='flex gap-2'>
 					{
@@ -96,7 +97,7 @@ export default async function Element ({ id, elementId }) {
 						))
 					}
 				</ul>
-			</section>
+			</section> */}
 		</div>
 	)
 }

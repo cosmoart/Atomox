@@ -63,7 +63,7 @@ export function NavBar () {
 									<span className="text-sm font-medium mt-1 inline-block text-zinc-900/80 dark:text-white/80">
 										View all
 									</span>
-									<ArrowRight size={18} className='w-0 transition-all group-hover:w-4' />
+									<ArrowRight size={17} className='transition-all group-hover:ml-1' />
 								</Link>
 							</li>
 						</ul>
