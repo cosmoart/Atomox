@@ -7,8 +7,8 @@ export default function ElementsList ({ data, title, description }) {
 
 			<article className='flex flex-col md:flex-row gap-3 items-center'>
 				<section className='grow'>
-					<h1 className='text-3xl font-medium'>{title}</h1>
-					<p className='max-w-[80ch] text-pretty mt-1 text-zinc-900/80 dark:text-white/80 text-[15px]'>
+					<h1 className='text-3xl font-semibold'>{title}</h1>
+					<p className='max-w-[80ch] text-balance mt-1 text-zinc-900/80 dark:text-white/80 text-[15px]'>
 						{description}
 					</p>
 				</section>

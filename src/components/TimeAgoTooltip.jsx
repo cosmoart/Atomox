@@ -33,8 +33,8 @@ export default function TimeAgoTooltip ({ dateString }) {
 		<TooltipProvider>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<span className="cursor-default text-[15px] opacity-95 flex gap-1.5 items-center">
-						<Clock size={17} />
+					<span className="cursor-default text-[15px] opacity-95 flex gap-2 items-center">
+						<Clock size={18} />
 						{getTimeAgo(date)}
 					</span>
 				</TooltipTrigger>

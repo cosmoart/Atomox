@@ -14,8 +14,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 
 export default function Elements ({ data: data2, type }) {
 	const searchParams = useSearchParams()
-	const [elements, setElements] = useState('loading')
 	const [isPending, startTransition] = useTransition()
+	const elementsPerPage = PagesTypes[type].pageSize;
+	const router = useRouter()
+
+	const [elements, setElements] = useState('loading')
 	const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1);
 	const [totalElements, setTotalElements] = useState(0);
 	const [queries, setQueries] = useState({
@@ -23,8 +26,6 @@ export default function Elements ({ data: data2, type }) {
 		style: searchParams.get('style') || 'all',
 		sort: searchParams.get('sort') || 'likes'
 	})
-	const elementsPerPage = PagesTypes[type].pageSize;
-	const router = useRouter()
 
 	useEffect(() => {
 		startTransition(async () => {

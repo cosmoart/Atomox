@@ -38,7 +38,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
     </html>
   `
 
-	return <ResizablePanelGroup className={`h-full grow ${className}`} direction="horizontal">
+	return <ResizablePanelGroup className={`h-full grow ${elementType === 'atoms' ? "max-h-[800px]" : "max-h-[900px]"}  ${className}`} direction="horizontal">
 		<ResizablePanel defaultSize={elementType === 'atoms' ? 45 : 40}>
 			<div className="flex flex-col h-full mr-1.5">
 				<Tabs
