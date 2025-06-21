@@ -7,6 +7,18 @@ export async function generateStaticParams () {
 	return Atoms.map(atom => ({ atom: atom.id }));
 }
 
+export async function generateMetadata ({ params }) {
+	const { atom } = await params;
+	const data = Atoms.find(a => a.id === atom);
+
+	if (!atom || !data) return null;
+
+	return {
+		title: `${data.name} | Atomox`,
+		description: data.description
+	};
+}
+
 export default async function AtomPage ({ params }) {
 	const { atom } = await params
 	const data = Atoms.find(a => a.id === atom);

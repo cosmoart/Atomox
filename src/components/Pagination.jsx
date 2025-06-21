@@ -1,7 +1,7 @@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination'
 import { useRouter } from 'next/navigation'
 
-export default function PaginationFooter ({ totalPages, setPage, page, query: queries }) {
+export default function PaginationFooter ({ totalPages, setPage, page, queries }) {
 	const router = useRouter()
 	const handlePageChange = (newPage) => {
 		router.push(`?${newParams(newPage).toString()}`);
@@ -10,11 +10,11 @@ export default function PaginationFooter ({ totalPages, setPage, page, query: qu
 
 	function newParams (newPage = page) {
 		const newParams = new URLSearchParams(window.location.search);
-		if (queries.query) newParams.set('q', queries.query)
+		if (queries?.query) newParams.set('q', queries.query)
 		else newParams.delete('q');
-		if (queries.style !== 'all') newParams.set('style', queries.style)
+		if (queries?.style !== 'all' && queries?.style) newParams.set('style', queries.style)
 		else newParams.delete('style');
-		if (queries.sort !== 'likes') newParams.set('sort', queries.sort)
+		if (queries?.sort !== 'likes' && queries?.sort) newParams.set('sort', queries.sort)
 		else newParams.delete('sort');
 		newParams.set('page', newPage.toString())
 		if (newPage > 1) newParams.set('page', newPage.toString())

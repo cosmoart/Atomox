@@ -34,14 +34,14 @@ export default async function Element ({ id, elementId }) {
 		<Link href='/create' className='px-7 mt-5 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>Create one</Link>
 	</div>
 
-	const { _ } = await client.from('elements').update({ views: element.views + 1 }).eq('id', id)
+	const _ = await client.from('elements').update({ views: element.views + 1 }).eq('id', id)
 	const user = await currentUser()
 
 	return (
 		<div className={`${elementType === 'atoms' ? 'section minHeightScreen flex flex-col' : 'px-1! py-0! '}`}>
 			<CodeEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} className={`${elementType === 'atoms' ? 'h-full' : 'minHeightScreen 2xl:min-h-auto!'}`} elementType={elementType} />
 
-			<article className={`section w-full flex flex-col sm:flex-row justify-between items-center gap-3 h-full py-2 px-3 sm:px-5 bg-zinc-50 rounded-2xl dark:bg-zinc-900 mt-2.5 sm:rounded-full ${elementType === 'atoms' ? '' : 'mx-4 2xl:mx-auto'}`}>
+			<article className={`section w-full flex flex-col sm:flex-row justify-between items-center gap-3 h-full py-2 pl-3 sm:pl-5 pr-2 2xl:pr-4  bg-zinc-50 rounded-2xl dark:bg-zinc-900 mt-2.5 sm:rounded-full ${elementType === 'atoms' ? '' : 'mx-4 2xl:mx-auto'}`}>
 				<section className='flex items-center'>
 					<div className='flex gap-1 items-center'>
 						<Eye size={19} />
@@ -63,11 +63,13 @@ export default async function Element ({ id, elementId }) {
 				</section>
 
 				{
-					element.credits_link && <section className='rounded-full mr-auto sm:ml-8 bg-gradient-to-r from-indigo-500 to-blue-500 pr-4 p-1.5 text-[15px] tracking-wide font-medium text-white'>
+					element.credits_link && <section className='rounded-full mr-auto sm:ml-6 bg-gradient-to-r from-indigo-500 to-blue-500 pr-4 p-1.5 text-[15px] tracking-wide font-medium text-white'>
 						<h2 className='text-2xl font-medium hidden'>Credits</h2>
 						<p className='text-[15px] flex gap-2 items-center'>
 							<Info />
-							This element is base/inspired by <a href={element.credits_link} target='_blank' rel='noopener noreferrer' className='underline'>{element.credits_name}</a>
+							<span>
+								This component is inspired by the work of <a href={element.credits_link} target='_blank' rel='noopener noreferrer' className='underline'>{element.credits_name}</a>
+							</span>
 						</p>
 					</section>
 				}
@@ -75,8 +77,8 @@ export default async function Element ({ id, elementId }) {
 				<div className='flex justify-between items-center'>
 
 					<div className='flex items-center gap-2 justify-end w-full'>
-						<Link href={`/u/${element.username}`} className='flex gap-2 items-center'>
-							<Avatar className='size-8.5' >
+						<Link href={`/u/${element.username}`} className='flex gap-2 items-center hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors rounded-full pr-3.5 group'>
+							<Avatar className='size-8.5 group-hover:scale-110 transition-transform' >
 								<AvatarImage src={element.user_avatar} alt={`${element.username} avatar`} />
 								<AvatarFallback>{element.username.slice(0, 2)}</AvatarFallback>
 							</Avatar>

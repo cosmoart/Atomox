@@ -91,27 +91,7 @@ export default function CodeEditorPreview () {
 			setStatus('error')
 			console.log(error)
 		}
-
-		// handleCapture()
 	}
-
-	const handleCapture = async () => {
-		const element = iframeViewer.current;
-		if (!element) return;
-
-		const canvas = await html2canvas(element.contentWindow.document.documentElement, {
-			useCORS: true,
-			allowTaint: true,
-			width: 1280,
-			height: 720,
-		});
-		const dataUrl = canvas.toDataURL('image/png');
-
-		const link = document.createElement('a');
-		link.href = dataUrl;
-		link.download = 'captura.png';
-		link.click();
-	};
 
 	return <ResizablePanelGroup className='h-[calc(100svh-35px)]! w-auto! m-4' direction='horizontal'>
 		<ResizablePanel >

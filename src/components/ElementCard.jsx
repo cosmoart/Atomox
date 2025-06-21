@@ -57,7 +57,7 @@ export default function ElementCard ({ data }) {
 	)
 }
 
-function ElementImage ({ data }) {
+function ElementImage ({ data, lazy }) {
 	const elementType = Atoms.find(element => element.id === data.element_id) ? "atoms" : "molecules"
 
 	if (data.img_url) return <Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video rounded-t-lg '>
@@ -65,7 +65,7 @@ function ElementImage ({ data }) {
 			<Image src={data.img_url} alt='Atomox' width={1280} height={720} className='w-full h-full object-cover group-hover:scale-105 transition-all' />
 		</div>
 	</Link>
-	
+
 	function combinedCode (useTailwind, html, css, redirectUrl) {
 		return `
     <html>
@@ -88,33 +88,13 @@ function ElementImage ({ data }) {
 		<div className='flex flex-col overflow-hidden aspect-video rounded-t-lg relative'>
 			<iframe
 				title='preview'
+				loading="lazy"
 				className={`${elementType === "molecules" ? "w-[250%] h-[250%] aspect-video scale-40 absolute origin-top-left" : "w-full h-full"}`}
 				sandbox='allow-same-origin allow-scripts allow-top-navigation'
 				srcDoc={combinedCode(data.use_tailwind, data.html, data.css, `/${elementType}/${data.element_id}/${data.id}`)}
 			/>
 		</div>
 	)
-	// function combinedCode (useTailwind, html, css) {
-	// 	return `
-	//   <html>
-	//     <head>
-	//       ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ``}
-	// 			<style>${css}</style>
-	//     </head>
-	//     <body style="height:100svh;display:grid;place-items:center;overflow:hidden;">${html}</body>
-	//   </html>
-	// `
-	// }
-
-	// return <div className='flex flex-col overflow-hidden aspect-video rounded-t-lg relative'>
-	// 	<iframe
-	// 		title='preview'
-	// 		className={`${elementType === "molecules" ? "w-[250%] h-[250%] aspect-video scale-40 absolute origin-top-left" : "w-full h-full"}`}
-	// 		sandbox='allow-same-origin allow-scripts'
-	// 		srcDoc={combinedCode(data.use_tailwind, data.html, data.css)}
-	// 	/>
-	// 	<Link href={`/${elementType}/${data.element_id}/${data.id}`} className='absolute top-0 left-0 w-full h-full z-10 '></Link>
-	// </div>
 }
 
 export function ElementCardSkeleton () {

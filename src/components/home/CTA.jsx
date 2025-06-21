@@ -1,4 +1,4 @@
-import { ArrowRight, Code, Github, Plus, Sparkles, Upload, Users } from 'lucide-react';
+import { ArrowRight, Code, Github, Heart, Plus, Sparkles, Upload, Users } from 'lucide-react';
 
 export default function CTA () {
 	return (
@@ -97,10 +97,17 @@ export default function CTA () {
 								suggest features, or help us build something amazing together.
 							</p>
 						</div>
-						<a href="https://github.com/cosmoart/Atomox" target="_blank" rel="noopener noreferrer" className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 group/btn text-nowrap">
-							<Github className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
-							<span>Contribute on GitHub</span>
-						</a>
+
+						<div className='flex gap-4 items-center'>
+							<a href="https://ko-fi.com/cosmoart" target="_blank" rel="noopener noreferrer" className="bg-white text-zinc-900 px-5 py-2  rounded-lg font-medium flex items-center space-x-2 group/btn text-nowrap active:scale-95 transition-all">
+								<Heart className="size-4.5 group-hover/btn:scale-120 text-pink-500 fill-transparent group-hover/btn:fill-pink-500 group-hover/btn:rotate-6 transition-all" />
+								<span>Sponsor</span>
+							</a>
+							<a href="https://github.com/cosmoart/Atomox" target="_blank" rel="noopener noreferrer" className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium transition-all  flex items-center space-x-2 group/btn text-nowrap">
+								<Github className="size-4.5 group-hover/btn:scale-120 transition-transform" />
+								<span>Contribute on GitHub</span>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>

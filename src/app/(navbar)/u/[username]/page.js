@@ -48,7 +48,7 @@ export default async function UserProfile ({ params }) {
 						}
 						<Avatar className=' size-28 md:size-34' >
 							<AvatarImage src={user.imageUrl} />
-							<AvatarFallback>{user.firstName.slice(0, 2)}</AvatarFallback>
+							<AvatarFallback className='text-4xl font-semibold'>{user.username.slice(0, 2).toUpperCase()}</AvatarFallback>
 						</Avatar>
 					</div>
 

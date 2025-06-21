@@ -136,9 +136,13 @@ export default function Header () {
 
 			<nav className="hidden md:flex items-center gap-2">
 				<SignedOut>
-					<Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining-button btn-primary text-[15px] tracking-wide via-purple-500/35!">
+					{/* <Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining-button btn-primary text-[15px] tracking-wide via-purple-500/35!">
+						Sign in
+					</Link> */}
+					<Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining-button btn-primary bg-gradient-to-bl text-[15px] tracking-wide ">
 						Sign in
 					</Link>
+
 					<ThemeToggle />
 				</SignedOut>
 				<SignedIn>

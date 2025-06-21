@@ -7,6 +7,18 @@ export async function generateStaticParams () {
 	return Molecules.map(molecule => ({ molecule: molecule.id }));
 }
 
+export async function generateMetadata ({ params }) {
+	const { molecule } = await params;
+	const data = Molecules.find(a => a.id === molecule);
+
+	if (!molecule || !data) return null;
+
+	return {
+		title: `${data.name} | Atomox`,
+		description: data.description
+	};
+}
+
 export default async function MoleculePage ({ params }) {
 	const { molecule } = await params
 	const data = Molecules.find(a => a.id === molecule);
