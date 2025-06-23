@@ -86,6 +86,12 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount, with
 				<SignUpButton mode='modal'
 					appearance={{
 						baseTheme: resolvedTheme === 'dark' ? dark : undefined,
+						elements: {
+							logoBox: 'hidden!',
+							modalContent: "m-auto!",
+							buttonArrowIcon: 'hidden!',
+							formButtonPrimary: "btn-primary text-white! font-medium! shadow-none! text-[15px]!"
+						},
 						layout: {
 							unsafe_disableDevelopmentModeWarnings: true,
 						},

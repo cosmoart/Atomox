@@ -33,7 +33,6 @@
     "clsx": "^2.1.1",
     "emmet-monaco-es": "^5.5.0",
     "framer-motion": "^12.12.1",
-    "html2canvas-pro": "^1.5.10",
     "lucide-react": "^0.503.0",
     "next": "15.3.1",
     "next-themes": "^0.4.6",

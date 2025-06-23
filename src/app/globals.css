@@ -176,60 +176,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* Componentes grids ============ */
-
-.atoms-grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "buttons backgrounds backgrounds inputs"
-    "loaders loaders checkboxes radio-buttons"
-    "tooltips switches switches radio-buttons"
-    "tooltips progress-bars progress-bars selects";
-}
-
-.buttons {
-  grid-area: buttons;
-}
-
-.loaders {
-  grid-area: loaders;
-}
-
-.backgrounds {
-  grid-area: backgrounds;
-}
-
-.inputs {
-  grid-area: inputs;
-}
-
-.checkboxes {
-  grid-area: checkboxes;
-}
-
-.radio-buttons {
-  grid-area: radio-buttons;
-}
-
-.tooltips {
-  grid-area: tooltips;
-}
-
-.progress-bars {
-  grid-area: progress-bars;
-}
-
-.selects {
-  grid-area: selects;
-}
-
-.switches {
-  grid-area: switches;
-}
-
 :root {
   --main-color: #525fff;
   --root-pr: 0px;
@@ -302,93 +248,6 @@
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
 
-/* Heart ============ */
-
-.heart-container {
-  --heart-color: rgb(255, 91, 137);
-  position: relative;
-  width: 19px;
-  height: 19px;
-  transition: .3s;
-}
-
-.heart-container .checkbox {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 20;
-  cursor: pointer;
-}
-
-.heart-container .svg-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.heart-container .svg-outline,
-.heart-container .svg-filled {
-  fill: var(--heart-color);
-  position: absolute;
-}
-
-.heart-container .svg-filled {
-  animation: keyframes-svg-filled 1s;
-  display: none;
-}
-
-.heart-container .svg-celebrate {
-  position: absolute;
-  animation: keyframes-svg-celebrate .5s;
-  animation-fill-mode: forwards;
-  display: none;
-  stroke: var(--heart-color);
-  fill: var(--heart-color);
-  stroke-width: 2px;
-}
-
-.heart-active .svg-filled {
-  display: block !important
-}
-
-.heart-active .svg-celebrate {
-  display: block !important
-}
-
-@keyframes keyframes-svg-filled {
-  0% {
-    transform: scale(0);
-  }
-
-  25% {
-    transform: scale(1.2);
-  }
-
-  50% {
-    transform: scale(1);
-    filter: brightness(1.5);
-  }
-}
-
-@keyframes keyframes-svg-celebrate {
-  0% {
-    transform: scale(0);
-  }
-
-  50% {
-    opacity: 1;
-    filter: brightness(1.5);
-  }
-
-  100% {
-    transform: scale(1.4);
-    opacity: 0;
-    display: none;
-  }
-}
 
 @keyframes jumbo {
   from {
@@ -407,12 +266,6 @@
       transparent 10%,
       transparent 12%,
       #fff 16%);
-  /* --stripesDark: repeating-linear-gradient(100deg,
-      #000 0%,
-      #000 7%,
-      transparent 10%,
-      transparent 12%,
-      #000 16%); */
   --stripesDark: repeating-linear-gradient(100deg,
       #000 0%,
       transparent 5%,
@@ -428,25 +281,12 @@
       #60a5fa 20%,
       #5eead4 25%,
       #60a5fa 30%);
-  /* --rainbowDark: repeating-linear-gradient(100deg,
-  oklch(62.3% 0.214 259.815) 10%,
-      oklch(51.1% 0.262 276.966) 15%,
-      oklch(51.1% 0.262 276.966) 20%,
-      oklch(62.7% 0.265 303.9) 25%,
-      oklch(58.5% 0.233 277.117) 30%); */
   --rainbowDark: repeating-linear-gradient(100deg,#6f6f81);
-  /* --rainbowDark: repeating-linear-gradient(100deg,
-      #4d9dff 10%,
-      #aa51f3 15%,
-      #4658ff 20%,
-      #ad7aff 25%,
-      #395cf8 30%); */
   background-image: var(--stripes), var(--rainbow);
   background-position: 50% 50%, 50% 50%;
   background-size: 300%, 200%;
   filter: invert(100%);
   mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 60%);
-  /* mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%); */
   pointer-events: none;
 }
 

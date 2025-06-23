@@ -5,7 +5,6 @@ import Editor from '@monaco-editor/react'
 import { Switch } from '@/components/ui/switch'
 import { useRouter } from 'next/navigation'
 import { emmetHTML, emmetCSS } from 'emmet-monaco-es';
-import html2canvas from 'html2canvas-pro';
 import { ChevronLeft } from 'lucide-react'
 import Confetti from '@/lib/confetti'
 import DialogSubmit from './DialogSubmit'
@@ -20,6 +19,11 @@ import tailwindIcon from '@/assets/icons/tailwind.svg'
 import { dark } from '@clerk/themes'
 // import Tabs from '@/components/Tabs'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+
+// export const metadata = {
+// 	title: 'My Blog',
+// 	description: '...',
+// }
 
 export default function CodeEditorPreview () {
 	const [html, setHtml] = useState(Atoms[0].htmlTailwind ?? '')
