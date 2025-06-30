@@ -38,6 +38,8 @@ export default function Elements ({ data: data2, type }) {
 				style: queries.style
 			});
 
+			res.data.push('ad')
+
 			setElements(res.error ? ({ error: res.error }) : res.data);
 			setTotalElements(res.totalCount);
 		});
@@ -83,7 +85,7 @@ export default function Elements ({ data: data2, type }) {
 
 				<div className='flex flex-col gap-3 w-full self-end sm:w-auto'>
 					<p className={`text-zinc-900/80 w-fit ml-auto dark:text-white/80 text-sm relative text-right after:absolute after:w-full after:h-full dark:after:bg-zinc-800 after:bg-zinc-300 after:rounded-full after:animate-pulse after:top-0 after:left-0 ${(isPending || elements === 'loading') ? 'after:opacity-100' : 'after:pointer-events-none after:opacity-0!'}`}>
-						<span className={`transition-opacity ${(isPending || elements === 'loading') ? 'opacity-0' : ''}`}>{totalElements} elements. Page {Math.ceil(totalElements / elementsPerPage) === 0 ? 0 : currentPage} of {Math.ceil(totalElements / elementsPerPage)}.</span>
+						<span className={`transition-opacity ${(isPending || elements === 'loading') ? 'opacity-0' : ''}`}>{totalElements} element{totalElements > 1 ?? 's'}. Page {Math.ceil(totalElements / elementsPerPage) === 0 ? 0 : currentPage} of {Math.ceil(totalElements / elementsPerPage)}.</span>
 					</p>
 
 					<form onSubmit={handleSearch} className='flex gap-2'>
@@ -145,7 +147,7 @@ function ElementsList ({ isPending, elements }) {
 	if (elements.length < 1) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
 		<Image src={componentsIcon} alt='empty' width={100} height={100} className='dark:invert' />
 		<p className='text-center text-muted-foreground'>No components found <span className='italic font-medium'>yet</span>. But you can change that</p>
-		<Link href='/create' className='btn-primary shining-button px-7 py-1.5 rounded-lg bg-gradient-to-l text-[15px] tracking-wide font-medium text-white transition-all active:scale-95  cursor-pointer'>Create one</Link>
+		<Link href='/create' className='btn-primary shining px-7 py-1.5 rounded-lg bg-gradient-to-l text-[15px] tracking-wide font-medium text-white transition-all active:scale-95  cursor-pointer'>Create one</Link>
 	</div>
 
 	if (elements.error) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col '>

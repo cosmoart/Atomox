@@ -37,7 +37,7 @@ export default function UserElements ({ username, isAuthor }) {
 			<Image src={componentsIcon} alt='empty' width={80} height={80} className='dark:invert' />
 			<p>{isAuthor ? "You haven't created any component yet." : "This user hasn't created any component."}</p>
 			{
-				isAuthor && <Link href='/create' className='px-7 py-1.5 rounded-lg btn-primary text-[15px] tracking-wide font-medium cursor-pointer hover:scale-x-105 shining-button'>Create one</Link>
+				isAuthor && <Link href='/create' className='px-7 py-1.5 rounded-lg btn-primary text-[15px] tracking-wide font-medium cursor-pointer hover:scale-x-105 shining'>Create one</Link>
 			}
 		</div>
 	</div>

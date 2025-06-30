@@ -12,7 +12,7 @@ export default function Error ({ error }) {
 				Something went wrong!
 			</h1>
 			<p className='text-pretty mt-1 text-zinc-900/80 dark:text-white/80 text-lg text-center 2xl:text-2xl'>An unexpected error has occurred. Please try again later.</p>
-			<Link href='/' className='btn btn-primary mt-3 py-1.5 flex gap-1 px-8 pr-10 group shining-button 2xl:text-lg'>
+			<Link href='/' className='btn btn-primary mt-3 py-1.5 flex gap-1 px-8 pr-10 group shining 2xl:text-lg'>
 				<ArrowLeftIcon className='size-5 group-hover:-translate-x-1 transition-transform 2xl:size-7' />
 				Go back home
 			</Link>

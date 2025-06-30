@@ -383,6 +383,13 @@ option::checkmark {
 }
 `,
 	},
+
+	pagination: {
+		html: '',
+		htmlTailwind: '',
+		css: '',
+		js: '',
+	},
 }
 
 export const moleculesCode = {
@@ -429,12 +436,6 @@ export const moleculesCode = {
 		css: '',
 	},
 
-	'sidebars': {
-		html: '',
-		htmlTailwind: '',
-		css: '',
-	},
-
 	'pricingTables': {
 		html: '',
 		htmlTailwind: '',
@@ -459,23 +460,31 @@ export const moleculesCode = {
 		css: '',
 	},
 
-	'authentication': {
-		html: '',
-		htmlTailwind: '',
-		css: '',
-		js: '',
-	},
-
 	'ctas': {
 		html: '',
 		htmlTailwind: '',
 		css: '',
 	},
 
-	'dashboards': {
+	'stats': {
 		html: '',
 		htmlTailwind: '',
 		css: '',
+		js: '',
+	},
+
+	contentSections: {
+		html: '',
+		htmlTailwind: '',
+		css: '',
+		js: '',
+	},
+
+	'eCommerce': {
+		html: '',
+		htmlTailwind: '',
+		css: '',
+		js: '',
 	},
 
 	'cookies': {

@@ -58,15 +58,17 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 	const { handleSubmit, control, register, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
 	const { user } = useUser();
 
-	const elementName = elementType === 'atoms' ? Atoms.find(element => element.id === elementId)?.name : Molecules.find(element => element.id === elementId)?.name
-
+	const component = (elementType === 'Atoms'
+		? Atoms.find(el => el.id === elementId)
+		: Molecules.find(el => el.id === elementId))
+	console.log(elementId, component, elementType, Atoms.find(el => el.id === elementId))
 	return (
-		<Dialog >
-			<DialogTrigger className='px-10 py-1.5 rounded-lg shining-button hover:scale-x-105 bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
+		<Dialog>
+			<DialogTrigger className='px-10 py-1.5 rounded-lg shining hover:scale-x-105 bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
 			<DialogContent className={`p-6! ${status === undefined || status === "loading" ? " max-w-[600px]!" : "max-w-[580px]!"} dark:bg-zinc-900! `}>
 				<DialogTitle className="text-center mt-1">
-					{status === undefined && <span>Create {elementName} ({elementType})</span>}
-					{status === "loading" && <span>Creating {elementType} - {elementName}...</span>}
+					{status === undefined && <span>Create {component.name} ({elementType})</span>}
+					{status === "loading" && <span>Creating {elementType} - {component.name}...</span>}
 					{status === 'success' && <span className='flex flex-col items-center gap-5'>
 						<CheckCircle2 size={60} className='text-indigo-500' />
 						Component created successfully!
@@ -91,7 +93,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 
 							<label>
 								<p className='font-medium mt-2 mb-2'>Tags</p>
-								<InputMultiTag name="tags" placeholder="3D, Purple, Animation..." maxTags={10} control={control} maxLength={15} disabled={status === "loading"} />
+								<InputMultiTag name="tags" placeholder={component.tagsPlaceholder ?? "Minimalist, 3D, Purple, Animation..."} maxTags={10} control={control} maxLength={15} disabled={status === "loading"} />
 								{errors.tags && <p className='text-red-500 text-xs mt-0.5'>{errors.tags.message}</p>}
 							</label>
 							{/* <input type="text" placeholder='Licence' className='px-3 py-2 rounded-lg card-border w-full' /> */}

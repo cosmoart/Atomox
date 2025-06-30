@@ -6,8 +6,11 @@ import { Atoms } from '@/lib/conts';
 import Image from 'next/image';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import ElementDelete from './ElementDelete';
+import Ad from './Ad';
 
 export default function ElementCard ({ data }) {
+	if (data === "ad") return <Ad />
+
 	return (
 		<section className='rounded-lg h-fit dark:bg-zinc-900 card-border relative'>
 			{

@@ -16,8 +16,6 @@ export default function Header () {
 	const { resolvedTheme, setTheme } = useTheme()
 
 	return (<header className="mx-1! sticky top-1 z-50 rounded-t-xl ">
-		{/* return (<header className="header-scroll-effect mx-1! sticky top-1 z-50 rounded-t-xl "> */}
-
 		<div className='header-scroll-effect absolute top-0 left-0 w-full h-full bg-white/70 dark:border-zinc-800 dark:bg-zinc-900/70 rounded-t-xl border-b border-zinc-100 backdrop-blur-sm'></div>
 
 		<div className='flex items-center justify-between section py-2.5 lg:mx-auto!'>
@@ -44,7 +42,7 @@ export default function Header () {
 				<div className={`absolute max-w-sm top-0 overflow-auto ${open ? "right-0" : "-right-full"} bg-white/80 dark:bg-zinc-800/80 w-3/4 rounded-xl py-3 px-5 h-screen backdrop-blur transition-all`}>
 					<SignedOut>
 						<div className='flex gap-2 items-center'>
-							<Link href="/sign-in" className="px-12 py-1.5 rounded-lg shining-button btn-primary text-[15px] tracking-wide inline-block via-purple-500/20!">
+							<Link href="/sign-in" className="px-12 py-1.5 rounded-lg shining btn-primary text-[15px] tracking-wide inline-block via-purple-500/20!">
 								Sign in
 							</Link>
 							<ThemeToggle />
@@ -52,7 +50,7 @@ export default function Header () {
 					</SignedOut>
 					<SignedIn>
 						<div className='flex gap-2 items-center'>
-							<Link href="/create" className='px-7 py-1.5 rounded-lg shining-button btn-primary text-[15px] tracking-wide inline-block'>
+							<Link href="/create" className='px-7 py-1.5 rounded-lg shining btn-primary text-[15px] tracking-wide inline-block'>
 								Create
 							</Link>
 
@@ -136,17 +134,17 @@ export default function Header () {
 
 			<nav className="hidden md:flex items-center gap-2">
 				<SignedOut>
-					{/* <Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining-button btn-primary text-[15px] tracking-wide via-purple-500/35!">
+					{/* <Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining btn-primary text-[15px] tracking-wide via-purple-500/35!">
 						Sign in
 					</Link> */}
-					<Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining-button btn-primary bg-gradient-to-bl text-[15px] tracking-wide ">
+					<Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining btn-primary bg-gradient-to-bl text-[15px] hover:bg-size-[140%_140%] bg-size-[100%_100%] transition-all tracking-wide ">
 						Sign in
 					</Link>
 
 					<ThemeToggle />
 				</SignedOut>
 				<SignedIn>
-					<Link href="/create" className='px-7 py-1.5 rounded-lg shining-button btn-primary text-[15px] tracking-wide'>
+					<Link href="/create" className='px-7 py-1.5 rounded-lg shining btn-primary text-[15px] tracking-wide'>
 						Create
 					</Link>
 

@@ -32,10 +32,12 @@ export function NavBar () {
 									</ListItem>
 								))
 							}
-							<li>
-								<Link href="/atoms" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none hover:bg-accent group focus:bg-accent focus:text-accent-foreground h-full flex gap-1 transition-all items-center justify-center'>
-									<span className="text-sm font-medium mt-1 inline-block text-zinc-900/80 dark:text-white/80">View all</span>
-									<ArrowRight size={17} className='transition-all group-hover:ml-1' />
+							<li className='p-3'>
+								<Link href="/atoms" className='select-none h-full shining bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-500 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all focus:bg-accent focus:text-accent-foreground  flex gap-1 items-center justify-center group'>
+									<span className="font-medium text-[15px] mt-1 inline-block text-zinc-900/80 dark:text-white/80">
+										View all
+									</span>
+									<ArrowRight size={18} className='transition-all group-hover:ml-1' />
 								</Link>
 							</li>
 						</ul>
@@ -58,12 +60,12 @@ export function NavBar () {
 									<span title={component.description}>{component.description}</span>
 								</ListItem>
 							))}
-							<li>
-								<Link href="/molecules" className='select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center group'>
-									<span className="text-sm font-medium mt-1 inline-block text-zinc-900/80 dark:text-white/80">
+							<li className='py-3'>
+								<Link href="/molecules" className='select-none shining bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-500 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center group hover:bg-size-[140%_140%] bg-size-[100%_100%]'>
+									<span className="font-medium text-[15px] mt-1 inline-block text-zinc-900/80 dark:text-white/80">
 										View all
 									</span>
-									<ArrowRight size={17} className='transition-all group-hover:ml-1' />
+									<ArrowRight size={18} className='transition-all group-hover:ml-1' />
 								</Link>
 							</li>
 						</ul>

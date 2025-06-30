@@ -8,6 +8,26 @@ import UserElements from './UserElements';
 import Tabs from '@/components/Tabs';
 import VerifiedIcon from './VerifiedIcon';
 
+
+export async function generateMetadata ({ params }) {
+	const { username } = params;
+
+	const users = await clerkClient.users.getUserList({
+		limit: 1,
+		username: username
+	});
+	const user = users.data[0];
+
+	const title = user
+		? `${user?.firstName ?? user.username} ${user?.lastName ?? ''} | Atomox`
+		: 'User not found | Atomox';
+
+	return {
+		title,
+		description: `Atomox profile of ${user?.firstName ?? user.username} ${user?.lastName ?? ''}`,
+	};
+}
+
 export default async function UserProfile ({ params }) {
 	const { username } = await params;
 	const nowUser = await currentUser()

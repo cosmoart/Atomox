@@ -53,11 +53,11 @@ export default async function Home () {
 					<p className='md:text-[17px] mb-5 max-w-[60ch] text-balance text-center lg:text-left'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
 
 					<nav className='flex gap-2 w-full max-w-[400px]'>
-						<Link href='/atoms' className='btn-primary px-4 shining-button py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2'>
+						<Link href='/atoms' className='btn-primary px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2'>
 							View atoms
 							<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 						</Link>
-						<Link href='/molecules' className='btn-primary px-4 shining-button py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2'>
+						<Link href='/molecules' className='btn-primary px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2'>
 							View molecules
 							<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 						</Link>

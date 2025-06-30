@@ -100,12 +100,12 @@
 
 /* Buttons ============ */
 
-.shining-button {
+.shining {
   position: relative;
   overflow: hidden;
 }
 
-.shining-button::before {
+.shining::before {
   content: '';
   position: absolute;
   top: 0;
@@ -119,7 +119,7 @@
   transform: skewX(-20deg);
 }
 
-.shining-button:hover::before {
+.shining:hover::before {
   animation: shine .7s forwards;
 }
 
