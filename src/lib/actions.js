@@ -102,56 +102,6 @@ export async function getElement (id, elementId) {
 	return { ...data[0], likedByUser: Boolean(likedByUser) };
 }
 
-export async function toggleLike (elementId) {
-	const clerkUser = await currentUser();
-	const userId = clerkUser?.id;
-	if (!elementId || !userId) throw new Error('Post ID y User ID son necesarios.');
-
-	const client = createServerSupabaseClient();
-
-	const { data: existingLike, error: fetchError } = await client
-		.from('elements_likes')
-		.select('*')
-		.eq('user_id', userId)
-		.eq('element_id', elementId)
-		.single();
-
-	if (fetchError && fetchError.code !== 'PGRST116' && fetchError.code !== 'PGRST123') {
-		console.error(fetchError);
-		throw new Error('Error al verificar el estado del like');
-	}
-
-	if (existingLike) {
-		const { error: deleteError } = await client
-			.from('elements_likes')
-			.delete()
-			.eq('user_id', userId)
-			.eq('element_id', elementId);
-		if (deleteError) throw deleteError;
-	} else {
-		const { error: insertError } = await client
-			.from('elements_likes')
-			.insert([{ user_id: userId, element_id: elementId }]);
-		if (insertError) throw insertError;
-	}
-}
-
-export async function getUserLikes () {
-	const user = await currentUser();
-	const userId = user?.id;
-	if (!userId) return [];
-	const supabase = createServerSupabaseClient();
-
-	const { data, error } = await supabase
-		.from('elements_likes')
-		.select('element_id, elements (*)')
-		.eq('user_id', userId);
-
-	if (error) throw new Error('Error al obtener likes');
-
-	return data.map((like) => like.elements);
-}
-
 export async function getUserElements (username, page = 1, pageSize = 10) {
 	const clerkUser = await currentUser();
 	if (!username) return [];
@@ -203,4 +153,151 @@ export async function deleteElement (id) {
 	const { error } = await client.from('elements').delete().eq('id', id).eq('user_id', userId);
 
 	if (error) throw new Error('Error al eliminar el elemento');
+}
+
+// Likes ==============
+
+export async function toggleLike (elementId) {
+	const clerkUser = await currentUser();
+	const userId = clerkUser?.id;
+	if (!elementId || !userId) throw new Error('Post ID y User ID son necesarios.');
+
+	const client = createServerSupabaseClient();
+
+	const { data: existingLike, error: fetchError } = await client
+		.from('elements_likes')
+		.select('*')
+		.eq('user_id', userId)
+		.eq('element_id', elementId)
+		.single();
+
+	if (fetchError && fetchError.code !== 'PGRST116' && fetchError.code !== 'PGRST123') {
+		console.error(fetchError);
+		throw new Error('Error al verificar el estado del like');
+	}
+
+	if (existingLike) {
+		const { error: deleteError } = await client
+			.from('elements_likes')
+			.delete()
+			.eq('user_id', userId)
+			.eq('element_id', elementId);
+		if (deleteError) throw deleteError;
+	} else {
+		const { error: insertError } = await client
+			.from('elements_likes')
+			.insert([{ user_id: userId, element_id: elementId }]);
+		if (insertError) throw insertError;
+	}
+}
+
+export async function getUserLikes () {
+	const user = await currentUser();
+	const userId = user?.id;
+	if (!userId) return [];
+	const supabase = createServerSupabaseClient();
+
+	const { data, error } = await supabase
+		.from('elements_likes')
+		.select('element_id, elements (*)')
+		.eq('user_id', userId);
+
+	if (error) throw new Error('Error al obtener likes');
+
+	return data.map((like) => like.elements);
+}
+
+// Comments ==============
+export async function createComment ({ comment, element_id, parent_id }) {
+	const user = await currentUser();
+	const client = createServerSupabaseClient();
+
+	if (!comment || !user) throw new Error('Comment and user are required.');
+
+	const { data, error } = await client.from('comments').insert([
+		{
+			user: user.firstName + (user.lastName ? ' ' + user.lastName : ''),
+			username: user.username,
+			content: comment,
+			avatar: user.imageUrl,
+			element_id,
+			parent_id,
+		}
+	]);
+
+	if (error) return { error: 'Error creating comment' };
+
+	return data
+}
+
+export async function getComments (elementId) {
+	const client = createServerSupabaseClient();
+
+	const { data, error } = await client
+		.from('comments')
+		.select('*')
+		.eq('element_id', elementId)
+		.order('created_at', { ascending: false })
+
+	if (error) return { error: 'Error getting comments' };
+
+	const { data: likedComments, error: likesError } = await client
+		.from('comments_likes')
+		.select('*')
+		.eq('element_id', elementId)
+
+	if (likesError) return { error: 'Error getting likes' };
+
+	const likedCommentsIds = new Set(likedComments.map(like => like.comment_id));
+
+	return data.map(comment => ({
+		...comment,
+		likedByUser: likedCommentsIds.has(comment.id),
+	}))
+}
+
+export async function deleteComment (id) {
+	const clerkUser = await currentUser();
+	const userId = clerkUser?.id;
+	const client = createServerSupabaseClient();
+
+	if (!id || !userId) throw new Error('Post ID and User ID are required.');
+
+	const { error } = await client.from('comments').delete().eq('id', id).eq('user_id', userId);
+
+	if (error) return { error: 'Error al eliminar el comentario' }
+}
+
+export async function likeComment (id) {
+	const clerkUser = await currentUser();
+	const userId = clerkUser?.id;
+	if (!id || !userId) throw new Error('Post ID and User ID are required.');
+
+	const client = createServerSupabaseClient();
+
+	const { data: existingLike, error: fetchError } = await client
+		.from('comments_likes')
+		.select('*')
+		.eq('user_id', userId)
+		.eq('comment_id', id)
+		.single();
+
+	if (fetchError && fetchError.code !== 'PGRST116' && fetchError.code !== 'PGRST123') {
+		console.error(fetchError);
+		throw new Error('Error al verificar el estado del like');
+	}
+
+	if (existingLike) {
+		const { error: deleteError } = await client
+			.from('comments_likes')
+			.delete()
+			.eq('user_id', userId)
+			.eq('comment_id', id);
+		if (deleteError) throw deleteError;
+	} else {
+		const { error: insertError } = await client
+			.from('comments_likes')
+			.insert([{ user_id: userId, comment_id: id }]);
+		if (insertError) throw insertError;
+	}
 }

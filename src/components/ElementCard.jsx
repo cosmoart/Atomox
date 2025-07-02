@@ -12,25 +12,26 @@ export default function ElementCard ({ data }) {
 	if (data === "ad") return <Ad />
 
 	return (
-		<section className='rounded-lg h-fit dark:bg-zinc-900 card-border relative'>
+		<section className='rounded-lg backdrop-blur-sm h-fit bg-white/90 dark:bg-zinc-900/90 card-border relative'>
 			{
-				!data.published && <TooltipProvider>
-					<Tooltip>
-						<TooltipTrigger asChild>
-							<div className='absolute z-20 -top-3 -left-3 rounded-full bg-red-400 p-1'>
-								<OctagonAlert size={22} />
-							</div>
-						</TooltipTrigger>
-						<TooltipContent >
-							<p>This component is not published yet.</p>
-						</TooltipContent>
-					</Tooltip>
-				</TooltipProvider>
-			}
-			{
-				!data.published && <div className={`absolute -top-3 left-6 z-20 ${!data.published ? "left-6" : "-left-3"}`}>
-					<ElementDelete id={data.id} mode='button' />
-				</div>
+				!data.published && <>
+					<TooltipProvider>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<div className='absolute z-20 -top-3 -left-3 text-white rounded-full bg-red-400 p-1'>
+									<OctagonAlert size={22} />
+								</div>
+							</TooltipTrigger>
+							<TooltipContent >
+								<p>This component is not published yet.</p>
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
+
+					<div className={`absolute -top-3 left-6 z-20 text-white ${!data.published ? "left-6" : "-left-3"}`}>
+						<ElementDelete id={data.id} mode='button' />
+					</div>
+				</>
 			}
 
 			<ElementImage data={data} />

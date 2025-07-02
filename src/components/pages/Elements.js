@@ -38,7 +38,12 @@ export default function Elements ({ data: data2, type }) {
 				style: queries.style
 			});
 
-			res.data.push('ad')
+			if (res.data.length > (type === 'Atoms' ? 8 : 6)) {
+				const min = type === 'Atoms' ? 8 : 6;
+				const max = res.data.length;
+				const randomIndex = Math.floor(Math.random() * (max - min)) + min;
+				res.data.splice(randomIndex, 0, 'ad');
+			}
 
 			setElements(res.error ? ({ error: res.error }) : res.data);
 			setTotalElements(res.totalCount);

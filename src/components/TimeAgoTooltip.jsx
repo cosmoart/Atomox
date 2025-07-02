@@ -1,33 +1,9 @@
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import { Clock } from 'lucide-react';
+import { getTimeAgo } from '@/lib/getTimeAgo';
 
 export default function TimeAgoTooltip ({ dateString }) {
 	const date = new Date(dateString);
-
-	const DATE_UNITS = {
-		day: 86400,
-		hour: 3600,
-		minute: 60,
-		second: 1,
-	}
-
-	const getSecondsDiff = (timestamp) => (Date.now() - timestamp) / 1000
-	const getUnitAndValueDate = (secondsElapsed) => {
-		for (const [unit, secondsInUnit] of Object.entries(DATE_UNITS)) {
-			if (secondsElapsed >= secondsInUnit || unit === 'second') {
-				const value = Math.floor(secondsElapsed / secondsInUnit) * -1
-				return { value, unit }
-			}
-		}
-	}
-
-	const getTimeAgo = (timestamp) => {
-		const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
-
-		const secondsElapsed = getSecondsDiff(timestamp)
-		const { value, unit } = getUnitAndValueDate(secondsElapsed)
-		return rtf.format(value, unit)
-	}
 
 	return (
 		<TooltipProvider>

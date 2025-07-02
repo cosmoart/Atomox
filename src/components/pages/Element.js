@@ -44,7 +44,7 @@ export default async function Element ({ id, elementId }) {
 	const user = await currentUser()
 
 	return (
-		<div >
+		<div>
 			<div className={`${elementType === 'atoms' ? 'section flex flex-col minHeightScreen' : 'px-1! py-0! '}`}>
 				<CodeEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} className={`${elementType === 'atoms' ? 'h-full' : 'minHeightScreen 2xl:min-h-auto!'}`} elementType={elementType} />
 
@@ -113,7 +113,8 @@ export default async function Element ({ id, elementId }) {
 				</article>
 			</div>
 
-			<div className='flex flex-col gap-8 md:flex-row mt-5 section'>
+			<div className='grid md:grid-cols-[2fr_1fr] gap-10 mt-3 section'>
+				{/* <div className='flex flex-col-reverse gap-10 md:flex-row mt-3 section'> */}
 				<Comments id={element.id} />
 				<Ad />
 			</div>

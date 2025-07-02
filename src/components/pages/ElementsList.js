@@ -24,7 +24,7 @@ export default function ElementsList ({ data, title, description }) {
 			<article className='flex flex-wrap justify-center mx-auto gap-4 mt-8'>
 				{
 					data.map(element => (
-						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'group relative overflow-hidden rounded-xl flex-1 min-w-70 2xl:min-w-75 max-w-78 2xl:max-w-80 dark:bg-[#111111] hover:border-indigo-500 card-border border-[#222222] transition-all duration-300  hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 '}>
+						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'group relative overflow-hidden rounded-xl flex-1 min-w-70 2xl:min-w-75 max-w-78 2xl:max-w-80 dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] transition-all duration-300  hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 '}>
 							{/* <img src='/test.webp' className='w-full h-32 object-cover object-top ' /> */}
 							<div className='aspect-16/8 bg-zinc-100 dark:bg-zinc-900 overflow-hidden'>
 								{element.icon ? element.icon : <svg width='850' className='w-full h-full object-cover group-hover:scale-105 transition-transform' height='377' viewBox='0 0 850 377' fill='none' xmlns='http://www.w3.org/2000/svg'>

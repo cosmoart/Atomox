@@ -34,10 +34,10 @@ export function NavBar () {
 							}
 							<li className='p-3'>
 								<Link href="/atoms" className='select-none h-full shining bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-500 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all focus:bg-accent focus:text-accent-foreground  flex gap-1 items-center justify-center group'>
-									<span className="font-medium text-[15px] mt-1 inline-block text-zinc-900/80 dark:text-white/80">
+									<span className="font-medium text-[15px] mt-1 inline-block text-white">
 										View all
 									</span>
-									<ArrowRight size={18} className='transition-all group-hover:ml-1' />
+									<ArrowRight size={18} className='transition-all group-hover:ml-1 text-white' />
 								</Link>
 							</li>
 						</ul>
@@ -62,10 +62,10 @@ export function NavBar () {
 							))}
 							<li className='py-3'>
 								<Link href="/molecules" className='select-none shining bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-500 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center group hover:bg-size-[140%_140%] bg-size-[100%_100%]'>
-									<span className="font-medium text-[15px] mt-1 inline-block text-zinc-900/80 dark:text-white/80">
+									<span className="font-medium text-[15px] mt-1 inline-block text-white">
 										View all
 									</span>
-									<ArrowRight size={18} className='transition-all group-hover:ml-1' />
+									<ArrowRight size={18} className='transition-all group-hover:ml-1 text-white' />
 								</Link>
 							</li>
 						</ul>
