@@ -6,9 +6,10 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import { useTheme } from 'next-themes';
 import { dark } from '@clerk/themes';
 import { EllipsisVertical, Heart, SendHorizontal, Trash } from 'lucide-react';
-import { createComment, deleteComment, getComments } from '@/lib/actions';
+import { createComment, deleteComment, getComments, likeComment } from '@/lib/actions';
 import { getTimeAgo } from '@/lib/getTimeAgo';
 import Link from 'next/link';
+import { MagicMotion } from 'react-magic-motion';
 
 export default function Comments ({ id }) {
 	const [comments, setComments] = useState("loading")
@@ -20,8 +21,11 @@ export default function Comments ({ id }) {
 	}, []);
 
 	async function getAllComments () {
+		setComments("loading")
 		try {
 			const res = await getComments(id)
+			console.log(res);
+
 			if (res?.error) throw new Error('Error while fetching comments')
 			setComments(res)
 		} catch (error) {
@@ -29,43 +33,6 @@ export default function Comments ({ id }) {
 		}
 	}
 
-	// async function sendComment (e) {
-	// 	e.preventDefault()
-	// 	if (typeof comments !== "object" || !user) return
-	// 	const formData = new FormData(e.target)
-	// 	const comment = formData.get('comment').trim()
-	// 	if (!comment) return
-
-	// 	const randomId = comments.length + Math.floor(Math.random() * 100)
-	// 	setComments((comments) => [...comments, {
-	// 		user: user.firstName + (user.lastName ? ' ' + user.lastName : ''),
-	// 		content: comment,
-	// 		avatar: user.imageUrl,
-	// 		username: user.username,
-	// 		element_id: id,
-	// 		id: randomId,
-	// 		parent_id: null,
-	// 		created_at: new Date(),
-	// 		creating: true
-	// 	}])
-
-	// 	try {
-	// 		const res = await createComment({ comment, element_id: id, parent_id: null })
-
-	// 		if (res?.error) throw new Error('Error al crear el comentario')
-	// 		setComments((comments) => comments.map((comment) => {
-	// 			if (comment.id === randomId) {
-	// 				const { creating, ...rest } = comment
-	// 				return rest
-	// 			}
-	// 			return comment
-	// 		})
-	// 		)
-	// 	} catch (error) {
-	// 		setComments((comments) => [...comments.filter(comment => comment.id !== randomId)])
-	// 		console.error(error)
-	// 	}
-	// }
 	async function sendComment (e, replyTo) {
 		e.preventDefault()
 		if (typeof comments !== "object" || !user) return
@@ -114,7 +81,7 @@ export default function Comments ({ id }) {
 		}
 	}
 
-	async function likeComment (id) {
+	async function likeIdComment (id) {
 		try {
 			const res = await likeComment(id)
 			if (res?.error) throw new Error('Error al marcar el comentario')
@@ -130,85 +97,115 @@ export default function Comments ({ id }) {
 		}
 	}
 
-	return (
-		<article className='w-full max-w-[70ch]'>
-			<h2 className='text-2xl font-medium'>Comments</h2>
+	if (comments === 'loading') return <article className='w-full max-w-[70ch]'>
+		<h2 className='text-2xl font-medium'>Comments</h2>
 
-			<div className='mt-4 flex flex-col gap-6'>
-				<CommentsList likeComment={likeComment} comments={comments} username={user?.username} deleteComment={deleteIdComment} setReplyTo={setReplyTo} replyTo={replyTo} sendComment={sendComment} />
-			</div>
+		<div className='mt-4 flex flex-col gap-6'>
+			{
+				Array(3).fill(null).map((_, i) => (
+					<div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4' key={i} >
+						<div className='flex gap-2 p-2 justify-between'>
+							<div className='flex gap-2 items-center'>
+								<div className='size-7 dark:bg-zinc-800 bg-zinc-200/50 rounded-full animate-pulse'></div>
+								<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-24'></div>
+							</div>
 
-			<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
-		</article>
-	)
-}
+							<div className='flex gap-3 items-center mr-1'>
+								<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-8'></div>
+								<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-8'></div>
+							</div>
+						</div>
+					</div>
+				))
+			}
+		</div>
 
-function CommentsList ({ comments, username, deleteComment, replyTo, setReplyTo, sendComment, likeComment }) {
-	if (comments === 'loading') return Array(3).fill(null).map((_, i) => (
-		<div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4' key={i} >
-			<div className='flex gap-2 p-2 justify-between'>
-				<div className='flex gap-2 items-center'>
-					<div className='size-7 dark:bg-zinc-800 bg-zinc-200/50 rounded-full animate-pulse'></div>
-					<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-24'></div>
-				</div>
+		<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
+	</article>
 
-				<div className='flex gap-3 items-center mr-1'>
-					<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-8'></div>
-					<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-8'></div>
-				</div>
+	if (comments === 'error' || !comments) return <article className='w-full max-w-[70ch]'>
+		<h2 className='text-2xl font-medium'>Comments</h2>
+
+		<div className='mt-4 flex flex-col gap-6'>
+			<div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
+				<p className='text-center text-muted-foreground'>Error loading comments.</p>
+				<button onClick={getAllComments} className='btn-primary py-1 px-7'>Try again</button>
 			</div>
 		</div>
-	))
 
-	if (comments === 'error' || !comments) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
-		<p className='text-center text-muted-foreground'>Error loading comments...</p>
-	</div>
+		<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
+	</article>
 
-	if (comments.length < 1) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
-		<p className='text-center text-muted-foreground'>No comments found <span className='italic font-medium'>yet</span>. Be the first to comment!</p>
-	</div>
+	if (comments.length < 1) return <article className='w-full max-w-[70ch]'>
+		<h2 className='text-2xl font-medium'>Comments</h2>
+		<div className='mt-4 flex flex-col gap-6'>
+			<div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
+				<p className='text-center text-muted-foreground'>No comments found <span className='italic font-medium'>yet</span>. Be the first to comment!</p>
+			</div>
+		</div>
+
+		<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
+	</article>
 
 	const mainComments = comments.filter(c => !c.parent_id)
 	const replies = comments.filter(c => c.parent_id)
 
-	return mainComments.map(comment => (
-		<div key={comment.id}>
-			<CommentCard
-				comment={comment}
-				username={username}
-				deleteComment={deleteComment}
-				onReply={() => replyTo === comment.id ? setReplyTo(null) : setReplyTo(comment.id)}
-			/>
+	return <article className='w-full max-w-[70ch]'>
+		<h2 className='text-2xl font-medium'>Comments ({comments.length})</h2>
+		<MagicMotion>
+			<div>
+				<div className='mt-4 flex flex-col gap-6'>
+					{
+						mainComments.map(comment => (
+							<div key={comment.id}>
+								<CommentCard
+									key="exclude"
+									comment={comment}
+									username={user?.username}
+									deleteComment={deleteIdComment}
+									likeComment={likeIdComment}
+									onReply={() => replyTo === comment.id ? setReplyTo(null) : setReplyTo(comment.id)}
+								/>
 
-			<div className='ml-6 border-l pl-4'>
-				{replies
-					.filter(r => r.parent_id === comment.id)
-					.map(reply => (
-						<CommentCard
-							key={reply.id}
-							comment={reply}
-							username={username}
-							deleteComment={deleteComment}
-							likeComment={likeComment}
-							isReply
-						/>
-					))}
+								<div className='ml-4.5 border-l pl-7 mt-3'>
+									{replies
+										.filter(r => r.parent_id === comment.id)
+										.map(reply => (
+											<div key={reply.id}>
+												<CommentCard
+													key="exclude"
+													comment={reply}
+													username={user?.username}
+													deleteComment={deleteIdComment}
+													likeComment={likeIdComment}
+													isReply
+												/>
+											</div>
+										))}
+								</div>
+
+								{replyTo === comment.id && <CommentForm key="exclude" disabled={comments === "loading" || comments === "error"} sendComment={sendComment} replyTo={replyTo} />}
+							</div>
+						))
+					}
+				</div>
+
+				<CommentForm key="exclude" disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
 			</div>
-
-			{replyTo === comment.id && <CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} replyTo={replyTo} />}
-		</div>
-	))
+		</MagicMotion>
+	</article>
 }
 
 function CommentCard ({ comment, username, deleteComment, onReply, isReply = false, likeComment }) {
 	return (
-		<div className={`flex gap-3.5 ${comment.creating ? "animate-pulse cursor-progress pointer-events-none" : ""}`}>
+		<div className={`flex gap-3 ${comment.creating ? "animate-pulse cursor-progress pointer-events-none" : ""}`}>
 			<Link href={`/u/${comment.username}`}>
 				<Avatar className='size-10 hover:scale-105 transition-transform' >
 					<AvatarImage src={comment.avatar} alt={`${comment.user} avatar`} />
 					<AvatarFallback>{comment.username?.slice(0, 2)}</AvatarFallback>
 				</Avatar>
 			</Link>
+
 			<div className='flex flex-col gap-0.5 w-full'>
 				<div className='flex gap-4 items-center'>
 					<Link href={`/u/${comment.username}`} className='font-medium'>
@@ -229,13 +226,14 @@ function CommentCard ({ comment, username, deleteComment, onReply, isReply = fal
 						</DropdownMenuContent>
 					</DropdownMenu>}
 				</div>
-				<p className='text-[15px] opacity-90 max-w-[75ch] my-0.5 whitespace-pre'>{comment.content}</p>
+
+				<p className='text-[15px] opacity-90 max-w-[75ch]  whitespace-pre-wrap'>{comment.content}</p>
 
 				<div className='flex gap-4 items-center justify-start mt-1 opacity-90'>
-					<button className='flex gap-1 text-sm cursor-pointer active:scale-95 transition-transform items-center' onClick={() => likeComment(comment.id)}>
+					{/* <button className='flex gap-1 text-sm cursor-pointer active:scale-95 transition-transform items-center' onClick={() => likeComment(comment.id)}>
 						<Heart size={18} className={comment.likedByUser ? 'text-red-500' : ''} />
 						5 Likes
-					</button>
+					</button> */}
 					{!isReply && <button className='text-sm cursor-pointer active:scale-95 transition-transform' onClick={onReply}>Reply</button>}
 				</div>
 			</div>
@@ -246,8 +244,8 @@ function CommentCard ({ comment, username, deleteComment, onReply, isReply = fal
 function CommentForm ({ disabled, sendComment, replyTo }) {
 	const { resolvedTheme } = useTheme()
 
-	return <form className='flex gap-2 mt-12' onSubmit={e => sendComment(e, replyTo)} >
-		<textarea name='comment' className='w-full disabled:opacity-70 disabled:pointer-events-none px-4 py-2 rounded-lg card-border field-sizing-content min-h-26' placeholder='Leave a comment...' disabled={disabled} rows="10" cols="50" />
+	return <form className={`flex gap-2 ${replyTo ? "ml-10 mt-3" : "mt-12"}`} onSubmit={e => sendComment(e, replyTo)} >
+		<textarea name='comment' className='w-full disabled:opacity-70 disabled:pointer-events-none px-4 py-2 rounded-lg card-border field-sizing-content' placeholder='Leave a comment...' disabled={disabled} rows={replyTo ? 2 : 4} />
 
 		<SignedIn>
 			<button disabled={disabled} type='submit' className='px-7 cursor-pointer disabled:opacity-70 disabled:pointer-events-none py-0 group rounded-lg shining btn-primary h-fit flex gap-1.5 items-center'>

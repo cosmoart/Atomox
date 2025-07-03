@@ -90,7 +90,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 				/>
 
 				<DialogClose asChild>
-					<button className='w-full btn-primary cursor-pointer mt-5'>
+					<button className='w-full btn-primary cursor-pointer mt-5 shining'>
 						Start Creating
 					</button>
 				</DialogClose>

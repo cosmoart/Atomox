@@ -2,7 +2,7 @@ import { ArrowRight, Code, Github, Heart, Plus, Sparkles, Upload, Users } from '
 
 export default function CTA () {
 	return (
-		<footer className="relative bg-gradient-to-br from-indigo-700 via-blue-600 to-purple-700 overflow-hidden rounded-3xl">
+		<section className="relative bg-gradient-to-br from-indigo-700 via-blue-600 to-purple-700 overflow-hidden rounded-3xl">
 			{/* Background decorative elements */}
 			<div className="absolute inset-0 opacity-10">
 				<div className="absolute top-10 left-10 w-32 h-32 bg-pink-500 rounded-full blur-3xl"></div>
@@ -32,7 +32,7 @@ export default function CTA () {
 							<span className="text-white text-sm font-medium">Join the community</span>
 						</div>
 
-						<h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-pink-200 bg-clip-text text-transparent leading-tight">
+						<h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-pink-200 bg-clip-text text-transparent ">
 							Join our community
 						</h2>
 
@@ -81,15 +81,15 @@ export default function CTA () {
 				</div>
 			</div>
 
-			<div className="bg-white/5 backdrop-blur-sm rounded-2xl p-7 pb-4 border border-white/10 hover:border-white/20 transition-all duration-300 group">
+			<footer className="bg-white/5 backdrop-blur-sm rounded-2xl px-6 py-5 pb-3 border border-white/10 hover:border-white/20 transition-all duration-300 group">
 				<div className="flex items-start space-x-4">
 					<div className="bg-gradient-to-br from-pink-500 to-pink-600 p-3 rounded-xl group-hover:scale-110 transition-transform">
-						<Github className="w-8 h-8 text-white" />
+						<Github className="size-7 text-white" />
 					</div>
 
 					<div className="flex-1 justify-between items-center space-y-4 flex gap-5 flex-col lg:flex-row">
 						<div>
-							<h3 className="text-2xl font-bold text-white mb-1.5">
+							<h3 className="text-xl font-bold text-white mb-1">
 								Open Source & Free
 							</h3>
 							<p className="text-blue-100 text-balance">
@@ -110,7 +110,7 @@ export default function CTA () {
 						</div>
 					</div>
 				</div>
-			</div>
-		</footer >
+			</footer>
+		</section >
 	)
 }

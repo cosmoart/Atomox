@@ -144,7 +144,7 @@ export default function Header () {
 					<ThemeToggle />
 				</SignedOut>
 				<SignedIn>
-					<Link href="/create" className='px-7 py-1.5 rounded-lg shining btn-primary text-[15px] tracking-wide'>
+					<Link href="/create" className='px-7 py-1.5 rounded-lg shining btn-primary text-[15px] tracking-wide bg-gradient-to-br'>
 						Create
 					</Link>
 

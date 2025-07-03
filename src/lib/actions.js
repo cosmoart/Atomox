@@ -240,20 +240,20 @@ export async function getComments (elementId) {
 		.order('created_at', { ascending: false })
 
 	if (error) return { error: 'Error getting comments' };
+	return data
+	// const { data: likedComments, error: likesError } = await client
+	// 	.from('comments_likes')
+	// 	.select('*')
+	// 	.eq('element_id', elementId)
 
-	const { data: likedComments, error: likesError } = await client
-		.from('comments_likes')
-		.select('*')
-		.eq('element_id', elementId)
+	// if (likesError) return { error: 'Error getting likes' };
 
-	if (likesError) return { error: 'Error getting likes' };
+	// const likedCommentsIds = new Set(likedComments.map(like => like.comment_id));
 
-	const likedCommentsIds = new Set(likedComments.map(like => like.comment_id));
-
-	return data.map(comment => ({
-		...comment,
-		likedByUser: likedCommentsIds.has(comment.id),
-	}))
+	// return data.map(comment => ({
+	// 	...comment,
+	// 	likedByUser: likedCommentsIds.has(comment.id),
+	// }))
 }
 
 export async function deleteComment (id) {

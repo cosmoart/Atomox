@@ -8,7 +8,6 @@ import UserElements from './UserElements';
 import Tabs from '@/components/Tabs';
 import VerifiedIcon from './VerifiedIcon';
 
-
 export async function generateMetadata ({ params }) {
 	const { username } = params;
 
@@ -17,6 +16,7 @@ export async function generateMetadata ({ params }) {
 		username: username
 	});
 	const user = users.data[0];
+	console.log(user);
 
 	const title = user
 		? `${user?.firstName ?? user.username} ${user?.lastName ?? ''} | Atomox`
@@ -24,7 +24,9 @@ export async function generateMetadata ({ params }) {
 
 	return {
 		title,
-		description: `Atomox profile of ${user?.firstName ?? user.username} ${user?.lastName ?? ''}`,
+		description: user
+			? `Atomox profile of ${user?.firstName ?? user.username} ${user?.lastName ?? ''}`
+			: 'Atomox profile of user not found',
 	};
 }
 
@@ -42,7 +44,7 @@ export default async function UserProfile ({ params }) {
 		<div className='absolute h-1/2 dark:invert -z-30 pointer-events-none opacity-30 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]'></div>
 
 		<XCircle size={70} />
-		<h1 className='text-xl lg:text-2xl font-medium'>Error getting user</h1>
+		<h1 className='text-xl sm:text-2xl font-medium'>Error getting user</h1>
 		<p>There was an error getting the user. Please try again later.</p>
 	</div>
 
@@ -50,7 +52,7 @@ export default async function UserProfile ({ params }) {
 		<div className='absolute h-1/2 dark:invert -z-30 pointer-events-none opacity-30 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]'></div>
 
 		<CircleUserRound size={80} />
-		<h1 className='text-xl lg:text-2xl font-medium'>User not found</h1>
+		<h1 className='text-xl sm:text-2xl font-medium'>User not found</h1>
 		<p >The user you are looking for does not exist.</p>
 	</div>
 

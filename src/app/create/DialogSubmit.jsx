@@ -7,6 +7,7 @@ import { ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 import { Atoms, Molecules } from '@/lib/conts';
+import { Switch } from '@/components/ui/switch';
 
 const schema = z.object({
 	credits_link: z.string()
@@ -98,10 +99,20 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 							</label>
 							{/* <input type="text" placeholder='Licence' className='px-3 py-2 rounded-lg card-border w-full' /> */}
 
-							<button type='submit' disabled={status === "loading"} className='px-8 max-w-[210px]  ml-auto w-full btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer mt-4 disabled:cursor-progress'>
-								<svg className={`animate-[spin_300ms_linear_900ms_forwards_infinite] ${status === 'loading' ? 'w-5 ' : 'w-0'} h-5 transition-all`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
-								{status === 'loading' ? 'Creating...' : 'Create'}
-							</button>
+							<div className='flex gap-3 items-center justify-end mt-4 '>
+								<label className='flex gap-2 items-center'>
+									<p className='font-medium '>
+										Accept <Link href='/guidelines' className='underline'>Guidelines</Link>
+									</p>
+									<Switch name="guidelines" control={control} disabled={status === "loading"} />
+									{errors.guidelines && <p className='text-red-500 text-xs'>{errors.guidelines.message}</p>}
+								</label>
+
+								<button type='submit' disabled={status === "loading"} className='px-8 shining max-w-[180px]  w-full btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer disabled:cursor-progress'>
+									<svg className={`animate-[spin_300ms_linear_900ms_forwards_infinite] ${status === 'loading' ? 'w-5 ' : 'w-0'} h-5 transition-all`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
+									{status === 'loading' ? 'Creating...' : 'Create'}
+								</button>
+							</div>
 						</form>
 					}
 					{
