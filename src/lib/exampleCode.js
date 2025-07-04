@@ -383,13 +383,6 @@ option::checkmark {
 }
 `,
 	},
-
-	pagination: {
-		html: '',
-		htmlTailwind: '',
-		css: '',
-		js: '',
-	},
 }
 
 export const moleculesCode = {
