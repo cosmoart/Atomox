@@ -35,19 +35,13 @@ export default async function Home () {
 				<div className='jumbo absolute -inset-[10px] opacity-60 h-3/4'></div>
 			</div>
 
-			{/* <div className='sticky top-0 z-30'>
-				<div className='absolute bg-red-600/10 h-svh w-screen top-0 left-0 backdrop-blur-3xl z-40'>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni perferendis dolorem deserunt et enim iste magnam officia nulla nostrum eligendi facilis, eius dicta? Numquam sed ratione in nobis facilis error.
-				</div>
-			</div> */}
-
 			<section className='heightScreen max-h-[800px] flex items-center flex-row-reverse justify-center gap-12 relative pb-8 mb-8'>
 				<div className='w-full mt-10 flex flex-col sm:justify-between items-center lg:items-start'>
 					<div className='flex flex-col md:flex-row gap-3 items-center md:mb-3'>
 						<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto lg:mx-0 size-26 md:size-22' />
 						<div className='flex flex-col items-center md:items-start'>
 							<StarOnGitHub />
-							<h1 className='text-7xl font-bold my-2 text-zinc-900 dark:text-white'>Atomox</h1>
+							<h1 className='text-7xl font-bold my-2 text-zinc-900 dark:text-white pulse'>Atomox</h1>
 						</div>
 					</div>
 					<p className='md:text-[17px] mb-5 max-w-[60ch] text-balance text-center lg:text-left'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
