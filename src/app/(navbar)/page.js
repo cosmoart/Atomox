@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { Atoms, Molecules } from '@/lib/conts';
-import { ArrowRight, Code, Package, Zap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import StarOnGitHub from '@/components/StarOnGithub'
 import ComponentsGrid from '@/components/home/ComponentsGrid';
 import Image from 'next/image';
 import Logo from '@/assets/icons/logo.svg';
 import FeaturesThree from '@/components/home/FeaturesThree';
 import FeaturesBento from '@/components/home/FeaturesBento';
+import AtomsMolecules from '@/components/home/AtomsMolecules';
 import CTA from '@/components/home/CTA';
 
 export default async function Home () {
@@ -63,38 +63,8 @@ export default async function Home () {
 
 			<FeaturesThree />
 			<FeaturesBento />
+			<AtomsMolecules />
 			<CTA />
-
-			{/* <article className='bg-grid pb-10 pt-6 mt-8'>
-				<h2 className='text-2xl md:text-4xl text-center font-medium pb-5 2xl:mb-7'>Atoms</h2>
-				<div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4'>
-					{
-						Atoms.map(atom => (
-							<Link href={`atoms/${atom.id}`} key={atom.id} className='flex bg-gradient-to-b flex-col justify-center rounded-lg card-border p-4 shadow-md transition-all hover:shadow-lg hover:scale-[1.01] dark:from-zinc-900/50 dark:to-zinc-950 backdrop-blur-sm'>
-
-								<h3 className='text-lg font-medium'>{atom.name}</h3>
-								<p className='text-[15px] line-clamp-2 opacity-85'>{atom.description}</p>
-							</Link>
-						))
-					}
-				</div>
-			</article>
-
-			<article className='bg-grid pb-10 pt-6 mt-8'>
-				<h2 className='text-2xl md:text-4xl text-center font-medium pb-5 2xl:mb-7'>Molecules</h2>
-
-				<div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4'>
-					{
-						Molecules.map(molecule => (
-							<Link href={`molecules/${molecule.id}`} key={molecule.id} className='flex bg-gradient-to-b flex-col justify-center rounded-lg card-border p-4 shadow-md transition-all hover:shadow-lg hover:scale-[1.01] dark:from-zinc-900/50 dark:to-zinc-950 backdrop-blur-sm'>
-
-								<h3 className='text-lg font-medium'>{molecule.name}</h3>
-								<p className='text-sm line-clamp-2 opacity-85'>{molecule.description}</p>
-							</Link>
-						))
-					}
-				</div>
-			</article> */}
 		</div>
 	);
 }

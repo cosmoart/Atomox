@@ -1,229 +1,221 @@
 "use client"
-import { useState } from 'react';
-import { Moon, Sun, Copy, Smartphone, Palette, Code, Shield, Download } from 'lucide-react';
+
+import {
+	Grid3X3,
+	Figma,
+	Code,
+	Layers,
+	Zap,
+	ArrowRight,
+	Users,
+	Download,
+	Star,
+	Sparkles
+} from 'lucide-react';
 
 export default function FeaturesBento () {
 	return (
-		<article className='grid gap-4 mb-24 lg:grid-cols-3 grid-rows-3'>
-			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900/90 backdrop-blur-sm card-border'>
-				<h5 className='text-lg 2xl:text-xl bg-clip-text bg-linear-to-l from-purple-400 to-blue-600 text-transparent font-bold'>CSS & Tailwind Ready</h5>
-				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>Components built with both pure CSS and Tailwind CSS. Choose your preferred styling approach.</p>
+		<div className="section mb-30">
+			{/* Header */}
+			<header className="text-center mb-12">
+				<h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+					Design System
+				</h1>
+				<p className="text-zinc-400 text-xl max-w-2xl mx-auto">
+					A comprehensive collection of components, templates, and resources for modern web development
+				</p>
+			</header>
+
+			{/* Bento Grid */}
+			<section className="grid grid-cols-1 grid-flow lg:grid-cols-6 gap-6 h-auto">
+				{/* Components */}
+				<article className="bg-zinc-900 col-span-2 card-border rounded-2xl p-6 hover:bg-zinc-750 transition-all duration-300 group">
+					<div className="flex items-center justify-center size-10 bg-blue-500/20 rounded-xl mb-4">
+						<Grid3X3 className="size-5 text-blue-400" />
+					</div>
+					<h2 className="text-xl font-bold mb-3">640+ Components</h2>
+					<p className="text-zinc-400 mb-4 text-sm leading-relaxed">
+						From grid layouts to navbars, buttons, forms, tables and many more.
+					</p>
+					<button className="text-blue-400 hover:text-blue-300 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+						Get started <ArrowRight className="w-4 h-4" />
+					</button>
+				</article>
+
+				{/* Large center piece - Examples */}
+				<article className="lg:col-span-2 lg:row-span-2 lg:col-start-3 bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-8 flex flex-col justify-center items-center text-center relative overflow-hidden">
+					<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 backdrop-blur-sm"></div>
+					<div className="relative z-10">
+						<span className="text-sm font-semibold text-blue-200 mb-2 block">OVER</span>
+						<span className="text-8xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent block">
+							205
+						</span>
+						<h2 className="text-3xl font-bold mb-4">Examples</h2>
+						<p className="text-blue-100 mb-8 max-w-md">
+							Kick-start your project effortlessly with our wide range of examples and layouts using Tailwind CSS.
+						</p>
+						<button className="bg-white mx-auto text-zinc-950 px-8 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 group">
+							View Examples
+							<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+						</button>
+					</div>
+				</article>
+
+				{/* Figma */}
+				<article className="bg-zinc-900 col-span-2 card-border rounded-2xl p-6 hover:bg-zinc-750 transition-all duration-300 group">
+					<div className="flex items-center justify-center size-10 bg-purple-500/20 rounded-xl mb-4">
+						<Figma className="size-5 text-purple-400" />
+					</div>
+					<h2 className="text-xl font-bold mb-3">Preline UI Figma</h2>
+					<p className="text-zinc-400 mb-4 text-sm leading-relaxed">
+						The largest free design system for Figma.
+					</p>
+					<button className="text-purple-400 hover:text-purple-300 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+						Explore more <ArrowRight className="w-4 h-4" />
+					</button>
+				</article>
+
+
+				{/* Framework Guides */}
+				<article className="bg-zinc-900 col-span-2 card-border rounded-2xl p-6 hover:bg-zinc-750 transition-all duration-300">
+					<div className="flex items-center justify-center size-10 bg-green-500/20 rounded-xl mb-4">
+						<Code className="size-5 text-green-400" />
+					</div>
+					<h2 className="text-xl font-bold mb-3">Framework Guides</h2>
+					<p className="text-zinc-400 mb-4 text-sm leading-relaxed">
+						Seamlessly integrated with all your dev favorite tools.
+					</p>
+
+					{/* Framework Icons */}
+					{/* <ul className="flex flex-wrap gap-3 mb-4" role="list">
+						<li className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
+							<span className="w-4 h-4 bg-red-500 rounded-sm" aria-label="Angular"></span>
+						</li>
+						<li className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center">
+							<span className="w-4 h-4 bg-orange-500 rounded-sm" aria-label="Vue"></span>
+						</li>
+						<li className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+							<span className="w-4 h-4 bg-green-500 rounded-sm" aria-label="Node.js"></span>
+						</li>
+						<li className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+							<span className="w-4 h-4 bg-blue-500 rounded-sm" aria-label="React"></span>
+						</li>
+						<li className="w-8 h-8 bg-zinc-500/20 rounded-lg flex items-center justify-center">
+							<span className="w-4 h-4 bg-zinc-500 rounded-sm" aria-label="Next.js"></span>
+						</li>
+					</ul> */}
+
+					<button className="text-green-400 hover:text-green-300 font-semibold text-sm flex items-center gap-1 transition-all">
+						Learn more <ArrowRight className="w-4 h-4" />
+					</button>
+				</article>
+
+				{/* Tailwind CSS Plugins */}
+				<article className="bg-zinc-900 col-span-2 card-border rounded-2xl p-6 hover:bg-zinc-750 transition-all duration-300">
+					<div className="flex items-center justify-center size-10 bg-cyan-500/20 rounded-xl mb-4">
+						<Layers className="size-5 text-cyan-400" />
+					</div>
+					<h2 className="text-xl font-bold mb-3">Tailwind CSS Plugins</h2>
+					<p className="text-zinc-400 mb-4 text-sm leading-relaxed">
+						Completely unstyled, fully accessible UI plugins for popular features.
+					</p>
+					<button className="text-cyan-400 hover:text-cyan-300 font-semibold text-sm flex items-center gap-1 transition-all">
+						See how it works <ArrowRight className="w-4 h-4" />
+					</button>
+				</article>
+
+				{/* Stats Card */}
+				<article className="bg-gradient-to-r col-span-2 from-emerald-500 to-teal-600 rounded-2xl p-6 text-white">
+					<header className="flex items-center gap-3 mb-4">
+						<Users className="size-5" />
+						<span className="text-sm font-medium">Community</span>
+					</header>
+					<span className="text-3xl font-bold mb-2 block">50K+</span>
+					<p className="text-emerald-100 text-sm mb-4">
+						Developers using our components worldwide
+					</p>
+					<div className="flex items-center gap-2">
+						<Star className="w-4 h-4 text-yellow-300" />
+						<span className="text-sm font-medium">4.9/5 rating</span>
+					</div>
+				</article>
+
+				{/* Free Templates */}
+				<article className="bg-zinc-900 col-span-2 card-border rounded-2xl p-6 hover:bg-zinc-750 transition-all duration-300">
+					{/* <div className="flex items-center justify-center size-10 bg-indigo-500/20 rounded-xl mb-4">
+						<Download className="size-5 text-indigo-400" />
+					</div> */}
+					<h2 className="text-xl font-bold mb-3">Free Templates</h2>
+					<p className="text-zinc-400 mb-4 text-sm leading-relaxed">
+						Free, ready-to-use templates to build your projects at lightning speed.
+					</p>
+
+					{/* Template Preview */}
+					{/* <figure className="bg-zinc-700 rounded-lg p-3 mb-4">
+						<div className="flex items-center gap-2 mb-2" role="img" aria-label="Browser window controls">
+							<span className="w-2 h-2 bg-red-400 rounded-full"></span>
+							<span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+							<span className="w-2 h-2 bg-green-400 rounded-full"></span>
+						</div>
+						<div className="space-y-1" role="img" aria-label="Template preview">
+							<span className="h-2 bg-zinc-600 rounded w-3/4 block"></span>
+							<span className="h-2 bg-zinc-600 rounded w-1/2 block"></span>
+							<span className="h-2 bg-zinc-600 rounded w-2/3 block"></span>
+						</div>
+					</figure> */}
+
+					<button className="text-indigo-400 hover:text-indigo-300 font-semibold text-sm flex items-center gap-1 transition-all">
+						View all <ArrowRight className="w-4 h-4" />
+					</button>
+				</article>
+
+				{/* Innovation Card */}
+				<article className="bg-gradient-to-r col-span-2 from-pink-500 to-rose-600 rounded-2xl p-6 text-white">
+					<header className="flex items-center gap-3 mb-4">
+						<Sparkles className="size-5" />
+						<span className="text-sm font-medium">Innovation</span>
+					</header>
+					<span className="text-3xl font-bold mb-2 block">AI-Powered</span>
+					<p className="text-pink-100 text-sm mb-4">
+						Next-generation design tools with AI assistance
+					</p>
+					<div className="flex items-center gap-2">
+						<Zap className="w-4 h-4 text-yellow-300" />
+						<span className="text-sm font-medium">Coming soon</span>
+					</div>
+				</article>
 			</section>
-			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900 card-border'>
-				<h5 className='font-medium text-lg 2xl:text-xl'>Copy & Paste</h5>
-				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>No installations or configurations needed. Simply copy the code and paste it into your project.</p>
-			</section>
-			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900 card-border'>
-				<h5 className='font-medium text-lg 2xl:text-xl'>Fully Responsive</h5>
-				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>Every component adapts perfectly to all screen sizes. From mobile to desktop, your UI looks flawless everywhere.</p>
-			</section>
-			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900 card-border'>
-				<h5 className='font-medium text-lg 2xl:text-xl'>Dark & Light Mode</h5>
-				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>Built-in support for both themes. Switch seamlessly between light and dark modes.</p>
-			</section>
-			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900 card-border'>
-				<h5 className='font-medium text-lg 2xl:text-xl'>MIT Licensed</h5>
-				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>Use freely in personal and commercial projects. No restrictions, no attribution required.</p>
-			</section>
-		</article>
-	)
+		</div>
+	);
 }
 
+
+// import { useState } from 'react';
+// import { Moon, Sun, Copy, Smartphone, Palette, Code, Shield, Download } from 'lucide-react';
+
 // export default function FeaturesBento () {
-// 	const [isDark, setIsDark] = useState(false);
-
-// 	const toggleTheme = () => setIsDark(!isDark);
-
 // 	return (
-// 		<div className={`transition-colors`}>
-// 			<button
-// 				onClick={toggleTheme}
-// 				className={`p-3 rounded-xl transition-all duration-300 hover:scale-110 ${isDark
-// 					? 'bg-zinc-800 text-yellow-400 hover:bg-blue-900/50 hover:text-blue-400'
-// 					: 'bg-white text-zinc-600 hover:bg-blue-50 hover:text-blue-600 shadow-lg'
-// 					}`}
-// 			>
-// 				{isDark ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-// 			</button>
-// 			<div className="max-w-7xl mx-auto px-6 py-16">
-// 				{/* Bento Grid */}
-// 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-// 					{/* CSS Variables Feature */}
-// 					<div className={`group p-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${isDark
-// 						? 'bg-zinc-800 border border-zinc-700 hover:border-blue-500/50 hover:bg-blue-900/10'
-// 						: 'bg-white border border-zinc-200 hover:border-blue-300 hover:bg-blue-50/50 shadow-lg hover:shadow-xl'
-// 						}`}>
-// 						<div className={`w-12 h-12 rounded-xl mb-6 flex items-center justify-center transition-colors ${isDark
-// 							? 'bg-zinc-700 text-orange-400 group-hover:bg-blue-800 group-hover:text-blue-300'
-// 							: 'bg-zinc-100 text-orange-500 group-hover:bg-blue-100 group-hover:text-blue-600'
-// 							}`}>
-// 							<Code className="w-6 h-6" />
-// 						</div>
-
-// 						<h3 className={`text-xl font-semibold mb-3 ${isDark ? 'text-white' : 'text-zinc-900'
-// 							}`}>
-// 							CSS & Tailwind Ready
-// 						</h3>
-
-// 						<p className={`text-sm leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'
-// 							}`}>
-// 							Components built with both pure CSS and Tailwind CSS.
-// 							Choose your preferred styling approach.
-// 						</p>
-
-// 						<div className={`mt-6 p-4 rounded-lg font-mono text-xs ${isDark ? 'bg-zinc-900 text-green-400' : 'bg-zinc-50 text-zinc-700'
-// 							}`}>
-// 							--primary: #3b82f6;<br />
-// 							--radius: 8px;<br />
-// 							@apply bg-blue-500;
-// 						</div>
-// 					</div>
-
-// 					{/* Copy Paste Feature */}
-// 					<div className={`group p-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${isDark
-// 						? 'bg-zinc-800 border border-zinc-700 hover:border-blue-500/50 hover:bg-blue-900/10'
-// 						: 'bg-white border border-zinc-200 hover:border-blue-300 hover:bg-blue-50/50 shadow-lg hover:shadow-xl'
-// 						}`}>
-// 						<div className={`w-12 h-12 rounded-xl mb-6 flex items-center justify-center transition-colors ${isDark
-// 							? 'bg-zinc-700 text-green-400 group-hover:bg-blue-800 group-hover:text-blue-300'
-// 							: 'bg-zinc-100 text-green-500 group-hover:bg-blue-100 group-hover:text-blue-600'
-// 							}`}>
-// 							<Copy className="w-6 h-6" />
-// 						</div>
-
-// 						<h3 className={`text-xl font-semibold mb-3 ${isDark ? 'text-white' : 'text-zinc-900'
-// 							}`}>
-// 							Copy & Paste
-// 						</h3>
-
-// 						<p className={`text-sm leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'
-// 							}`}>
-// 							No installations or configurations needed.
-// 							Simply copy the code and paste it into your project.
-// 						</p>
-
-// 						<div className="mt-6 flex items-center space-x-2">
-// 							<div className={`px-3 py-1 rounded-full text-xs font-medium ${isDark ? 'bg-green-900/30 text-green-300' : 'bg-green-100 text-green-700'
-// 								}`}>
-// 								Zero dependencies
-// 							</div>
-// 						</div>
-// 					</div>
-
-// 					{/* Responsive Feature - Large */}
-// 					<div className={`group md:col-span-2 lg:col-span-1 lg:row-span-2 p-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${isDark
-// 						? 'bg-zinc-800 border border-zinc-700 hover:border-blue-500/50 hover:bg-blue-900/10'
-// 						: 'bg-white border border-zinc-200 hover:border-blue-300 hover:bg-blue-50/50 shadow-lg hover:shadow-xl'
-// 						}`}>
-// 						<div className={`w-12 h-12 rounded-xl mb-6 flex items-center justify-center transition-colors ${isDark
-// 							? 'bg-zinc-700 text-purple-400 group-hover:bg-blue-800 group-hover:text-blue-300'
-// 							: 'bg-zinc-100 text-purple-500 group-hover:bg-blue-100 group-hover:text-blue-600'
-// 							}`}>
-// 							<Smartphone className="w-6 h-6" />
-// 						</div>
-
-// 						<h3 className={`text-xl font-semibold mb-3 ${isDark ? 'text-white' : 'text-zinc-900'
-// 							}`}>
-// 							Fully Responsive
-// 						</h3>
-
-// 						<p className={`text-sm leading-relaxed mb-8 ${isDark ? 'text-zinc-400' : 'text-zinc-600'
-// 							}`}>
-// 							Every component adapts perfectly to all screen sizes.
-// 							From mobile to desktop, your UI looks flawless everywhere.
-// 						</p>
-
-// 						{/* Responsive preview */}
-// 						<div className="space-y-4">
-// 							<div className="flex items-center space-x-3">
-// 								<div className={`w-8 h-6 rounded border-2 flex-shrink-0 ${isDark ? 'border-zinc-600' : 'border-zinc-300'
-// 									}`}></div>
-// 								<span className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
-// 									Mobile: 320px+
-// 								</span>
-// 							</div>
-// 							<div className="flex items-center space-x-3">
-// 								<div className={`w-12 h-8 rounded border-2 flex-shrink-0 ${isDark ? 'border-zinc-600' : 'border-zinc-300'
-// 									}`}></div>
-// 								<span className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
-// 									Tablet: 768px+
-// 								</span>
-// 							</div>
-// 							<div className="flex items-center space-x-3">
-// 								<div className={`w-16 h-10 rounded border-2 flex-shrink-0 ${isDark ? 'border-zinc-600' : 'border-zinc-300'
-// 									}`}></div>
-// 								<span className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
-// 									Desktop: 1024px+
-// 								</span>
-// 							</div>
-// 						</div>
-// 					</div>
-
-// 					{/* Dark/Light Mode */}
-// 					<div className={`group p-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${isDark
-// 						? 'bg-zinc-800 border border-zinc-700 hover:border-blue-500/50 hover:bg-blue-900/10'
-// 						: 'bg-white border border-zinc-200 hover:border-blue-300 hover:bg-blue-50/50 shadow-lg hover:shadow-xl'
-// 						}`}>
-// 						<div className="flex items-center space-x-2 mb-6">
-// 							<div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark
-// 								? 'bg-zinc-900 text-yellow-400 group-hover:bg-blue-900 group-hover:text-blue-300'
-// 								: 'bg-yellow-100 text-yellow-600 group-hover:bg-blue-100 group-hover:text-blue-600'
-// 								}`}>
-// 								<Sun className="w-4 h-4" />
-// 							</div>
-// 							<div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark
-// 								? 'bg-zinc-700 text-blue-400 group-hover:bg-blue-800 group-hover:text-blue-300'
-// 								: 'bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600'
-// 								}`}>
-// 								<Moon className="w-4 h-4" />
-// 							</div>
-// 						</div>
-
-// 						<h3 className={`text-xl font-semibold mb-3 ${isDark ? 'text-white' : 'text-zinc-900'
-// 							}`}>
-// 							Dark & Light Mode
-// 						</h3>
-
-// 						<p className={`text-sm leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'
-// 							}`}>
-// 							Built-in support for both themes. Switch seamlessly between light and dark modes.
-// 						</p>
-// 					</div>
-
-// 					{/* MIT License */}
-// 					<div className={`group p-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${isDark
-// 						? 'bg-zinc-800 border border-zinc-700 hover:border-blue-500/50 hover:bg-blue-900/10'
-// 						: 'bg-white border border-zinc-200 hover:border-blue-300 hover:bg-blue-50/50 shadow-lg hover:shadow-xl'
-// 						}`}>
-// 						<div className={`w-12 h-12 rounded-xl mb-6 flex items-center justify-center transition-colors ${isDark
-// 							? 'bg-zinc-700 text-blue-400 group-hover:bg-blue-800 group-hover:text-blue-300'
-// 							: 'bg-zinc-100 text-blue-500 group-hover:bg-blue-100 group-hover:text-blue-600'
-// 							}`}>
-// 							<Shield className="w-6 h-6" />
-// 						</div>
-
-// 						<h3 className={`text-xl font-semibold mb-3 ${isDark ? 'text-white' : 'text-zinc-900'
-// 							}`}>
-// 							MIT Licensed
-// 						</h3>
-
-// 						<p className={`text-sm leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'
-// 							}`}>
-// 							Use freely in personal and commercial projects.
-// 							No restrictions, no attribution required.
-// 						</p>
-
-// 						<div className="mt-6">
-// 							<div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${isDark ? 'bg-blue-900/30 text-blue-300' : 'bg-blue-100 text-blue-700'
-// 								}`}>
-// 								<Shield className="w-3 h-3 mr-1" />
-// 								Open Source
-// 							</div>
-// 						</div>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
+// 		<article className='grid gap-4 mb-24 lg:grid-cols-3 grid-rows-3'>
+// 			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900/90 backdrop-blur-sm card-border'>
+// 				<h5 className='text-lg 2xl:text-xl bg-clip-text bg-linear-to-l from-purple-400 to-blue-600 text-transparent font-bold'>CSS & Tailwind Ready</h5>
+// 				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>Components built with both pure CSS and Tailwind CSS. Choose your preferred styling approach.</p>
+// 			</section>
+// 			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900 card-border'>
+// 				<h5 className='font-medium text-lg 2xl:text-xl'>Copy & Paste</h5>
+// 				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>No installations or configurations needed. Simply copy the code and paste it into your project.</p>
+// 			</section>
+// 			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900 card-border'>
+// 				<h5 className='font-medium text-lg 2xl:text-xl'>Fully Responsive</h5>
+// 				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>Every component adapts perfectly to all screen sizes. From mobile to desktop, your UI looks flawless everywhere.</p>
+// 			</section>
+// 			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900 card-border'>
+// 				<h5 className='font-medium text-lg 2xl:text-xl'>Dark & Light Mode</h5>
+// 				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>Built-in support for both themes. Switch seamlessly between light and dark modes.</p>
+// 			</section>
+// 			<section className='rounded-xl p-7 bg-white dark:bg-zinc-900 card-border'>
+// 				<h5 className='font-medium text-lg 2xl:text-xl'>MIT Licensed</h5>
+// 				<p className='text-zinc-800 text-[15px] 2xl:text-base dark:text-zinc-50'>Use freely in personal and commercial projects. No restrictions, no attribution required.</p>
+// 			</section>
+// 		</article>
+// 	)
 // }

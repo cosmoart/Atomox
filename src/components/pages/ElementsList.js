@@ -25,13 +25,8 @@ export default function ElementsList ({ data, title, description }) {
 				{
 					data.map(element => (
 						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'group relative overflow-hidden rounded-xl flex-1 min-w-70 2xl:min-w-75 max-w-78 2xl:max-w-80 dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] transition-all duration-300  hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 '}>
-							{/* <img src='/test.webp' className='w-full h-32 object-cover object-top ' /> */}
 							<div className='aspect-16/8 bg-zinc-100 dark:bg-zinc-900 overflow-hidden'>
-								{element.icon ? element.icon : <svg width='850' className='w-full h-full object-cover group-hover:scale-105 transition-transform' height='377' viewBox='0 0 850 377' fill='none' xmlns='http://www.w3.org/2000/svg'>
-									<rect x='200' y='136' width='449' height='105' rx='25' fill='#D9D9D9' className='dark:fill-zinc-500' />
-									<rect x='226' y='162' width='326' height='53' rx='14' fill='white' className='dark:fill-zinc-800' />
-									<rect x='573' y='162' width='53' height='53' rx='26.5' fill='white' className='dark:fill-zinc-800' />
-								</svg>}
+								{element.icon ? element.icon : ''}
 							</div>
 
 							<div className='py-3 px-5 z-10 relative'>
@@ -42,10 +37,6 @@ export default function ElementsList ({ data, title, description }) {
 								<p className='text-[15px] opacity-80 line-clamp-2' title={element.description}>{element.description}</p>
 							</div>
 						</Link>
-						// <Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={`flex card-border flex-1 min-w-78 justify-center flex-col rounded-lg py-4 px-6 shadow-md transition-shadow hover:shadow-lg ${element.id.toLowerCase()}`}>
-						// 	<h3 className='text-lg font-medium '>{element.name}</h3>
-						// 	<p className='text-[15px] line-clamp-2'>{element.description}</p>
-						// </Link>
 					))
 				}
 			</article>

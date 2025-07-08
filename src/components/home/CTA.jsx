@@ -42,7 +42,7 @@ export default function CTA () {
 					</div>
 
 					{/* Stats */}
-					<div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-center">
+					{/* <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-center">
 						<div className="space-y-1">
 							<div className="text-3xl font-bold text-white">10,000+</div>
 							<div className="text-sm text-blue-200">Components</div>
@@ -57,7 +57,7 @@ export default function CTA () {
 							<div className="text-3xl font-bold text-white">50+</div>
 							<div className="text-sm text-blue-200">Countries</div>
 						</div>
-					</div>
+					</div> */}
 
 					{/* CTA Buttons */}
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">

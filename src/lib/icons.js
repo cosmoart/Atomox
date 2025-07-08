@@ -30,7 +30,7 @@ export const atomsIcons = {
 	</svg>,
 
 	'loaders': <svg className='size-full group-hover:scale-105 transition-transform *:dark:fill-zinc-400' viewBox='0 0 850 377' fill='none' xmlns='http://www.w3.org/2000/svg'>
-		<path d='M425 149.5V129.75M452.979 161.021L467.133 146.867M464.5 189H484.25M452.979 216.979L467.133 231.133M425 228.5V248.25M397.021 216.979L382.867 231.133M385.5 189H365.75M397.021 161.021L382.867 146.867' stroke='#999999' strokeWidth='14.55' strokeLinecap='round' stroke-linejoin='round' />
+		<path d='M425 149.5V129.75M452.979 161.021L467.133 146.867M464.5 189H484.25M452.979 216.979L467.133 231.133M425 228.5V248.25M397.021 216.979L382.867 231.133M385.5 189H365.75M397.021 161.021L382.867 146.867' stroke='#999999' strokeWidth='14.55' strokeLinecap='round' strokeLinejoin='round' />
 	</svg>,
 
 	'checkboxes': <svg className='size-full group-hover:scale-105 transition-transform' viewBox='0 0 850 425' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -43,9 +43,9 @@ export const atomsIcons = {
 		<rect x='317' y='129' width='162' height='20' rx='7' fill='#999999' />
 		<rect x='317' y='224' width='162' height='20' rx='7' fill='#999999' />
 		<rect x='317' y='319' width='162' height='20' rx='7' fill='#999999' />
-		<path d='M285 198L260 227L247 212.5' stroke='white' strokeWidth='7' strokeLinecap='round' stroke-linejoin='round' />
-		<path d='M284 103L259 132L246 117.5' stroke='white' strokeWidth='7' strokeLinecap='round' stroke-linejoin='round' />
-		<path d='M285 294L260 323L247 308.5' stroke='white' strokeWidth='7' strokeLinecap='round' stroke-linejoin='round' />
+		<path d='M285 198L260 227L247 212.5' stroke='white' strokeWidth='7' strokeLinecap='round' strokeLinejoin='round' />
+		<path d='M284 103L259 132L246 117.5' stroke='white' strokeWidth='7' strokeLinecap='round' strokeLinejoin='round' />
+		<path d='M285 294L260 323L247 308.5' stroke='white' strokeWidth='7' strokeLinecap='round' strokeLinejoin='round' />
 	</svg>,
 
 	'radioButtons': <svg className='size-full group-hover:scale-105 transition-transform' viewBox='0 0 850 425' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -88,7 +88,7 @@ export const atomsIcons = {
 		<rect x='242' y='199' width='364' height='13' rx='6.5' fill='white' />
 		<rect x='243' y='244' width='364' height='14' rx='7' fill='white' />
 		<rect x='242' y='290' width='364' height='14' rx='7' fill='white' />
-		<path d='M581.208 120L593.5 132.5L605.792 120' stroke='white' stroke-width='6.45833' stroke-linecap='round' stroke-linejoin='round' />
+		<path d='M581.208 120L593.5 132.5L605.792 120' stroke='white' strokeWidth='6.45833' strokeLinecap='round' strokeLinejoin='round' />
 	</svg>
 	,
 }
