@@ -42,7 +42,7 @@ export default function Header () {
 				<div className={`absolute max-w-sm top-0 overflow-auto ${open ? "right-0" : "-right-full"} bg-white/80 dark:bg-zinc-800/80 w-3/4 rounded-xl py-3 px-5 h-screen backdrop-blur transition-all`}>
 					<SignedOut>
 						<div className='flex gap-2 items-center'>
-							<Link href="/sign-in" className="px-12 py-1.5 rounded-lg shining btn-primary text-[15px] tracking-wide inline-block via-purple-500/20!">
+							<Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining btn-primary bg-gradient-to-bl text-[15px] hover:bg-size-[160%_160%] bg-size-[120%_120%] transition-all tracking-wide ">
 								Sign in
 							</Link>
 							<ThemeToggle />
@@ -134,10 +134,7 @@ export default function Header () {
 
 			<nav className="hidden md:flex items-center gap-2">
 				<SignedOut>
-					{/* <Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining btn-primary text-[15px] tracking-wide via-purple-500/35!">
-						Sign in
-					</Link> */}
-					<Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining btn-primary bg-gradient-to-bl text-[15px] hover:bg-size-[140%_140%] bg-size-[100%_100%] transition-all tracking-wide ">
+					<Link href="/sign-in" className="px-8 py-1.5 rounded-lg shining btn-primary bg-gradient-to-bl text-[15px] hover:bg-size-[160%_160%] bg-size-[120%_120%] transition-all tracking-wide ">
 						Sign in
 					</Link>
 

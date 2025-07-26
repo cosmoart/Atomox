@@ -7,7 +7,7 @@ export default function AtomsMolecules () {
 		<div className='flex bg-grid gap-4 pt-10 mb-18 relative text-center after:absolute after:inset-x-0 after:-bottom-8 lg:after:bottom-0 after:z-10 after:w-full after:h-40 after:scale-[103%] after:bg-linear-to-t after:from-white after:via-white/90  dark:after:from-zinc-950 dark:after:via-zinc-950/90 dark:after:to-zinc-950/50'>
 			<article className='relative'>
 				<h2 className='text-center text-4xl font-semibold'>Atoms</h2>
-				<p className='max-w-[80ch] mx-auto mb-5 nt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas vel voluptatem nobis, dolore illum repellat quaerat voluptates fugit. Iste temporibus quos.</p>
+				<p className='max-w-[80ch] mx-auto mb-5 nt-2'>{Atoms.description}</p>
 
 				<section className='flex flex-wrap justify-center gap-4'>
 					{
@@ -39,7 +39,7 @@ export default function AtomsMolecules () {
 
 			<article className='relative'>
 				<h2 className='text-center text-4xl font-semibold'>Molecules</h2>
-				<p className='max-w-[80ch] mx-auto mb-5 nt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas vel voluptatem nobis, dolore illum repellat quaerat voluptates fugit. Iste temporibus quos</p>
+				<p className='max-w-[80ch] mx-auto mb-5 nt-2'>{Molecules.description}</p>
 
 				<section className='flex flex-wrap justify-center gap-4'>
 					{

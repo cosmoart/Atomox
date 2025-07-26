@@ -1,18 +1,13 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import StarOnGitHub from '@/components/StarOnGithub'
-import ComponentsGrid from '@/components/home/ComponentsGrid';
-import Image from 'next/image';
-import Logo from '@/assets/icons/logo.svg';
-import FeaturesThree from '@/components/home/FeaturesThree';
 import FeaturesBento from '@/components/home/FeaturesBento';
 import AtomsMolecules from '@/components/home/AtomsMolecules';
 import CTA from '@/components/home/CTA';
+import HeroSection from '@/components/home/Hero';
 
 export default async function Home () {
 	return (
 		<div className='section py-1.5 2xl:py-4' aria-hidden='true'>
-			<div className='absolute w-full top-0 h-[calc(100svh+10px)] max-h-[880px] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-35'></div>
+			{/* <div className='absolute w-full top-0 h-[calc(100svh+10px)] max-h-[880px] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-35'></div> */}
+			<div className='absolute w-full top-0 h-[calc(100svh+10px)] max-h-[880px] -z-10 left-0 bg-gradient-to-br dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 from-slate-50 via-indigo-200 to-slate-50 border-b border-white/10 opacity-60 dark:opacity-25'></div>
 
 			{/* <div className='absolute max-h-[890px] opacity-75 inset-0 top-0 m-0.5 left-0 rounded-xl -z-10  bg-positiox-[35%_top] bg-no-repeat sm:bg-positiox-[38%_top] md:bg-positiox-[40%_top] lg:bg-positiox-[44%_top] bg-[url("https://headlessui.com/_next/static/media/bg-top.c54a3f7e.jpg")] xl:bg-top forced-colors:hidden' aria-hidden='true'></div>
 			<div className='absolute max-h-[890px] opacity-75 inset-0 top-0 m-0.5 left-0 rounded-xl -z-10  bg-positiox-[35%_bottom] bg-no-repeat mix-blend-screen sm:bg-positiox-[38%_bottom] bg-[url("https://headlessui.com/_next/static/media/bg-bottom.e4e0724b.jpg")] md:bg-positiox-[40%_bottom] lg:bg-positiox-[44%_bottom] xl:bg-bottom forced-colors:hidden' aria-hidden='true'></div> */}
@@ -35,33 +30,10 @@ export default async function Home () {
 				<div className='jumbo absolute -inset-[10px] opacity-60 h-3/4'></div>
 			</div>
 
-			<section className='heightScreen max-h-[800px] flex items-center flex-row-reverse justify-center gap-12 relative pb-8 mb-8'>
-				<div className='w-full mt-10 flex flex-col sm:justify-between items-center lg:items-start'>
-					<div className='flex flex-col md:flex-row gap-3 items-center md:mb-3'>
-						<Image src={Logo} alt='Logo' width={200} height={200} className='dark:invert right-0 left-0 mx-auto lg:mx-0 size-26 md:size-22' />
-						<div className='flex flex-col items-center md:items-start'>
-							<StarOnGitHub />
-							<h1 className='text-7xl font-bold my-2 text-zinc-900 dark:text-white pulse'>Atomox</h1>
-						</div>
-					</div>
-					<p className='md:text-[17px] mb-5 max-w-[60ch] text-balance text-center lg:text-left'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
+			<HeroSection />
 
-					<nav className='flex gap-2 w-full max-w-[400px]'>
-						<Link href='/atoms' className='btn-primary px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2'>
-							View atoms
-							<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
-						</Link>
-						<Link href='/molecules' className='btn-primary px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2'>
-							View molecules
-							<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
-						</Link>
-					</nav>
-				</div>
+			{/* <img src='test.png' alt='test' className='w-full h-full object-cover' /> */}
 
-				<ComponentsGrid />
-			</section>
-
-			<FeaturesThree />
 			<FeaturesBento />
 			<AtomsMolecules />
 			<CTA />

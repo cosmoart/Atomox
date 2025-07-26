@@ -25,7 +25,7 @@ export default function StarOnGitHub () {
 			href="https://github.com/cosmoart/Atomox"
 			target="_blank"
 			rel="noopener noreferrer"
-			className='rounded-full  text-sm active:scale-95 px-4 py-0.5 bg-gradient-to-r from-indigo-600 via-purple-500 to-blue-600 border-white/10 border group drop-shadow-sm flex gap-1 items-center text-white w-fit group'
+			className='rounded-full  text-sm active:scale-95 px-4 py-0.5 bg-gradient-to-r from-indigo-600 via-purple-500 to-blue-600 border-white/10 border group drop-shadow-sm flex gap-1 items-center text-white w-fit group test2'
 		>
 			<div className='rounded-full w-full absolute! top-0 left-0 h-full shining z-10'></div>
 			<div className='relative'>

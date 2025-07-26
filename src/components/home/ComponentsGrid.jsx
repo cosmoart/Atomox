@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTheme } from 'next-themes'
 import { MonitorCog, MoonIcon, Sun } from 'lucide-react';
 
@@ -7,10 +7,6 @@ export default function ComponentsGrid () {
 	const [activeTab, setActiveTab] = useState('Dashboard');
 	const [selectedButton, setSelectedButton] = useState(0);
 	const { theme, setTheme } = useTheme()
-
-	// useEffect(() => {
-	// 	document.querySelector(".headerScrollEffect").classList.add("hiddenHeader");
-	// }, []);
 
 	const buttonIcons = [
 		// Camera

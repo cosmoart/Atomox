@@ -1,7 +1,24 @@
+'use client'
 import { Repeat } from 'lucide-react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ElementsList ({ data, title, description }) {
+	useGSAP(() => {
+		gsap.from('.card-item', {
+			// autoAlpha: 0,
+			opacity: 0,
+			// scrollTrigger: '.card-item',
+			stagger: 0.1,
+			duration: 5,
+		})
+	});
+
 	return (
 		<div className='section pt-6 relative'>
 			<div className='absolute h-1/2 max-h-60 dark:invert opacity-30 -z-20 pointer-events-none bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]'></div>
@@ -24,7 +41,7 @@ export default function ElementsList ({ data, title, description }) {
 			<article className='flex flex-wrap justify-center mx-auto gap-4 mt-8'>
 				{
 					data.map(element => (
-						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'group relative overflow-hidden rounded-xl flex-1 min-w-70 2xl:min-w-75 max-w-78 2xl:max-w-80 dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] transition-all duration-300  hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 '}>
+						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'card-item group relative overflow-hidden rounded-xl flex-1 min-w-70 2xl:min-w-75 max-w-78 2xl:max-w-80 dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] transition-all duration-300  hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 '}>
 							<div className='aspect-16/8 bg-zinc-100 dark:bg-zinc-900 overflow-hidden'>
 								{element.icon ? element.icon : ''}
 							</div>

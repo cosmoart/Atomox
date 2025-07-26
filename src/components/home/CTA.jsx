@@ -1,8 +1,10 @@
 import { ArrowRight, Code, Github, Heart, Plus, Sparkles, Upload, Users } from 'lucide-react';
+import BubbleIconsBackground from './Anima';
 
 export default function CTA () {
 	return (
 		<section className="relative bg-gradient-to-br from-indigo-700 via-blue-600 to-purple-700 overflow-hidden rounded-3xl">
+			<BubbleIconsBackground />
 			{/* Background decorative elements */}
 			<div className="absolute inset-0 opacity-10">
 				<div className="absolute top-10 left-10 w-32 h-32 bg-pink-500 rounded-full blur-3xl"></div>

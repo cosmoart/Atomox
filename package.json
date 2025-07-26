@@ -13,6 +13,7 @@
     "@clerk/elements": "^0.23.24",
     "@clerk/nextjs": "^6.18.1",
     "@clerk/themes": "^2.2.37",
+    "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.0.1",
     "@monaco-editor/react": "^4.7.0-rc.0",
     "@next/third-parties": "^15.3.2",
