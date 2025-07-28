@@ -31,7 +31,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 					${css}
 				</style>
       </head>
-      <body style="min-height:100svh;display:grid;place-items:center;">
+      <body>
 				${html}
 				<script>${js}</script>
 			</body>
@@ -62,7 +62,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 											}
 										}}
 									/>
-									<CopyButton textToCopy={html} className="absolute bottom-2 right-2" />
+									<CopyButton textToCopy={html} />
 								</div>
 							)
 						},
@@ -84,7 +84,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 											}
 										}}
 									/>
-									<CopyButton textToCopy={css} className="absolute bottom-2 right-2" />
+									<CopyButton textToCopy={css} />
 								</div>
 							)
 						},
@@ -106,7 +106,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 											}
 										}}
 									/>
-									<CopyButton textToCopy={js} className="absolute bottom-2 right-2" />
+									<CopyButton textToCopy={js} />
 								</div>
 							)
 						}

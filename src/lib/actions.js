@@ -262,10 +262,17 @@ export async function deleteComment (id) {
 	const client = createServerSupabaseClient();
 
 	if (!id || !userId) throw new Error('Post ID and User ID are required.');
+	const { data, error } = await client
+		.from('comments')
+		.delete()
+		.eq('id', id)
+		.eq('user_id', userId)
+		.select();
 
-	const { error } = await client.from('comments').delete().eq('id', id).eq('user_id', userId);
+	if (error) return { error: 'Error deleting comment' };
+	if (!data || data.length === 0) return { error: 'Comment not found' };
 
-	if (error) return { error: 'Error al eliminar el comentario' }
+	return { success: true };
 }
 
 export async function likeComment (id) {

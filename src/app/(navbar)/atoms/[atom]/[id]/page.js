@@ -2,7 +2,7 @@ import Element from '@/components/pages/Element'
 import { Atoms } from '@/lib/conts'
 
 export async function generateMetadata ({ params }) {
-	const { id, atom } = await params
+	const { atom } = await params
 	const ato = Atoms.find(el => el.id === atom)
 
 	return {

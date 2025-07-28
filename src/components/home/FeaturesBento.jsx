@@ -6,10 +6,10 @@ export default function FeaturesBento () {
 		<div className="section mb-30">
 			{/* Header */}
 			<header className="text-center mb-12">
-				<h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+				<h1 className="text-5xl font-bold mb-2 bg-linear-to-r to-purple-500 dark:to-purple-400 from-blue-600 dark:from-blue-500 bg-clip-text text-transparent leading-15 inline-block">
 					Design System
 				</h1>
-				<p className="text-zinc-400 text-xl max-w-2xl mx-auto">
+				<p className="dark:text-zinc-300 text-xl max-w-2xl mx-auto">
 					A comprehensive collection of components, templates, and resources for modern web development
 				</p>
 			</header>

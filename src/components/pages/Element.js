@@ -113,10 +113,10 @@ export default async function Element ({ id, elementId }) {
 				</article>
 			</div>
 
-			<div className='grid md:grid-cols-[2fr_1fr] gap-10 mt-3 section'>
-				{/* <div className='flex flex-col-reverse gap-10 md:flex-row mt-3 section'> */}
+			{/* <div className='grid md:grid-cols-[2fr_1fr] gap-10 mt-3 section'> */}
+			<div className='flex flex-col-reverse gap-10 md:flex-row mt-3 section'>
 				<Comments id={element.id} />
-				<Ad />
+				<Ad className='aspect-video' />
 			</div>
 		</div>
 	)

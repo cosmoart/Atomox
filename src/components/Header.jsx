@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { NavBar } from './NavBar';
 import Logo from '@/assets/icons/Logo';
 import { CircleUserRound, Menu, MoonIcon, SunIcon, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { Atoms, Molecules } from '@/lib/conts';
 
 export default function Header () {

@@ -7,7 +7,7 @@ import getElements from '@/lib/actions'
 import ElementCard, { ElementCardSkeleton } from '../ElementCard'
 import Link from 'next/link'
 import PaginationFooter from '../Pagination'
-import { OctagonAlert, Search } from 'lucide-react'
+import { ArrowLeftIcon, OctagonAlert, OctagonX, Search } from 'lucide-react'
 import Image from 'next/image'
 import componentsIcon from '@/assets/icons/components.svg'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
@@ -29,24 +29,30 @@ export default function Elements ({ data: data2, type }) {
 
 	useEffect(() => {
 		startTransition(async () => {
-			const res = await getElements({
-				elementId: data2.id,
-				page: currentPage,
-				pageSize: elementsPerPage,
-				query: queries.query.split(' '),
-				sort: queries.sort,
-				style: queries.style
-			});
+			try {
+				const res = await getElements({
+					elementId: data2.id,
+					page: currentPage,
+					pageSize: elementsPerPage,
+					query: queries.query.split(' '),
+					sort: queries.sort,
+					style: queries.style
+				});
 
-			if (res.data.length > (type === 'Atoms' ? 8 : 6)) {
-				const min = type === 'Atoms' ? 8 : 6;
-				const max = res.data.length;
-				const randomIndex = Math.floor(Math.random() * (max - min)) + min;
-				res.data.splice(randomIndex, 0, 'ad');
+				if (!res.ok) throw new Error('Error fetching')
+
+				if (res.data.length > (type === 'Atoms' ? 8 : 6)) {
+					const min = type === 'Atoms' ? 8 : 6;
+					const max = res.data.length;
+					const randomIndex = Math.floor(Math.random() * (max - min)) + min;
+					res.data.splice(randomIndex, 0, 'ad');
+				}
+
+				setElements(res.error ? ({ error: res.error }) : res.data);
+				setTotalElements(res.totalCount);
+			} catch (error) {
+				setElements({ error: true })
 			}
-
-			setElements(res.error ? ({ error: res.error }) : res.data);
-			setTotalElements(res.totalCount);
 		});
 	}, [currentPage]);
 
@@ -70,6 +76,10 @@ export default function Elements ({ data: data2, type }) {
 		router.push(`?${newParams.toString()}`)
 		setQueries({ query: q, style: style, sort: sort })
 	}
+
+	// if (elements === 'error') return <div>
+	// 	Error
+	// </div>
 
 	return (
 		<div className='section mb-10 relative minHeightScreen flex flex-col'>
@@ -133,12 +143,27 @@ export default function Elements ({ data: data2, type }) {
 				</div>
 			</article>
 
-			<article className='sm:grid flex flex-col gap-4 mt-6 mb-10' style={{
-				gridTemplateColumns: PagesTypes[type].gridSize,
-				flexGrow: (elements.length < 1 || elements.error) ? 1 : 0
-			}} >
-				<ElementsList isPending={isPending} elements={elements} />
-			</article>
+			{
+				!elements.error
+					? <article className='sm:grid flex flex-col gap-4 mt-6 mb-10' style={{
+						gridTemplateColumns: PagesTypes[type].gridSize,
+						flexGrow: (elements.length < 1 || elements.error) ? 1 : 0
+					}} >
+						<ElementsList isPending={isPending} elements={elements} />
+					</article>
+
+					: <article className='p-5 flex grow justify-center items-center flex-col'>
+						<OctagonX className='size-14 2xl:size-20' />
+						<h1 className='text-3xl font-semibold mt-2 2xl:text-5xl'>
+							Error loading elements
+						</h1>
+						<p className='text-pretty mt-1 text-zinc-900/80 dark:text-white/80 text-lg text-center'>An unexpected error has occurred. Please try again later.</p>
+						<Link href='/' className='btn btn-primary mt-3 py-1.5 flex gap-1 px-8 pr-10 group shining 2xl:text-lg'>
+							<ArrowLeftIcon className='size-5 group-hover:-translate-x-1 transition-transform 2xl:size-7' />
+							Go back home
+						</Link>
+					</article>
+			}
 
 			<PaginationFooter totalPages={Math.ceil(totalElements / elementsPerPage)} setPage={setCurrentPage} page={currentPage} query={queries} />
 		</div>

@@ -40,8 +40,8 @@ export default async function RootLayout ({ children }) {
 					<meta name='twitter:description' content={description} />
 					<meta name='twitter:image' content={image} />
 				</head>
-				<body className={`${montserrat.variable} antialiased overflow-x-hidden!`} style={{ fontFamily: 'var(--font-montserrat)' }}>
-					<div className='pointer-events-none dark:bg-zinc-950 fixed bottom-[3px] md:bottom-1 left-0.5 md:left-1 right-0.5 md:right-1 top-1 -z-50 rounded-lg shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(32,42,54,0.04),0_24px_68px_rgba(47,48,56,0.15),0_2px_3px_rgba(0,0,0,0.09)] ring-1 ring-zinc-900/7.5  dark:ring-white/10'></div>
+				<body className={`${montserrat.className} antialiased overflow-x-hidden!`}>
+					<div className='pointer-events-none dark:bg-zinc-950/50 fixed bottom-[3px] md:bottom-1 left-0.5 md:left-1 right-0.5 md:right-1 top-1 -z-50 rounded-lg shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(32,42,54,0.04),0_24px_68px_rgba(47,48,56,0.15),0_2px_3px_rgba(0,0,0,0.09)] ring-1 ring-zinc-900/7.5  dark:ring-white/10'></div>
 					<ViewTransition>
 						<ThemeProvider attribute='class'>
 							{children}

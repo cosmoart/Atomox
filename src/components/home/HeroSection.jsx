@@ -50,10 +50,10 @@ export default function HeroSection () {
 		});
 
 		gsap.from(".test", {
-			duration: .8,
-			y: 25,
+			duration: .3,
+			y: 50,
 			autoAlpha: 0,
-			stagger: 0.1, // 0.05 seconds between each
+			stagger: 0.2,
 		});
 
 		gsap.from(".test2", {
@@ -80,7 +80,7 @@ export default function HeroSection () {
 						View atoms
 						<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 					</Link>
-					<Link href='/molecules' className='btn-primary px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 test'>
+					<Link href='/molecules' className='btn-primary px-4 py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 test'>
 						View molecules
 						<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 					</Link>

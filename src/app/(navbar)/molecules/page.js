@@ -7,7 +7,7 @@ export const metadata = {
 }
 
 
-export default function Moleculas () {
+export default function Molecules () {
 	return (<ElementsList data={data} title='Molecules' description='They can be used to create more complex components, such as forms, cards, and modals. Examples of molecules include input forms, buttons with icons, and cards with images and text.' />
 	)
 }

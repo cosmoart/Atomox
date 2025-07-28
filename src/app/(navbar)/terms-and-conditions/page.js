@@ -3,7 +3,6 @@ export const metadata = {
 	description: 'Terms and Conditions',
 }
 
-
 export default function PrivacyPolicy () {
 	return (
 		<div className='section'>

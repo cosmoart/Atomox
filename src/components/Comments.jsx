@@ -74,6 +74,7 @@ export default function Comments ({ id }) {
 		setComments((comments) => [...comments.filter(comment => comment.id !== id)])
 		try {
 			const res = await deleteComment(id)
+			console.log(res, id)
 			if (res?.error) throw new Error('Error al eliminar el comentario')
 		} catch (error) {
 			setComments(oldComments)
@@ -150,28 +151,34 @@ export default function Comments ({ id }) {
 	const mainComments = comments.filter(c => !c.parent_id)
 	const replies = comments.filter(c => c.parent_id)
 
-	return <article className='w-full max-w-[70ch]'>
+	return <article className='w-[200%] max-w-[70ch]'>
 		<h2 className='text-2xl font-medium'>Comments ({comments.length})</h2>
 		<MagicMotion>
 			<div>
-				<div className='mt-4 flex flex-col gap-6'>
+				<div className='pt-4 flex flex-col gap-6'>
 					{
-						mainComments.map(comment => (
-							<div key={comment.id}>
-								<CommentCard
-									key="exclude"
-									comment={comment}
-									username={user?.username}
-									deleteComment={deleteIdComment}
-									likeComment={likeIdComment}
-									onReply={() => replyTo === comment.id ? setReplyTo(null) : setReplyTo(comment.id)}
-								/>
+						mainComments.map(comment => {
+							const repliesM = comments.filter(c => c.parent_id === comment.id)
 
-								<div className='ml-4.5 border-l pl-7 mt-3'>
+							return <div key={comment.id} className='relative'>
+								<div className='relative' key="exclude">
+									{repliesM.length > 0 && <div className="absolute left-[19px] -z-10 top-5 w-[2px] bg-zinc-200 dark:bg-zinc-700" style={{ height: `calc(100%)` }} />}
+
+									<CommentCard
+										comment={comment}
+										username={user?.username}
+										deleteComment={deleteIdComment}
+										likeComment={likeIdComment}
+										onReply={() => replyTo === comment.id ? setReplyTo(null) : setReplyTo(comment.id)}
+									/>
+								</div>
+
+								<div className='ml-4.5 pl-7 mt-4.5 relative'>
 									{replies
 										.filter(r => r.parent_id === comment.id)
-										.map(reply => (
-											<div key={reply.id}>
+										.map((reply, i) => (
+											<div key={reply.id} className={`relative mt-3.5 ${i !== repliesM.length - 1 ? "after:absolute after:w-0.5 after:left-[-27px] after:top-0 after:h-full after:bg-zinc-200 dark:after:bg-zinc-700 after:zinc-200" : ""}`}>
+												<div className="absolute left-[-27px] -top-4 h-10 w-8 rounded-bl-xl border-l-2 border-b-2  border-zinc-200 dark:border-zinc-700" />
 												<CommentCard
 													key="exclude"
 													comment={reply}
@@ -184,9 +191,13 @@ export default function Comments ({ id }) {
 										))}
 								</div>
 
-								{replyTo === comment.id && <CommentForm key="exclude" disabled={comments === "loading" || comments === "error"} sendComment={sendComment} replyTo={replyTo} />}
+								{replyTo === comment.id
+									&& <div>
+										<CommentForm key="exclude" disabled={comments === "loading" || comments === "error"} sendComment={sendComment} replyTo={replyTo} />
+									</div>
+								}
 							</div>
-						))
+						})
 					}
 				</div>
 
@@ -227,7 +238,7 @@ function CommentCard ({ comment, username, deleteComment, onReply, isReply = fal
 					</DropdownMenu>}
 				</div>
 
-				<p className='text-[15px] opacity-90 max-w-[75ch]  whitespace-pre-wrap'>{comment.content}</p>
+				<p className='text-[15px] opacity-95 max-w-[75ch] text-balance whitespace-pre-wrap'>{comment.content}</p>
 
 				<div className='flex gap-4 items-center justify-start mt-1 opacity-90'>
 					{/* <button className='flex gap-1 text-sm cursor-pointer active:scale-95 transition-transform items-center' onClick={() => likeComment(comment.id)}>

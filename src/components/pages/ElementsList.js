@@ -10,13 +10,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ElementsList ({ data, title, description }) {
 	useGSAP(() => {
-		gsap.from('.card-item', {
-			// autoAlpha: 0,
-			opacity: 0,
-			// scrollTrigger: '.card-item',
-			stagger: 0.1,
-			duration: 5,
-		})
+		gsap.set('.element', { autoAlpha: 0, scale: 0.9, y: 50 });
+
+		ScrollTrigger.batch('.element', {
+			onEnter: (elements) => {
+				gsap.to(elements, {
+					autoAlpha: 1,
+					scale: 1,
+					y: 0,
+					duration: 0.3,
+					ease: 'power2.out',
+					stagger: {
+						amount: 0.3,
+						grid: 'auto',
+					}
+				});
+			},
+			once: true
+		});
 	});
 
 	return (
@@ -38,10 +49,12 @@ export default function ElementsList ({ data, title, description }) {
 				</p>
 			</article>
 
-			<article className='flex flex-wrap justify-center mx-auto gap-4 mt-8'>
+			<article className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto gap-4 mt-8'>
+				{/* <article className='flex flex-wrap justify-center mx-auto gap-4 mt-8'> */}
 				{
 					data.map(element => (
-						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'card-item group relative overflow-hidden rounded-xl flex-1 min-w-70 2xl:min-w-75 max-w-78 2xl:max-w-80 dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] transition-all duration-300  hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 '}>
+						<Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'element group relative overflow-hidden rounded-xl flex-1 dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 transition-colors'}>
+							{/* <Link href={`${title.toLowerCase()}/${element.id}`} key={element.id} className={'element group relative overflow-hidden rounded-xl flex-1 min-w-70 2xl:min-w-75 max-w-78 2xl:max-w-80 dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 transition-colors'}> */}
 							<div className='aspect-16/8 bg-zinc-100 dark:bg-zinc-900 overflow-hidden'>
 								{element.icon ? element.icon : ''}
 							</div>
