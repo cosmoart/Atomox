@@ -39,7 +39,7 @@ export default function Elements ({ data: data2, type }) {
 					style: queries.style
 				});
 
-				if (!res.ok) throw new Error('Error fetching')
+				if (res.error) throw new Error('Error fetching')
 
 				if (res.data.length > (type === 'Atoms' ? 8 : 6)) {
 					const min = type === 'Atoms' ? 8 : 6;
