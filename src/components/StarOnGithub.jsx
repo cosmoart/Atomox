@@ -13,7 +13,7 @@ export default function StarOnGitHub () {
 				const data = await res.json()
 				setStars(data.stargazers_count)
 			} catch (error) {
-				console.error('Error al obtener estrellas:', error)
+				console.error(error)
 			}
 		}
 

@@ -25,7 +25,7 @@ export default function CopyButton ({ textToCopy }) {
 
 			setTimeout(() => {
 				setIsCopied(false);
-			}, 1500);
+			}, 1100);
 		} catch (err) {
 			console.error('Error:', err)
 		}

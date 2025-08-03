@@ -5,7 +5,7 @@ import { SignedIn, SignedOut, SignUpButton, useUser } from '@clerk/nextjs';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { useTheme } from 'next-themes';
 import { dark } from '@clerk/themes';
-import { EllipsisVertical, Heart, SendHorizontal, Trash } from 'lucide-react';
+import { EllipsisVertical, Heart, OctagonAlert, SendHorizontal, Trash } from 'lucide-react';
 import { createComment, deleteComment, getComments, likeComment } from '@/lib/actions';
 import { getTimeAgo } from '@/lib/getTimeAgo';
 import Link from 'next/link';
@@ -56,7 +56,7 @@ export default function Comments ({ id }) {
 
 		try {
 			const res = await createComment({ comment, element_id: id, parent_id: replyTo })
-			if (res?.error) throw new Error('Error al crear el comentario')
+			if (res?.error) throw new Error('Error creating comment')
 			setComments((comments) =>
 				comments.map((c) => c.id === tempId ? { ...c, creating: false } : c)
 			)
@@ -75,7 +75,7 @@ export default function Comments ({ id }) {
 		try {
 			const res = await deleteComment(id)
 			console.log(res, id)
-			if (res?.error) throw new Error('Error al eliminar el comentario')
+			if (res?.error) throw new Error('Error deleting comment')
 		} catch (error) {
 			setComments(oldComments)
 			console.error(error)
@@ -85,7 +85,7 @@ export default function Comments ({ id }) {
 	async function likeIdComment (id) {
 		try {
 			const res = await likeComment(id)
-			if (res?.error) throw new Error('Error al marcar el comentario')
+			if (res?.error) throw new Error('Error liking comment')
 			setComments((comments) => comments.map((comment) => {
 				if (comment.id === id) {
 					const { likedByUser, ...rest } = comment
@@ -98,28 +98,34 @@ export default function Comments ({ id }) {
 		}
 	}
 
+	// if (true) return <article className='w-full max-w-[70ch]'>
 	if (comments === 'loading') return <article className='w-full max-w-[70ch]'>
 		<h2 className='text-2xl font-medium'>Comments</h2>
 
-		<div className='mt-4 flex flex-col gap-6'>
-			{
-				Array(3).fill(null).map((_, i) => (
-					<div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4' key={i} >
-						<div className='flex gap-2 p-2 justify-between'>
-							<div className='flex gap-2 items-center'>
-								<div className='size-7 dark:bg-zinc-800 bg-zinc-200/50 rounded-full animate-pulse'></div>
-								<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-24'></div>
-							</div>
+		<ul className='mt-4 flex flex-col gap-5' aria-label='Loading comments...'>
+			<li className='h-full w-full col-span-full flex  flex-col' >
+				<div className='flex gap-3 items-center'>
+					<div className='size-9 dark:bg-zinc-800 bg-zinc-200/50 rounded-full animate-pulse'></div>
+					<div className='w-18 h-4 rounded-lg dark:bg-zinc-800 bg-zinc-200/50 animate-pulse'></div>
+					<div className='w-22 h-4 rounded-lg dark:bg-zinc-800 bg-zinc-200/50 animate-pulse'></div>
 
-							<div className='flex gap-3 items-center mr-1'>
-								<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-8'></div>
-								<div className='dark:bg-zinc-800 bg-zinc-200/50 rounded-lg animate-pulse h-4.5 w-8'></div>
-							</div>
-						</div>
-					</div>
-				))
-			}
-		</div>
+				</div>
+
+				<div className='h-16 ml-12 rounded-lg mb-2 dark:bg-zinc-800 bg-zinc-200/50 animate-pulse'></div>
+				<div className='w-14 ml-12 h-4 rounded-lg dark:bg-zinc-800 bg-zinc-200/50 animate-pulse'></div>
+			</li>
+
+			<li className='h-full w-full col-span-full flex flex-col' >
+				<div className='flex gap-3 items-center'>
+					<div className='size-9 dark:bg-zinc-800 bg-zinc-200/50 rounded-full animate-pulse'></div>
+					<div className='w-24 h-4 rounded-lg dark:bg-zinc-800 bg-zinc-200/50 animate-pulse'></div>
+					<div className='w-22 h-4 rounded-lg dark:bg-zinc-800 bg-zinc-200/50 animate-pulse'></div>
+				</div>
+
+				<div className='h-10 ml-12 w-1/2 mb-2 rounded-lg dark:bg-zinc-800 bg-zinc-200/50 animate-pulse'></div>
+				<div className='w-14 ml-12 h-4 rounded-lg dark:bg-zinc-800 bg-zinc-200/50 animate-pulse'></div>
+			</li>
+		</ul>
 
 		<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
 	</article>
@@ -127,11 +133,10 @@ export default function Comments ({ id }) {
 	if (comments === 'error' || !comments) return <article className='w-full max-w-[70ch]'>
 		<h2 className='text-2xl font-medium'>Comments</h2>
 
-		<div className='mt-4 flex flex-col gap-6'>
-			<div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
-				<p className='text-center text-muted-foreground'>Error loading comments.</p>
-				<button onClick={getAllComments} className='btn-primary py-1 px-7'>Try again</button>
-			</div>
+		<div className='mt-4 flex flex-col items-center gap-2 py-12'>
+			<OctagonAlert size={50} />
+			<p className='text-center text-lg'>Error loading comments.</p>
+			<button onClick={getAllComments} className='btn-primary py-1 px-7 w-fit shining cursor-pointer'>Try again</button>
 		</div>
 
 		<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
@@ -139,23 +144,31 @@ export default function Comments ({ id }) {
 
 	if (comments.length < 1) return <article className='w-full max-w-[70ch]'>
 		<h2 className='text-2xl font-medium'>Comments</h2>
-		<div className='mt-4 flex flex-col gap-6'>
-			<div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
-				<p className='text-center text-muted-foreground'>No comments found <span className='italic font-medium'>yet</span>. Be the first to comment!</p>
-			</div>
+		<div className='mt-4 flex flex-col gap-6 py-14'>
+			<svg xmlns="http://www.w3.org/2000/svg" className='size-16 mx-auto' width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M7.5 12h6m-6-4h3m-2 12c1.05.87 2.315 1.424 3.764 1.519c1.141.075 2.333.075 3.473 0a4 4 0 0 0 1.188-.268c.41-.167.614-.25.719-.237c.104.012.255.122.557.342c.533.388 1.204.666 2.2.643c.503-.012.755-.019.867-.208c.113-.19-.027-.452-.308-.977c-.39-.728-.636-1.561-.262-2.229c.643-.954 1.19-2.083 1.27-3.303c.043-.655.043-1.334 0-1.99A6.7 6.7 0 0 0 21.4 11" /><path d="M12.345 17.487c3.556-.234 6.388-3.08 6.62-6.653c.046-.699.046-1.423 0-2.122c-.232-3.572-3.064-6.418-6.62-6.652c-1.213-.08-2.48-.08-3.69 0c-3.556.234-6.388 3.08-6.62 6.652c-.046.7-.046 1.423 0 2.122c.084 1.302.665 2.506 1.349 3.524c.397.712.135 1.6-.279 2.377c-.298.56-.447.84-.327 1.042s.387.209.922.221c1.057.026 1.77-.271 2.336-.685c.321-.234.482-.351.593-.365c.11-.013.328.075.763.253c.392.16.846.258 1.263.286c1.21.08 2.477.08 3.69 0" /></g></svg>
+			<p className='text-center'>No comments <span className='italic font-medium'>yet</span>. Be the first to comment!</p>
 		</div>
 
 		<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
 	</article>
 
-	const mainComments = comments.filter(c => !c.parent_id)
+	const mainComments = [...comments.filter(c => !c.parent_id),
+	...comments.filter(c => !comments.some(c2 => c2.id === c.parent_id) && c.parent_id)
+		.map(c => ({ deleted: true, id: c.parent_id }))
+	]
 	const replies = comments.filter(c => c.parent_id)
 
 	return <article className='w-[200%] max-w-[70ch]'>
-		<h2 className='text-2xl font-medium'>Comments ({comments.length})</h2>
+		<h2 className='text-2xl font-medium relative inline-block'>
+			Comments
+			<span className='absolute -top-1.5 -right-7 rounded-full grid h-6 aspect-square place-items-center text-white bg-gradient-to-l from-purple-600 to-blue-600 text-[15px] 2xl:text-base 2xl:pt-0.5 outline-2 outline-zinc-100 dark:outline-zinc-700/50 outline-offset-2'>
+				{comments.length}
+			</span>
+		</h2>
+
 		<MagicMotion>
 			<div>
-				<div className='pt-4 flex flex-col gap-6'>
+				<div className='pt-4 flex flex-col gap-5'>
 					{
 						mainComments.map(comment => {
 							const repliesM = comments.filter(c => c.parent_id === comment.id)
@@ -173,7 +186,7 @@ export default function Comments ({ id }) {
 									/>
 								</div>
 
-								<div className='ml-4.5 pl-7 mt-4.5 relative'>
+								<div className='ml-4.5 pl-7 mt-4.5 mb-2 relative'>
 									{replies
 										.filter(r => r.parent_id === comment.id)
 										.map((reply, i) => (
@@ -208,6 +221,10 @@ export default function Comments ({ id }) {
 }
 
 function CommentCard ({ comment, username, deleteComment, onReply, isReply = false, likeComment }) {
+	if (comment.deleted) return <div className='py-3 px-4 bg-zinc-900 rounded-xl'>
+		Comment deleted
+	</div>
+
 	return (
 		<div className={`flex gap-3 ${comment.creating ? "animate-pulse cursor-progress pointer-events-none" : ""}`}>
 			<Link href={`/u/${comment.username}`}>

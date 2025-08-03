@@ -31,7 +31,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 					${css}
 				</style>
       </head>
-      <body>
+      <body style="min-height:100svh;display:grid;place-items:center;">
 				${html}
 				<script>${js}</script>
 			</body>

@@ -28,6 +28,40 @@
     @apply bg-gradient-to-l bg-indigo-500 from-indigo-600 via-purple-500/60  to-blue-600 from-20% to-80% text-white font-medium px-4 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 ;
   }
 }
+    .deformacion {
+      animation: deformar 20s infinite ease-in-out;
+      transform-origin: center;
+    }
+
+@keyframes deformar {
+  0% {
+    transform: scale(1) skew(0deg, 0deg) rotate(0deg);
+    background-size: 100% 100%;
+  }
+
+  20% {
+    transform: scale(1.2, 1.1) skew(5deg, -5deg) rotate(2deg);
+  }
+
+  40% {
+    transform: scale(1.1, 1.166) skew(-3deg, 3deg) rotate(-2deg);
+    background-size: 90% 90%;
+  }
+
+  60% {
+    transform: scale(1.07, 1.2) skew(4deg, -4deg) rotate(1deg);
+  }
+
+  80% {
+    transform: scale(1.15, 1.05) skew(-2deg, 2deg) rotate(-1deg);
+  }
+
+  100% {
+    transform: scale(1) skew(0deg, 0deg) rotate(0deg);
+        background-size: 100% 100%;
+  }
+}
+
 
 .cl-userProfile-root{
   width: auto;

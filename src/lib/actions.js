@@ -152,7 +152,7 @@ export async function deleteElement (id) {
 
 	const { error } = await client.from('elements').delete().eq('id', id).eq('user_id', userId);
 
-	if (error) throw new Error('Error al eliminar el elemento');
+	if (error) throw new Error('Error deleting element');
 }
 
 // Likes ==============
@@ -173,7 +173,7 @@ export async function toggleLike (elementId) {
 
 	if (fetchError && fetchError.code !== 'PGRST116' && fetchError.code !== 'PGRST123') {
 		console.error(fetchError);
-		throw new Error('Error al verificar el estado del like');
+		throw new Error('Error checking like status');
 	}
 
 	if (existingLike) {
@@ -202,7 +202,7 @@ export async function getUserLikes () {
 		.select('element_id, elements (*)')
 		.eq('user_id', userId);
 
-	if (error) throw new Error('Error al obtener likes');
+	if (error) throw new Error('Error getting likes');
 
 	return data.map((like) => like.elements);
 }
@@ -291,7 +291,7 @@ export async function likeComment (id) {
 
 	if (fetchError && fetchError.code !== 'PGRST116' && fetchError.code !== 'PGRST123') {
 		console.error(fetchError);
-		throw new Error('Error al verificar el estado del like');
+		throw new Error('Error checking like status');
 	}
 
 	if (existingLike) {
@@ -307,4 +307,13 @@ export async function likeComment (id) {
 			.insert([{ user_id: userId, comment_id: id }]);
 		if (insertError) throw insertError;
 	}
+}
+
+export async function updateViews (id, views) {
+	if (!id) throw new Error('Post ID is required.');
+	const client = createServerSupabaseClient();
+
+	const { error } = await client.from('elements').update({ views: views + 1 }).eq('id', id)
+
+	if (error) throw new Error('Error updating views');
 }
