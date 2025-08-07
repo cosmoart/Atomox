@@ -52,14 +52,11 @@ export default function CreateComponent () {
 				}
 				body{
 					margin: 0;
-					min-height:100svh;
-					display:grid;
-					place-items:center;
 				}
 				${css}
 				</style>
       </head>
-      <body>
+      <body style="${elementType === 'Atoms' ? 'min-height:100svh;display:grid;place-items:center;' : ''}">
 				${html}
 			<script>${js}</script>
 			</body>
@@ -99,7 +96,7 @@ export default function CreateComponent () {
 				<nav className='flex gap-8 items-center justify-between mb-2'>
 					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium cursor-pointer group active:scale-95 transition-transform'>
 						<ChevronLeft width={23} className='group-hover:-translate-x-1 transition-transform' />
-						<span>Volver</span>
+						<span>Back</span>
 					</button>
 
 					<div className='flex items-center gap-5'>

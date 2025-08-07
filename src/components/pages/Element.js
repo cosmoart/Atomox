@@ -85,7 +85,7 @@ export default async function Element ({ id, elementId }) {
 
 					<div className='flex justify-between items-center'>
 
-						<div className='flex items-center gap-2 justify-end w-full'>
+						<div className='flex items-center justify-end w-full pr-1'>
 							<Link href={`/u/${element.username}`} className='flex gap-2 items-center hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors rounded-full pr-3.5 group'>
 								<Avatar className='size-8.5 group-hover:scale-110 transition-transform' >
 									<AvatarImage src={element.user_avatar} alt={`${element.username} avatar`} />
@@ -116,9 +116,9 @@ export default async function Element ({ id, elementId }) {
 			</div>
 
 			{/* <div className='grid md:grid-cols-[2fr_1fr] gap-10 mt-3 section'> */}
-			<div className='flex flex-col-reverse gap-10 md:flex-row mt-3 section'>
+			<div className='flex flex-col-reverse gap-10 md:flex-row mt-3 section justify-center'>
 				<Comments id={element.id} />
-				<Ad className='aspect-video' />
+				<Ad className='aspect-video md:w-1/3 grow' />
 			</div>
 		</div>
 	)

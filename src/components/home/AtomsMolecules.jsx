@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function AtomsMolecules () {
 	return (
-		<div className='flex flex-col lg:flex-row bg-grid gap-4 pt-10 mb-18 relative text-center after:absolute after:inset-x-0 after:-bottom-8 lg:after:bottom-0 after:z-10 after:w-full after:h-40 after:scale-[103%] after:bg-linear-to-t after:from-white after:via-white/90  dark:after:from-zinc-950 dark:after:via-zinc-950/90 dark:after:to-zinc-950/50'>
+		<div className='flex flex-col lg:flex-row bg-grid gap-4 pt-8 mt-48 mb-48 relative text-center after:absolute after:inset-x-0 after:-bottom-8 lg:after:bottom-0 after:z-10 after:w-full after:h-40 after:scale-[103%] after:bg-linear-to-t after:from-white after:via-white/90  dark:after:from-zinc-950 dark:after:via-zinc-950/90 dark:after:to-zinc-950/50'>
 			<article className='relative'>
 				<h2 className='text-center text-4xl font-semibold'>Atoms</h2>
 				<p className='max-w-[80ch] mx-auto mb-5 nt-2'>{Atoms.description}</p>
@@ -34,8 +34,7 @@ export default function AtomsMolecules () {
 				</Link>
 			</article>
 
-			<div className='w-2 my-10 z-20 bg-white/30 rounded hidden md:block'></div>
-			{/* <div className='w-2 my-12 z-20 bg-gradient-to-b from-indigo-600 via-blue-500 to-pink-500 rounded hidden md:block'></div> */}
+			<div className='w-1 my-10 z-20 bg-white/30 rounded hidden md:block'></div>
 
 			<article className='relative'>
 				<h2 className='text-center text-4xl font-semibold'>Molecules</h2>

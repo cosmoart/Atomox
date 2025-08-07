@@ -171,7 +171,7 @@ export default function Elements ({ data: data2, type }) {
 }
 
 function ElementsList ({ isPending, elements }) {
-	if (isPending || elements === 'loading') return Array.from({ length: PagesTypes.Atoms.pageSize })
+	if (isPending || elements === 'loading') return Array.from({ length: PagesTypes.Atoms.pageSize + 1 })
 		.map((_, i) => <ElementCardSkeleton key={i} />)
 
 	if (elements.length < 1) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>

@@ -28,10 +28,22 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
         ${useTailwind ? `<script src="https://cdn.tailwindcss.com"></script>` : ``}
 				<style>
 				${useTailwind ? `@custom-variant dark (&:where(.dark, .dark *));` : ``}
+								html {
+					box-sizing: border-box;
+					font-family: sans-serif;
+				}
+				*,
+				*::before,
+				*::after {
+					box-sizing: inherit;
+				}
+				body{
+					margin: 0;
+				}
 					${css}
 				</style>
       </head>
-      <body style="min-height:100svh;display:grid;place-items:center;">
+      <body style="${elementType === 'atoms' ? 'min-height:100svh;display:grid;place-items:center;' : ''}">
 				${html}
 				<script>${js}</script>
 			</body>

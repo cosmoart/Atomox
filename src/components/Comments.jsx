@@ -10,6 +10,7 @@ import { createComment, deleteComment, getComments, likeComment } from '@/lib/ac
 import { getTimeAgo } from '@/lib/getTimeAgo';
 import Link from 'next/link';
 import { MagicMotion } from 'react-magic-motion';
+import { toast } from "sonner"
 
 export default function Comments ({ id }) {
 	const [comments, setComments] = useState("loading")
@@ -61,24 +62,22 @@ export default function Comments ({ id }) {
 				comments.map((c) => c.id === tempId ? { ...c, creating: false } : c)
 			)
 		} catch (error) {
-			console.error(error)
+			toast.error('Error creating comment')
 			setComments((prev) => prev.filter((c) => c.id !== tempId))
 		} finally {
 			e.target.reset()
 		}
 	}
 
-
 	async function deleteIdComment (id) {
 		const oldComments = comments
 		setComments((comments) => [...comments.filter(comment => comment.id !== id)])
 		try {
 			const res = await deleteComment(id)
-			console.log(res, id)
 			if (res?.error) throw new Error('Error deleting comment')
 		} catch (error) {
 			setComments(oldComments)
-			console.error(error)
+			toast.error('Error deleting comment')
 		}
 	}
 
@@ -94,12 +93,12 @@ export default function Comments ({ id }) {
 				return comment
 			}))
 		} catch (error) {
-			console.error(error)
+			toast.error('Error liking comment')
 		}
 	}
 
 	// if (true) return <article className='w-full max-w-[70ch]'>
-	if (comments === 'loading') return <article className='w-full max-w-[70ch]'>
+	if (comments === 'loading') return <article className='w-full max-w-[70ch] md:w-2/3'>
 		<h2 className='text-2xl font-medium'>Comments</h2>
 
 		<ul className='mt-4 flex flex-col gap-5' aria-label='Loading comments...'>
@@ -130,7 +129,7 @@ export default function Comments ({ id }) {
 		<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
 	</article>
 
-	if (comments === 'error' || !comments) return <article className='w-full max-w-[70ch]'>
+	if (comments === 'error' || !comments) return <article className='w-full max-w-[70ch] md:w-2/3'>
 		<h2 className='text-2xl font-medium'>Comments</h2>
 
 		<div className='mt-4 flex flex-col items-center gap-2 py-12'>
@@ -142,10 +141,10 @@ export default function Comments ({ id }) {
 		<CommentForm disabled={comments === "loading" || comments === "error"} sendComment={sendComment} />
 	</article>
 
-	if (comments.length < 1) return <article className='w-full max-w-[70ch]'>
+	if (comments.length < 1) return <article className='w-full max-w-[70ch] md:w-2/3'>
 		<h2 className='text-2xl font-medium'>Comments</h2>
 		<div className='mt-4 flex flex-col gap-6 py-14'>
-			<svg xmlns="http://www.w3.org/2000/svg" className='size-16 mx-auto' width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M7.5 12h6m-6-4h3m-2 12c1.05.87 2.315 1.424 3.764 1.519c1.141.075 2.333.075 3.473 0a4 4 0 0 0 1.188-.268c.41-.167.614-.25.719-.237c.104.012.255.122.557.342c.533.388 1.204.666 2.2.643c.503-.012.755-.019.867-.208c.113-.19-.027-.452-.308-.977c-.39-.728-.636-1.561-.262-2.229c.643-.954 1.19-2.083 1.27-3.303c.043-.655.043-1.334 0-1.99A6.7 6.7 0 0 0 21.4 11" /><path d="M12.345 17.487c3.556-.234 6.388-3.08 6.62-6.653c.046-.699.046-1.423 0-2.122c-.232-3.572-3.064-6.418-6.62-6.652c-1.213-.08-2.48-.08-3.69 0c-3.556.234-6.388 3.08-6.62 6.652c-.046.7-.046 1.423 0 2.122c.084 1.302.665 2.506 1.349 3.524c.397.712.135 1.6-.279 2.377c-.298.56-.447.84-.327 1.042s.387.209.922.221c1.057.026 1.77-.271 2.336-.685c.321-.234.482-.351.593-.365c.11-.013.328.075.763.253c.392.16.846.258 1.263.286c1.21.08 2.477.08 3.69 0" /></g></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" className='size-16 mx-auto' width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"><path d="M7.5 12h6m-6-4h3m-2 12c1.05.87 2.315 1.424 3.764 1.519c1.141.075 2.333.075 3.473 0a4 4 0 0 0 1.188-.268c.41-.167.614-.25.719-.237c.104.012.255.122.557.342c.533.388 1.204.666 2.2.643c.503-.012.755-.019.867-.208c.113-.19-.027-.452-.308-.977c-.39-.728-.636-1.561-.262-2.229c.643-.954 1.19-2.083 1.27-3.303c.043-.655.043-1.334 0-1.99A6.7 6.7 0 0 0 21.4 11" /><path d="M12.345 17.487c3.556-.234 6.388-3.08 6.62-6.653c.046-.699.046-1.423 0-2.122c-.232-3.572-3.064-6.418-6.62-6.652c-1.213-.08-2.48-.08-3.69 0c-3.556.234-6.388 3.08-6.62 6.652c-.046.7-.046 1.423 0 2.122c.084 1.302.665 2.506 1.349 3.524c.397.712.135 1.6-.279 2.377c-.298.56-.447.84-.327 1.042s.387.209.922.221c1.057.026 1.77-.271 2.336-.685c.321-.234.482-.351.593-.365c.11-.013.328.075.763.253c.392.16.846.258 1.263.286c1.21.08 2.477.08 3.69 0" /></g></svg>
 			<p className='text-center'>No comments <span className='italic font-medium'>yet</span>. Be the first to comment!</p>
 		</div>
 
@@ -158,7 +157,7 @@ export default function Comments ({ id }) {
 	]
 	const replies = comments.filter(c => c.parent_id)
 
-	return <article className='w-[200%] max-w-[70ch]'>
+	return <article className='w-[200%] max-w-[70ch] md:w-2/3'>
 		<h2 className='text-2xl font-medium relative inline-block'>
 			Comments
 			<span className='absolute -top-1.5 -right-7 rounded-full grid h-6 aspect-square place-items-center text-white bg-gradient-to-l from-purple-600 to-blue-600 text-[15px] 2xl:text-base 2xl:pt-0.5 outline-2 outline-zinc-100 dark:outline-zinc-700/50 outline-offset-2'>

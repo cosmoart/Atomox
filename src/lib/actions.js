@@ -261,7 +261,7 @@ export async function deleteComment (id) {
 	const userId = clerkUser?.id;
 	const client = createServerSupabaseClient();
 
-	if (!id || !userId) throw new Error('Post ID and User ID are required.');
+	if (!id || !userId) throw new Error('Comment ID and User ID are required.');
 	const { data, error } = await client
 		.from('comments')
 		.delete()
@@ -270,6 +270,8 @@ export async function deleteComment (id) {
 		.select();
 
 	if (error) return { error: 'Error deleting comment' };
+	console.log(error, data);
+
 	if (!data || data.length === 0) return { error: 'Comment not found' };
 
 	return { success: true };

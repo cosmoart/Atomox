@@ -101,7 +101,7 @@ export default function CTA () {
 						</div>
 
 						<div className='flex gap-4 items-center'>
-							<a href="https://ko-fi.com/cosmoart" target="_blank" rel="noopener noreferrer" className="bg-white text-zinc-900 px-5 py-2  rounded-lg font-medium flex items-center space-x-2 group/btn text-nowrap active:scale-95 transition-all">
+							<a href="https://github.com/sponsors/cosmoart" target="_blank" rel="noopener noreferrer" className="bg-white text-zinc-900 px-5 py-2  rounded-lg font-medium flex items-center space-x-2 group/btn text-nowrap active:scale-95 transition-all">
 								<Heart className="size-4.5 group-hover/btn:scale-120 text-pink-500 fill-transparent group-hover/btn:fill-pink-500 group-hover/btn:rotate-6 transition-all" />
 								<span>Sponsor</span>
 							</a>

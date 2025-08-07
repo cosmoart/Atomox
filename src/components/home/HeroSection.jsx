@@ -15,25 +15,15 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
 export default function HeroSection () {
-
 	useGSAP(() => {
-		let split = SplitText.create(".box", { type: "words" });
 		let splitTitle = SplitText.create(".title", { type: "chars" });
-		// gsap.from(split.words, {
-		// 	duration: 0.7,
-		// 	y: 20,       // animate from 100px below
-		// 	filter: "blur(10px)",
-		// 	autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
-		// 	stagger: 0.03, // 0.05 seconds between each
-		// 	scrollTrigger: '.box',
-		// });
 
 		gsap.from(splitTitle.chars, {
 			duration: 1,
-			y: 30,       // animate from 100px below
+			y: 30,
 			filter: "blur(4px)",
-			autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
-			stagger: 0.1, // 0.05 seconds between each
+			autoAlpha: 0,
+			stagger: 0.1,
 			scrollTrigger: '.box',
 		});
 
@@ -49,16 +39,16 @@ export default function HeroSection () {
 			svgOrigin: "50 50"
 		});
 
-		gsap.from(".test", {
-			duration: .3,
+		gsap.from(".appear", {
+			duration: .6,
 			y: 50,
 			autoAlpha: 0,
 			stagger: 0.2,
 		});
 
-		gsap.from(".test2", {
+		gsap.from(".grow-x", {
 			duration: .6,
-			clipPath: 'inset(0 100% 0 0)'
+			scaleX: 0
 		});
 	});
 
@@ -76,12 +66,12 @@ export default function HeroSection () {
 				<p className='md:text-[17px] mb-5 max-w-[60ch] text-balance text-center lg:text-left box'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
 
 				<nav className='flex gap-2 w-full max-w-[400px]'>
-					<Link href='/atoms' className='btn-primary px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 test'>
-						View atoms
+					<Link href='/atoms' className='btn-primary  transition-none! px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 appear'>
+						View Atoms
 						<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 					</Link>
-					<Link href='/molecules' className='btn-primary px-4 py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 test'>
-						View molecules
+					<Link href='/molecules' className='btn-primary transition-none! px-4 py-1.5 shining rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 appear'>
+						View Molecules
 						<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 					</Link>
 				</nav>

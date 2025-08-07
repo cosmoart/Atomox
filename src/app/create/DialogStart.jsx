@@ -55,7 +55,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 										<button
 											key={index}
 											onClick={() => {
-												setElementType('Atom')
+												setElementType('Atoms')
 												handleSelect(atom, useTailwind)
 											}}
 											className={`rounded min-w-36 bg-zinc-50 dark:bg-zinc-800 px-5 py-2 cursor-pointer grow transition-colors ${selectedItem.id === atom.id ? 'bg-gradient-to-l  from-blue-500 to-indigo-500 via-blue-600 text-white' : 'card-border'}`}
@@ -75,7 +75,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 										<button
 											key={index}
 											onClick={() => {
-												setElementType('Molecule')
+												setElementType('Molecules')
 												handleSelect(molecule, false)
 											}}
 											className={`rounded min-w-36 bg-zinc-50 dark:bg-zinc-800 px-5 py-2 cursor-pointer grow transition-colors ${selectedItem.id === molecule.id ? 'bg-gradient-to-l  from-blue-500 to-indigo-500 via-blue-600! text-white' : 'card-border'}`}
