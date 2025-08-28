@@ -5,7 +5,6 @@ import { MonitorCog, MoonIcon, Sun } from 'lucide-react';
 
 export default function ComponentsGrid () {
 	const [activeTab, setActiveTab] = useState('Dashboard');
-	const [selectedButton, setSelectedButton] = useState(0);
 	const { theme, setTheme } = useTheme()
 
 	const buttonIcons = [
@@ -133,19 +132,24 @@ export default function ComponentsGrid () {
 			</section>
 
 			{/* Interactive Buttons Grid */}
-			<section className='col-span-3 card-border bg-white/30 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-3.5'>
-				<div className='grid grid-cols-2 gap-2 text-white'>
+			<section className="col-span-3 card-border bg-white/30 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-3.5">
+				<div className="grid grid-cols-2 gap-2 text-white">
 					{buttonIcons.map((icon, index) => (
-						<button
-							key={index}
-							onClick={() => setSelectedButton(index)}
-							className={`p-2 rounded-lg transition-colors ${selectedButton === index
-								? 'bg-indigo-600 hover:bg-indigo-700'
-								: 'text-zinc-700 dark:text-white dark:bg-gray-700/80 bg-zinc-200 hover:bg-zinc-300 dark:hover:bg-gray-600'
-								}`}
-						>
-							{icon}
-						</button>
+						<div key={index}>
+							<input
+								type="radio"
+								name="button-grid"
+								id={`btn-${index}`}
+								className="hidden peer"
+								defaultChecked={index === 0}
+							/>
+							<label
+								htmlFor={`btn-${index}`}
+								className="block p-2 rounded-lg transition-colors cursor-pointer bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-gray-700/80 dark:text-white dark:hover:bg-gray-600 peer-checked:bg-indigo-600 peer-checked:hover:bg-indigo-700 peer-checked:text-white"
+							>
+								{icon}
+							</label>
+						</div>
 					))}
 				</div>
 			</section>
@@ -222,6 +226,7 @@ export default function ComponentsGrid () {
 				</div>
 				{renderTabContent()}
 			</section >
+
 
 			{/* Status */}
 			< section className='col-span-3 h-auto card-border bg-white/30 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 2xl:p-5 flex flex-col justify-center items-center' >

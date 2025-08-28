@@ -1,6 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import CodeEditor from '@/components/CodeEditor';
-import { createServerSupabaseClient } from '@/lib/client';
 import LikeButton from '../LikeButton';
 import { Eye, Info, OctagonAlert } from 'lucide-react';
 import Link from 'next/link';
@@ -16,7 +15,6 @@ import Ad from '../Ad';
 import UpdateViewsAction from '@/lib/updateViews';
 
 export default async function Element ({ id, elementId }) {
-	// const client = createServerSupabaseClient()
 	const element = await getElement(id, elementId)
 	const elementType = Atoms.find(element => element.id === elementId) ? 'atoms' : 'molecules'
 
@@ -28,7 +26,6 @@ export default async function Element ({ id, elementId }) {
 		<p>The component you are looking for does not exist.</p>
 		<p className='-mt-1'>But you can create one.</p>
 		<Link href='/create' className='btn-primary block px-8 mt-4 py-1.5 shining'>Create one</Link>
-		{/* <Link href='/create' className='px-7 mt-5 py-1.5 rounded-lg bg-gradient-to-l from-0% to-100% from-blue-500 to-indigo-500 text-[15px] tracking-wide font-medium text-white via-blue-600 via-20% ring-blue-500 transition-all hover:scale-105 active:scale-95 card-border cursor-pointer'>Create one</Link> */}
 	</div>
 
 	if (element.error) return <div className='section flex flex-col items-center justify-center minHeightScreen'>
@@ -41,7 +38,6 @@ export default async function Element ({ id, elementId }) {
 
 	</div>
 
-	// const _ = await client.from('elements').update({ views: element.views + 1 }).eq('id', id)
 	const user = await currentUser()
 
 	return (
@@ -62,8 +58,7 @@ export default async function Element ({ id, elementId }) {
 						<div className='h-5 w-[1px] mx-3.5 bg-zinc-600 rounded-lg'></div>
 
 						<div className='flex gap-1 items-center'>
-							<LikeButton initialLikeCount={element.likes} isLiked={element.likedByUser} elementId={element.id} />
-							<span className='text-[15px]'>Like{element.likes !== 1 && 's'}</span>
+							<LikeButton withText={true} initialLikeCount={element.likes} isLiked={element.likedByUser} elementId={element.id} />
 						</div>
 
 						<div className='h-5 w-[1px] mx-3.5 bg-zinc-600 rounded-lg'></div>

@@ -23,7 +23,7 @@ export async function addElement (data) {
 	}
 }
 
-export default async function getElements ({ elementId, query, page = 1, pageSize = 10, sort = 'likes', style = 'all' }) {
+export default async function getElements ({ getAll, elementId, query, page = 1, pageSize = 10, sort = 'likes', style = 'all' }) {
 	const clerkUser = await currentUser();
 	const userId = clerkUser?.id;
 	const client = createServerSupabaseClient();
@@ -43,7 +43,8 @@ export default async function getElements ({ elementId, query, page = 1, pageSiz
 
 		const { data: elements, error: elementsError, count } = await baseQuery
 			.order(sort, { ascending: false })
-			.range(from, to);
+			.range(from, to)
+			.select(getAll ? '*' : 'id, username, element_id, views, published, img_url, user_avatar, likes');
 
 		if (elementsError) return { error: 'Error getting elements' };
 

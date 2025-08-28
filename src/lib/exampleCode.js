@@ -480,7 +480,7 @@ export const moleculesCode = {
 		js: '',
 	},
 
-	'cookies': {
+	'banners': {
 		html: '',
 		htmlTailwind: '',
 		css: '',

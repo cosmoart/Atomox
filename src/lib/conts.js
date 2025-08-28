@@ -288,14 +288,14 @@ export const Molecules = [
 		js: moleculesCode.stats.js,
 	},
 	{
-		name: 'Cookies',
-		id: 'cookies',
+		name: 'Banners',
+		id: 'banners',
 		description: 'A cookie is a small piece of data that is stored on a user\'s computer.',
-		icon: moleculesIcons.cookies,
-		html: moleculesCode.cookies.html,
-		htmlTailwind: moleculesCode.cookies.htmlTailwind,
-		css: moleculesCode.cookies.css,
-		js: moleculesCode.cookies.js,
+		icon: moleculesIcons.banners,
+		html: moleculesCode.banners.html,
+		htmlTailwind: moleculesCode.banners.htmlTailwind,
+		css: moleculesCode.banners.css,
+		js: moleculesCode.banners.js,
 	}
 ]
 

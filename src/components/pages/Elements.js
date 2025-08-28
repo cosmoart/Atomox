@@ -36,7 +36,8 @@ export default function Elements ({ data: data2, type }) {
 					pageSize: elementsPerPage,
 					query: queries.query.split(' '),
 					sort: queries.sort,
-					style: queries.style
+					style: queries.style,
+					getAll: type === 'Atoms'
 				});
 
 				if (res.error) throw new Error('Error fetching')
