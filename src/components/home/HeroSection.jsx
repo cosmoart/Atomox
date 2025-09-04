@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import StarOnGitHub from '@/components/StarOnGithub'
 import ComponentsGrid from '@/components/home/ComponentsGrid';
-import Image from 'next/image';
-import Logo from '@/assets/icons/logo.svg';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

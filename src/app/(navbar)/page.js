@@ -19,7 +19,7 @@ export default async function Home () {
 			</div>
 
 			<HeroSection />
-			<Molecules />
+			{/* <Molecules /> */}
 			<FeaturesBento />
 			<AtomsMolecules />
 			<CTA />

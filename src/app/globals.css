@@ -62,7 +62,6 @@
   }
 }
 
-
 .cl-userProfile-root{
   width: auto;
   height: calc(100svh - var(--header-height));
