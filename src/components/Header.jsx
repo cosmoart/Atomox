@@ -55,7 +55,6 @@ export default function Header () {
 				<Link href="/" className="text-lg text-zinc-900 dark:text-white flex items-center gap-2  pr-3 group active:scale-95 transition-all font-semibold relative">
 					<Logo />
 					<span>Atomox</span>
-					<span className='absolute btn-primary -top-3 -right-4 px-2 py-[1px] scale-85 font-medium rounded-full text-xs'>Pre-Alpha</span>
 				</Link>
 				<div className='hidden md:block'>
 					<NavBar />

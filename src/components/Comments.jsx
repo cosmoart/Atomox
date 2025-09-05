@@ -220,7 +220,7 @@ export default function Comments ({ id }) {
 }
 
 function CommentCard ({ comment, username, deleteComment, onReply, isReply = false, likeComment }) {
-	if (comment.deleted) return <div className='py-3 px-4 bg-zinc-900 rounded-xl'>
+	if (comment.deleted) return <div className='py-2.5 px-4 bg-zinc-200/60 backdrop-blur-2xl card-border shadow dark:bg-zinc-900 rounded-full'>
 		Comment deleted
 	</div>
 
@@ -272,7 +272,7 @@ function CommentForm ({ disabled, sendComment, replyTo }) {
 	const { resolvedTheme } = useTheme()
 
 	return <form className={`flex gap-2 ${replyTo ? "ml-10 mt-3" : "mt-12"}`} onSubmit={e => sendComment(e, replyTo)} >
-		<textarea name='comment' className='w-full disabled:opacity-70 disabled:pointer-events-none px-4 py-2 rounded-lg card-border field-sizing-content' placeholder='Leave a comment...' disabled={disabled} rows={replyTo ? 2 : 4} />
+		<textarea name='comment' className='w-full disabled:opacity-70 disabled:pointer-events-none px-4 py-2 rounded-lg card-border field-sizing-content min-h-18' placeholder='Leave a comment...' disabled={disabled} rows={replyTo ? 2 : 4} />
 
 		<SignedIn>
 			<button disabled={disabled} type='submit' className='px-7 cursor-pointer disabled:opacity-70 disabled:pointer-events-none py-0 group rounded-lg shining btn-primary h-fit flex gap-1.5 items-center'>

@@ -2,7 +2,7 @@ import { Shield, Code, Users, AlertTriangle, Star, Zap, FileText, Globe, Accessi
 import { atomsIcons, moleculesIcons } from './icons'
 import { atomsCode, moleculesCode } from './exampleCode'
 
-export const verifiedUsers = ['midudev', 'cosmoart']
+export const verifiedUsers = ['user_2xViHHL26Y03wAoBvi17YJqlBNK']
 
 export const PagesTypes = {
 	'Atoms': {
@@ -385,9 +385,5 @@ export const faqs = [
 	{
 		question: 'How do I report a component that violates guidelines?',
 		answer: 'Use the \'Report\' button on any component page. Provide specific details about the violation. All reports are reviewed by our moderation team.'
-	},
-	{
-		question: 'What makes a component likely to be featured?',
-		answer: 'Featured components are innovative, well-documented, accessible, responsive, and demonstrate exceptional code quality. They solve real problems and inspire other developers.'
 	}
 ];

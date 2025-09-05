@@ -14,7 +14,7 @@ export function NavBar () {
 		<NavigationMenu className="max-w-none *:w-full md:*:w-auto">
 			<NavigationMenuList className="w-full *:grow">
 				<NavigationMenuItem>
-					<NavigationMenuTrigger className="hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/40!">
+					<NavigationMenuTrigger className="hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/20!">
 						<Link href="/atoms" >
 							Atoms
 						</Link>
@@ -44,7 +44,7 @@ export function NavBar () {
 					</NavigationMenuContent>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<NavigationMenuTrigger className="hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/50!">
+					<NavigationMenuTrigger className="hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/20!">
 						<Link href="/molecules" >
 							Molecules
 						</Link>
@@ -73,7 +73,7 @@ export function NavBar () {
 				</NavigationMenuItem>
 				<SignedOut>
 					<NavigationMenuItem>
-						<Link href="/create" className='block select-none space-y-1 rounded-md py-3 px-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-sm font-medium'>
+						<Link href="/create" className='block select-none space-y-1 rounded-md py-3 px-4 leading-none no-underline outline-none transition-colors hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/20! hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-sm font-medium'>
 							Create
 						</Link>
 					</NavigationMenuItem>

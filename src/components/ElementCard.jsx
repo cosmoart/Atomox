@@ -94,7 +94,7 @@ function ElementImage ({ data }) {
 				title='preview'
 				loading="lazy"
 				className={`${elementType === "molecules" ? "w-[250%] h-[250%] aspect-video scale-40 absolute origin-top-left" : "w-full h-full"}`}
-				sandbox='allow-same-origin allow-scripts allow-top-navigation'
+				sandbox='allow-same-origin allow-scripts'
 				srcDoc={combinedCode(data.use_tailwind, data.html, data.css, `/${elementType}/${data.element_id}/${data.id}`)}
 			/>
 		</div>

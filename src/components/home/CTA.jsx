@@ -1,5 +1,6 @@
 import { ArrowRight, Code, Github, Heart, Plus, Sparkles, Upload, Users } from 'lucide-react';
 import BubbleIconsBackground from './Anima';
+import Link from 'next/link';
 
 export default function CTA () {
 	return (
@@ -44,7 +45,7 @@ export default function CTA () {
 					</div>
 
 					{/* Stats */}
-					{/* <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-center">
+					<div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-center">
 						<div className="space-y-1">
 							<div className="text-3xl font-bold text-white">10,000+</div>
 							<div className="text-sm text-blue-200">Components</div>
@@ -59,26 +60,26 @@ export default function CTA () {
 							<div className="text-3xl font-bold text-white">50+</div>
 							<div className="text-sm text-blue-200">Countries</div>
 						</div>
-					</div> */}
+					</div>
 
 					{/* CTA Buttons */}
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-						<button className="group px-8 py-3 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-white font-semibold rounded-xl border border-blue-400/30 hover:border-blue-300/50 hover:bg-gradient-to-r hover:from-blue-500/30 hover:to-indigo-500/30 transition-all duration-300 backdrop-blur-sm">
+						<Link href="/create" className="group px-8 py-3 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-white font-semibold rounded-xl border border-blue-400/30 hover:border-blue-300/50 hover:bg-gradient-to-r hover:from-blue-500/30 hover:to-indigo-500/30 transition-all duration-300 backdrop-blur-sm">
 							<div className="flex items-center space-x-2">
 								<Plus className="size-5" />
 								<span>Create component</span>
 								<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
 							</div>
-						</button>
+						</Link>
 
-						<button className="group relative px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 hover:scale-105 transform">
+						<Link href="/sign-in" className="group relative px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 hover:scale-105 transform">
 							<div className="flex items-center space-x-2">
 								<Users className="w-5 h-5" />
 								<span>Join community</span>
 								<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
 							</div>
 							<div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-purple-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity -z-10"></div>
-						</button>
+						</Link>
 					</div>
 				</div>
 			</div>

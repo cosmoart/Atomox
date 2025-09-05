@@ -72,7 +72,7 @@ export default async function UserProfile ({ params }) {
 						<div>
 							<span className='flex items-center gap-2'>
 								<h1 className='text-4xl font-medium'>{user.firstName} {user.lastName}</h1>
-								<VerifiedIcon username={user.username} />
+								<VerifiedIcon userId={user.id} />
 							</span>
 							<h2 className='rounded-full shadow text-sm cursor-default hover:scale-[1.02] transition-transform bg-white dark:bg-zinc-800 px-4 py-1 mt-1 w-fit font-medium'>@{user.username}</h2>
 						</div>

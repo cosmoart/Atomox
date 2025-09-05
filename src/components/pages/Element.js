@@ -46,7 +46,7 @@ export default async function Element ({ id, elementId }) {
 			<div className={`${elementType === 'atoms' ? 'section flex flex-col heightScreen max-h-[50rem]' : 'px-1! py-0! '}`}>
 				<CodeEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} className={`${elementType === 'atoms' ? 'h-full' : 'minHeightScreen 2xl:min-h-auto! 2xl:h-screen!'}`} elementType={elementType} />
 
-				<article className={`section flex flex-col sm:flex-row justify-between items-center gap-3 py-2 pl-3 sm:pl-5 pr-2 2xl:pr-4  bg-zinc-50 rounded-2xl dark:bg-zinc-900 mt-2.5 sm:rounded-full ${elementType === 'atoms' ? 'w-full' : 'mx-4 2xl:mx-auto '}`}>
+				<article className={`section flex flex-col card-border sm:flex-row justify-between items-center gap-3 py-2 pl-3 sm:pl-5 pr-2 2xl:pr-4  bg-zinc-200/60 rounded-2xl shadow dark:bg-zinc-900 mt-2.5 sm:rounded-full ${elementType === 'atoms' ? 'w-full' : 'mx-4 2xl:mx-auto '}`}>
 					<section className='flex items-center'>
 						<div className='flex gap-1 items-center'>
 							<Eye size={19} />

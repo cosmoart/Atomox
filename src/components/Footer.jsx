@@ -14,7 +14,9 @@ export default function Footer () {
 						<div>
 							<p className='font-semibold text-4xl'>Atomox</p>
 							<p className='max-w-xs text-sm'>Web components by the people for the people. Created by <a href="https://github.com/cosmoart" target="_blank" rel="noopener noreferrer">Cosmo Art</a></p>
-							{/* <a href="https://github.com/cosmoart/Atomox" target="_blank" rel="noopener noreferrer">GitHub</a> */}
+							<Link href="/guidelines" className='text-sm underline pl-4'>Guidelines</Link>
+							<Link href='/privacy-policy' className='text-sm underline pl-4'>Privacy Policy</Link>
+							<Link href='/terms-of-service' className='text-sm underline pl-4'>Terms of Service</Link>
 						</div>
 					</div>
 				</div>

@@ -1,8 +1,8 @@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, } from "@/components/ui/tooltip"
 import { verifiedUsers } from '@/lib/conts'
 
-export default function VerifiedIcon ({ username }) {
-	if (!verifiedUsers.includes(username)) return null
+export default function VerifiedIcon ({ userId }) {
+	if (!verifiedUsers.includes(userId)) return null
 
 	return (
 		<TooltipProvider>
