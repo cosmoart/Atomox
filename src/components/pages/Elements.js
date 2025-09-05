@@ -90,7 +90,7 @@ export default function Elements ({ data: data2, type }) {
 				<section className='grow'>
 					<h1 className='text-3xl inline-block sm:text-4xl bg-clip-text bg-linear-to-r to-purple-500 dark:to-purple-400 from-blue-600 dark:from-blue-500 text-transparent font-bold relative'>
 						{data2.name}
-						<span className='absolute  -top-2.5 -right-6.5 rounded-full aspect-square size-6 2xl:size-6.5 grid place-items-center text-white bg-gradient-to-l from-purple-500 to-blue-500 text-sm 2xl:text-base 2xl:pt-0.5 outline-2 outline-zinc-100 dark:outline-zinc-700/50 outline-offset-2'>
+						<span className='absolute  -top-2.5 -right-6.5 rounded-full aspect-square size-6 2xl:size-6.5 grid place-items-center text-white bg-gradient-to-l from-purple-500 to-blue-500 text-[15px] 2xl:text-base 2xl:pt-0.5 outline-2 outline-zinc-100 dark:outline-zinc-700/50 outline-offset-2'>
 							{elements === 'loading' || isPending ? '?' : totalElements}
 						</span>
 					</h1>

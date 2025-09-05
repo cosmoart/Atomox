@@ -10,20 +10,20 @@ gsap.registerPlugin(ScrollTrigger);
 export default function FeaturesBento () {
 	useGSAP(() => {
 		gsap.from(".center-grid", {
-			scale: 1.2,
+			scale: 1.6,
 			scrollTrigger: ".center-grid",
 		});
 
 		gsap.from(".left", {
 			x: "100%",
 			autoAlpha: 0,
-			scrollTrigger: ".center-grid",
+			scrollTrigger: ".left",
 		})
 
 		gsap.from(".right", {
 			x: "-100%",
 			autoAlpha: 0,
-			scrollTrigger: ".center-grid",
+			scrollTrigger: ".right",
 		})
 
 		gsap.from(".top", {
@@ -36,14 +36,14 @@ export default function FeaturesBento () {
 			x: "100%",
 			y: "-100%",
 			autoAlpha: 0,
-			scrollTrigger: ".top",
+			scrollTrigger: ".top-left",
 		})
 
 		gsap.from(".top-right", {
 			x: "-100%",
 			y: "-100%",
 			autoAlpha: 0,
-			scrollTrigger: ".top",
+			scrollTrigger: ".top-right",
 		})
 	});
 

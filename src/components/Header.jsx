@@ -7,15 +7,47 @@ import Link from 'next/link';
 import { NavBar } from './NavBar';
 import Logo from '@/assets/icons/Logo';
 import { CircleUserRound, Menu, MoonIcon, SunIcon, X } from 'lucide-react';
-import { useState} from 'react';
+import { useEffect, useState } from 'react';
 import { Atoms, Molecules } from '@/lib/conts';
 
 export default function Header () {
 	const { user } = useUser()
 	const [open, setOpen] = useState(false);
 	const { resolvedTheme, setTheme } = useTheme()
+	const [isVisible, setIsVisible] = useState(true);
+	const [lastScrollY, setLastScrollY] = useState(0);
 
-	return (<header className="mx-1! sticky top-1 z-50 rounded-t-xl ">
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY;
+
+			if (currentScrollY < 150) {
+				setIsVisible(true);
+			} else {
+				setIsVisible(currentScrollY < lastScrollY);
+			}
+
+			setLastScrollY(currentScrollY);
+		};
+
+		let ticking = false;
+		const throttledHandleScroll = () => {
+			if (!ticking) {
+				requestAnimationFrame(() => {
+					handleScroll();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		};
+
+		window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+
+		return () => window.removeEventListener('scroll', throttledHandleScroll);
+	}, [lastScrollY]);
+
+
+	return (<header className='mx-1! sticky top-1 z-50 rounded-t-xl transition-transform ease-in-out' style={{ transform: `translateY(${isVisible ? 0 : -100}%)` }}>
 		<div className='header-scroll-effect absolute top-0 left-0 w-full h-full bg-white/70 dark:border-zinc-800 dark:bg-zinc-900/70 rounded-t-xl border-b border-zinc-100 backdrop-blur-sm'></div>
 
 		<div className='flex items-center justify-between section py-2.5 lg:mx-auto!'>
@@ -23,6 +55,7 @@ export default function Header () {
 				<Link href="/" className="text-lg text-zinc-900 dark:text-white flex items-center gap-2  pr-3 group active:scale-95 transition-all font-semibold relative">
 					<Logo />
 					<span>Atomox</span>
+					<span className='absolute btn-primary -top-3 -right-4 px-2 py-[1px] scale-85 font-medium rounded-full text-xs'>Pre-Alpha</span>
 				</Link>
 				<div className='hidden md:block'>
 					<NavBar />
