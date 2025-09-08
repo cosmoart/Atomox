@@ -64,7 +64,7 @@ export default function HeroSection () {
 				<p className='md:text-[17px] mb-5 max-w-[60ch] text-balance text-center lg:text-left box'>A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.</p>
 
 				<nav className='flex gap-2 w-full max-w-[400px]'>
-					<Link href='/atoms' className='btn-primary  transition-none! px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 appear'>
+					<Link href='/atoms' className='btn-primary gradient1 transition-none! px-4 shining py-1.5 rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 appear'>
 						View Atoms
 						<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 					</Link>

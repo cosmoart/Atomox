@@ -275,7 +275,7 @@ function CommentForm ({ disabled, sendComment, replyTo }) {
 		<textarea name='comment' className='w-full disabled:opacity-70 disabled:pointer-events-none px-4 py-2 rounded-lg card-border field-sizing-content min-h-18' placeholder='Leave a comment...' disabled={disabled} rows={replyTo ? 2 : 4} />
 
 		<SignedIn>
-			<button disabled={disabled} type='submit' className='px-7 cursor-pointer disabled:opacity-70 disabled:pointer-events-none py-0 group rounded-lg shining btn-primary h-fit flex gap-1.5 items-center'>
+			<button disabled={disabled} type='submit' className='px-7 cursor-pointer disabled:opacity-70 disabled:pointer-events-none py-0 group rounded-lg shining btn-primary gradient1 h-fit flex gap-1.5 items-center'>
 				Send
 				<SendHorizontal size={38} />
 			</button>
@@ -288,14 +288,14 @@ function CommentForm ({ disabled, sendComment, replyTo }) {
 						logoBox: 'hidden!',
 						modalContent: "m-auto!",
 						buttonArrowIcon: 'hidden!',
-						formButtonPrimary: "btn-primary text-white! font-medium! shadow-none! text-[15px]!"
+						formButtonPrimary: "btn-primary gradient1 shining text-white! font-medium! shadow-none! text-[15px]!"
 					},
 					layout: {
 						unsafe_disableDevelopmentModeWarnings: true,
 					},
 				}}
 			>
-				<button disabled={disabled} type='button' className='px-7 cursor-pointer disabled:opacity-70 disabled:pointer-events-none py-0 rounded-lg shining btn-primary h-fit flex gap-1.5 items-center'>
+				<button disabled={disabled} type='button' className='px-7 cursor-pointer disabled:opacity-70 disabled:pointer-events-none py-0 rounded-lg shining btn-primary gradient1 h-fit flex gap-1.5 items-center'>
 					Send
 					<SendHorizontal size={38} />
 				</button>

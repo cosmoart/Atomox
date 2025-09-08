@@ -10,9 +10,19 @@ import Ad from './Ad';
 
 export default function ElementCard ({ data }) {
 	if (data === "ad") return <Ad />
-	console.log(data);
+
+	function isNewElement () {
+		const createdAt = new Date(data.created_at);
+		const now = new Date();
+
+		const diffMs = now - createdAt;
+		const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+		return diffDays < 5;
+	}
+
 	return (
-		<section className='rounded-lg backdrop-blur-sm h-fit bg-white/90 dark:bg-zinc-900/90 card-border relative'>
+		<section className='rounded-lg group backdrop-blur-sm h-fit bg-white/90 dark:bg-zinc-900/90 card-border relative z-10'>
 			{
 				!data.published && <>
 					<TooltipProvider>
@@ -32,6 +42,12 @@ export default function ElementCard ({ data }) {
 						<ElementDelete id={data.id} mode='button' />
 					</div>
 				</>
+			}
+
+			{
+				true && data.published && <div className='absolute -top-2 -right-5 z-20 font-medium text-white text-sm gradient1 py-0.5 px-2 skew-3 group-hover:scale-105 transition-all'>
+					New
+				</div>
 			}
 
 			<ElementImage data={data} />
@@ -66,7 +82,7 @@ function ElementImage ({ data }) {
 
 	if (data.img_url || elementType === "molecules") return <Link href={`/${elementType}/${data.element_id}/${data.id}`} className='flex flex-col overflow-hidden aspect-video rounded-t-lg'>
 		<div className='w-full aspect-video group overflow-hidden'>
-			<Image src={data.img_url ?? "data:image/svg+xml,%3Csvg%20width%3D%221280%22%20height%3D%22720%22%20viewBox%3D%220%200%201280%20720%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M0%200h1280v720H0z%22%2F%3E%3Cpath%20d%3D%22M706.875%20279.75h-133.75a26.785%2026.785%200%200%200-18.907%207.843%2026.785%2026.785%200%200%200-7.843%2018.907v107a26.785%2026.785%200%200%200%207.843%2018.907%2026.785%2026.785%200%200%200%2018.907%207.843h133.75a26.785%2026.785%200%200%200%2018.907-7.843%2026.785%2026.785%200%200%200%207.843-18.907v-107a26.785%2026.785%200%200%200-7.843-18.907%2026.785%2026.785%200%200%200-18.907-7.843Zm-33.437%2026.75a20.07%2020.07%200%200%201%2011.146%203.381%2020.07%2020.07%200%200%201%208.531%2020.595%2020.07%2020.07%200%200%201-15.763%2015.764%2020.069%2020.069%200%200%201-20.596-8.531%2020.07%2020.07%200%200%201-3.381-11.147%2020.087%2020.087%200%200%201%205.882-14.18%2020.088%2020.088%200%200%201%2014.181-5.882ZM573.125%20426.875a13.379%2013.379%200%200%201-9.458-3.917%2013.379%2013.379%200%200%201-3.917-9.458v-28.267l39.64-35.235a20.087%2020.087%200%200%201%2027.502.794l27.148%2027.089-48.995%2048.994h-31.92ZM720.25%20413.5c0%203.547-1.409%206.949-3.917%209.458a13.379%2013.379%200%200%201-9.458%203.917h-82.912l50.749-50.75a19.948%2019.948%200%200%201%2025.764-.067l19.774%2016.477V413.5Z%22%20fill%3D%22%23353535%22%2F%3E%3Crect%20x%3D%22159%22%20y%3D%22132%22%20width%3D%22961%22%20height%3D%22456%22%20rx%3D%2227%22%20stroke%3D%22%23353535%22%20stroke-width%3D%2210%22%2F%3E%3C%2Fsvg%3E"} alt='Atomox' width={1280} height={720} className='w-full h-full object-cover group-hover:scale-105 transition-all' />
+			<Image src={data.img_url ?? "data:image/svg+xml,%3Csvg%20width%3D%221280%22%20height%3D%22720%22%20viewBox%3D%220%200%201280%20720%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M0%200h1280v720H0z%22%2F%3E%3Cpath%20d%3D%22M706.875%20279.75h-133.75a26.785%2026.785%200%200%200-18.907%207.843%2026.785%2026.785%200%200%200-7.843%2018.907v107a26.785%2026.785%200%200%200%207.843%2018.907%2026.785%2026.785%200%200%200%2018.907%207.843h133.75a26.785%2026.785%200%200%200%2018.907-7.843%2026.785%2026.785%200%200%200%207.843-18.907v-107a26.785%2026.785%200%200%200-7.843-18.907%2026.785%2026.785%200%200%200-18.907-7.843Zm-33.437%2026.75a20.07%2020.07%200%200%201%2011.146%203.381%2020.07%2020.07%200%200%201%208.531%2020.595%2020.07%2020.07%200%200%201-15.763%2015.764%2020.069%2020.069%200%200%201-20.596-8.531%2020.07%2020.07%200%200%201-3.381-11.147%2020.087%2020.087%200%200%201%205.882-14.18%2020.088%2020.088%200%200%201%2014.181-5.882ZM573.125%20426.875a13.379%2013.379%200%200%201-9.458-3.917%2013.379%2013.379%200%200%201-3.917-9.458v-28.267l39.64-35.235a20.087%2020.087%200%200%201%2027.502.794l27.148%2027.089-48.995%2048.994h-31.92ZM720.25%20413.5c0%203.547-1.409%206.949-3.917%209.458a13.379%2013.379%200%200%201-9.458%203.917h-82.912l50.749-50.75a19.948%2019.948%200%200%201%2025.764-.067l19.774%2016.477V413.5Z%22%20fill%3D%22%23353535%22%2F%3E%3Crect%20x%3D%22159%22%20y%3D%22132%22%20width%3D%22961%22%20height%3D%22456%22%20rx%3D%2227%22%20stroke%3D%22%23353535%22%20stroke-width%3D%2210%22%2F%3E%3C%2Fsvg%3E"} alt='Atomox' width={1280} height={720} className='w-full h-full object-cover group-hover:scale-105 transition-all z-0 relative' />
 		</div>
 	</Link>
 
@@ -88,6 +104,7 @@ function ElementImage ({ data }) {
     </html>
   `;
 	}
+
 	return (
 		<div className='flex flex-col overflow-hidden aspect-video rounded-t-lg relative'>
 			<iframe

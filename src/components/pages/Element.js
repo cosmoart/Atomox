@@ -43,7 +43,7 @@ export default async function Element ({ id, elementId }) {
 	return (
 		<div>
 			<UpdateViewsAction id={id} views={element.views} />
-			<div className={`${elementType === 'atoms' ? 'section flex flex-col heightScreen max-h-[50rem]' : 'px-1! py-0! '}`}>
+			<div className={`${elementType === 'atoms' ? 'section flex flex-col heightScreen max-h-[50rem]' : 'px-1! py-0! mt-2'}`}>
 				<CodeEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} className={`${elementType === 'atoms' ? 'h-full' : 'minHeightScreen 2xl:min-h-auto! 2xl:h-screen!'}`} elementType={elementType} />
 
 				<article className={`section flex flex-col card-border sm:flex-row justify-between items-center gap-3 py-2 pl-3 sm:pl-5 pr-2 2xl:pr-4  bg-zinc-200/60 rounded-2xl shadow dark:bg-zinc-900 mt-2.5 sm:rounded-full ${elementType === 'atoms' ? 'w-full' : 'mx-4 2xl:mx-auto '}`}>
@@ -110,7 +110,6 @@ export default async function Element ({ id, elementId }) {
 				</article>
 			</div>
 
-			{/* <div className='grid md:grid-cols-[2fr_1fr] gap-10 mt-3 section'> */}
 			<div className='flex flex-col-reverse gap-10 md:flex-row mt-3 section justify-center'>
 				<Comments id={element.id} />
 				<Ad className='aspect-video md:w-1/3 grow' />

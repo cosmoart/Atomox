@@ -4,36 +4,36 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-export default function Tabs ({ tabs = [] }) {
-	const validTabs = tabs.filter(tab => tab.content)
-	const [activeTab, setActiveTab] = useState(validTabs[0]?.value)
+export default function Tabs ({ tabs = [], styled = false }) {
+	const [activeTab, setActiveTab] = useState(tabs[0]?.value)
 
 	return (
 		<div className="w-full h-full flex flex-col">
-			<div className="relative flex space-x-4 border-b">
-				{validTabs.map((tab) => (
+			<div className={`relative flex  ${styled ? "p-1 mb-1 bg-zinc-100 dark:bg-zinc-800/70 rounded-xl gap-2" : "gap-4"}`}>
+				{tabs.map((tab) => (
 					<button
 						key={tab.value}
 						onClick={() => setActiveTab(tab.value)}
 						className={cn(
-							'relative px-4 py-2 font-medium text-muted-foreground transition-colors',
-							activeTab === tab.value && 'text-primary'
+							`relative px-4 flex gap-2 justify-center items-center font-medium text-muted-foreground transition-colors`,
+							activeTab === tab.value && 'text-primary',
+							styled ? `grow hover:border-zinc-700 hover:bg-zinc-700/60 cursor-pointer rounded-lg border py-0.5 text-[15px] border-transparent` : "py-2"
 						)}
 					>
-						{tab.label}
 						{activeTab === tab.value && (
 							<motion.div
 								layoutId="tab-underline"
-								className="absolute left-0 right-0 -bottom-[1px] h-[2px] bg-primary"
+								className={`absolute left-0 right-0 rounded-lg ${styled ? "h-full card-border bg-zinc-300/50 dark:bg-zinc-700/80 " : "-bottom-[1px] h-[2px] bg-primary"}`}
 								transition={{ type: 'spring', stiffness: 500, damping: 30 }}
 							/>
 						)}
+						<span className='relative z-10'>{tab.label}</span>
 					</button>
 				))}
 			</div>
 
-			<div className="min-h-[100px] relative grow">
-				{validTabs.map(tab => (
+			<div className="min-h-[100px] relative grow ">
+				{tabs.map(tab => (
 					<div
 						key={tab.value}
 						className={cn(
@@ -45,6 +45,6 @@ export default function Tabs ({ tabs = [] }) {
 					</div>
 				))}
 			</div>
-		</div>
+		</div >
 	)
 }

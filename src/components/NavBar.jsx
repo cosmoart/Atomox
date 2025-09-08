@@ -73,7 +73,7 @@ export function NavBar () {
 				</NavigationMenuItem>
 				<SignedOut>
 					<NavigationMenuItem>
-						<Link href="/create" className='block select-none space-y-1 rounded-md py-3 px-4 leading-none no-underline outline-none transition-colors hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/20! hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-sm font-medium'>
+						<Link href="/create" className='block select-none space-y-1 rounded-md py-2.5 px-4 leading-none no-underline outline-none transition-colors hover:dark:bg-zinc-700/30! bg-transparent hover:bg-white/20! hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-sm font-medium'>
 							Create
 						</Link>
 					</NavigationMenuItem>

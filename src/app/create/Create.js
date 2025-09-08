@@ -2,7 +2,6 @@
 
 import { useState, useRef } from 'react'
 import Editor from '@monaco-editor/react'
-import { Switch } from '@/components/ui/switch'
 import { useRouter } from 'next/navigation'
 import { emmetHTML, emmetCSS } from 'emmet-monaco-es';
 import { ChevronLeft } from 'lucide-react'
@@ -13,11 +12,10 @@ import { SignedIn, SignedOut, SignUpButton } from '@clerk/nextjs'
 import { addElement } from '@/lib/actions'
 import { useTheme } from 'next-themes'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
-import { Atoms } from '@/lib/conts'
-import Image from 'next/image'
-import tailwindIcon from '@/assets/icons/tailwind.svg'
+import Tabs from '@/components/Tabs';
+import { Atoms, editorOptions, iframeHTML } from '@/lib/conts'
 import { dark } from '@clerk/themes'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import '@/app/theme-toggle.css'
 
 export default function CreateComponent () {
 	const [html, setHtml] = useState(Atoms[0].htmlTailwind ?? '')
@@ -27,6 +25,7 @@ export default function CreateComponent () {
 	const [elementId, setElementId] = useState('buttons')
 	const [useTailwind, setUseTailwind] = useState(true)
 	const { resolvedTheme } = useTheme()
+	const [darkMode, setDarkMode] = useState(resolvedTheme === 'dark')
 	const [status, setStatus] = useState(undefined) // undefined | 'loading' | 'success' | 'error'
 
 	const disposeEmmetHTMLRef = useRef();
@@ -35,33 +34,6 @@ export default function CreateComponent () {
 
 	const handleEditorHTML = (monaco) => disposeEmmetHTMLRef.current = emmetHTML(monaco)
 	const handleEditorCSS = (monaco) => disposeEmmetHTMLRef.current = emmetCSS(monaco)
-
-	const combinedCode = `
-    <html>
-      <head>
-        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
-				<style>
-				html {
-					box-sizing: border-box;
-					font-family: sans-serif;
-				}
-				*,
-				*::before,
-				*::after {
-					box-sizing: inherit;
-				}
-				body{
-					margin: 0;
-				}
-				${css}
-				</style>
-      </head>
-      <body style="${elementType === 'Atoms' ? 'min-height:100svh;display:grid;place-items:center;' : ''}">
-				${html}
-			<script>${js}</script>
-			</body>
-    </html>
-  `
 
 	async function handleSubmit (e) {
 		const data = {
@@ -75,7 +47,6 @@ export default function CreateComponent () {
 		}
 
 		setStatus('loading')
-		console.log(data);
 
 		try {
 			const response = await addElement(data)
@@ -84,33 +55,67 @@ export default function CreateComponent () {
 			Confetti()
 		} catch (error) {
 			setStatus('error')
-			console.log(error)
 		}
 	}
 
-	return <ResizablePanelGroup className='h-[calc(100svh-35px)]! w-auto! m-4' direction='horizontal'>
+	return <ResizablePanelGroup className='h-[calc(100svh-25px)]! w-auto! m-3' direction='horizontal'>
 		<ResizablePanel >
 			<div className='flex flex-col h-full mr-1.5'>
 				<DialogStart useTailwind={useTailwind} setUseTailwind={setUseTailwind} setHtml={setHtml} setCss={setCss} setElementType={setElementType} setElementId={setElementId} elementType={elementType} />
 
-				<nav className='flex gap-8 items-center justify-between mb-2'>
+				<nav className='flex gap-8 items-center justify-between mb-1.5'>
 					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium cursor-pointer group active:scale-95 transition-transform'>
 						<ChevronLeft width={23} className='group-hover:-translate-x-1 transition-transform' />
 						<span>Back</span>
 					</button>
 
-					<div className='flex items-center gap-5'>
-						<div className='flex items-center gap-2 my-2'>
-							<label htmlFor='mode'>
-								<Image src={tailwindIcon} alt='Tailwind logo' width={20} height={20} />
-							</label>
-							<Switch
-								className='not-dark:data-[state=checked]:bg-blue-500'
-								id='mode'
-								checked={useTailwind}
-								onCheckedChange={setUseTailwind}
-							/>
-						</div>
+					<div className='flex items-center gap-2'>
+						<label className='theme-toggle p-1 rounded-lg dark:bg-white! bg-zinc-950!' title={darkMode ? 'Remove \'dark\' class from body' : 'Add \'dark\' class to body'} >
+							<input type='checkbox' defaultChecked={darkMode} />
+							<svg
+								onClick={() => setDarkMode(!darkMode)}
+								xmlns='http://www.w3.org/2000/svg'
+								aria-hidden='true'
+								className='theme-toggle__within dark:invert'
+								height='26px'
+								width='26px'
+								viewBox='0 0 32 32'
+								fill='currentColor'
+							>
+								<clipPath id='theme-toggle__within__clip'>
+									<path d='M0 0h32v32h-32ZM6 16A1 1 0 0026 16 1 1 0 006 16' />
+								</clipPath>
+								<g clipPath='url(#theme-toggle__within__clip)'>
+									<path d='M30.7 21.3 27.1 16l3.7-5.3c.4-.5.1-1.3-.6-1.4l-6.3-1.1-1.1-6.3c-.1-.6-.8-.9-1.4-.6L16 5l-5.4-3.7c-.5-.4-1.3-.1-1.4.6l-1 6.3-6.4 1.1c-.6.1-.9.9-.6 1.3L4.9 16l-3.7 5.3c-.4.5-.1 1.3.6 1.4l6.3 1.1 1.1 6.3c.1.6.8.9 1.4.6l5.3-3.7 5.3 3.7c.5.4 1.3.1 1.4-.6l1.1-6.3 6.3-1.1c.8-.1 1.1-.8.7-1.4zM16 25.1c-5.1 0-9.1-4.1-9.1-9.1 0-5.1 4.1-9.1 9.1-9.1s9.1 4.1 9.1 9.1c0 5.1-4 9.1-9.1 9.1z' />
+								</g>
+								<path
+									className='theme-toggle__within__circle'
+									d='M16 7.7c-4.6 0-8.2 3.7-8.2 8.2s3.6 8.4 8.2 8.4 8.2-3.7 8.2-8.2-3.6-8.4-8.2-8.4zm0 14.4c-3.4 0-6.1-2.9-6.1-6.2s2.7-6.1 6.1-6.1c3.4 0 6.1 2.9 6.1 6.2s-2.7 6.1-6.1 6.1z'
+								/>
+								<path
+									className='theme-toggle__within__inner'
+									d='M16 9.5c-3.6 0-6.4 2.9-6.4 6.4s2.8 6.5 6.4 6.5 6.4-2.9 6.4-6.4-2.8-6.5-6.4-6.5z'
+								/>
+							</svg>
+						</label>
+
+						<button
+							onClick={() => setUseTailwind(!useTailwind)}
+							title={useTailwind ? 'Disable Tailwind CSS' : 'Enable Tailwind CSS'}
+							className={`rounded-lg p-1 shadow transition group cursor-pointer active:scale-95 ${useTailwind
+								? 'bg-sky-500 text-white'
+								: 'bg-gray-200 dark:bg-gray-800 dark:text-white'
+								}`}
+						>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								viewBox='0 0 54 33'
+								className='size-[26px] group-hover:scale-110 transition-transform'
+								fill='currentColor'
+							>
+								<path d='M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-5 9.45-4.2 2.05.5 3.5 2 5.1 3.65C30.57 12.65 33.07 15 38.4 15c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 5-9.45 4.2-2.05-.5-3.5-2-5.1-3.65C34.83 2.35 32.33 0 27 0zM13.5 18c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-5 9.45-4.2 2.05.5 3.5 2 5.1 3.65C17.07 30.65 19.57 33 24.9 33c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 5-9.45 4.2-2.05-.5-3.5-2-5.1-3.65C21.33 20.35 18.83 18 13.5 18z' />
+							</svg>
+						</button>
 
 						<SignedIn>
 							<DialogSubmit onSubmit={handleSubmit} status={status} elementId={elementId} elementType={elementType} />
@@ -124,121 +129,67 @@ export default function CreateComponent () {
 									},
 								}}
 							>
-								<button className='px-10 py-1.5 rounded-lg hover:scale-x-105 shining  bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</button>
+								<button className='px-9 py-1.5 rounded-lg shining gradient1 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 cursor-pointer'>Create</button>
 							</SignUpButton>
 						</SignedOut>
 					</div>
 				</nav>
 
-				<Tabs defaultValue='html' className='flex-1 flex flex-col'>
-					<TabsList className='w-full justify-start'>
-						<TabsTrigger value='html'>HTML</TabsTrigger>
-						<TabsTrigger value='css'>CSS</TabsTrigger>
-						<TabsTrigger value='js' >JS</TabsTrigger>
-					</TabsList>
-
-					<TabsContent value='html' className='flex-1 rounded overflow-hidden'>
-						<Editor
-							height='100%'
-							defaultLanguage='html'
-							language={'html'}
-							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-							value={html}
-							beforeMount={handleEditorHTML}
-							onChange={(value) => setHtml(value || '')}
-							options={{
-								minimap: {
-									enabled: false
-								}
-							}}
-						/>
-					</TabsContent>
-
-					<TabsContent value='css' className='flex-1 rounded overflow-hidden'>
-						<Editor
-							height='100%'
-							defaultLanguage='css'
-							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-							value={css}
-							beforeMount={handleEditorCSS}
-							onChange={(value) => setCss(value || '')}
-							options={{
-								minimap: {
-									enabled: false
-								}
-							}}
-						/>
-					</TabsContent>
-
-					<TabsContent value='js' className='flex-1 rounded overflow-hidden'>
-						<Editor
-							height='100%'
-							defaultLanguage='javascript'
-							defaultValue={js}
-							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-							onChange={(value) => setJs(value || '')}
-							options={{
-								automaticLayout: true,
-								minimap: {
-									enabled: false
-								}
-							}}
-						/>
-					</TabsContent>
-				</Tabs>
-				{/* <Tabs tabs={[
-					{
-						label: 'HTML', value: 'html', content: <div className='flex-1 rounded overflow-hidden'>
-							<Editor
-								height='100%'
-								defaultLanguage='html'
-								language={'html'}
-								theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-								value={html}
-								beforeMount={handleEditorHTML}
-								onChange={(value) => setHtml(value || '')}
-								options={{
-									minimap: {
-										enabled: false
-									}
-								}}
-							/>
-						</div>
-					},
-					{
-						label: 'CSS', value: 'css', content: <div className='flex-1 rounded overflow-hidden'>
-							<Editor
-								height='100%'
-								defaultLanguage='css'
-								theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-								value={css}
-								beforeMount={handleEditorCSS}
-								onChange={(value) => setCss(value || '')}
-								options={{
-									minimap: {
-										enabled: false
-									}
-								}}
-							/>
-						</div>
-					},
-					{
-						label: 'JS', value: 'js', content: <Editor
-							height='100%'
-							defaultLanguage='javascript'
-							defaultValue={js}
-							theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
-							onChange={(value) => setJs(value || '')}
-							options={{
-								automaticLayout: true,
-								minimap: {
-									enabled: false
-								}
-							}}
-						/>
-					},
-				]
-				} /> */}
+				<Tabs
+					styled
+					tabs={[
+						{
+							label: 'HTML',
+							value: 'html',
+							content: (
+								<div className='h-full rounded overflow-hidden'>
+									<Editor
+										height='100%'
+										defaultLanguage='html'
+										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+										value={html}
+										beforeMount={handleEditorHTML}
+										onChange={(value) => setHtml(value || '')}
+										options={editorOptions}
+									/>
+								</div>
+							)
+						},
+						{
+							label: 'CSS',
+							value: 'css',
+							content: (
+								<div className='h-full rounded overflow-hidden'>
+									<Editor
+										height='100%'
+										defaultLanguage='css'
+										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+										value={css}
+										beforeMount={handleEditorCSS}
+										onChange={(value) => setCss(value || '')}
+										options={editorOptions}
+									/>
+								</div>
+							)
+						},
+						{
+							label: 'JS',
+							value: 'js',
+							content: (
+								<div className='h-full rounded overflow-hidden'>
+									<Editor
+										height='100%'
+										defaultLanguage='javascript'
+										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
+										value={js}
+										onChange={(value) => setJs(value || '')}
+										options={editorOptions}
+									/>
+								</div>
+							)
+						}
+					]}
+				/>
 			</div>
 		</ResizablePanel>
 		<ResizableHandle withHandle />
@@ -246,7 +197,7 @@ export default function CreateComponent () {
 			<div className='bg-white rounded shadow h-full overflow-auto ml-1.5'>
 				<iframe
 					ref={iframeViewer}
-					srcDoc={combinedCode}
+					srcDoc={iframeHTML({ html, css, js, useTailwind, elementType, darkMode })}
 					title='preview'
 					className='w-full h-full'
 					sandbox='allow-same-origin allow-scripts'

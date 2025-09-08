@@ -65,7 +65,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 	console.log(elementId, component, elementType, Atoms.find(el => el.id === elementId))
 	return (
 		<Dialog>
-			<DialogTrigger className='px-10 py-1.5 rounded-lg shining hover:scale-x-105 bg-gradient-to-l from-blue-500 to-indigo-500 via-blue-600 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 card-border cursor-pointer'>Create</DialogTrigger>
+			<DialogTrigger className='px-9 py-1.5 rounded-lg shining gradient1 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 cursor-pointer'>Create</DialogTrigger>
 			<DialogContent className={`p-6! ${status === undefined || status === "loading" ? " max-w-[600px]!" : "max-w-[580px]!"} dark:bg-zinc-900! `}>
 				<DialogTitle className="text-center mt-1">
 					{status === undefined && <span>Create {component.name} ({elementType})</span>}

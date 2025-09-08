@@ -6,54 +6,29 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup, } from "@/compone
 import { useTheme } from 'next-themes';
 import Tabs from '@/components/Tabs';
 import CopyButton from './ui/copy-btn';
+import { editorOptions, iframeHTML } from '@/lib/conts';
 
 export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className = '', elementType }) {
 	const [html, setHtml] = useState(htmlD);
 	const [css, setCss] = useState(cssD);
 	const [js, setJs] = useState(jsD);
-	const [darkMode, setDarkMode] = useState(false);
+	// const [darkMode] = useState(false);
 	const { resolvedTheme } = useTheme()
 	const disposeEmmetHTMLRef = useRef();
 
 	const handleEditorHTML = (monaco) => {
 		disposeEmmetHTMLRef.current = emmetHTML(monaco);
 	};
+
 	const handleEditorCSS = (monaco) => {
 		disposeEmmetHTMLRef.current = emmetCSS(monaco)
 	};
-
-	const combinedCode = `
-    <html class="${darkMode ? 'dark' : ''}">
-      <head>
-        ${useTailwind ? `<script src="https://cdn.tailwindcss.com"></script>` : ``}
-				<style>
-				${useTailwind ? `@custom-variant dark (&:where(.dark, .dark *));` : ``}
-								html {
-					box-sizing: border-box;
-					font-family: sans-serif;
-				}
-				*,
-				*::before,
-				*::after {
-					box-sizing: inherit;
-				}
-				body{
-					margin: 0;
-				}
-					${css}
-				</style>
-      </head>
-      <body style="${elementType === 'atoms' ? 'min-height:100svh;display:grid;place-items:center;' : ''}">
-				${html}
-				<script>${js}</script>
-			</body>
-    </html>
-  `
 
 	return <ResizablePanelGroup className={`h-full grow ${elementType === 'atoms' ? "max-h-[800px]" : "max-h-[900px]"}  ${className}`} direction="horizontal">
 		<ResizablePanel defaultSize={elementType === 'atoms' ? 45 : 40}>
 			<div className="flex flex-col h-full mr-1.5">
 				<Tabs
+					styled
 					tabs={[
 						{
 							label: 'HTML',
@@ -68,11 +43,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 										value={html}
 										beforeMount={handleEditorHTML}
 										onChange={(value) => setHtml(value || '')}
-										options={{
-											minimap: {
-												enabled: false
-											}
-										}}
+										options={editorOptions}
 									/>
 									<CopyButton textToCopy={html} />
 								</div>
@@ -90,11 +61,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 										value={css}
 										beforeMount={handleEditorCSS}
 										onChange={(value) => setCss(value || '')}
-										options={{
-											minimap: {
-												enabled: false
-											}
-										}}
+										options={editorOptions}
 									/>
 									<CopyButton textToCopy={css} />
 								</div>
@@ -111,18 +78,13 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 										theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs'}
 										value={js}
 										onChange={(value) => setJs(value || '')}
-										options={{
-											automaticLayout: true,
-											minimap: {
-												enabled: false
-											}
-										}}
+										options={editorOptions}
 									/>
 									<CopyButton textToCopy={js} />
 								</div>
 							)
 						}
-					]}
+					].filter(c => c.content)}
 				/>
 			</div>
 		</ResizablePanel>
@@ -130,7 +92,7 @@ export default function CodeEditor ({ htmlD, cssD, jsD, useTailwind, className =
 		<ResizablePanel defaultSize={elementType === 'atoms' ? 55 : 60}>
 			<div className="bg-white rounded shadow h-full overflow-auto relative ml-1.5">
 				<iframe
-					srcDoc={combinedCode}
+					srcDoc={iframeHTML({ html, css, js, useTailwind, elementType })}
 					title="preview"
 					className='w-full h-full'
 					// className='absolute origin-top-left'

@@ -93,7 +93,7 @@ export default async function UserProfile ({ params }) {
 							value: 'likes',
 							content: nowUser?.id === user.id ? <UserLikes /> : null
 						}
-					]}
+					].filter(t => t.content)}
 				/>
 			</div>
 		)

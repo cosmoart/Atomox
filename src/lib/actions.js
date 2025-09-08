@@ -44,7 +44,7 @@ export default async function getElements ({ getAll, elementId, query, page = 1,
 		const { data: elements, error: elementsError, count } = await baseQuery
 			.order(sort, { ascending: false })
 			.range(from, to)
-			.select(getAll ? '*' : 'id, username, element_id, views, published, img_url, user_avatar, likes');
+			.select(getAll ? '*' : 'id, username, element_id, views, published, img_url, user_avatar, likes, created_at');
 
 		if (elementsError) return { error: 'Error getting elements' };
 

@@ -44,24 +44,6 @@ export default function CTA () {
 						</p>
 					</div>
 
-					{/* Stats */}
-					<div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-center">
-						<div className="space-y-1">
-							<div className="text-3xl font-bold text-white">10,000+</div>
-							<div className="text-sm text-blue-200">Components</div>
-						</div>
-						<div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-blue-400/50 to-transparent"></div>
-						<div className="space-y-1">
-							<div className="text-3xl font-bold text-white">5,000+</div>
-							<div className="text-sm text-blue-200">Developers</div>
-						</div>
-						<div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-blue-400/50 to-transparent"></div>
-						<div className="space-y-1">
-							<div className="text-3xl font-bold text-white">50+</div>
-							<div className="text-sm text-blue-200">Countries</div>
-						</div>
-					</div>
-
 					{/* CTA Buttons */}
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
 						<Link href="/create" className="group px-8 py-3 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-white font-semibold rounded-xl border border-blue-400/30 hover:border-blue-300/50 hover:bg-gradient-to-r hover:from-blue-500/30 hover:to-indigo-500/30 transition-all duration-300 backdrop-blur-sm">

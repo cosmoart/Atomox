@@ -36,7 +36,7 @@ export default function CopyButton ({ textToCopy }) {
 			<button
 				ref={buttonRef}
 				onClick={handleCopy}
-				className='absolute! bottom-2 right-2 inline-flex btn-primary shining items-center gap-1 px-3 py-0.5 rounded-full not-disabled:cursor-pointer transition-all not-disabled:active:scale-90 text-[15px]'
+				className='absolute! bottom-2 right-2 inline-flex btn-primary gradient1 shining items-center gap-1 px-3 py-0.5 rounded-full not-disabled:cursor-pointer transition-all not-disabled:active:scale-90 text-[15px]'
 				disabled={isCopied}
 			>
 				{isCopied

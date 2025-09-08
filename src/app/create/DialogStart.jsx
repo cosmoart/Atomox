@@ -4,7 +4,7 @@ import { Switch } from '@/components/ui/switch'
 import Tabs from '@/components/Tabs'
 import { useState } from 'react'
 import Image from 'next/image'
-import tailwindIcon from '@/assets/icons/tailwind.svg'
+// import tailwindIcon from '@/assets/icons/tailwind.svg'
 
 export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, setCss, setElementType, setElementId }) {
 	const [selectedItem, setSelectedItem] = useState(Atoms[0])
@@ -33,7 +33,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 					What do you want to create?
 					<div className="flex items-center gap-3 ">
 						<label htmlFor="mode">
-							<Image src={tailwindIcon} alt='Tailwind logo' title='Tailwind' width={24} height={24} />
+							{/* <Image src={tailwindIcon} alt='Tailwind logo' title='Tailwind' width={24} height={24} /> */}
 						</label>
 						<Switch
 							id="mode"

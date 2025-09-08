@@ -4,6 +4,18 @@ import { atomsCode, moleculesCode } from './exampleCode'
 
 export const verifiedUsers = ['user_2xViHHL26Y03wAoBvi17YJqlBNK']
 
+export const editorOptions = {
+	wordWrap: 'on',
+	wordWrapColumn: 0,
+	wrappingIndent: 'same',
+	scrollBeyondLastLine: false,
+	minimap: { enabled: false },
+	tabSize: 4,
+	// tabSize: 3,
+	insertSpaces: false,
+	detectIndentation: false
+}
+
 export const PagesTypes = {
 	'Atoms': {
 		title: 'Atoms',
@@ -387,3 +399,37 @@ export const faqs = [
 		answer: 'Use the \'Report\' button on any component page. Provide specific details about the violation. All reports are reviewed by our moderation team.'
 	}
 ];
+
+export function iframeHTML ({ html, css, js, useTailwind, elementType, darkMode }) {
+	return `
+    <html class="${darkMode ? 'dark' : ''}">
+      <head>
+        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
+				<style>
+				html {
+					box-sizing: border-box;
+					font-family: sans-serif;
+				}
+				*,
+				*::before,
+				*::after {
+					box-sizing: inherit;
+				}
+				body{
+					margin: 0;
+				}
+				${css}
+				</style>
+				<script>
+				    tailwind.config = {
+      darkMode: 'class'
+    }
+				</script>
+      </head>
+      <body style="${elementType.toLowerCase() === 'atoms' ? 'min-height:100svh;display:grid;place-items:center;' : ''}">
+				${html}
+				<script>${js}</script>
+			</body>
+    </html>
+  `
+}
