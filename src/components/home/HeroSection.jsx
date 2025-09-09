@@ -68,7 +68,7 @@ export default function HeroSection () {
 						View Atoms
 						<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 					</Link>
-					<Link href='/molecules' className='btn-primary transition-none! px-4 py-1.5 shining rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 appear'>
+					<Link href='/molecules' className='btn-primary gradient1 transition-none! px-4 py-1.5 shining rounded-lg grow text-[15px] tracking-wide pl-6 cursor-pointer justify-center group flex items-center gap-2 appear'>
 						View Molecules
 						<ArrowRight size={19} className='w-0 transition-all group-hover:w-5 ' />
 					</Link>

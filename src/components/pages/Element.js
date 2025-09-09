@@ -25,7 +25,7 @@ export default async function Element ({ id, elementId }) {
 		<h1 className='text-2xl font-semibold'>Component not found</h1>
 		<p>The component you are looking for does not exist.</p>
 		<p className='-mt-1'>But you can create one.</p>
-		<Link href='/create' className='btn-primary block px-8 mt-4 py-1.5 shining'>Create one</Link>
+		<Link href='/create' className='btn-primary gradient1 block px-8 mt-4 py-1.5 shining'>Create one</Link>
 	</div>
 
 	if (element.error) return <div className='section flex flex-col items-center justify-center minHeightScreen'>

@@ -33,7 +33,7 @@ export function NavBar () {
 								))
 							}
 							<li className='p-3'>
-								<Link href="/atoms" className='select-none h-full shining bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-500 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all focus:bg-accent focus:text-accent-foreground  flex gap-1 items-center justify-center group'>
+								<Link href="/atoms" className='select-none h-full shining btn-primary gradient1 bg-center space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all focus:bg-accent focus:text-accent-foreground  flex gap-1 items-center justify-center group'>
 									<span className="font-medium text-[15px] mt-1 inline-block text-white">
 										View all
 									</span>
@@ -61,7 +61,7 @@ export function NavBar () {
 								</ListItem>
 							))}
 							<li className='py-3'>
-								<Link href="/molecules" className='select-none shining bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-500 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center group hover:bg-size-[140%_140%] bg-size-[100%_100%]'>
+								<Link href="/molecules" className='select-none shining btn-primary gradient1 bg-center space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all focus:bg-accent focus:text-accent-foreground h-full flex gap-1 items-center justify-center group'>
 									<span className="font-medium text-[15px] mt-1 inline-block text-white">
 										View all
 									</span>

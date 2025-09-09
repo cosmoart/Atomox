@@ -62,7 +62,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 	const component = (elementType === 'Atoms'
 		? Atoms.find(el => el.id === elementId)
 		: Molecules.find(el => el.id === elementId))
-	console.log(elementId, component, elementType, Atoms.find(el => el.id === elementId))
+
 	return (
 		<Dialog>
 			<DialogTrigger className='px-9 py-1.5 rounded-lg shining gradient1 text-[15px] tracking-wide font-medium text-white transition-all active:scale-95 cursor-pointer'>Create</DialogTrigger>

@@ -38,7 +38,7 @@ export default function ElementsList ({ data, title, description }) {
 
 			<article className='grow flex flex-col items-center 2xl:mt-3'>
 				<Link href={`/${title === 'Atoms' ? 'molecules' : 'atoms'}`}
-					className='btn-primary hover:bg-size-[140%_140%] bg-size-[100%_100%] shining outline-2 outline-offset-2 hover:outline-offset-4 dark:outline-zinc-800 outline-zinc-100 flex items-center gap-1 px-4 py-0.5 rounded-full bg-gradient-to-l text-sm tracking-wide font-medium text-white transition-all active:scale-95 cursor-pointer '>
+					className='btn-primary gradient1 bg-center hover:bg-size-[140%_140%] bg-size-[100%_100%] shining outline-2 outline-offset-2 hover:outline-offset-4 dark:outline-zinc-800 outline-zinc-100 flex items-center gap-1 px-4 py-0.5 rounded-full text-sm tracking-wide font-medium text-white transition-all active:scale-95 cursor-pointer '>
 					{title === 'Atoms' ? 'Molecules' : 'Atoms'}
 					<Repeat size={17} strokeWidth={2.3} className={`${title === 'Atoms' ? 'rotate-x-180' : ''}`} />
 				</Link>

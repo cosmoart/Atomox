@@ -25,7 +25,7 @@
   }
 
   .btn-primary{
-    @apply bg-gradient-to-l bg-indigo-500 from-indigo-600 via-purple-500/60  to-blue-600 from-20% to-80% text-white font-medium px-4 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 ;
+    @apply  bg-gradient-to-l bg-indigo-500 from-indigo-600 via-purple-500/60 to-blue-600 from-20% to-80% text-white font-medium px-4 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 ;
   }
 
   .gradient1{

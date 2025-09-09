@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { EllipsisVertical, Trash, Loader2, CheckCircle2, XCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -37,7 +36,7 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 	return (
 		<>
 			{
-				mode === 'menu' && <DropdownMenu>
+				mode === 'menu' && <DropdownMenu modal={false}>
 					<DropdownMenuTrigger asChild>
 						<button variant="ghost" size="icon" className="py-1 px-0.5 cursor-pointer active:scale-90 transition-transform">
 							<EllipsisVertical className="size-5" />
@@ -72,7 +71,7 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									initial={{ opacity: 0, y: 10 }}
 									animate={{ opacity: 1, y: 0 }}
 									exit={{ opacity: 0, y: -10 }}
-									className="text-muted-foreground"
+									className="dark:text-zinc-300 text-zinc-700"
 								>
 									Are you sure you want to delete this element? This action cannot be undone.
 								</motion.div>
@@ -84,9 +83,10 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
-									className="flex flex-col items-center text-blue-600"
+									className="flex flex-col gap-3 font-medium items-center"
 								>
-									<Loader2 className="w-5 h-5 animate-spin mb-1" />
+									{/* <Loader2 className="size-10 animate-spin mb-1" /> */}
+									<svg className={`animate-[spin_300ms_linear_900ms_forwards_infinite] ${status === 'loading' ? 'w-11' : 'w-0'} h-11 transition-all`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
 									Deleting...
 								</motion.div>
 							)}
@@ -97,9 +97,9 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									initial={{ opacity: 0, scale: 0.95 }}
 									animate={{ opacity: 1, scale: 1 }}
 									exit={{ opacity: 0 }}
-									className="flex flex-col items-center text-green-600"
+									className="flex flex-col items-center font-medium gap-4"
 								>
-									<CheckCircle2 className="w-5 h-5 mb-1" />
+									<CheckCircle2 className="size-12" />
 									Element deleted successfully
 								</motion.div>
 							)}
@@ -110,9 +110,9 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									initial={{ opacity: 0, scale: 0.95 }}
 									animate={{ opacity: 1, scale: 1 }}
 									exit={{ opacity: 0 }}
-									className="flex flex-col items-center text-red-600"
+									className="flex flex-col items-center font-medium gap-3"
 								>
-									<XCircle className="w-5 h-5 mb-1" />
+									<XCircle className="size-8" />
 									Failed to delete element
 								</motion.div>
 							)}
@@ -129,12 +129,13 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									exit={{ opacity: 0 }}
 									className="flex gap-2 justify-end w-full"
 								>
-									<Button variant="outline" onClick={resetDialog}>
+									<button className='font-medium cursor-pointer px-7 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 dark:bg-zinc-800 hover:bg-zinc-800/80' onClick={resetDialog}>
 										Cancel
-									</Button>
-									<Button onClick={handleDelete} disabled={status === 'loading'}>
+									</button>
+									<button className='font-medium cursor-pointer px-7 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 bg-red-500 hover:bg-red-600/90 flex gap-1.5 items-center' onClick={handleDelete} disabled={status === 'loading'}>
+										<Trash className="size-4 font-medium" />
 										Delete
-									</Button>
+									</button>
 								</motion.div>
 							)}
 
@@ -145,7 +146,7 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
 								>
-									<Button onClick={resetDialog}>Close</Button>
+									<button className='font-medium cursor-pointer px-8 py-1.5 rounded-md shadow-md transition-all not-disabled:active:scale-95 dark:bg-zinc-800 hover:bg-zinc-800/80' onClick={resetDialog}>Close</button>
 								</motion.div>
 							)}
 						</AnimatePresence>

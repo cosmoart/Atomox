@@ -22,7 +22,7 @@ export default function ElementCard ({ data }) {
 	}
 
 	return (
-		<section className='rounded-lg group backdrop-blur-sm h-fit bg-white/90 dark:bg-zinc-900/90 card-border relative z-10'>
+		<section className='rounded-lg group h-fit relative bg-white/90 dark:bg-zinc-900/90 card-border'>
 			{
 				!data.published && <>
 					<TooltipProvider>
@@ -45,7 +45,7 @@ export default function ElementCard ({ data }) {
 			}
 
 			{
-				true && data.published && <div className='absolute -top-2 -right-5 z-20 font-medium text-white text-sm gradient1 py-0.5 px-2 skew-3 group-hover:scale-105 transition-all'>
+				isNewElement() && data.published && <div className='absolute -top-2 -right-5 z-10 font-medium text-white text-sm gradient1 py-0.5 px-2 skew-3 group-hover:scale-105 transition-all'>
 					New
 				</div>
 			}
@@ -86,6 +86,24 @@ function ElementImage ({ data }) {
 		</div>
 	</Link>
 
+	// function combinedCode (useTailwind, html, css, redirectUrl) {
+	// 	return `
+	//   <html>
+	//     <head>
+	//       ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
+	//       <style>${css}</style>
+	//     </head>
+	//     <body ${elementType === "atoms" ? 'style="height:100svh;display:grid;place-items:center;overflow:hidden;cursor:pointer;"' : ''}>
+	//       ${html}
+	//       <script>
+	//         document.body.addEventListener('click', () => {
+	//           window.top.location.href = '${redirectUrl}';
+	//         });
+	//       </script>
+	//     </body>
+	//   </html>
+	// `;
+	// }
 	function combinedCode (useTailwind, html, css, redirectUrl) {
 		return `
     <html>
@@ -95,11 +113,11 @@ function ElementImage ({ data }) {
       </head>
       <body ${elementType === "atoms" ? 'style="height:100svh;display:grid;place-items:center;overflow:hidden;cursor:pointer;"' : ''}>
         ${html}
-        <script>
-          document.body.addEventListener('click', () => {
-            window.top.location.href = '${redirectUrl}';
-          });
-        </script>
+         <script>
+	         document.body.addEventListener('click', () => {
+	          window.top.location.href = '${redirectUrl}';
+	       });
+     </script>
       </body>
     </html>
   `;
@@ -111,7 +129,7 @@ function ElementImage ({ data }) {
 				title='preview'
 				loading="lazy"
 				className={`${elementType === "molecules" ? "w-[250%] h-[250%] aspect-video scale-40 absolute origin-top-left" : "w-full h-full"}`}
-				sandbox='allow-same-origin allow-scripts'
+				sandbox='allow-same-origin allow-scripts allow-top-navigation'
 				srcDoc={combinedCode(data.use_tailwind, data.html, data.css, `/${elementType}/${data.element_id}/${data.id}`)}
 			/>
 		</div>

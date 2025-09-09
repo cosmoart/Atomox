@@ -17,7 +17,7 @@ export default function Tabs ({ tabs = [], styled = false }) {
 						className={cn(
 							`relative px-4 flex gap-2 justify-center items-center font-medium text-muted-foreground transition-colors`,
 							activeTab === tab.value && 'text-primary',
-							styled ? `grow hover:border-zinc-700 hover:bg-zinc-700/60 cursor-pointer rounded-lg border py-0.5 text-[15px] border-transparent` : "py-2"
+							styled ? `grow hover:border-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-700/60 hover:bg-zinc-200 cursor-pointer rounded-lg border py-0.5 text-[15px] border-transparent` : "py-2"
 						)}
 					>
 						{activeTab === tab.value && (
