@@ -192,20 +192,24 @@ export async function toggleLike (elementId) {
 	}
 }
 
-export async function getUserLikes () {
+export async function getUserLikes ({ page = 1, pageSize = 10 }) {
 	const user = await currentUser();
 	const userId = user?.id;
 	if (!userId) return [];
 	const supabase = createServerSupabaseClient();
 
-	const { data, error } = await supabase
+	const from = (page - 1) * pageSize;
+	const to = from + pageSize - 1;
+
+	const { data, error, count } = await supabase
 		.from('elements_likes')
-		.select('element_id, elements (*)')
-		.eq('user_id', userId);
+		.select('element_id, elements (*)', { count: 'exact' })
+		.eq('user_id', userId)
+		.range(from, to);
 
-	if (error) throw new Error('Error getting likes');
+	if (error) return { error: 'Error getting likes' };
 
-	return data.map((like) => like.elements);
+	return { data: data.map(d => d.elements), totalCount: count || 0 };
 }
 
 // Comments ==============

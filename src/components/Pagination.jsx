@@ -1,11 +1,12 @@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination'
 import { useRouter } from 'next/navigation'
 
-export default function PaginationFooter ({ totalPages, setPage, page, queries }) {
+export default function PaginationFooter ({ totalPages, setPage, page, queries, disabledParams = false }) {
 	const router = useRouter()
 	const handlePageChange = (newPage) => {
-		router.push(`?${newParams(newPage).toString()}`);
 		setPage(newPage);
+		if (disabledParams) return;
+		router.push(`?${newParams(newPage).toString()}`);
 	};
 
 	function newParams (newPage = page) {

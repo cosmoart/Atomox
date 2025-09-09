@@ -58,25 +58,33 @@ export default function CreateComponent () {
 		}
 	}
 
+	const handleBack = () => {
+		const referrer = document.referrer;
+		const currentDomain = window.location.origin;
+
+		if (referrer && referrer.startsWith(currentDomain)) router.back();
+		else router.push('/')
+	};
+
 	return <ResizablePanelGroup className='h-[calc(100svh-25px)]! w-auto! m-3' direction='horizontal'>
 		<ResizablePanel >
 			<div className='flex flex-col h-full mr-1.5'>
 				<DialogStart useTailwind={useTailwind} setUseTailwind={setUseTailwind} setHtml={setHtml} setCss={setCss} setElementType={setElementType} setElementId={setElementId} elementType={elementType} />
 
 				<nav className='flex gap-8 items-center justify-between mb-1.5'>
-					<button onClick={() => router.back()} className='text-zinc-900 flex gap-1 dark:text-white font-medium cursor-pointer group active:scale-95 transition-transform'>
+					<button onClick={handleBack} className='text-zinc-900 flex gap-1 dark:text-white font-medium cursor-pointer group active:scale-95 transition-transform'>
 						<ChevronLeft width={23} className='group-hover:-translate-x-1 transition-transform' />
 						<span>Back</span>
 					</button>
 
 					<div className='flex items-center gap-2'>
-						<label className='theme-toggle p-1 rounded-lg dark:bg-white! bg-zinc-950!' title={darkMode ? 'Remove \'dark\' class from body' : 'Add \'dark\' class to body'} >
+						<label className='theme-toggle p-1 rounded-lg dark:bg-white! bg-zinc-900!' title={darkMode ? 'Remove \'dark\' class from body' : 'Add \'dark\' class to body'} >
 							<input type='checkbox' defaultChecked={darkMode} />
 							<svg
 								onClick={() => setDarkMode(!darkMode)}
 								xmlns='http://www.w3.org/2000/svg'
 								aria-hidden='true'
-								className='theme-toggle__within dark:invert'
+								className='theme-toggle__within invert'
 								height='26px'
 								width='26px'
 								viewBox='0 0 32 32'

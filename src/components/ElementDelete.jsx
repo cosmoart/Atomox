@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { EllipsisVertical, Trash, Loader2, CheckCircle2, XCircle } from 'lucide-react'
+import { EllipsisVertical, Trash, CheckCircle2, XCircle } from 'lucide-react'
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -60,7 +60,12 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 			<Dialog open={open} onOpenChange={resetDialog}>
 				<DialogContent className="sm:max-w-md dark:bg-zinc-900! ">
 					<DialogHeader>
-						<DialogTitle>Confirm deletion</DialogTitle>
+						<DialogTitle>
+							{status === "idle" && "Confirm deletion"}
+							{status === "loading" && "Deleting..."}
+							{status === "success" && "Element deleted"}
+							{status === "error" && "Error"}
+						</DialogTitle>
 					</DialogHeader>
 
 					<div className="min-h-[80px] flex items-center justify-center">
@@ -83,10 +88,9 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
-									className="flex flex-col gap-3 font-medium items-center"
+									className="flex flex-col gap-2.5 font-medium items-center pt-6.5 pb-3"
 								>
-									{/* <Loader2 className="size-10 animate-spin mb-1" /> */}
-									<svg className={`animate-[spin_300ms_linear_900ms_forwards_infinite] ${status === 'loading' ? 'w-11' : 'w-0'} h-11 transition-all`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
+									<svg className='animate-[spin_300ms_linear_900ms_forwards_infinite] size-12 transition-all' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
 									Deleting...
 								</motion.div>
 							)}
@@ -97,7 +101,7 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									initial={{ opacity: 0, scale: 0.95 }}
 									animate={{ opacity: 1, scale: 1 }}
 									exit={{ opacity: 0 }}
-									className="flex flex-col items-center font-medium gap-4"
+									className="flex flex-col items-center font-medium gap-2.5 pt-6.5 pb-3"
 								>
 									<CheckCircle2 className="size-12" />
 									Element deleted successfully
@@ -110,9 +114,9 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									initial={{ opacity: 0, scale: 0.95 }}
 									animate={{ opacity: 1, scale: 1 }}
 									exit={{ opacity: 0 }}
-									className="flex flex-col items-center font-medium gap-3"
+									className="flex flex-col items-center font-medium gap-2.5 pt-6.5 pb-3"
 								>
-									<XCircle className="size-8" />
+									<XCircle className="size-12" />
 									Failed to delete element
 								</motion.div>
 							)}
@@ -129,24 +133,13 @@ export default function ElementDelete ({ id, mode = "menu" }) {
 									exit={{ opacity: 0 }}
 									className="flex gap-2 justify-end w-full"
 								>
-									<button className='font-medium cursor-pointer px-7 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 dark:bg-zinc-800 hover:bg-zinc-800/80' onClick={resetDialog}>
+									<button className='font-medium cursor-pointer px-7 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-800/80' onClick={resetDialog}>
 										Cancel
 									</button>
-									<button className='font-medium cursor-pointer px-7 py-2 rounded-md shadow-md transition-all not-disabled:active:scale-95 bg-red-500 hover:bg-red-600/90 flex gap-1.5 items-center' onClick={handleDelete} disabled={status === 'loading'}>
+									<button className='font-medium cursor-pointer px-7 py-2 rounded-md shadow-md transition-all text-white not-disabled:active:scale-95 bg-red-500 hover:bg-red-600/90 flex gap-1.5 items-center' onClick={handleDelete} disabled={status === 'loading'}>
 										<Trash className="size-4 font-medium" />
 										Delete
 									</button>
-								</motion.div>
-							)}
-
-							{(status === 'success' || status === 'error') && (
-								<motion.div
-									key="done-footer"
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-								>
-									<button className='font-medium cursor-pointer px-8 py-1.5 rounded-md shadow-md transition-all not-disabled:active:scale-95 dark:bg-zinc-800 hover:bg-zinc-800/80' onClick={resetDialog}>Close</button>
 								</motion.div>
 							)}
 						</AnimatePresence>

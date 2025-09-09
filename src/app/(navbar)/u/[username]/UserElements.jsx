@@ -8,14 +8,12 @@ import PaginationFooter from '@/components/Pagination';
 import Image from 'next/image';
 import componentsIcon from '@/assets/icons/components.svg';
 import { XCircle } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
 
 export default function UserElements ({ username, isAuthor }) {
-	const searchParams = useSearchParams()
 	const [elements, setElements] = useState("loading");
-	const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-	const [totalPages, setTotalPages] = useState(0);
 	const [loading, startTransition] = useTransition();
+	const [page, setPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(0);
 	const pageSize = 12;
 
 	useEffect(() => {
@@ -59,7 +57,7 @@ export default function UserElements ({ username, isAuthor }) {
 					<ElementCard data={element} key={element.id} />
 				)}
 			</div>
-			<PaginationFooter totalPages={totalPages} setPage={setPage} page={page} />
+			<PaginationFooter disabledParams totalPages={totalPages} setPage={setPage} page={page} />
 		</section>
 	);
 }

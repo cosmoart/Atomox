@@ -7,24 +7,37 @@ import { ChevronRight } from 'lucide-react'
 export default function Footer () {
 	return (
 		<footer className='bg-gradient-to-b dark:from-zinc-900/40 dark:to-zinc-950 mt-20 card-border mx-1 rounded-t-xl'>
-			<div className='flex flex-col md:flex-row py-8 justify-between items-center gap-3 section lg:mx-auto '>
-				<div className='flex flex-col gap-3 items-center mb-4 md:mb-0'>
-					<div className='flex flex-col sm:flex-row gap-4 items-center text-center md:text-left'>
-						<Image src={logo} alt='Atomox logo' width={70} height={70} className='dark:invert' />
-						<div>
-							<p className='font-semibold text-4xl'>Atomox</p>
-							<p className='max-w-xs text-sm'>Web components by the people for the people. Created by <a href="https://github.com/cosmoart" target="_blank" rel="noopener noreferrer">Cosmo Art</a></p>
-							<Link href="/guidelines" className='text-sm underline pl-4'>Guidelines</Link>
-							<Link href='/privacy-policy' className='text-sm underline pl-4'>Privacy Policy</Link>
-							<Link href='/terms-of-service' className='text-sm underline pl-4'>Terms of Service</Link>
-						</div>
+			<div className='flex flex-col md:flex-row pt-8 pb-16 justify-between gap-3 section lg:mx-auto '>
+				<div className='flex flex-colmb-4 md:mb-0 sm:flex-row gap-4 text-center md:text-left'>
+					<Image src={logo} alt='Atomox logo' width={50} height={50} className='dark:invert h-fit' />
+
+					<div>
+						<p className='font-semibold text-4xl -mt-1'>Atomox</p>
+						<p className='max-w-md text-sm mt-2'>
+							{/* Web components by the people for the people. Created by <a href="https://github.com/cosmoart" target="_blank" rel="noopener noreferrer">Cosmo Art</a> */}
+							A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.
+						</p>
+
+						<nav>
+							<ul className='flex gap-5 text-sm underline mt-4'>
+								<li>
+									<Link href="/guidelines">Guidelines</Link>
+								</li>
+								<li>
+									<Link href='/privacy-policy'>Privacy Policy</Link>
+								</li>
+								<li>
+									<Link href='/terms-of-service'>Terms of Service</Link>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 
-				<section className='flex flex-row gap-5 sm:gap-20'>
+				<section className='flex flex-row gap-5 sm:gap-15'>
 					<nav>
-						<h5 className='text-xl font-medium text-center md:text-left mb-4'>Atoms</h5>
-						<ul className='grid md:grid-cols-2 gap-x-4 gap-y-1 text-sm'>
+						<h5 className='text-xl font-medium text-center md:text-left mb-3'>Atoms</h5>
+						<ul className='grid md:grid-cols-2 gap-x-2 gap-y-1 text-sm'>
 							{Atoms.map((atom, index) => (
 								<li key={index}>
 									<Link href={`/atoms/${atom.id}`} className='group flex gap-1 items-center hover:translate-x-1 transition-transform'>
@@ -37,8 +50,8 @@ export default function Footer () {
 					</nav>
 
 					<nav>
-						<h5 className='text-xl font-medium text-center md:text-left mb-4'>Molecules</h5>
-						<ul className='grid sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-1 text-sm'>
+						<h5 className='text-xl font-medium text-center md:text-left mb-3'>Molecules</h5>
+						<ul className='grid sm:grid-cols-2 md:grid-cols-[auto_auto_auto] sm:pr-5 gap-x-2 gap-y-1 text-sm'>
 							{Molecules.map((molecule, index) => (
 								<li key={index}>
 									<Link href={`/molecules/${molecule.id}`} className='group flex gap-1 items-center hover:translate-x-1 transition-transform'>

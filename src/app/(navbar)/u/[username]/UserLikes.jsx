@@ -6,22 +6,26 @@ import ElementCard, { ElementCardSkeleton } from '@/components/ElementCard';
 import Image from 'next/image';
 import componentsIcon from '@/assets/icons/components.svg';
 import { XCircle } from 'lucide-react';
+import PaginationFooter from '@/components/Pagination';
 
 export default function UserLikes () {
 	const [likes, setLikes] = useState("loading");
 	const [loading, startTransition] = useTransition();
+	const [page, setPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(0);
+	const pageSize = 12;
 
 	useEffect(() => {
-		startTransition(() => {
-			getUserLikes()
-				.then(setLikes)
-				.catch(() => setLikes({ error: true }));
+		startTransition(async () => {
+			const res = await getUserLikes({ page, pageSize });
+			setLikes(res.error ? ({ error: res.error }) : res.data);
+			setTotalPages(Math.ceil(res.totalCount / pageSize));
 		});
-	}, []);
+	}, [page]);
 
 	if (loading || likes === "loading") return <div className="pb-4 mt-5">
 		<div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
-			{[...Array(8)].map((_, i) => <ElementCardSkeleton key={i} />)}
+			{[...Array(pageSize)].map((_, i) => <ElementCardSkeleton key={i} />)}
 		</div>
 	</div>
 
@@ -43,12 +47,13 @@ export default function UserLikes () {
 	</div>
 
 	return (
-		<div className="pb-4">
-			<div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 mt-5">
+		<section className="pb-4 mt-4">
+			<div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 				{likes.map((element) =>
 					<ElementCard data={{ ...element, likedByUser: true }} key={element.id} />
 				)}
 			</div>
-		</div>
+			<PaginationFooter disabledParams totalPages={totalPages} setPage={setPage} page={page} />
+		</section>
 	);
 }
