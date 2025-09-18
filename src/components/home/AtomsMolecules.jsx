@@ -12,7 +12,7 @@ export default function AtomsMolecules () {
 				<section className='grid grid-cols-2 sm:grid-cols-3 justify-center gap-4'>
 					{
 						Atoms.slice(0, 9).map((element, i) => (
-							<Link href={`atoms/${element.id}`} key={element.id} className={`group relative rounded-xl flex-1  dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] transition-all duration-300  hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 ${i > 5 ? "hidden sm:block" : ""}`}>
+							<Link href={`atoms/${element.id}`} key={element.id} className={`group relative rounded-xl flex-1 overflow-hidden dark:bg-[#111111] bg-white/80 backdrop-blur-sm hover:border-indigo-500 card-border border-[#222222] transition-all duration-300  hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] group outline-2 active:scale-95 outline-transparent outline-offset-3  hover:outline-indigo-500 ${i > 5 ? "hidden sm:block" : ""}`}>
 								<div className='aspect-16/8 bg-zinc-100 dark:bg-zinc-900 overflow-hidden'>
 									{element.icon ? element.icon : ''}
 								</div>
@@ -21,7 +21,7 @@ export default function AtomsMolecules () {
 									<div className='absolute inset-0 bg-gradient-to-r from-indigo-600/0 via-indigo-600/0 to-indigo-600/0 opacity-0 group-hover:opacity-10 transition-opacity duration-300'></div>
 
 									<div className='absolute top-0 left-0 w-full h-0.5 bg-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></div>
-									<h3 className='text-lg font-medium text-[17px]'>{element.name}</h3>
+									<p className='text-lg font-medium text-[17px]'>{element.name}</p>
 								</div>
 							</Link>
 						))
@@ -52,7 +52,7 @@ export default function AtomsMolecules () {
 									<div className='absolute inset-0 bg-gradient-to-r from-indigo-600/0 via-indigo-600/0 to-indigo-600/0 opacity-0 group-hover:opacity-10 transition-opacity duration-300'></div>
 
 									<div className='absolute top-0 left-0 w-full h-0.5 bg-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></div>
-									<h3 className='font-medium text-[17px]'>{element.name}</h3>
+									<p className='font-medium text-[17px]'>{element.name}</p>
 								</div>
 							</Link>
 						))

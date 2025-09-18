@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Atoms, Molecules } from '@/lib/conts'
-import Image from 'next/image'
-import logo from '@/assets/icons/logo.svg'
+import Logo from '@/assets/icons/Logo';
+
 import { ChevronRight } from 'lucide-react'
 
 export default function Footer () {
@@ -9,12 +9,15 @@ export default function Footer () {
 		<footer className='bg-gradient-to-b dark:from-zinc-900/40 dark:to-zinc-950 mt-20 card-border mx-1 rounded-t-xl'>
 			<div className='flex flex-col md:flex-row pt-8 pb-16 justify-between gap-3 section lg:mx-auto '>
 				<div className='flex flex-colmb-4 md:mb-0 sm:flex-row gap-4 text-center md:text-left'>
-					<Image src={logo} alt='Atomox logo' width={50} height={50} className='dark:invert h-fit' />
+					<Link href='/'>
+						<Logo width={50} height={50} />
+					</Link>
 
 					<div>
-						<p className='font-semibold text-4xl -mt-1'>Atomox</p>
+						<Link href='/'>
+							<p className='font-semibold text-4xl -mt-1'>Atomox</p>
+						</Link>
 						<p className='max-w-md text-sm mt-2'>
-							{/* Web components by the people for the people. Created by <a href="https://github.com/cosmoart" target="_blank" rel="noopener noreferrer">Cosmo Art</a> */}
 							A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.
 						</p>
 
