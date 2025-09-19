@@ -42,8 +42,8 @@ export default function Elements ({ data: data2, type }) {
 
 				if (res.error) throw new Error('Error fetching')
 
-				if (res.data.length > (type === 'Atoms' ? 8 : 6)) {
-					const min = type === 'Atoms' ? 8 : 6;
+				if (res.data.length > (type === 'Atoms' ? 4 : 3)) {
+					const min = type === 'Atoms' ? 4 : 3;
 					const max = res.data.length;
 					const randomIndex = Math.floor(Math.random() * (max - min)) + min;
 					res.data.splice(randomIndex, 0, 'ad');
@@ -55,7 +55,7 @@ export default function Elements ({ data: data2, type }) {
 				setElements({ error: true })
 			}
 		});
-	}, [currentPage]);
+	}, [currentPage, queries]);
 
 	const handleSearch = (e) => {
 		e.preventDefault()
@@ -78,9 +78,9 @@ export default function Elements ({ data: data2, type }) {
 		setQueries({ query: q, style: style, sort: sort })
 	}
 
-	// if (elements === 'error') return <div>
-	// 	Error
-	// </div>
+	if (elements.error) return <div>
+		Error
+	</div>
 
 	return (
 		<div className='section mb-10 relative minHeightScreen flex flex-col'>
@@ -101,7 +101,10 @@ export default function Elements ({ data: data2, type }) {
 
 				<div className='flex flex-col gap-3 w-full self-end sm:w-auto'>
 					<p className={`text-zinc-900/80 w-fit ml-auto dark:text-white/80 text-sm relative text-right after:absolute after:w-full after:h-full dark:after:bg-zinc-800 after:bg-zinc-300 after:rounded-full after:animate-pulse after:top-0 after:left-0 ${(isPending || elements === 'loading') ? 'after:opacity-100' : 'after:pointer-events-none after:opacity-0!'}`}>
-						<span className={`transition-opacity ${(isPending || elements === 'loading') ? 'opacity-0' : ''}`}>{totalElements} element{totalElements > 1 ?? 's'}. Page {Math.ceil(totalElements / elementsPerPage) === 0 ? 0 : currentPage} of {Math.ceil(totalElements / elementsPerPage)}.</span>
+						<span className={`transition-opacity ${(isPending || elements === 'loading') ? 'opacity-0' : ''}`}>
+							{totalElements} element{+totalElements > 1 ?? 's'}.
+							Page {Math.ceil(totalElements / elementsPerPage) === 0 ? 0 : currentPage} of {Math.ceil(totalElements / elementsPerPage)}.
+						</span>
 					</p>
 
 					<form onSubmit={handleSearch} className='flex gap-2'>
@@ -136,8 +139,8 @@ export default function Elements ({ data: data2, type }) {
 								placeholder='Search...'
 								className='w-full sm:max-w-3xs py-1.5 px-4 rounded-md card-border dark:bg-zinc-900/50  bg-white/50 backdrop-blur-xs pr-10'
 							/>
-							<button type='submit' className='absolute cursor-pointer active:scale-95 transition-all top-1/2 right-1 -translate-y-1/2 bg-gradient-to-br from-indigo-500  to-blue-500 p-1 rounded-md hover:scale-110'>
-								<Search size={20} className='text-white' />
+							<button type='submit' className='absolute cursor-pointer active:scale-95 transition-all top-1/2 right-1 -translate-y-1/2 bg-gradient-to-br btn-primary gradient1 p-1 rounded group'>
+								<Search size={20} className='text-white group-hover:scale-105 transition-transform' />
 							</button>
 						</span>
 					</form>

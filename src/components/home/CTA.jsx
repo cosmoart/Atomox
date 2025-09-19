@@ -1,11 +1,12 @@
 import { ArrowRight, Code, Github, Heart, Plus, Sparkles, Upload, Users } from 'lucide-react';
-import BubbleIconsBackground from './Anima';
+// import BubbleIconsBackground from './Anima';
+import AnimatedIconsBackground from './Anima';
 import Link from 'next/link';
 
 export default function CTA () {
 	return (
 		<section className="relative bg-gradient-to-br from-indigo-700 via-blue-600 to-purple-700 overflow-hidden rounded-3xl">
-			<BubbleIconsBackground />
+			<AnimatedIconsBackground />
 			{/* Background decorative elements */}
 			<div className="absolute inset-0 opacity-10">
 				<div className="absolute top-10 left-10 w-32 h-32 bg-pink-500 rounded-full blur-3xl"></div>
@@ -13,26 +14,14 @@ export default function CTA () {
 				<div className="absolute top-1/2 left-1/3 w-24 h-24 bg-indigo-400 rounded-full blur-2xl"></div>
 			</div>
 
-			{/* Animated floating elements */}
-			<div className="absolute inset-0 overflow-hidden pointer-events-none">
-				<div className="absolute top-1/4 left-1/4 animate-pulse">
-					<Code className="w-6 h-6 text-pink-300 opacity-30" />
-				</div>
-				<div className="absolute top-3/4 right-1/3 animate-bounce" style={{ animationDelay: '1s', animationDuration: '3s' }}>
-					<Sparkles className="w-5 h-5 text-blue-300 opacity-40" />
-				</div>
-				<div className="absolute top-1/3 right-1/4 animate-pulse" style={{ animationDelay: '2s' }}>
-					<Upload className="w-4 h-4 text-indigo-300 opacity-35" />
-				</div>
-			</div>
-
 			<div className="relative max-w-7xl mx-auto px-6 py-16 2xl:py-20">
 				<div className="text-center space-y-8">
 					{/* Header */}
-					<div className="space-y-4">
+					<div className="space-y-3">
 						<div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-white/20 to-purple-500/20 rounded-full border border-white/30 backdrop-blur-sm">
 							<Users className="w-4 h-4 text-white mr-2" />
-							<span className="text-white text-sm font-medium">Join the community</span>
+							<span className="text-white text-sm font-medium">Contribute your components</span>
+							{/* <span className="text-white text-sm font-medium">Join the community</span> */}
 						</div>
 
 						<h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-pink-200 bg-clip-text text-transparent ">
@@ -46,7 +35,7 @@ export default function CTA () {
 
 					{/* CTA Buttons */}
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-						<Link href="/create" className="group px-8 py-3 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-white font-semibold rounded-xl border border-blue-400/30 hover:border-blue-300/50 hover:bg-gradient-to-r hover:from-blue-500/30 hover:to-indigo-500/30 transition-all duration-300 backdrop-blur-sm">
+						<Link href="/create" className="group px-8 py-3 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-white font-semibold rounded-xl border border-blue-400/30 hover:border-blue-300/50 hover:bg-gradient-to-r active:scale-95 hover:from-blue-500/30 hover:to-indigo-500/30 transition-all duration-300 backdrop-blur-sm">
 							<div className="flex items-center space-x-2">
 								<Plus className="size-5" />
 								<span>Create component</span>
@@ -54,7 +43,7 @@ export default function CTA () {
 							</div>
 						</Link>
 
-						<Link href="/sign-in" className="group relative px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 hover:scale-105 transform">
+						<Link href="/sign-in" className="group relative px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 via-fuchsia-500 text-white font-semibold rounded-xl  transition-all duration-300 shadow-lg hover:shadow-pink-500/25 transform active:scale-95">
 							<div className="flex items-center space-x-2">
 								<Users className="w-5 h-5" />
 								<span>Join community</span>

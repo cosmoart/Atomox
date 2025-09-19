@@ -109,13 +109,13 @@ npm run dev
 
 Proposed features that may or may not be implemented in the future.
 
-- [ ] Comments section
+- [x] Comments section
 - [ ] User achievements, description & links.
 - [ ] Components from other frameworks (React, Vue, Angular, etc.)
 - [ ] Tailwind autocomplete
 - [x] Verified user role ~~(Its components are published immediately.)~~
-- [ ] Licenses or credits for the components
-- [ ] Zoom in/out in components
+- [x] Licenses or credits for the components
+- [ ] ~~Zoom in/out in components~~
 
 <p align="right"><a href="#top">⬆️ Back to top</a></p>
 

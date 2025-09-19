@@ -50,12 +50,9 @@ export default function FeaturesBento () {
 	return (
 		<div className="section mb-30 mt-20">
 			<header className="text-center mb-10">
-				<h1 id="features" className="text-5xl font-bold mb-1 bg-linear-to-r to-purple-500 dark:to-purple-300 from-blue-600 dark:from-blue-400 bg-clip-text text-transparent leading-15 inline-block">
+				<h1 id="features" className="text-5xl font-bold mb-1 bg-linear-to-r to-purple-500 dark:to-purple-500 from-blue-600 dark:from-blue-500 dark:via-indigo-400 bg-clip-text text-transparent leading-15 inline-block">
 					Features
 				</h1>
-				{/* <h1 className="text-5xl font-bold mb-2 leading-15 inline-block">
-					Features
-				</h1> */}
 				<p className="dark:text-zinc-200 text-xl max-w-2xl mx-auto">
 					A comprehensive collection of components, templates, and resources for modern web development. and resources
 				</p>

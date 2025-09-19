@@ -66,14 +66,19 @@
   }
 }
 
-.cl-userProfile-root{
+/* select second div child of clerk-footer */
+.clerk-footer > div:nth-child(2) {
+  padding-block: 7px;
+}
+
+/* .cl-userProfile-root{
   width: auto;
   height: calc(100svh - var(--header-height));
 }
 .cl-cardBox{
   width: auto;
   height: 100%;
-}
+} */
 
 .heightScreen{
   height: calc(100svh - var(--header-height));
