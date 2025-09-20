@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import CodeEditor from '@/components/CodeEditor';
 import LikeButton from '../LikeButton';
-import { Eye, Info, OctagonAlert } from 'lucide-react';
+import { Info, OctagonAlert, Tag } from 'lucide-react';
 import Link from 'next/link';
 import { getElement } from '@/lib/actions';
 import TimeAgoTooltip from '../TimeAgoTooltip';
@@ -12,7 +12,6 @@ import componentsIcon from '@/assets/icons/components.svg'
 import { Atoms } from '@/lib/conts';
 import Comments from '../Comments';
 import Ad from '../Ad';
-import UpdateViewsAction from '@/lib/updateViews';
 
 export default async function Element ({ id, elementId }) {
 	const element = await getElement(id, elementId)
@@ -42,24 +41,31 @@ export default async function Element ({ id, elementId }) {
 
 	return (
 		<div>
-			<UpdateViewsAction id={id} views={element.views} />
 			<div className={`${elementType === 'atoms' ? 'section flex flex-col heightScreen max-h-[50rem]' : 'px-1! py-0! mt-2'}`}>
 				<CodeEditor htmlD={element.html} cssD={element.css} jsD={element.js} useTailwind={element.use_tailwind} className={`${elementType === 'atoms' ? 'h-full' : 'minHeightScreen 2xl:min-h-auto! 2xl:h-screen!'}`} elementType={elementType} />
 
 				<article className={`section flex flex-col card-border sm:flex-row justify-between items-center gap-3 py-2 pl-3 sm:pl-5 pr-2 2xl:pr-4  bg-zinc-200/60 rounded-2xl shadow dark:bg-zinc-900 mt-2.5 sm:rounded-full ${elementType === 'atoms' ? 'w-full' : 'mx-4 2xl:mx-auto '}`}>
 					<section className='flex items-center'>
 						<div className='flex gap-1 items-center'>
-							<Eye size={19} />
-							<span className='text-[15px]'>
-								{element.views} Views
-							</span>
+							<LikeButton withText={true} initialLikeCount={element.likes} isLiked={element.likedByUser} elementId={element.id} />
 						</div>
 
 						<div className='h-5 w-[1px] mx-3.5 bg-zinc-600 rounded-lg'></div>
 
-						<div className='flex gap-1 items-center'>
-							<LikeButton withText={true} initialLikeCount={element.likes} isLiked={element.likedByUser} elementId={element.id} />
-						</div>
+						<section className='px-3 flex gap-1 items-center'>
+							<h4 className='text-2xl font-medium hidden'>Tags</h4>
+							{/* <ul className='flex gap-2'>
+								{
+									element.tags?.split(',').map(tag => (
+										<li key={tag} className='flex gap-2 items-center rounded-md px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-[15px]'>
+											<span className='text-sm'>{tag}</span>
+										</li>
+									))
+								}
+							</ul> */}
+							<Tag className='size-5 text-zinc-500 dark:text-gray-400' />
+							{element.tags.split(',').length} Tags
+						</section>
 
 						<div className='h-5 w-[1px] mx-3.5 bg-zinc-600 rounded-lg'></div>
 
@@ -95,18 +101,6 @@ export default async function Element ({ id, elementId }) {
 							}
 						</div>
 					</div>
-					{/* <section className='px-4'>
-	<h2 className='text-2xl font-medium hidden'>Tags</h2>
-	<ul className='flex gap-2'>
-		{
-			element.tags?.split(',').map(tag => (
-				<li key={tag} className='flex gap-2 items-center rounded-md px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-[15px]'>
-					<span className='text-sm'>{tag}</span>
-				</li>
-			))
-		}
-	</ul>
-</section> */}
 				</article>
 			</div>
 

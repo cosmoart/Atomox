@@ -44,7 +44,7 @@ export default async function getElements ({ getAll, elementId, query, page = 1,
 		const { data: elements, error: elementsError, count } = await baseQuery
 			.order(sort, { ascending: false })
 			.range(from, to)
-			.select(getAll ? '*' : 'id, username, element_id, views, published, img_url, user_avatar, likes, created_at');
+			.select(getAll ? '*' : 'id, username, element_id, published, img_url, user_avatar, likes, created_at');
 
 		if (elementsError) return { error: 'Error getting elements' };
 
@@ -314,13 +314,4 @@ export async function likeComment (id) {
 			.insert([{ user_id: userId, comment_id: id }]);
 		if (insertError) throw insertError;
 	}
-}
-
-export async function updateViews (id, views) {
-	if (!id) throw new Error('Post ID is required.');
-	const client = createServerSupabaseClient();
-
-	const { error } = await client.from('elements').update({ views: views + 1 }).eq('id', id)
-
-	if (error) throw new Error('Error updating views');
 }

@@ -108,7 +108,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 									{errors.guidelines && <p className='text-red-500 text-xs'>{errors.guidelines.message}</p>}
 								</label>
 
-								<button type='submit' disabled={status === "loading"} className='px-8 shining max-w-[180px]  w-full btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer disabled:cursor-progress'>
+								<button type='submit' disabled={status === "loading"} className='px-8 shining py-1.5 gradient1 max-w-[180px]  w-full btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer disabled:cursor-progress'>
 									<svg className={`animate-[spin_300ms_linear_900ms_forwards_infinite] ${status === 'loading' ? 'w-5 ' : 'w-0'} h-5 transition-all`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"><path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9" /><path d="M17 12a5 5 0 1 0-5 5" /></g></svg>
 									{status === 'loading' ? 'Creating...' : 'Create'}
 								</button>

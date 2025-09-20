@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Atoms, Molecules } from '@/lib/conts'
 import Logo from '@/assets/icons/Logo';
 
-import { ChevronRight } from 'lucide-react'
+import { ArrowUpRight, ChevronRight } from 'lucide-react'
 
 export default function Footer () {
 	return (
@@ -21,8 +21,14 @@ export default function Footer () {
 							A collaborative platform where developers and designers can share, explore, and give feedback on reusable web components.
 						</p>
 
+						<a href="https://clerk.com/blog/highlights-midudev-clerk-hackathon#4th-place-atomox" target="_blank" rel="noopener noreferrer" className='shining btn-primary gradient1 text-white text-xs w-fit py-0.5 mt-2 px-2 flex gap-1 items-center rounded-full tracking-wide font-medium group'>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64"><path fill="currentColor" d="M33.662 36.217V25.326l-7.674 10.891z" /><path fill="currentColor" d="M32 2C15.432 2 2 15.432 2 32s13.432 30 30 30s30-13.432 30-30S48.568 2 32 2m12 39.586h-4.145V48h-6.193v-6.414H20v-5.348L34.48 16h5.375v20.217H44z" /></svg>
+							Place in the Midudev x Clerk Hackathon
+							<ArrowUpRight size={18} className='w-0 transition-all group-hover:w-4 ' />
+						</a>
+
 						<nav>
-							<ul className='flex gap-5 text-sm underline mt-4'>
+							<ul className='flex gap-5 text-sm underline mt-5'>
 								<li>
 									<Link href="/guidelines">Guidelines</Link>
 								</li>
@@ -39,7 +45,9 @@ export default function Footer () {
 
 				<section className='flex flex-row gap-5 sm:gap-15'>
 					<nav>
-						<h5 className='text-xl font-medium text-center md:text-left mb-3'>Atoms</h5>
+						<Link href='/atoms'>
+							<p className='text-xl font-medium text-center md:text-left mb-3'>Atoms</p>
+						</Link>
 						<ul className='grid md:grid-cols-2 gap-x-2 gap-y-1 text-sm'>
 							{Atoms.map((atom, index) => (
 								<li key={index}>
@@ -53,7 +61,9 @@ export default function Footer () {
 					</nav>
 
 					<nav>
-						<h5 className='text-xl font-medium text-center md:text-left mb-3'>Molecules</h5>
+						<Link href='/molecules'>
+							<p className='text-xl font-medium text-center md:text-left mb-3'>Molecules</p>
+						</Link>
 						<ul className='grid sm:grid-cols-2 md:grid-cols-[auto_auto_auto] sm:pr-5 gap-x-2 gap-y-1 text-sm'>
 							{Molecules.map((molecule, index) => (
 								<li key={index}>

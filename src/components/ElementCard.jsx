@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Eye, OctagonAlert } from 'lucide-react'
+import { OctagonAlert } from 'lucide-react'
 import Link from 'next/link';
 import LikeButton from './LikeButton';
 import { Atoms } from '@/lib/conts';
@@ -64,13 +64,6 @@ export default function ElementCard ({ data }) {
 
 				<div className={`flex gap-2.5 items-center mr-1 ${!data.published && "pointer-events-none"}`}>
 					<LikeButton initialLikeCount={data.likes} isLiked={data.likedByUser} elementId={data.id} />
-
-					<div className='flex gap-1 items-center'>
-						<Eye size={19} className='text-zinc-900/90 dark:text-white/90' />
-						<span className='text-sm text-zinc-900/90 dark:text-white/90'>
-							{data.views}
-						</span>
-					</div>
 				</div>
 			</div>
 		</section>

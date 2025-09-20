@@ -125,7 +125,6 @@ export default function Elements ({ data: data2, type }) {
 							</SelectTrigger>
 							<SelectContent>
 								<SelectItem value='likes'>Sort by Likes</SelectItem>
-								<SelectItem value='views'>Sort by Views</SelectItem>
 								<SelectItem value='created_at'>Sort by Date</SelectItem>
 							</SelectContent>
 						</Select>

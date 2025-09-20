@@ -88,9 +88,18 @@ export default function LikeButton ({ elementId, isLiked, initialLikeCount, with
 						baseTheme: resolvedTheme === 'dark' ? dark : undefined,
 						elements: {
 							logoBox: 'hidden!',
-							modalContent: "m-auto!",
+							modalContent: 'w-full m-auto!',
 							buttonArrowIcon: 'hidden!',
-							formButtonPrimary: "btn-primary text-white! font-medium! shadow-none! text-[15px]!"
+							formButtonPrimary: 'btn-primary gradient1 shining text-white! font-medium! shadow-none! text-[15px]! rounded-lg!',
+							footerAction: 'py-3.5!',
+							headerSubtitle: 'hidden',
+							card: 'gap-7! bg-transparent! pt-5!',
+							cardBox: 'w-auto!',
+							rootBox: 'card-border w-full! dark:bg-zinc-900 mx-auto max-w-[26rem] rounded-lg',
+							socialButtonsBlockButton: 'card-border',
+							footer: 'clerk-footer mt-0! pt-0!',
+							headerTitle: 'text-xl!',
+							formFieldInput: 'card-border dark:bg-zinc-800/40! p-1.5',
 						},
 						layout: {
 							unsafe_disableDevelopmentModeWarnings: true,
