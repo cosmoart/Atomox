@@ -83,7 +83,7 @@ function ElementImage ({ data }) {
 	// 	return `
 	//   <html>
 	//     <head>
-	//       ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
+	//       ${useTailwind ? '<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>' : ''}
 	//       <style>${css}</style>
 	//     </head>
 	//     <body ${elementType === "atoms" ? 'style="height:100svh;display:grid;place-items:center;overflow:hidden;cursor:pointer;"' : ''}>
@@ -101,7 +101,7 @@ function ElementImage ({ data }) {
 		return `
     <html>
       <head>
-        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
+        ${useTailwind ? '<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>' : ''}
         <style>${css}</style>
       </head>
       <body ${elementType === "atoms" ? 'style="height:100svh;display:grid;place-items:center;overflow:hidden;cursor:pointer;"' : ''}>

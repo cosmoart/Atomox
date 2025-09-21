@@ -27,34 +27,39 @@ export default function Elements ({ data: data2, type }) {
 		sort: searchParams.get('sort') || 'likes'
 	})
 
-	useEffect(() => {
-		startTransition(async () => {
-			try {
-				const res = await getElements({
-					elementId: data2.id,
-					page: currentPage,
-					pageSize: elementsPerPage,
-					query: queries.query.split(' '),
-					sort: queries.sort,
-					style: queries.style,
-					getAll: type === 'Atoms'
-				});
+	const getAllElements = async () => {
+		if (isPending) return
+		setElements('loading')
 
-				if (res.error) throw new Error('Error fetching')
+		try {
+			const res = await getElements({
+				elementId: data2.id,
+				page: currentPage,
+				pageSize: elementsPerPage,
+				query: queries.query.split(' '),
+				sort: queries.sort,
+				style: queries.style,
+				getAll: type === 'Atoms'
+			});
 
-				if (res.data.length > (type === 'Atoms' ? 4 : 3)) {
-					const min = type === 'Atoms' ? 4 : 3;
-					const max = res.data.length;
-					const randomIndex = Math.floor(Math.random() * (max - min)) + min;
-					res.data.splice(randomIndex, 0, 'ad');
-				}
+			if (res.error) throw new Error('Error fetching')
 
-				setElements(res.error ? ({ error: res.error }) : res.data);
-				setTotalElements(res.totalCount);
-			} catch (error) {
-				setElements({ error: true })
+			if (res.data.length > (type === 'Atoms' ? 4 : 3)) {
+				const min = type === 'Atoms' ? 4 : 3;
+				const max = res.data.length;
+				const randomIndex = Math.floor(Math.random() * (max - min)) + min;
+				res.data.splice(randomIndex, 0, 'ad');
 			}
-		});
+
+			setElements(res.error ? ({ error: res.error }) : res.data);
+			setTotalElements(res.totalCount);
+		} catch (error) {
+			setElements({ error: true })
+		}
+	}
+
+	useEffect(() => {
+		startTransition(getAllElements);
 	}, [currentPage, queries]);
 
 	const handleSearch = (e) => {
@@ -78,8 +83,17 @@ export default function Elements ({ data: data2, type }) {
 		setQueries({ query: q, style: style, sort: sort })
 	}
 
-	if (elements.error) return <div>
-		Error
+	if (elements.error) return <div className='text-center min-h-[calc(100svh-5rem)] flex justify-center items-center flex-col'>
+		<div className='absolute h-[44svh] dark:invert -z-30 pointer-events-none opacity-30 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]'></div>
+
+		<OctagonX className='size-14 2xl:size-20' />
+		<h1 className='text-4xl font-semibold mt-2 2xl:text-6xl'>
+			Something went wrong!
+		</h1>
+		<p className='text-pretty mt-1 text-zinc-900/80 dark:text-white/80 text-lg text-center 2xl:text-2xl'>An unexpected error has occurred. Please try again later.</p>
+		<button onClick={getAllElements} className='btn btn-primary mt-3 py-1.5 flex gap-1 px-10 shining 2xl:text-lg items-center gradient1'>
+			Try again
+		</button>
 	</div>
 
 	return (
@@ -88,7 +102,7 @@ export default function Elements ({ data: data2, type }) {
 
 			<article className='flex flex-col md:flex-row gap-3 items-center py-3 2xl:py-4 '>
 				<section className='grow'>
-					<h1 className='text-3xl inline-block sm:text-4xl bg-clip-text bg-linear-to-r to-purple-500 dark:to-purple-400 from-blue-600 dark:from-blue-500 text-transparent font-bold relative'>
+					<h1 className='text-3xl inline-block sm:text-4xl not-dark:bg-clip-text bg-linear-to-r to-purple-500 dark:to-purple-600 from-blue-600 dark:via-indigo-600 dark:from-blue-600 not-dark:text-transparent font-bold relative skew-x-6'>
 						{data2.name}
 						<span className='absolute  -top-2.5 -right-6.5 rounded-full aspect-square size-6 2xl:size-6.5 grid place-items-center text-white bg-gradient-to-l from-purple-500 to-blue-500 text-[15px] 2xl:text-base 2xl:pt-0.5 outline-2 outline-zinc-100 dark:outline-zinc-700/50 outline-offset-2'>
 							{elements === 'loading' || isPending ? '?' : totalElements}

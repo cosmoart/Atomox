@@ -404,7 +404,7 @@ export function iframeHTML ({ html, css, js, useTailwind, elementType, darkMode 
 	return `
     <html class="${darkMode ? 'dark' : ''}">
       <head>
-        ${useTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
+        ${useTailwind ? '<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>' : ''}
 				<style>
 				html {
 					box-sizing: border-box;
@@ -418,8 +418,8 @@ export function iframeHTML ({ html, css, js, useTailwind, elementType, darkMode 
 				body{
 					margin: 0;
 				}
-				${css}
 				</style>
+				<style>${css}</style>
 				<script>
 				    tailwind.config = {
       darkMode: 'class'
