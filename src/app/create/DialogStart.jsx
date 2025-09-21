@@ -66,7 +66,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 												setElementType('Atoms')
 												handleSelect(atom, useTailwind)
 											}}
-											className={`rounded-md relative group bg-zinc-50 dark:bg-zinc-800 cursor-pointer grow transition-colors ${selectedItem.id === atom.id ? 'bg-gradient-to-l after:bg-gradient-to-l after:-z-20 before:-z-10 after:from-blue-500 after:to-indigo-500 after:via-blue-600 after:w-[calc(100%+8px)] after:h-[calc(100%+8px)] after:absolute after:-top-1 after:-left-1 after:rounded-md before:bg-zinc-900 before:-top-0.5 before:absolute before:rounded-md before:-left-0.5 before:w-[calc(100%+4px)] before:h-[calc(100%+4px)]  from-blue-500  to-indigo-500 via-blue-600! text-white' : 'card-border'}`}
+											className={`rounded-md relative group bg-zinc-50 dark:bg-zinc-800 cursor-pointer grow transition-colors ${selectedItem.id === atom.id ? 'bg-gradient-to-l after:bg-gradient-to-l after:-z-20 before:-z-10 after:from-blue-500 after:to-indigo-500 after:via-blue-600 after:w-[calc(100%+8px)] after:h-[calc(100%+8px)] after:absolute after:-top-1 after:-left-1 after:rounded-md before:bg-white dark:before:bg-zinc-900 before:-top-0.5 before:absolute before:rounded-md before:-left-0.5 before:w-[calc(100%+4px)] before:h-[calc(100%+4px)]  from-blue-500  to-indigo-500 via-blue-600! text-white' : 'card-border'}`}
 										>
 											<div className='w-full *:scale-x-105 h-21 overflow-hidden rounded-md'>
 												{atom.icon}
@@ -91,7 +91,7 @@ export default function DialogStart ({ useTailwind, setUseTailwind, setHtml, set
 												setElementType('Molecules')
 												handleSelect(molecule, false)
 											}}
-											className={`rounded-md relative group bg-zinc-50 dark:bg-zinc-800 cursor-pointer grow transition-colors  ${selectedItem.id === molecule.id ? 'bg-gradient-to-l after:bg-gradient-to-l after:-z-20 before:-z-10 after:from-blue-500 after:to-indigo-500  after:via-blue-600 after:w-[calc(100%+8px)] after:h-[calc(100%+8px)] after:absolute after:-top-1 after:-left-1 after:rounded-md before:bg-zinc-900 before:-top-0.5 before:absolute before:rounded-md before:-left-0.5 before:w-[calc(100%+4px)] before:h-[calc(100%+4px)]  from-blue-500  to-indigo-500 via-blue-600! text-white' : 'card-border'}`}
+											className={`rounded-md relative group bg-zinc-50 dark:bg-zinc-800 cursor-pointer grow transition-colors  ${selectedItem.id === molecule.id ? 'bg-gradient-to-l after:bg-gradient-to-l after:-z-20 before:-z-10 after:from-blue-500 after:to-indigo-500  after:via-blue-600 after:w-[calc(100%+8px)] after:h-[calc(100%+8px)] after:absolute after:-top-1 after:-left-1 after:rounded-md before:bg-white dark:before:bg-zinc-900 before:-top-0.5 before:absolute before:rounded-md before:-left-0.5 before:w-[calc(100%+4px)] before:h-[calc(100%+4px)]  from-blue-500  to-indigo-500 via-blue-600! text-white' : 'card-border'}`}
 										>
 											<div className='w-full *:scale-x-105 h-21 overflow-hidden rounded-md'>
 												{molecule.icon}

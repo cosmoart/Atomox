@@ -62,8 +62,14 @@ export default function CreateComponent () {
 		const referrer = document.referrer;
 		const currentDomain = window.location.origin;
 
-		if (referrer && referrer.startsWith(currentDomain)) router.back();
-		else router.push('/')
+		// Opción 1: Verificar historial y referrer
+		if (window.history.length > 1 && referrer && referrer.startsWith(currentDomain)) {
+			router.back();
+		}
+		// Opción 2: Si no hay historial válido, ir a home
+		else {
+			router.push('/');
+		}
 	};
 
 	return <ResizablePanelGroup className='h-[calc(100svh-25px)]! w-auto! m-3' direction='horizontal'>

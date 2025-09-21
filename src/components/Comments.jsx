@@ -5,7 +5,7 @@ import { SignedIn, SignedOut, SignUpButton, useUser } from '@clerk/nextjs';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { useTheme } from 'next-themes';
 import { dark } from '@clerk/themes';
-import { EllipsisVertical, OctagonAlert, SendHorizontal, Trash } from 'lucide-react';
+import { EllipsisVertical, Heart, OctagonAlert, SendHorizontal, Trash } from 'lucide-react';
 import { createComment, deleteComment, getComments, likeComment } from '@/lib/actions';
 import { getTimeAgo } from '@/lib/getTimeAgo';
 import Link from 'next/link';
@@ -239,7 +239,7 @@ function CommentCard ({ comment, username, deleteComment, onReply, isReply = fal
 						{comment.user}
 					</Link>
 					<span className='text-sm opacity-80'>{getTimeAgo(new Date(comment.created_at) ?? new Date())}</span>
-					{username === comment.username && <DropdownMenu>
+					{username === comment.username && <DropdownMenu modal={false}>
 						<DropdownMenuTrigger asChild>
 							<button variant="ghost" size="icon" className="py-1 ml-auto px-0.5 cursor-pointer active:scale-90 transition-transform">
 								<EllipsisVertical className="size-5" />
@@ -275,9 +275,9 @@ function CommentForm ({ disabled, sendComment, replyTo }) {
 		<textarea name='comment' className='w-full disabled:opacity-70 disabled:pointer-events-none px-4 py-2 rounded-lg card-border field-sizing-content min-h-18' placeholder='Leave a comment...' disabled={disabled} rows={replyTo ? 2 : 4} />
 
 		<SignedIn>
-			<button disabled={disabled} type='submit' className='px-7 cursor-pointer disabled:opacity-70 disabled:pointer-events-none py-0 group rounded-lg shining btn-primary gradient1 h-fit flex gap-1.5 items-center'>
-				Send
-				<SendHorizontal size={38} />
+			<button disabled={disabled} type='submit' className='px-7 cursor-pointer disabled:opacity-70 disabled:pointer-events-none py-0 group rounded-lg shining btn-primary gradient1 h-fit flex gap-1.5 items-center group'>
+				{replyTo ? "Reply" : "Send"}
+				<SendHorizontal size={38} className='group-hover:translate-x-1 transition-transform' />
 			</button>
 		</SignedIn>
 		<SignedOut>

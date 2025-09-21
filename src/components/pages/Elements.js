@@ -108,7 +108,7 @@ export default function Elements ({ data: data2, type }) {
 					</p>
 
 					<form onSubmit={handleSearch} className='flex gap-2'>
-						<Select name='style' defaultValue={queries.style} disabled={isPending || elements?.error || elements === 'loading'}>
+						<Select avoidCollisions={false} name='style' defaultValue={queries.style} disabled={isPending || elements?.error || elements === 'loading'}>
 							<SelectTrigger className='card-border bg-white dark:bg-zinc-900! border-0!'>
 								<SelectValue placeholder='Tailwind or CSS' />
 							</SelectTrigger>
@@ -119,7 +119,7 @@ export default function Elements ({ data: data2, type }) {
 							</SelectContent>
 						</Select>
 
-						<Select name='sort' defaultValue={queries.sort} disabled={isPending || elements?.error || elements === 'loading'}>
+						<Select avoidCollisions={false} name='sort' defaultValue={queries.sort} disabled={isPending || elements?.error || elements === 'loading'}>
 							<SelectTrigger className='card-border bg-white dark:bg-zinc-900! border-0!'>
 								<SelectValue placeholder='Sort by' />
 							</SelectTrigger>
