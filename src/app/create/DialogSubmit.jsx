@@ -120,7 +120,7 @@ export default function DialogSubmit ({ onSubmit, elementId, elementType, status
 							<p className='opacity-95 mb-4'>
 								Remember that the component will not be visible until it is manually accepted; if it is not accepted, it will be deleted. You can view and delete your unpublished components in your profile.
 							</p>
-							<Link href={`/u/${user.username}`} className='px-8 ml-auto btn-primary flex gap-1 justify-center items-center not-disabled:cursor-pointer mt-3 text-[15px] group'>
+							<Link href={`/u/${user.username}`} className='px-8 ml-auto btn-primary gradient1 flex gap-1 justify-center items-center not-disabled:cursor-pointer mt-3 text-[15px] group'>
 								View your components
 								<ArrowRight size={20} className='w-0 transition-all group-hover:w-4' />
 							</Link>
