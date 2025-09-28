@@ -194,7 +194,7 @@ function ElementsList ({ isPending, elements }) {
 	if (elements.length < 1) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col gap-4'>
 		<Image src={componentsIcon} alt='empty' width={100} height={100} className='dark:invert' />
 		<p className='text-center text-muted-foreground'>No components found <span className='italic font-medium'>yet</span>. But you can change that</p>
-		<Link href='/create' className='btn-primary shining px-7 py-1.5 rounded-lg bg-gradient-to-l text-[15px] tracking-wide font-medium text-white transition-all active:scale-95  cursor-pointer'>Create one</Link>
+		<Link href='/create' className='btn-primary shining px-7 py-1.5 rounded-lg bg-gradient-to-l text-[15px] tracking-wide font-medium text-white transition-all active:scale-95  cursor-pointer  gradient1'>Create one</Link>
 	</div>
 
 	if (elements.error) return <div className='h-full w-full col-span-full flex items-center justify-center flex-col '>

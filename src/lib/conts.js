@@ -378,6 +378,7 @@ export const recommendations = [
 ];
 
 export const faqs = [
+	// I have a component that matches more than one category.
 	{
 		question: 'What happens if my component violates the guidelines?',
 		answer: 'Components that violate our rules will be removed immediately. Repeated violations may result in account suspension. We\'ll notify you via email with specific reasons for removal.'
