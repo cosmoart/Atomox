@@ -169,7 +169,7 @@ export default function FeaturesBento () {
 				</article>
 
 				{/* Stats Card */}
-				<article className="bg-gradient-to-r top-left from-emerald-500 to-teal-600 rounded-2xl p-6 text-white">
+				{/* <article className="bg-gradient-to-r top-left from-emerald-500 to-teal-600 rounded-2xl p-6 text-white">
 					<header className="flex items-center gap-3 mb-4">
 						<Users className="size-5" />
 						<span className="text-sm font-medium">Community</span>
@@ -182,10 +182,10 @@ export default function FeaturesBento () {
 						<Star className="w-4 h-4 text-yellow-300" />
 						<span className="text-sm font-medium">4.9/5 rating</span>
 					</div>
-				</article>
+				</article> */}
 
 				{/* Tailwind CSS Plugins */}
-				<article className="bg-zinc-100 top dark:bg-zinc-900  card-border rounded-2xl p-6 ">
+				{/* <article className="bg-zinc-100 top dark:bg-zinc-900  card-border rounded-2xl p-6 ">
 					<div className="flex items-center justify-center size-10 bg-cyan-500/20 rounded-xl mb-4">
 						<Layers className="size-5 text-cyan-400" />
 					</div>
@@ -193,13 +193,13 @@ export default function FeaturesBento () {
 					<p className="text-zinc-400 mb-4 text-sm leading-relaxed">
 						Completely unstyled, fully accessible UI plugins for popular features.
 					</p>
-					{/* <button className="text-cyan-400 hover:text-cyan-300 font-semibold text-sm flex items-center gap-1 transition-all">
+					<button className="text-cyan-400 hover:text-cyan-300 font-semibold text-sm flex items-center gap-1 transition-all">
 						See how it works <ArrowRight className="w-4 h-4" />
-					</button> */}
-				</article>
+					</button>
+				</article> */}
 
 				{/* Innovation Card */}
-				<article className="bg-gradient-to-r top-right sm:col-span-2 lg:col-span-1 from-pink-500 to-rose-600 rounded-2xl p-6 text-white">
+				{/* <article className="bg-gradient-to-r top-right sm:col-span-2 lg:col-span-1 from-pink-500 to-rose-600 rounded-2xl p-6 text-white">
 					<header className="flex items-center gap-3 mb-4">
 						<Sparkles className="size-5" />
 						<span className="text-sm font-medium">Innovation</span>
@@ -212,7 +212,7 @@ export default function FeaturesBento () {
 						<Zap className="w-4 h-4 text-yellow-300" />
 						<span className="text-sm font-medium">Coming soon</span>
 					</div>
-				</article>
+				</article> */}
 			</section>
 		</div>
 	);
