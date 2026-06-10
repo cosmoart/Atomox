@@ -65,7 +65,7 @@ export default function FeaturesBento () {
 						<div className="flex items-center justify-center size-10 bg-blue-500/20 rounded-xl mb-4">
 							<Grid3X3 className="size-5 text-blue-400" />
 						</div>
-						<h2 className="text-xl font-bold mb-3">640+ Components</h2>
+						<h2 className="text-xl font-bold mb-3">30+ Components</h2>
 					</div>
 
 					<p className="text-zinc-400 mb-4 text-sm leading-relaxed">
@@ -82,7 +82,7 @@ export default function FeaturesBento () {
 					<div className="relative z-10">
 						<span className="text-sm font-semibold text-blue-200 mb-2 block">OVER</span>
 						<span className="text-8xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent block">
-							50
+							30
 						</span>
 						<h2 className="text-3xl font-bold mb-4 text-white">Components</h2>
 						<p className="text-blue-100 mb-8 max-w-md">
